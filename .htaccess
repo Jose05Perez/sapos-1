@@ -1,0 +1,8 @@
+#Usario no tenga aceso a las carpeta del sistema
+Options All -Indexes
+
+#ruta amigables
+
+RewriteEngine On
+
+RewriteRule ^([a-zA-Z0-9]+)$ index.php?ruta=$1

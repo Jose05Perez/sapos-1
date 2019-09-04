@@ -1,4 +1,16 @@
 <?php
+/**
+ *  Copyright (c) BNPHU. All rights reserved. Licensed under the GPL license.
+ *  See LICENSE in the project root for license information.
+ *
+ *  PHP version 7
+ *
+ *  @category vista
+ *  @package correspondencia
+ *  @author   Josué Serulle Cabreja <jota_serulle@hotmail.com>
+ *  @license GPL
+ *  @link https://github.com/josueSerulle/correspondencia
+ */
 session_start();
 ?>
 <!DOCTYPE html>
@@ -9,7 +21,7 @@ session_start();
   <title>Correspondencia BNPHU</title>
   <!-- Tell the browser to be responsive to screen width -->
   <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
-  <link rel="icon" href="vistas/imagenes/plantilla/icono-negro.png">
+  <link rel="icon" href="#">
    <!--=====================================
   PLUGINS DE CSS
   ======================================-->
@@ -29,11 +41,13 @@ session_start();
   <link rel="stylesheet" href="vista/bower_components/datatables.net-bs/css/dataTables.bootstrap.min.css">
   <link rel="stylesheet" href="vista/bower_components/datatables.net-bs/css/responsive.bootstrap.min.css">
   <!-- iCheck for checkboxes and radio inputs -->
-  <link rel="stylesheet" href="vista/plugins/iCheck/all.css">
+  <link rel="stylesheet" href="vista/bower_components/iCheck/all.css">
   <!-- bootstrap datepicker -->
   <link rel="stylesheet" href="vista/bower_components/bootstrap-datepicker/dist/css/bootstrap-datepicker.min.css">
   <!-- daterange picker -->
   <link rel="stylesheet" href="vista/bower_components/bootstrap-daterangepicker/daterangepicker.css">
+  <!-- bootstrap wysihtml5 - text editor -->
+  <link rel="stylesheet" href="vista/bower_components/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css">
   
   <!--=====================================
   PLUGINS DE JAVASCRIPT
@@ -42,6 +56,12 @@ session_start();
   <script src="vista/bower_components/jquery/dist/jquery.min.js"></script>
   <!-- Bootstrap 3.3.7 -->
   <script src="vista/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+  <!-- jQuery UI 1.11.4 -->
+  <script src="vista/bower_components/jqueryUI/jquery-ui.min.js"></script>
+  <!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
+  <script>
+    $.widget.bridge('uibutton', $.ui.button);
+  </script>
   <!-- FastClick -->
   <script src="vista/bower_components/fastclick/lib/fastclick.js"></script>
   <!-- AdminLTE App -->
@@ -66,7 +86,14 @@ session_start();
   <!-- date-range-picker -->
   <script src="vista/bower_components/moment/min/moment.min.js"></script>
   <script src="vista/bower_components/bootstrap-daterangepicker/daterangepicker.js"></script>
+  <!-- Bootstrap WYSIHTML5 -->
+  <script src="vista/bower_components/bootstrap-wysihtml5/bootstrap3-wysihtml5.all.min.js"></script>
+  <!-- Slimscroll -->
+  <script src="vista/bower_components/jquery-slimscroll/jquery.slimscroll.min.js"></script>
+  <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
+  <script src="vista/dist/js/pages/dashboard.js"></script>
 </head>
+
 <body class="hold-transition skin-blue sidebar-mini"> 
     <?php
         // if(isset($_SESSION["iniciarSession"]) && $_SESSION["iniciarSession"] == "ok")

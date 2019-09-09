@@ -4,13 +4,22 @@
 
     class AuthHelper
     {
-        public static function getAuthorizationUrl()
+        public static function getAuthorizationUrl($session)
         {
-          $authUrl = Settings::$authority . "oauth2/authorize?" .
+          $authUrl = "";
+          if($session)
+          {
+            $authUrl = Settings::$authority . "oauth2/authorize?".
             "response_type=code&" .
             "client_id=" . Settings::$clientId . "&" .
             "resource=" . Settings::$unifiedAPIResource . "&" .
             "redirect_uri=" . Settings::$redirectURI;
+          }
+          else
+          {
+            $authUrl = Settings::$authority . "oauth2/logout?".
+            "post_logout_redirect_uri=". Settings::$redirectURI;
+          }
           return $authUrl;
         }
 

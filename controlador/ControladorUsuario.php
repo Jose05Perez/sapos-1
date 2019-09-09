@@ -16,42 +16,52 @@
          /**
           * Metodo para loguear Usuario
         * @access public
+        * @param boolena $session para saber si esta iniciando o cerrando session 
         * @return 
         */
-        static public function ctrIngresarUsuario()
+        static public function ctrIngresarUsuario($session)
         {
-            if(isset($_GET["code"]))
+            if($session)
             {
-                $token = AuthHelper::getAccessTokenFromCode($_GET["code"]);
-                if(isset($token->refreshToken))
+                if(isset($_GET["code"]))
                 {
-                    $token = AuthHelper::getAccessTokenFromRefreshToken($token->refreshToken);
-                    $request = curl_init(Settings::$unifiedAPIEndpoint. "me");
-                    curl_setopt($request,CURLOPT_HTTPHEADER,array(
-                        "Authorization: Bearer " . $token->accessToken,
-                        "Accept: application/json"
-                    ));
-                    curl_setopt($request,CURLOPT_RETURNTRANSFER,true);
-                    $response = curl_exec($request);
-                    $me = json_decode($response,true);
-
-                    if($me)
+                    $token = AuthHelper::getAccessTokenFromCode($_GET["code"]);
+                    if(isset($token->refreshToken))
                     {
-                        $_SESSION["iniciarSession"] = "ok";
-                        $_SESSION["nombre"] = $me["displayName"];
-                        $_SESSION["mail"] = $me["mail"];
-                        $_SESSION["departamento"] = $me["department"];
-                        $_SESSION["tituloTrabajo"] = $me["jobTitle"];
-                        echo '<script>
-                            window.location = "inicio";
-                        </script>';
+                        $token = AuthHelper::getAccessTokenFromRefreshToken($token->refreshToken);
+                        $request = curl_init(Settings::$unifiedAPIEndpoint. "me");
+                        curl_setopt($request,CURLOPT_HTTPHEADER,array(
+                            "Authorization: Bearer " . $token->accessToken,
+                            "Accept: application/json"
+                        ));
+                        curl_setopt($request,CURLOPT_RETURNTRANSFER,true);
+                        $response = curl_exec($request);
+                        $me = json_decode($response,true);
+
+                        if($me)
+                        {
+                            $_SESSION["iniciarSession"] = "ok";
+                            $_SESSION["nombre"] = $me["displayName"];
+                            $_SESSION["mail"] = $me["mail"];
+                            $_SESSION["departamento"] = $me["department"];
+                            $_SESSION["tituloTrabajo"] = $me["jobTitle"];
+                            echo '<script>
+                                window.location = "inicio";
+                            </script>';
+                        }
                     }
+                }
+                else
+                {
+                    echo '<script>
+                        window.location = "'.AuthHelper::getAuthorizationUrl(true).'";
+                    </script>';
                 }
             }
             else
             {
                 echo '<script>
-                    window.location = "'.AuthHelper::getAuthorizationUrl().'";
+                    window.location = "'.AuthHelper::getAuthorizationUrl(false).'";
                 </script>';
             }
         }

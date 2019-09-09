@@ -12,6 +12,4 @@
     *  @link https://github.com/josueSerulle/correspondencia
     */
     session_destroy();
-        echo '<script>
-                window.location = "http://localhost:8000/correspondencia";
-            </script>';
+    ctrUsuario::ctrIngresarUsuario(false);

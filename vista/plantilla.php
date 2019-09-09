@@ -112,7 +112,7 @@ session_start();
                 ===============================================================================================================*/
                 if(isset($_GET["ruta"]))
                 {
-                    if($_GET["ruta"] == "inicio")
+                    if($_GET["ruta"] == "inicio" || $_GET["ruta"] == "salir")
                     {
                         include "modulo/".$_GET["ruta"].".php";
                     }
@@ -134,7 +134,7 @@ session_start();
         else
         {
            $usuario = new ctrUsuario();
-           $usuario->ctrIngresarUsuario();
+           $usuario->ctrIngresarUsuario(true);
         }
     ?>
 </body>

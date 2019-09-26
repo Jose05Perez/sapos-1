@@ -1,0 +1,73 @@
+Pag_3
+
+	Procurar(facilitar) 
+
+
+Pag_5
+
+	Agregar 
+		correo(correspondencia) 
+		
+Emisor, 
+		receptor(que se enlace con la institución si viene de una), 
+		fecha De recibo, 
+		fecha de correspondencias.
+
+---nota
+	
+El emisor si hace correspondencias desde otra institución debe tener un reg diferente
+
+
+------LLENADO
+------CORREGIR
+
+INCLUIR FORMATOS OPEN DOCUMENT  Y FORMATOS DE IMAGEN. 
+
+
+	Mismo Id mismo codigo. 
+
+	Un rol que permita visualizar todas las correspondencia. 
+
+
+----imprimir listado(lista) 
+- - - bloque 
+- - revisar
+
+--- reutilizada en forma repetida
+
+
+Eliminar una correspondencia
+---archivar. 
+	Pasa a 
+Archivo histórico 
+
+
+Pag-6
+
+	Servicio web externo 
+Ingresar código y dar un status de la correspondencia. 
+	
+
+
+Documento con plazo de gestión son procesos. Solicitud de información 15 días. 
+
+
+Pag_8
+	
+Emisor area(departamento) 
+
+
+Pag_9
+	
+Cronograma de actividades
+---
+
+Eliminar quick mail
+
+
+Reorganizar el dashboard. 
+
+
+Dashboard mail 
+-archivo (Vista) 
+Opcion archivar

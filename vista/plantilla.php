@@ -96,8 +96,8 @@ session_start();
 
 <body class="hold-transition skin-blue sidebar-mini"> 
     <?php
-        if(isset($_SESSION["iniciarSession"]) && $_SESSION["iniciarSession"] == "ok")
-        {
+        // if(isset($_SESSION["iniciarSession"]) && $_SESSION["iniciarSession"] == "ok")
+        // {
             echo '<div class="wrapper">';
                 /*===============================================================================================================
                 Incluyendo el cabezote en la aplicacion
@@ -112,7 +112,7 @@ session_start();
                 ===============================================================================================================*/
                 if(isset($_GET["ruta"]))
                 {
-                    if($_GET["ruta"] == "inicio" || $_GET["ruta"] == "salir")
+                    if($_GET["ruta"] == "inicio" || $_GET["ruta"] == "salir" || $_GET["ruta"] == "emisor")
                     {
                         include "modulo/".$_GET["ruta"].".php";
                     }
@@ -121,21 +121,21 @@ session_start();
                         include "modulo/404.php";
                     }
                 }
-                else
-                {
-                    include "modulo/inicio.php";
-                }
+                // else
+                // {
+                //     include "modulo/inicio.php";
+                // }
                 /*===============================================================================================================
                 Incluyendo el pie de pagina en la aplicacion
                 ===============================================================================================================*/
                 include "modulo/piePagina.php";  
             echo '</div>';
-        }
-        else
-        {
-           $usuario = new ctrUsuario();
-           $usuario->ctrIngresarUsuario(true);
-        }
+        // }
+        // else
+        // {
+        //    $usuario = new ctrUsuario();
+        //    $usuario->ctrIngresarUsuario(true);
+        // }
     ?>
 </body>
 </html>

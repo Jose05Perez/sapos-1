@@ -18,31 +18,11 @@
         <div class="col-md-3">
           <a href="mesaEntrada" class="btn btn-primary btn-block margin-bottom">Mesa de Entrada</a>
            
-        <div class="box box-solid">
-          <div class="box-header with-border">
-            <h3 class="box-title"></h3>
-
-            <div class="box-tools">
-              <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
-              </button>
-            </div>
-          </div>
-          <div class="box-body no-padding">
-            <ul class="nav nav-pills nav-stacked">
-              <li class="active"><a href="#"><i class="fa fa-inbox"></i> Pendiente
-                <span class="label label-primary pull-right">00-Var-consulta</span></a></li>
-              <li><a href="#"><i class="fa fa-envelope-o"></i>Leidos</a></li>
-              <li><a href="#"><i class="fa fa-file-text-o"></i> Pendientes</a></li>
-              <li><a href="#"><i class="fa fa-filter"></i>En espera<span class="label label-warning pull-right">00-var-consulta</span></a>
-              </li>
-            </ul>
-          </div>
-          <!-- /.box-body -->
-        </div>
+        
         <!-- /. box -->
         <div class="box box-solid">
           <div class="box-header with-border">
-            <h3 class="box-title">Caracteristica</h3>
+            <h3 class="box-title">Características</h3>
 
             <div class="box-tools">
               <button type="but0ton" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
@@ -53,7 +33,7 @@
             <ul class="nav nav-pills nav-stacked">
               <li><a href="#"><i class="fa fa-circle-o text-red"></i>Urgente</a></li>
               <li><a href="#"><i class="fa fa-circle-o text-yellow"></i> Importante</a></li>
-              <li><a href="#"><i class="fa fa-circle-o text-light-blue"></i> Generico</a></li>
+              <li><a href="#"><i class="fa fa-circle-o text-light-blue"></i> Genérico</a></li>
             </ul>
           </div>
           <!-- /.box-body -->
@@ -96,7 +76,7 @@
             <!-- /.box-body -->
             <div class="box-footer">
               <div class="pull-right">
-                <button type="button" class="btn btn-default"><i class="fa fa-pencil"></i> guardar</button>
+                <button type="button" class="btn btn-default"><i class="fa fa-pencil"></i> Guardar</button>
                 <button type="submit" class="btn btn-primary"><i class="fa fa-envelope-o"></i> Enviar</button>
               </div>
               <button type="reset" class="btn btn-default"><i class="fa fa-times"></i> Borrar</button>

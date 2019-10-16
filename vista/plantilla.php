@@ -112,7 +112,7 @@ session_start();
                 ===============================================================================================================*/
                 if(isset($_GET["ruta"]))
                 {
-                    if($_GET["ruta"] == "inicio" || $_GET["ruta"] == "salir" || $_GET["ruta"] == "emisor")
+                    if($_GET["ruta"] == "inicio" || $_GET["ruta"] == "salir" || $_GET["ruta"] == "emisor" || $_GET["ruta"] == "mesaEntrada")
                     {
                         include "modulo/".$_GET["ruta"].".php";
                     }
@@ -121,10 +121,10 @@ session_start();
                         include "modulo/404.php";
                     }
                 }
-                // else
-                // {
-                //     include "modulo/inicio.php";
-                // }
+                else
+                {
+                    include "modulo/inicio.php";
+                }
                 /*===============================================================================================================
                 Incluyendo el pie de pagina en la aplicacion
                 ===============================================================================================================*/

@@ -28,14 +28,19 @@
             </div>
           </div>
           <div class="box-body no-padding">
-            <ul class="nav nav-pills nav-stacked">
-              <li class="active"><a href="#"><i class="fa fa-inbox"></i> Pendiente
-                <span class="label label-primary pull-right">00-Var-consulta</span></a></li>
-              <li><a href="#"><i class="fa fa-envelope-o"></i>Leidos</a></li>
-              <li><a href="#"><i class="fa fa-file-text-o"></i> Pendientes</a></li>
-              <li><a href="#"><i class="fa fa-filter"></i>En espera<span class="label label-warning pull-right">00-var-consulta</span></a>
-              </li>
-              <li><a href="#"><i class="fa fa-trash-o"></i></a></li>
+            <ul class="nav nav-pills nav-stacked">       
+              <li><a href="#"><i class="fa fa-inbox"></i>Todos
+                <span class="label label-default pull-right">00-Var</span></a></li>
+              <li><a href="#"><i class="fa fa-university"></i>Internos
+                <span class="label label-warning pull-right">00-Var</span></a></li>
+              <li><a href="#"><i class="fa fa-globe"></i>Externos
+                <span class="label label-danger pull-right">00-Var</span></a></li>
+              <li><a href="#"><i class="fa fa-send"></i>Enviados
+                <span class="label label-success pull-right">00-Var</span></a></li>
+              <li><a href="#"><i class="fa fa-envelope"></i> Pendientes
+                <span class="label label-info pull-right">00-Var</span></a></li>
+              <li><a href="#"><i class="fa fa-tag"></i>Con plazo de gestion
+                <span class="label label-primary pull-right">00-var</span></a></li>
             </ul>
           </div>
           <!-- /.box-body -->
@@ -43,7 +48,7 @@
         <!-- /. box -->
         <div class="box box-solid">
           <div class="box-header with-border">
-            <h3 class="box-title">Caracteristica</h3>
+            <h3 class="box-title">Caracter</h3>
 
             <div class="box-tools">
               <button type="but0ton" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>

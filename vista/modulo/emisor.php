@@ -22,7 +22,7 @@
         <!-- /. box -->
         <div class="box box-solid">
           <div class="box-header with-border">
-            <h3 class="box-title">Características</h3>
+            <h3 class="box-title">Caracter</h3>
 
             <div class="box-tools">
               <button type="but0ton" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>

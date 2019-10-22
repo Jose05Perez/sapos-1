@@ -22,6 +22,8 @@
             <ul class="nav nav-tabs">
               <li class="active"><a href="#activity" data-toggle="tab">Archivos</a></li>
               <li><a href="#timeline" data-toggle="tab">historial</a></li>
+              <li><a href="#isadG" data-toggle="tab">isad-g</a></li>
+              <!-- tab-pane -->
             </ul>
             <!--====================================================================================
               tab-panel CONTENT
@@ -181,8 +183,7 @@
                   </li>
                 </ul>
               </div>
-              <!-- /.tab-pane -->
-              </div>
+            </div>
             <!-- /.tab-content -->
           </div>
           <!-- /.nav-tabs-custom -->

@@ -1,8 +1,3 @@
-<?php
-    $nivelDescriptivo=$_GET["nD"];
-    
-
-?>
 <!-- content-wrapper -->
 <div class="content-wrapper">
     <!-- content-header -->

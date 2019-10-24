@@ -242,7 +242,7 @@
                     <?php
                     if($nd=='fondo'){
                       echo'
-                        <form class="form-horizontal" >
+                        <form class="form-horizontal"  >
                           <fieldset>
                             <legend>ÁREA DE NOTAS</legend>
                             

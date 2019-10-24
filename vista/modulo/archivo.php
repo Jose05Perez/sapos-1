@@ -1,5 +1,6 @@
+<!-- content wrapper -->
 <div class="content-wrapper">
-  <!-- Content Header (Page header) -->
+  <!-- content header -->
   <section class="content-header">
     <h1>
       Archivistica
@@ -9,7 +10,8 @@
       <li><a href="#"><i class="fa fa-file-text"></i>Archivo</a></li>
     </ol>
   </section>
-
+  
+  
   <!-- Main content -->
   <section class="content">
     <!-- row -->
@@ -20,274 +22,168 @@
             <ul class="nav nav-tabs">
               <li class="active"><a href="#activity" data-toggle="tab">Archivos</a></li>
               <li><a href="#timeline" data-toggle="tab">historial</a></li>
-              <li><a href="#settings" data-toggle="tab">Isad-G</a></li>
+              <!-- tab-pane -->
             </ul>
+            <!--====================================================================================
+              tab-panel CONTENT
+            ======================================================================================-->
             <div class="tab-content">
+              <!-- ============================ tree view  ====================================== -->
               <div class="active tab-pane" id="activity">
-                <!-- Post -->
-                <div class="post">
-                  <div class="user-block">
-                    <img class="img-circle img-bordered-sm" src="../../dist/img/user1-128x128.jpg" alt="user image">
-                        <span class="username">
-                          <a href="#">Jonathan Burke Jr.</a>
-                          <a href="#" class="pull-right btn-box-tool"><i class="fa fa-times"></i></a>
-                        </span>
-                    <span class="description">Shared publicly - 7:30 PM today</span>
-                  </div>
-                  <!-- /.user-block -->
-                  <p>
-                    Lorem ipsum represents a long-held tradition for designers,
-                    typographers and the like. Some people hate it and argue for
-                    its demise, but others ignore the hate as they create awesome
-                    tools to help create filler text for everyone from bacon lovers
-                    to Charlie Sheen fans.
-                  </p>
-                  <ul class="list-inline">
-                    <li><a href="#" class="link-black text-sm"><i class="fa fa-share margin-r-5"></i> Share</a></li>
-                    <li><a href="#" class="link-black text-sm"><i class="fa fa-thumbs-o-up margin-r-5"></i> Like</a>
-                    </li>
-                    <li class="pull-right">
-                      <a href="#" class="link-black text-sm"><i class="fa fa-comments-o margin-r-5"></i> Comments
-                        (5)</a></li>
-                  </ul>
-
-                  <input class="form-control input-sm" type="text" placeholder="Type a comment">
-                </div>
-                <!-- /.post -->
-
-                <!-- Post -->
-                <div class="post clearfix">
-                  <div class="user-block">
-                    <img class="img-circle img-bordered-sm" src="../../dist/img/user7-128x128.jpg" alt="User Image">
-                        <span class="username">
-                          <a href="#">Sarah Ross</a>
-                          <a href="#" class="pull-right btn-box-tool"><i class="fa fa-times"></i></a>
-                        </span>
-                    <span class="description">Sent you a message - 3 days ago</span>
-                  </div>
-                  <!-- /.user-block -->
-                  <p>
-                    Lorem ipsum represents a long-held tradition for designers,
-                    typographers and the like. Some people hate it and argue for
-                    its demise, but others ignore the hate as they create awesome
-                    tools to help create filler text for everyone from bacon lovers
-                    to Charlie Sheen fans.
-                  </p>
-
-                  <form class="form-horizontal">
-                    <div class="form-group margin-bottom-none">
-                      <div class="col-sm-9">
-                        <input class="form-control input-sm" placeholder="Response">
-                      </div>
-                      <div class="col-sm-3">
-                        <button type="submit" class="btn btn-danger pull-right btn-block btn-sm">Send</button>
-                      </div>
+                <form action="isadG" method="post">
+                  <!-- Post -->
+                  <div class="post">
+                    <div class="form-group">
+                      <input class="form-control " type="search" id="busquedaArchivo" placeholder="Nueva busqueda ...">
                     </div>
-                  </form>
-                </div>
-                <!-- /.post -->
-
-                <!-- Post -->
-                <div class="post">
-                  <div class="user-block">
-                    <img class="img-circle img-bordered-sm" src="../../dist/img/user6-128x128.jpg" alt="User Image">
-                        <span class="username">
-                          <a href="#">Adam Jones</a>
-                          <a href="#" class="pull-right btn-box-tool"><i class="fa fa-times"></i></a>
-                        </span>
-                    <span class="description">Posted 5 photos - 5 days ago</span>
+                    <!-- /.user-block -->
                   </div>
-                  <!-- /.user-block -->
-                  <div class="row margin-bottom">
-                    <div class="col-sm-6">
-                      <img class="img-responsive" src="../../dist/img/photo1.png" alt="Photo">
-                    </div>
-                    <!-- /.col -->
-                    <div class="col-sm-6">
-                      <div class="row">
-                        <div class="col-sm-6">
-                          <img class="img-responsive" src="../../dist/img/photo2.png" alt="Photo">
-                          <br>
-                          <img class="img-responsive" src="../../dist/img/photo3.jpg" alt="Photo">
-                        </div>
-                        <!-- /.col -->
-                        <div class="col-sm-6">
-                          <img class="img-responsive" src="../../dist/img/photo4.jpg" alt="Photo">
-                          <br>
-                          <img class="img-responsive" src="../../dist/img/photo1.png" alt="Photo">
-                        </div>
-                        <!-- /.col -->
-                      </div>
-                      <!-- /.row -->
-                    </div>
-                    <!-- /.col -->
+                  <!-- /.post -->
+                  <!-- Post -->
+                  <div class="post">
+                      <button  class="btn btn-danger pull-right" type="submit" name="nivelDescripcion" value="fondo" onClick="window.location='isadG'">
+                      <i class="fa fa-plus"></i> Nuevo fondo</button>
+                      <h3><i class="fa fa-university "></i> Fondos</h3>
+                      <label class="label label-danger"> Cantidad total de fondos registrados: 00-var</label>
                   </div>
-                  <!-- /.row -->
-
-                  <ul class="list-inline">
-                    <li><a href="#" class="link-black text-sm"><i class="fa fa-share margin-r-5"></i> Share</a></li>
-                    <li><a href="#" class="link-black text-sm"><i class="fa fa-thumbs-o-up margin-r-5"></i> Like</a>
-                    </li>
-                    <li class="pull-right">
-                      <a href="#" class="link-black text-sm"><i class="fa fa-comments-o margin-r-5"></i> Comments
-                        (5)</a></li>
-                  </ul>
-
-                  <input class="form-control input-sm" type="text" placeholder="Type a comment">
-                </div>
-                <!-- /.post -->
+                  <!-- /.post -->
+                  <!-- Post -->
+                  <div class="post">
+                    <button class="btn btn-primary pull-right" type="submit" name="nivelDescripcion" value="seccion" onClick="window.location='isadG'">
+                    <i class="fa fa-plus"></i> Nueva seccion</button>
+                    <h3><i class="fa fa-th "></i> Seciones</h3>
+                    <label class="label label-primary"> Cantidad total de  secciones registradas: 00-var</label>
+                  </div>
+                  <!-- /.post -->
+                  <!-- Post -->
+                  <div class="post">
+                      <button class="btn btn-default pull-right" type="submit" name="nivelDescripcion" value="subseccion" onClick="window.location='isadG'">
+                      <i class="fa fa-plus"></i> Nueva sub-seccion</button>
+                      <h3><i class="fa fa-square"></i> Subsecciones</h3>
+                      <label class="label label-default"> Cantidad total de  subsecciones registrados: 00-var</label>
+                  </div>
+                  <!-- /.post -->
+                  <!-- Post -->
+                  <div class="post">
+                      <button  class="btn btn-warning pull-right"type="submit" name="nivelDescripcion" value="serie" onClick="window.location='isadG'">
+                      <i class="fa fa-plus"></i> Nueva serie</button>
+                      <h3><i class="fa fa-archive"></i> Series</h3>
+                      <label class="label label-warning"> Cantidad total de  series registradas: 00-var</label>
+                  </div>
+                  <!-- /.post -->
+                  <!-- Post -->
+                  <div class="post">
+                      <button class="btn btn-info pull-right" type="submit" name="nivelDescripcion" value="expediente" onClick="window.location='isadG'">
+                      <i class="fa fa-plus"></i> Nuevo expediente</button>
+                      <h3><i class="fa fa-folder"></i> Expedientes</h3>
+                      <label class="label label-info"> Cantidad total de expedientes registrados: 00-var</label>
+                  </div>
+                  <!-- /.post -->
+                  <!-- Post -->
+                  <div class="post">
+                      <button  class="btn btn-success pull-right"type="submit" name="nivelDescripcion" value="documento" onClick="window.location='isadG'">
+                      <i class="fa fa-plus"></i> Nuevo documento</button>
+                      <h3><i class="fa fa-file"></i> Documentos</h3>
+                      <label class="label label-success"> Cantidad total de  documentos registrados: 00-var</label>
+                  </div>
+                  <!-- /.post -->
+                </form>
               </div>
               <!-- /.tab-pane -->
+              <!-- ==========================HISTORIAL============================================= -->
+              <!-- tab-pane  -->
               <div class="tab-pane" id="timeline">
                 <!-- The timeline -->
                 <ul class="timeline timeline-inverse">
                   <!-- timeline time label -->
                   <li class="time-label">
                         <span class="bg-red">
-                          10 Feb. 2014
+                          <?php echo date('d-M-y');?>
                         </span>
                   </li>
                   <!-- /.timeline-label -->
                   <!-- timeline item -->
                   <li>
-                    <i class="fa fa-envelope bg-blue"></i>
+                    <i class="fa fa-archive bg-blue"></i>
 
                     <div class="timeline-item">
-                      <span class="time"><i class="fa fa-clock-o"></i> 12:05</span>
+                      <span class="time"><i class="fa fa-clock-o"></i>00-var(entrada a archivo)</span>
 
-                      <h3 class="timeline-header"><a href="#">Support Team</a> sent you an email</h3>
+                      <h3 class="timeline-header"><a href="#">00-var(id corespondencia)</a> titulo de documento</h3>
 
                       <div class="timeline-body">
-                        Etsy doostang zoodles disqus groupon greplin oooj voxy zoodles,
-                        weebly ning heekya handango imeem plugg dopplr jibjab, movity
-                        jajah plickers sifteo edmodo ifttt zimbra. Babblely odeo kaboodle
-                        quora plaxo ideeli hulu weebly balihoo...
+                        <p><strong>Fondo :</strong>Notas de registro archivistico </p>
                       </div>
                       <div class="timeline-footer">
-                        <a class="btn btn-primary btn-xs">Read more</a>
-                        <a class="btn btn-danger btn-xs">Delete</a>
+                        <a class="btn btn-primary btn-xs">Pre-visualizacion</a>
+                        <a class="btn btn-danger btn-xs">Edicion</a>
                       </div>
                     </div>
                   </li>
                   <!-- END timeline item -->
                   <!-- timeline item -->
                   <li>
-                    <i class="fa fa-user bg-aqua"></i>
+                    <i class="fa fa-archive bg-yellow"></i>
 
                     <div class="timeline-item">
-                      <span class="time"><i class="fa fa-clock-o"></i> 5 mins ago</span>
+                      <span class="time"><i class="fa fa-clock-o"></i>00-var(entrada a archivo)</span>
 
-                      <h3 class="timeline-header no-border"><a href="#">Sarah Young</a> accepted your friend request
-                      </h3>
-                    </div>
-                  </li>
-                  <!-- END timeline item -->
-                  <!-- timeline item -->
-                  <li>
-                    <i class="fa fa-comments bg-yellow"></i>
-
-                    <div class="timeline-item">
-                      <span class="time"><i class="fa fa-clock-o"></i> 27 mins ago</span>
-
-                      <h3 class="timeline-header"><a href="#">Jay White</a> commented on your post</h3>
+                      <h3 class="timeline-header"><a href="#">00-var(id corespondencia)</a> titulo de documento</h3>
 
                       <div class="timeline-body">
-                        Take me to your leader!
-                        Switzerland is small and neutral!
-                        We are more like Germany, ambitious and misunderstood!
+                      <p><strong>Serie :</strong>Notas de registro archivistico </p>
                       </div>
                       <div class="timeline-footer">
-                        <a class="btn btn-warning btn-flat btn-xs">View comment</a>
+                        <a class="btn btn-primary btn-xs">Pre-visualizacion</a>
+                        <a class="btn btn-danger btn-xs">Edicion</a>
                       </div>
                     </div>
                   </li>
                   <!-- END timeline item -->
-                  <!-- timeline time label -->
-                  <li class="time-label">
-                        <span class="bg-green">
-                          3 Jan. 2014
-                        </span>
-                  </li>
-                  <!-- /.timeline-label -->
-                  <!-- timeline item -->
-                  <li>
-                    <i class="fa fa-camera bg-purple"></i>
+                    <!-- timeline item -->
+                    <li>
+                    <i class="fa fa-file bg-green"></i>
 
                     <div class="timeline-item">
-                      <span class="time"><i class="fa fa-clock-o"></i> 2 days ago</span>
+                      <span class="time"><i class="fa fa-clock-o"></i>00-var(entrada a archivo)</span>
 
-                      <h3 class="timeline-header"><a href="#">Mina Lee</a> uploaded new photos</h3>
+                      <h3 class="timeline-header"><a href="#">00-var(id corespondencia)</a> titulo de documento</h3>
 
                       <div class="timeline-body">
-                        <img src="http://placehold.it/150x100" alt="..." class="margin">
-                        <img src="http://placehold.it/150x100" alt="..." class="margin">
-                        <img src="http://placehold.it/150x100" alt="..." class="margin">
-                        <img src="http://placehold.it/150x100" alt="..." class="margin">
+                      <p><strong>Documento :</strong>Notas de registro archivistico </p>
+                      </div>
+                      <div class="timeline-footer">
+                        <a class="btn btn-primary btn-xs">Pre-visualizacion</a>
+                        <a class="btn btn-danger btn-xs">Edicion</a>
                       </div>
                     </div>
                   </li>
                   <!-- END timeline item -->
                   <li>
-                    <i class="fa fa-clock-o bg-gray"></i>
+                  <!-- timeline item -->
+                  <li>
+                    <i class="fa fa-folder bg-light-blue"></i>
+
+                    <div class="timeline-item">
+                      <span class="time"><i class="fa fa-clock-o"></i>00-var(entrada a archivo)</span>
+
+                      <h3 class="timeline-header"><a href="#">00-var(id corespondencia)</a> titulo de documento</h3>
+
+                      <div class="timeline-body">
+                      <p><strong>Expediente :</strong>Notas de registro archivistico </p>
+                      </div>
+                      <div class="timeline-footer">
+                        <a class="btn btn-primary btn-xs">Pre-visualizacion</a>
+                        <a class="btn btn-danger btn-xs">Edicion</a>
+                      </div>
+                    </div>
+                  </li>
+                  <!-- END timeline item -->
+                  <li>
+                    <i class="fa fa-clock-o bg-gray"></i>  
                   </li>
                 </ul>
               </div>
-              <!-- /.tab-pane -->
-
-              <div class="tab-pane" id="settings">
-                <form class="form-horizontal">
-                  <div class="form-group">
-                    <label for="inputName" class="col-sm-2 control-label">Name</label>
-
-                    <div class="col-sm-10">
-                      <input type="email" class="form-control" id="inputName" placeholder="Name">
-                    </div>
-                  </div>
-                  <div class="form-group">
-                    <label for="inputEmail" class="col-sm-2 control-label">Email</label>
-
-                    <div class="col-sm-10">
-                      <input type="email" class="form-control" id="inputEmail" placeholder="Email">
-                    </div>
-                  </div>
-                  <div class="form-group">
-                    <label for="inputName" class="col-sm-2 control-label">Name</label>
-
-                    <div class="col-sm-10">
-                      <input type="text" class="form-control" id="inputName" placeholder="Name">
-                    </div>
-                  </div>
-                  <div class="form-group">
-                    <label for="inputExperience" class="col-sm-2 control-label">Experience</label>
-
-                    <div class="col-sm-10">
-                      <textarea class="form-control" id="inputExperience" placeholder="Experience"></textarea>
-                    </div>
-                  </div>
-                  <div class="form-group">
-                    <label for="inputSkills" class="col-sm-2 control-label">Skills</label>
-
-                    <div class="col-sm-10">
-                      <input type="text" class="form-control" id="inputSkills" placeholder="Skills">
-                    </div>
-                  </div>
-                  <div class="form-group">
-                    <div class="col-sm-offset-2 col-sm-10">
-                      <div class="checkbox">
-                        <label>
-                          <input type="checkbox"> I agree to the <a href="#">terms and conditions</a>
-                        </label>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="form-group">
-                    <div class="col-sm-offset-2 col-sm-10">
-                      <button type="submit" class="btn btn-danger">Submit</button>
-                    </div>
-                  </div>
-                </form>
-              </div>
-              <!-- /.tab-pane -->
             </div>
             <!-- /.tab-content -->
           </div>

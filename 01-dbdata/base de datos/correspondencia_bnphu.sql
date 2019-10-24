@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 11-09-2019 a las 15:44:33
--- Versión del servidor: 10.3.16-MariaDB
--- Versión de PHP: 7.1.30
+-- Tiempo de generación: 24-10-2019 a las 16:47:36
+-- Versión del servidor: 10.4.6-MariaDB
+-- Versión de PHP: 7.3.9
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -32,6 +32,7 @@ CREATE TABLE `corresp_correspondencia` (
   `id_correspondencia` varchar(200) NOT NULL,
   `id_persona_emisor` int(11) NOT NULL,
   `id_receptor` int(11) NOT NULL,
+  `fecha_emision` date NOT NULL,
   `fecha_recibo` date NOT NULL,
   `autorizado` bit(1) DEFAULT b'0',
   `urgente` bit(1) DEFAULT b'0',
@@ -47,7 +48,8 @@ CREATE TABLE `corresp_correspondencia` (
 
 CREATE TABLE `corresp_departamento` (
   `id_departamento` varchar(100) NOT NULL,
-  `nombre_departamento` text NOT NULL
+  `nombre_departamento` text NOT NULL,
+  `nombre_division` text CHARACTER SET latin1 COLLATE latin1_spanish_ci DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -89,10 +91,236 @@ CREATE TABLE `corresp_empleado` (
 CREATE TABLE `corresp_institucion` (
   `id_institucion` int(20) NOT NULL,
   `nombre_institucion` text NOT NULL,
-  `acronimo_institucion` text NOT NULL,
-  `sede_institucion` text NOT NULL,
-  `id_ubicacion_institucion` int(20) NOT NULL
+  `acronimo_institucion` text DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Volcado de datos para la tabla `corresp_institucion`
+--
+
+INSERT INTO `corresp_institucion` (`id_institucion`, `nombre_institucion`, `acronimo_institucion`) VALUES
+(1, 'Acuario Nacional', ''),
+(2, 'Administradora de Estancias Infantiles Salud Segura', 'AEISS'),
+(3, 'Administradora de Subsidios Sociales', 'EDESS'),
+(4, 'AMERIPOL', 'AMERIPOL'),
+(5, 'Archivo General de la Nación', 'AGN'),
+(6, 'Aseguradora Agropecuaria Dominicana', 'AGRODOSA'),
+(7, 'Autoridad Nacional de Asuntos Marítimos', 'ANAMAR'),
+(8, 'Autoridad Portuaria Dominicana', 'P),ORTUARIA'),
+(9, 'Banco Agrícola de la República Dominicana', 'BAGRICOLA'),
+(10, 'Banco Central de la República Dominicana', 'BANCENTRAL'),
+(11, 'Banco de Reservas de la República Dominicana', 'BANRESERVAS'),
+(12, 'Banco Nacional de las Exportaciones', 'BANDEX'),
+(13, 'Biblioteca Nacional Pedro Henríquez Ureña', 'BNPHU'),
+(14, 'Cámara de Cuentas de la República Dominicana', 'CCRD'),
+(15, 'Centro de Atención Integral para la Discapacidad', 'CAID'),
+(16, 'Centro de Capacitación en Planificación e Inversión Pública', 'CCPIP'),
+(17, 'Centro de Capacitación en Política y Gestión Fiscal', 'CAPGEFI'),
+(18, 'Centro de Desarrollo y Competitividad Industrial', 'PROINDUSTRIA'),
+(19, 'Centro de Exportación e Inversión de la República Dominicana', 'CEIRD'),
+(20, 'Centro de Operaciones de Emergencia', 'COE'),
+(21, 'Comedores Económicos del Estado Dominicano', 'CEED'),
+(22, 'Comisión de Reforma de la Empresa Pública', 'FONPER'),
+(23, 'Comisión Nacional de Defensa de la Competencia', 'PROCOMPETENCIA'),
+(24, 'Comisión Nacional de Energía', 'CNE'),
+(25, 'Comisión Permanente de Efemérides Patrias', 'CPEP'),
+(26, 'Comisión Permanente de la Feria del Libro', 'CPFL'),
+(27, 'Comisión Permanente de Titulación de Terrenos del Estado', 'TITULACION'),
+(28, 'Comisión Reguladora de Prácticas Desleales en el Comercio y Medidas de Salvaguardas', 'CDC'),
+(29, 'Consejo Asesor en Materia de Lucha Anticorrupción de la Presidencia de la República', 'LATINNO'),
+(30, 'Consejo de Asesores Económicos del Poder Ejecutivo', 'CAPE'),
+(31, 'Consejo del Poder Judicial', 'PORDERJUDICIAL'),
+(32, 'Consejo Dominicano para la Calidad', 'INDOCAL'),
+(33, 'Consejo Intersectorial para la Política del Libro, la Lectura y las Bibliotecas', 'CONLIBRO'),
+(34, 'Consejo Nacional de Competitividad', 'COMPETITIVIDAD'),
+(35, 'Consejo Nacional de Discapacidad', 'CONADIS'),
+(36, 'Consejo Nacional de Drogas', 'CND'),
+(37, 'Consejo Nacional de Estancias Infantiles', 'CONDEI'),
+(38, 'Consejo Nacional de Fronteras', 'CNF'),
+(39, 'Consejo Nacional de Investigaciones Agropecuarias y Forestales', 'CONIAF'),
+(40, 'Consejo Nacional de la Empresa Privada', 'CONEP'),
+(41, 'Consejo Nacional de la Magistratura', 'CNM'),
+(42, 'Consejo Nacional de la Persona Envejeciente', 'CONAPE'),
+(43, 'Consejo Nacional de la Seguridad Social', 'CNSS'),
+(44, 'Consejo Nacional de la Vivienda Económica', 'CNVE'),
+(45, 'Consejo Nacional de Medio Ambiente y Recursos Naturales', 'AMBIENTE'),
+(46, 'Consejo Nacional de Población y Familia', 'CONAPOFA'),
+(47, 'Consejo Nacional de Salud Social', 'CNSS'),
+(48, 'Consejo Nacional para el Cambio Climático y Mecanismo de Desarrollo Limpio', 'CAMBIOCLIMATICO'),
+(49, 'Consejo Nacional para el VIH y el SIDA', 'CONAVIHSIDA'),
+(50, 'Consejo Nacional para la Niñez y la Adolescencia', 'CONANI'),
+(51, 'Consultoría de Cooperación, Educación, Ciencia y Tenología', 'CONSULTORIA'),
+(52, 'Consultoría Jurídica del Poder Ejecutivo', 'CJPE'),
+(53, 'Contraloría General de la República', 'CGR'),
+(54, 'Corporación Dominicana de Empresas Eléctricas Estatales', 'CDEEE'),
+(55, 'Corporación Estatal de Radio y Televisión', 'CERTV'),
+(56, 'Cruz Roja Dominicana', 'CRUZROJA'),
+(57, 'Defensor del Pueblo', 'DP'),
+(58, 'Departamento Nacional de Investigaciones', 'DNI'),
+(59, 'Despacho de la Primera Dama', 'DPD'),
+(60, 'Dirección de Información y Defensa de los Afiliados', 'DIDA'),
+(61, 'Dirección de Información, Análisis y Programación Estratégica', 'DIAPE'),
+(62, 'Dirección General Administrativa Financiera', 'DGAF'),
+(63, 'Dirección General de Aduanas', 'DGA'),
+(64, 'Dirección General de Análisis y Política Fiscal', 'DGAPF'),
+(65, 'Dirección General de Bellas Artes', 'BELLASARTES'),
+(66, 'Dirección General de Bienes Nacionales', 'BN'),
+(67, 'Dirección General de Catastro Nacional', 'DGCN'),
+(68, 'Dirección General de Cine', 'DGCINE'),
+(69, 'Dirección General de Compras y Contrataciones Públicas', 'DGCP'),
+(70, 'Dirección General de Comunicación', 'DICOM'),
+(71, 'Dirección General de Comunidad Digna', 'COMUNIDADDIGNA'),
+(72, 'Dirección General de Contabilidad Gubernamental', 'DIGECOG'),
+(73, 'Dirección General de Cooperación Bilateral', 'DIGECOOB'),
+(74, 'Dirección General de Cooperación Multilateral', 'DIECOOM'),
+(75, 'Dirección General de Crédito Público', 'CD'),
+(76, 'Dirección General de Desarrollo de la Comunidad', 'DGDC'),
+(77, 'Dirección General de Desarrollo Económico y Social', 'DGDES'),
+(78, 'Dirección General de Desarrollo Fronterizo', 'DGDF'),
+(79, 'Dirección General de Edificaciones', 'DGE'),
+(80, 'Dirección General de Educación Inicial', 'DGEI'),
+(81, 'Dirección General de Embellecimiento de Carreteras y Avenidas de Circunvalación del País', 'DGECAC'),
+(82, 'Dirección General de Estudios, Diseño de Infraestructura y Presupuesto', 'DGEDIP'),
+(83, 'Dirección General de Ética e Integridad Gubernamental', 'DGÉIG'),
+(84, 'Dirección General de Ganadería', 'DIGEGA'),
+(85, 'Dirección General de Higiene y Seguridad Industrial', 'DGHSI'),
+(86, 'Dirección General de Historia Militar', 'DGHM'),
+(87, 'Dirección General de Impuestos Internos', 'DGII'),
+(88, 'Dirección General de Inversión Pública', 'DGIP'),
+(89, 'Dirección General de Jubilaciones y Pensiones a Cargo del Estado', 'DGJP'),
+(90, 'Dirección General de la Policía Nacional', 'DGPN'),
+(91, 'Dirección General de las Reservas de las Fuerzas Armadas', 'DGRFA'),
+(92, 'Dirección General de Medicamentos, Alimentos y Productos Sanitarios', 'DGMAPS'),
+(93, 'Dirección General de Migración', 'MIGRACION'),
+(94, 'Dirección General de Minería', 'DGM'),
+(95, 'Dirección General de Ordenamiento y Desarrollo Territorial', 'DGODT'),
+(96, 'Dirección General de Pasaportes', 'DGP'),
+(97, 'Dirección General de Planificación y Desarrollo', 'DGPD'),
+(98, 'Dirección General de Política y Legislación Tributaria', 'DGPLT'),
+(99, 'Dirección General de Presupuesto', 'DIGEPRES'),
+(100, 'Dirección General de Prisiones', 'DGP'),
+(101, 'Dirección General de Programas Especiales de la Presidencia', 'DIGEPEP'),
+(102, 'Dirección General de Riesgos Agropecuarios', 'DIGERA'),
+(103, 'Dirección General de Seguridad de Tránsito y Transporte Terrestre', 'DIGESETT'),
+(104, 'Dirección Nacional de Control de Drogas', 'DNCD'),
+(105, 'Dirección Nacional de Registro de Títulos', 'DNRT'),
+(106, 'Dirección Policial de Protección de Dignatarios', 'DPPD'),
+(107, 'Empresa de Generación Hidroeléctrica Dominicana', 'EGEHID'),
+(108, 'Empresa de Transmisión Eléctrica Dominicana', 'ETED'),
+(109, 'Empresa Distribuidora de Electricidad del Este, S. A.', 'EDEESTE'),
+(110, 'Empresa Distribuidora de Electricidad del Norte, S. A.', 'EDENORTE'),
+(111, 'Empresa Distribuidora de Electricidad del Sur, S. A.', 'EDESUR'),
+(112, 'Fondo de Pensiones de Trabajadores de la Construcción', 'FOPETCONS'),
+(113, 'Fondo de Promocion a las Iniciativas Comunitarias', 'PROCOMUNIDAD'),
+(114, 'Fondo Especial para el Desarrollo Agropecuario', 'FEDA'),
+(115, 'Fondo Nacional para el Medio Ambiente y Recursos Naturales', 'FONDOMARENA'),
+(116, 'Fondo Patrimonial de las Empresas Reformadas', 'FONPER'),
+(117, 'Fundación Global Democracia y Desarrollo', 'FUNGLODE'),
+(118, 'Fundacion Institucionalidad y Justicia', 'FINJUS'),
+(119, 'Gabinete de Coordinación de la Política Económica', 'GCPE'),
+(120, 'Gabinete de Coordinación de Política Institucional', 'GCPI'),
+(121, 'Gabinete de Coordinación de Política Medioambiental y Desarrollo Físico', 'GCPMDF'),
+(122, 'Gabinete de Coordinación de Políticas Sociales', 'GCPS'),
+(123, 'Gobernación de las Oficinas Gubernamentales Prof. Juan Bosch', 'GOGPJB'),
+(124, 'Gobernación Edificio de Oficinas Gubernamentales Juan Pablo Duarte', 'GEOGJPD'),
+(125, 'Instituto Dominicano de Aviación Civil', 'IDAC'),
+(126, 'Instituto Dominicano de Evaluación e Investigación de la Calidad Educativa', 'IDEICE'),
+(127, 'Instituto Dominicano de Investigaciones Agropecuarias y Forestales', 'IDIAF'),
+(128, 'Instituto Dominicano de las Telecomunicaciones', 'INDOTEL'),
+(129, 'Instituto Dominicano de Seguros Sociales', 'IDSS'),
+(130, 'Instituto Dominicano para la Calidad', 'INDOCAL'),
+(131, 'Instituto Duartiano', 'ID'),
+(132, 'Instituto Especializado de Estudios Superiores', 'IPES'),
+(133, 'Instituto Nacional de Administración Pública', 'INAP'),
+(134, 'Instituto Nacional de Aguas Potables y Alcantarillados', 'INAPA'),
+(135, 'Instituto Nacional de Formación Técnico Profesional', 'INFOTEP'),
+(136, 'Instituto Nacional de Formación Técnico Profesional Oficina Nacional', 'INFOTEP'),
+(137, 'Instituto Nacional de Formación Técnico Profesional Regional Este', 'INFOTEP'),
+(138, 'Instituto Nacional de Formación Técnico Profesional Regional Gerencia Central', 'INFOTEP'),
+(139, 'Instituto Nacional de Formación Técnico Profesional Regional Norte', 'INFOTEP'),
+(140, 'Instituto Nacional de Formación Técnico Profesional Regional Sur', 'INFOTEP'),
+(141, 'Instituto Nacional de Formación y Capacitación del Magisterio', 'INFOCAM'),
+(142, 'Instituto Nacional de la Vivienda', 'INVI'),
+(143, 'Instituto Nacional de Migración', 'INM'),
+(144, 'Instituto Nacional de Patología Forense', 'INACIF'),
+(145, 'Instituto Nacional de Protección de los Derechos del Consumidor', 'PROCONSUMIDOR'),
+(146, 'Instituto Nacional de Recursos Hidráulicos', 'INDRHI'),
+(147, 'Instituto Nacional de Tránsito y Transporte Terrestre', 'INTRANT'),
+(148, 'Instituto Postal Dominicano', 'INPOSDOM'),
+(149, 'Jefatura de la Policía Nacional', 'JPN'),
+(150, 'Junta Central Electoral', 'JCE'),
+(151, 'Junta de Aviación Civil', 'JAC'),
+(152, 'Junta Monetaria', 'JM'),
+(153, 'Liga Municipal Dominicana', 'LMD'),
+(154, 'Lotería Nacional', 'LN'),
+(155, 'Mercados Dominicanos de Abasto Agropecuario', 'MERCADOM'),
+(156, 'Ministerio Administrativo de la Presidencia', 'MAPRE'),
+(157, 'Ministerio de Administración Pública', 'MAP'),
+(158, 'Ministerio de Agricultura', 'AGRICULTURA'),
+(159, 'Ministerio de Cultura', 'CULTURA'),
+(160, 'Ministerio de Defensa', 'MD'),
+(161, 'Ministerio de Deportes y Recreación', 'MIREDEC'),
+(162, 'Ministerio de Economía, Planificación y Desarrollo', 'MEPyD'),
+(163, 'Ministerio de Educación', 'ME'),
+(164, 'Ministerio de Educación Superior, Ciencia y Tecnología', 'MESCyT'),
+(165, 'Ministerio de Energía y Minas', 'MEM'),
+(166, 'Ministerio de Hacienda', 'HACIENDA'),
+(167, 'Ministerio de Industria, Comercio y Mipymes', 'MICM'),
+(168, 'Ministerio de Interior y Policia', 'MIP'),
+(169, 'Ministerio de la Juventud', 'JUVENTUD'),
+(170, 'Ministerio de la Mujer', 'MUJER'),
+(171, 'Ministerio de la Presidencia', 'MINPRE'),
+(172, 'Ministerio de Medio Ambiente y Recursos Naturales', 'AMBIENTE'),
+(173, 'Ministerio de Obras Públicas y Comunicaciones', 'MOPC'),
+(174, 'Ministerio de Relaciones Exteriores', 'MIREX'),
+(175, 'Ministerio de Salud Pública y Asistencia Social', 'MSP'),
+(176, 'Ministerio de Trabajo', 'MT'),
+(177, 'Ministerio de Turismo', 'MITUR'),
+(178, 'Ministerio Público', 'MP'),
+(179, 'Museo del Hombre Dominicano', 'MHD'),
+(180, 'Museo Nacional de Historia Natural \"Prof. Eugenio de Jesús Marcano\"', 'MNHN'),
+(181, 'Museo Policial Dominicano', 'MPD'),
+(182, 'Oficina de Coordinación Presidencial', 'OCP'),
+(183, 'Oficina de Custodia y Administración de Bienes Incautados y Decomisados', 'OCABID'),
+(184, 'Oficina de Ingenieros Supervisores de Obras del Estado', 'OISOE'),
+(185, 'Oficina Metropolitana de Servicios de Autobuses', 'OMSA'),
+(186, 'Oficina Nacional de Defensa Pública', 'ONDP'),
+(187, 'Oficina Nacional de Derecho de Autor', 'ONDA'),
+(188, 'Oficina Nacional de Estadística', 'ONE'),
+(189, 'Oficina Nacional de Evaluación Sísmica y Vulnerabilidad de Infraestructura y Edificaciones', 'ONESVIE'),
+(190, 'Oficina Nacional de la Propiedad Industrial ', 'ONAPI'),
+(191, 'Oficina Nacional de Meteorología', 'ONAMET'),
+(192, 'Oficina para el Reordenamiento del Transporte', 'OPRET'),
+(193, 'Oficina Presidencial de Tecnologías de la Información y Comunicación', 'OPTIC'),
+(194, 'Oficina Técnica de Transporte Terrestre', 'OTTT'),
+(195, 'Organismo Dominicano de Acreditación', 'ODAC'),
+(196, 'Plan de Asistencia Social de la Presidencia', 'PASP'),
+(197, 'Policía Nacional', 'PN'),
+(198, 'Presidencia de la República', 'PR'),
+(199, 'Procuraduría Fiscal del Distrito Judicial del Distrito Nacional', 'PFDJDN'),
+(200, 'Procuraduría General de la República Dominicana', 'PGRD'),
+(201, 'Refinería Dominicana de Petróleo', 'REFIDOMSA'),
+(202, 'Seguro Nacional de Salud', 'SNS'),
+(203, 'Senado de la República Dominicana', 'SENADO'),
+(204, 'Sistema de Monitoreo de la Administracion Pública', 'SISMAP'),
+(205, 'Sistema Nacional de Atención a Emergencias y Seguridad 9-1-1', 'SNAES'),
+(206, 'Sistema Unico de Beneficiarios', 'SIUBEN'),
+(207, 'Superintendencia de Bancos', 'SIB'),
+(208, 'Superintendencia de Electricidad', 'SIE'),
+(209, 'Superintendencia de Pensiones', 'SIP'),
+(210, 'Superintendencia de Salud y Riesgos Laborales', 'SISALRIL'),
+(211, 'Superintendencia de Seguros', 'SUPERSEGUROS'),
+(212, 'Superintendencia de Valores', 'SIV'),
+(213, 'Superintendencia de Vigilancia y Seguridad Privada', 'SVSP'),
+(214, 'Suprema Corte de Justicia', 'SCJ'),
+(215, 'Teatro Nacional', ''),
+(216, 'Tesorería de la Seguridad Social', 'TSS'),
+(217, 'Tesorería Nacional', 'TESORERIA'),
+(218, 'Tribunal Constitucional', 'TC'),
+(219, 'Tribunal Superior Electoral', 'TSE'),
+(220, 'Unidad de Análisis Financiero', 'UAF'),
+(221, 'Unidad de Salud Mental Prof. Ramón Rey Ardid', 'UNIHSAM'),
+(222, 'Universidad Autónoma de Santo Domingo', 'UASD');
 
 -- --------------------------------------------------------
 
@@ -121,6 +349,86 @@ CREATE TABLE `corresp_rol` (
   `id_rol` int(20) NOT NULL,
   `nombre_rol` text NOT NULL,
   `status_rol` char(1) DEFAULT 'A'
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Volcado de datos para la tabla `corresp_rol`
+--
+
+INSERT INTO `corresp_rol` (`id_rol`, `nombre_rol`, `status_rol`) VALUES
+(1, 'Abogado (a)', 'A'),
+(2, 'Administrador de Aleph', 'A'),
+(3, 'Administrador de Red', 'A'),
+(4, 'Administrador de Sistemas', 'A'),
+(5, 'Analista de Activo Fijo', 'A'),
+(6, 'Analista de Compensación y Beneficios', 'A'),
+(7, 'Analista de Contabilidad', 'A'),
+(8, 'Analista de Formulación, Monitoreo y Evaluación de planes y proyectos', 'A'),
+(9, 'Analista de Nómina', 'A'),
+(10, 'Analista de registroControl', 'A'),
+(11, 'Analista Institucional y Calidad en la Gestión', 'A'),
+(12, 'Archivista', 'A'),
+(13, 'Asesor', 'A'),
+(14, 'Asistente ', 'A'),
+(15, 'Asistente Administrativa', 'A'),
+(16, 'Auxilair de Protocolo', 'A'),
+(17, 'Auxiliar Bibliotecario ', 'A'),
+(18, 'Auxiliar Bibliotecario I', 'A'),
+(19, 'Auxiliar Bibliotecario II', 'A'),
+(20, 'Auxiliar de Administrativo I', 'A'),
+(21, 'Auxiliar de Almacén', 'A'),
+(22, 'Auxiliar de Limpieza de Libros', 'A'),
+(25, 'Bibliotecologo (a)', 'A'),
+(29, 'Consultor Jurídico', 'A'),
+(30, 'Coordinador (a)', 'A'),
+(31, 'Coordinador (a) Docente', 'A'),
+(32, 'Coordinador (a) Medios Digitales', 'A'),
+(33, 'Coordinador Bibliotecario', 'A'),
+(34, 'Corrector (a) de Estilo', 'A'),
+(35, 'Corrector de Estilo', 'A'),
+(36, 'Digitador', 'A'),
+(37, 'Director Nacional ', 'A'),
+(38, 'Directora Técnica Bibliotecologica', 'A'),
+(39, 'Diseñador Gráfico', 'A'),
+(41, 'Encargado de División', 'A'),
+(42, 'Encargado de Departamento', 'A'),
+(43, 'Encargado de Sección', 'A'),
+(44, 'Encargado Financiero ', 'A'),
+(45, 'Encuadernador', 'A'),
+(46, 'Facilitador(a)', 'A'),
+(47, 'Fotógrafo', 'A'),
+(49, 'Mensajero ', 'A'),
+(50, 'Mensajero Interno', 'A'),
+(51, 'Notario Público', 'A'),
+(52, 'Operador de Controlde Calidad', 'A'),
+(53, 'Operador de Scanner', 'A'),
+(54, 'Periodista', 'A'),
+(55, 'Promotor (a)', 'A'),
+(56, 'Recepcionista', 'A'),
+(57, 'Secretaria ', 'A'),
+(58, 'Secretaria Ejecutiva', 'A'),
+(59, 'Soporte Tecnico', 'A'),
+(60, 'Supervisor de Mantenimiento', 'A'),
+(61, 'Supervisora ', 'A'),
+(62, 'Tecnico Bibliotecario', 'A'),
+(63, 'Técnico de Audio de Libro', 'A'),
+(64, 'Tecnico de Recursos Humanos', 'A'),
+(65, 'Técnico de Sonido', 'A'),
+(66, 'Técnico en Compras', 'A'),
+(67, 'Técnico en Restauración y  Encuadernación', 'A'),
+(69, 'WebMaster', 'A');
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `corresp_sede`
+--
+
+CREATE TABLE `corresp_sede` (
+  `id_sede` int(11) NOT NULL,
+  `descripcion` text DEFAULT NULL,
+  `id_institucion_sede` int(20) DEFAULT NULL,
+  `id_ubicacion_sede` int(20) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -5149,6 +5457,97 @@ INSERT INTO `corresp_ubicacion` (`id_ubicacion`, `descripcion`, `available`) VAL
 (5108, 'PROVINCIA ESPAILLAT MUNICIPIO JAMAO AL NORTE BARRIO/SECTOR LA FILIPINA', 1),
 (5109, 'PROVINCIA ESPAILLAT MUNICIPIO JAMAO AL NORTE BARRIO/SECTOR LA FILIPINA', 1);
 
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `isadg_entidades`
+--
+
+CREATE TABLE `isadg_entidades` (
+  `codigo_referencia` varchar(100) NOT NULL,
+  `titulo` text NOT NULL,
+  `fecha` date NOT NULL,
+  `nivel de descripción` text NOT NULL,
+  `volumen_unidad_descripcion` text NOT NULL,
+  `nombre_productores` text NOT NULL,
+  `alcance_contenido` text NOT NULL,
+  `nota_archivero` text NOT NULL,
+  `fecha_descripcion` text NOT NULL,
+  `codigo_referencia_id_documento` varchar(20) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `isadg_fondo`
+--
+
+CREATE TABLE `isadg_fondo` (
+  `id_fondo` int(11) NOT NULL,
+  `codigo_referencia_fondo` varchar(100) NOT NULL,
+  `historia_institucional` text NOT NULL,
+  `historia_archivistica` text NOT NULL,
+  `forma_ingreso` text NOT NULL,
+  `valoracion_selesccion_eliminacion` text NOT NULL,
+  `nuevos_ingresos` text NOT NULL,
+  `organizacion` text NOT NULL,
+  `condiciones_acceso` text NOT NULL,
+  `condiciones_reproduccion` text NOT NULL,
+  `lenguaje_escritura` text NOT NULL,
+  `caracteristicas_fisicas` text NOT NULL,
+  `instrumentos_descripcion` text NOT NULL,
+  `existencia_localizacion_original` text NOT NULL,
+  `existencia_localizacion_copias` text NOT NULL,
+  `unidades_descripcion_relacionadas` text NOT NULL,
+  `nota_publicacion` text NOT NULL,
+  `nota` text DEFAULT NULL,
+  `reglas_normas` text NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `isadg_secciones`
+--
+
+CREATE TABLE `isadg_secciones` (
+  `id_seccion` int(11) NOT NULL,
+  `codigo_referencia_seccion` varchar(100) NOT NULL,
+  `historia_archivistica` text NOT NULL,
+  `organizacion` text NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `isadg_series`
+--
+
+CREATE TABLE `isadg_series` (
+  `id_serie` int(11) NOT NULL,
+  `codigo_referencia_serie` varchar(100) NOT NULL,
+  `forma_ingreso` text NOT NULL,
+  `valoracion_selesccion_eliminacion` text NOT NULL,
+  `organizacion` text NOT NULL,
+  `condiciones_acceso` text NOT NULL,
+  `condiciones_reproduccion` text NOT NULL,
+  `instrumentos_descripcion` text NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `isadg_unidad_descripcion`
+--
+
+CREATE TABLE `isadg_unidad_descripcion` (
+  `id_unidad_descripcion` int(11) NOT NULL,
+  `codigo_referencia_unidad_descripcion` varchar(100) NOT NULL,
+  `forma_ingreso` text NOT NULL,
+  `valoracion_selesccion_eliminacion` text NOT NULL,
+  `existencia_localizacion_copias` text NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
 --
 -- Índices para tablas volcadas
 --
@@ -5186,8 +5585,7 @@ ALTER TABLE `corresp_empleado`
 -- Indices de la tabla `corresp_institucion`
 --
 ALTER TABLE `corresp_institucion`
-  ADD PRIMARY KEY (`id_institucion`),
-  ADD KEY `id_ubicacion_institucion` (`id_ubicacion_institucion`);
+  ADD PRIMARY KEY (`id_institucion`);
 
 --
 -- Indices de la tabla `corresp_persona`
@@ -5203,12 +5601,55 @@ ALTER TABLE `corresp_rol`
   ADD PRIMARY KEY (`id_rol`);
 
 --
+-- Indices de la tabla `corresp_sede`
+--
+ALTER TABLE `corresp_sede`
+  ADD PRIMARY KEY (`id_sede`),
+  ADD KEY `id_institucion_sede` (`id_institucion_sede`),
+  ADD KEY `id_ubicacion_sede` (`id_ubicacion_sede`);
+
+--
 -- Indices de la tabla `corresp_ubicacion`
 --
 ALTER TABLE `corresp_ubicacion`
   ADD PRIMARY KEY (`id_ubicacion`),
   ADD UNIQUE KEY `idx_descripcion` (`id_ubicacion`,`descripcion`(300)),
   ADD UNIQUE KEY `idx_descripcion_corresp_ubicacion` (`id_ubicacion`,`descripcion`(300));
+
+--
+-- Indices de la tabla `isadg_entidades`
+--
+ALTER TABLE `isadg_entidades`
+  ADD PRIMARY KEY (`codigo_referencia`),
+  ADD KEY `codigo_referencia_id_documento` (`codigo_referencia_id_documento`);
+
+--
+-- Indices de la tabla `isadg_fondo`
+--
+ALTER TABLE `isadg_fondo`
+  ADD PRIMARY KEY (`id_fondo`),
+  ADD KEY `codigo_referencia_fondo` (`codigo_referencia_fondo`);
+
+--
+-- Indices de la tabla `isadg_secciones`
+--
+ALTER TABLE `isadg_secciones`
+  ADD PRIMARY KEY (`id_seccion`),
+  ADD KEY `codigo_referencia_seccion` (`codigo_referencia_seccion`);
+
+--
+-- Indices de la tabla `isadg_series`
+--
+ALTER TABLE `isadg_series`
+  ADD PRIMARY KEY (`id_serie`),
+  ADD KEY `codigo_referencia_serie` (`codigo_referencia_serie`);
+
+--
+-- Indices de la tabla `isadg_unidad_descripcion`
+--
+ALTER TABLE `isadg_unidad_descripcion`
+  ADD PRIMARY KEY (`id_unidad_descripcion`),
+  ADD KEY `codigo_referencia_unidad_descripcion` (`codigo_referencia_unidad_descripcion`);
 
 --
 -- AUTO_INCREMENT de las tablas volcadas
@@ -5218,7 +5659,7 @@ ALTER TABLE `corresp_ubicacion`
 -- AUTO_INCREMENT de la tabla `corresp_institucion`
 --
 ALTER TABLE `corresp_institucion`
-  MODIFY `id_institucion` int(20) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_institucion` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=223;
 
 --
 -- AUTO_INCREMENT de la tabla `corresp_persona`
@@ -5230,7 +5671,13 @@ ALTER TABLE `corresp_persona`
 -- AUTO_INCREMENT de la tabla `corresp_rol`
 --
 ALTER TABLE `corresp_rol`
-  MODIFY `id_rol` int(20) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_rol` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=70;
+
+--
+-- AUTO_INCREMENT de la tabla `corresp_sede`
+--
+ALTER TABLE `corresp_sede`
+  MODIFY `id_sede` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT de la tabla `corresp_ubicacion`
@@ -5263,16 +5710,47 @@ ALTER TABLE `corresp_empleado`
   ADD CONSTRAINT `corresp_empleado_ibfk_3` FOREIGN KEY (`id_departamento_empleado`) REFERENCES `corresp_departamento` (`id_departamento`);
 
 --
--- Filtros para la tabla `corresp_institucion`
---
-ALTER TABLE `corresp_institucion`
-  ADD CONSTRAINT `corresp_institucion_ibfk_1` FOREIGN KEY (`id_ubicacion_institucion`) REFERENCES `corresp_ubicacion` (`id_ubicacion`);
-
---
 -- Filtros para la tabla `corresp_persona`
 --
 ALTER TABLE `corresp_persona`
   ADD CONSTRAINT `corresp_persona_ibfk_1` FOREIGN KEY (`id_institucion_persona`) REFERENCES `corresp_institucion` (`id_institucion`);
+
+--
+-- Filtros para la tabla `corresp_sede`
+--
+ALTER TABLE `corresp_sede`
+  ADD CONSTRAINT `corresp_sede_ibfk_1` FOREIGN KEY (`id_institucion_sede`) REFERENCES `corresp_institucion` (`id_institucion`),
+  ADD CONSTRAINT `corresp_sede_ibfk_2` FOREIGN KEY (`id_ubicacion_sede`) REFERENCES `corresp_ubicacion` (`id_ubicacion`);
+
+--
+-- Filtros para la tabla `isadg_entidades`
+--
+ALTER TABLE `isadg_entidades`
+  ADD CONSTRAINT `isadg_entidades_ibfk_1` FOREIGN KEY (`codigo_referencia_id_documento`) REFERENCES `corresp_documentos` (`id_documento`);
+
+--
+-- Filtros para la tabla `isadg_fondo`
+--
+ALTER TABLE `isadg_fondo`
+  ADD CONSTRAINT `isadg_fondo_ibfk_1` FOREIGN KEY (`codigo_referencia_fondo`) REFERENCES `isadg_entidades` (`codigo_referencia`);
+
+--
+-- Filtros para la tabla `isadg_secciones`
+--
+ALTER TABLE `isadg_secciones`
+  ADD CONSTRAINT `isadg_secciones_ibfk_1` FOREIGN KEY (`codigo_referencia_seccion`) REFERENCES `isadg_entidades` (`codigo_referencia`);
+
+--
+-- Filtros para la tabla `isadg_series`
+--
+ALTER TABLE `isadg_series`
+  ADD CONSTRAINT `isadg_series_ibfk_1` FOREIGN KEY (`codigo_referencia_serie`) REFERENCES `isadg_entidades` (`codigo_referencia`);
+
+--
+-- Filtros para la tabla `isadg_unidad_descripcion`
+--
+ALTER TABLE `isadg_unidad_descripcion`
+  ADD CONSTRAINT `isadg_unidad_descripcion_ibfk_1` FOREIGN KEY (`codigo_referencia_unidad_descripcion`) REFERENCES `isadg_entidades` (`codigo_referencia`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

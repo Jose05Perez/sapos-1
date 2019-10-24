@@ -22,7 +22,6 @@
             <ul class="nav nav-tabs">
               <li class="active"><a href="#activity" data-toggle="tab">Archivos</a></li>
               <li><a href="#timeline" data-toggle="tab">historial</a></li>
-              <li><a href="#isadG" data-toggle="tab">isad-g</a></li>
               <!-- tab-pane -->
             </ul>
             <!--====================================================================================
@@ -31,62 +30,64 @@
             <div class="tab-content">
               <!-- ============================ tree view  ====================================== -->
               <div class="active tab-pane" id="activity">
-                <!-- Post -->
-                <div class="post">
-                  <div class="form-group">
-                    <input class="form-control " type="search" id="busquedaArchivo" placeholder="Nueva busqueda ...">
+                <form action="isadG" method="post">
+                  <!-- Post -->
+                  <div class="post">
+                    <div class="form-group">
+                      <input class="form-control " type="search" id="busquedaArchivo" placeholder="Nueva busqueda ...">
+                    </div>
+                    <!-- /.user-block -->
                   </div>
-                  <!-- /.user-block -->
-                </div>
-                <!-- /.post -->
-                <!-- Post -->
-                <div class="post">
-                    <a id="agregarFondos" class="btn pull-right" href="#" role="button">
-                    <i class="fa fa-plus"></i> agregar</a>
-                    <h3><i class="fa fa-university "></i> Fondos</h3>
-                    <label class="label label-danger"> Cantidad total de fondos registrados: 00-var</label>
-                </div>
-                <!-- /.post -->
-                <!-- Post -->
-                <div class="post">
-                  <a id="agregarFondos" class="btn pull-right" href="#" role="button">
-                  <i class="fa fa-plus"></i> agregar</a>  
-                  <h3><i class="fa fa-th "></i> Seciones</h3>
-                  <label class="label label-primary"> Cantidad total de  secciones registradas: 00-var</label>
-                </div>
-                <!-- /.post -->
-                <!-- Post -->
-                <div class="post">
-                    <a id="agregarFondos" class="btn pull-right" href="#" role="button">
-                    <i class="fa fa-plus"></i> agregar</a>
-                    <h3><i class="fa fa-square"></i> Subsecciones</h3>
-                    <label class="label label-default"> Cantidad total de  subsecciones registrados: 00-var</label>
-                </div>
-                <!-- /.post -->
-                <!-- Post -->
-                <div class="post">
-                    <a id="agregarFondos" class="btn pull-right" href="#" role="button">
-                    <i class="fa fa-plus"></i> agregar</a>
-                    <h3><i class="fa fa-archive"></i> Series</h3>
-                    <label class="label label-warning"> Cantidad total de  series registradas: 00-var</label>
-                </div>
-                <!-- /.post -->
-                <!-- Post -->
-                <div class="post">
-                    <a id="agregarFondos" class="btn pull-right" href="#" role="button">
-                    <i class="fa fa-plus"></i> agregar</a>
-                    <h3><i class="fa fa-folder"></i> Expedientes</h3>
-                    <label class="label label-info"> Cantidad total de expedientes registrados: 00-var</label>
-                </div>
-                <!-- /.post -->
-                <!-- Post -->
-                <div class="post">
-                    <a id="agregarFondos" class="btn pull-right" href="isadG" role="button">
-                    <i class="fa fa-plus"></i> agregar</a>
-                    <h3><i class="fa fa-file"></i> Documentos</h3>
-                    <label class="label label-success"> Cantidad total de  documentos registrados: 00-var</label>
-                </div>
-                <!-- /.post -->
+                  <!-- /.post -->
+                  <!-- Post -->
+                  <div class="post">
+                      <button  class="btn btn-danger pull-right" type="submit" name="nivelDescripcion" value="fondo" onClick="window.location='isadG'">
+                      <i class="fa fa-plus"></i> Nuevo fondo</button>
+                      <h3><i class="fa fa-university "></i> Fondos</h3>
+                      <label class="label label-danger"> Cantidad total de fondos registrados: 00-var</label>
+                  </div>
+                  <!-- /.post -->
+                  <!-- Post -->
+                  <div class="post">
+                    <button class="btn btn-primary pull-right" type="submit" name="nivelDescripcion" value="seccion" onClick="window.location='isadG'">
+                    <i class="fa fa-plus"></i> Nueva seccion</button>
+                    <h3><i class="fa fa-th "></i> Seciones</h3>
+                    <label class="label label-primary"> Cantidad total de  secciones registradas: 00-var</label>
+                  </div>
+                  <!-- /.post -->
+                  <!-- Post -->
+                  <div class="post">
+                      <button class="btn btn-default pull-right" type="submit" name="nivelDescripcion" value="subseccion" onClick="window.location='isadG'">
+                      <i class="fa fa-plus"></i> Nueva sub-seccion</button>
+                      <h3><i class="fa fa-square"></i> Subsecciones</h3>
+                      <label class="label label-default"> Cantidad total de  subsecciones registrados: 00-var</label>
+                  </div>
+                  <!-- /.post -->
+                  <!-- Post -->
+                  <div class="post">
+                      <button  class="btn btn-warning pull-right"type="submit" name="nivelDescripcion" value="serie" onClick="window.location='isadG'">
+                      <i class="fa fa-plus"></i> Nueva serie</button>
+                      <h3><i class="fa fa-archive"></i> Series</h3>
+                      <label class="label label-warning"> Cantidad total de  series registradas: 00-var</label>
+                  </div>
+                  <!-- /.post -->
+                  <!-- Post -->
+                  <div class="post">
+                      <button class="btn btn-info pull-right" type="submit" name="nivelDescripcion" value="expediente" onClick="window.location='isadG'">
+                      <i class="fa fa-plus"></i> Nuevo expediente</button>
+                      <h3><i class="fa fa-folder"></i> Expedientes</h3>
+                      <label class="label label-info"> Cantidad total de expedientes registrados: 00-var</label>
+                  </div>
+                  <!-- /.post -->
+                  <!-- Post -->
+                  <div class="post">
+                      <button  class="btn btn-success pull-right"type="submit" name="nivelDescripcion" value="documento" onClick="window.location='isadG'">
+                      <i class="fa fa-plus"></i> Nuevo documento</button>
+                      <h3><i class="fa fa-file"></i> Documentos</h3>
+                      <label class="label label-success"> Cantidad total de  documentos registrados: 00-var</label>
+                  </div>
+                  <!-- /.post -->
+                </form>
               </div>
               <!-- /.tab-pane -->
               <!-- ==========================HISTORIAL============================================= -->

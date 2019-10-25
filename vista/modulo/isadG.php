@@ -198,7 +198,7 @@
                     ?>
                     <!-- ================================================================================================================ -->
                     <?php
-                    if($nd=='fondo'||$nd='expediente'||$nd=='documento'){
+                    if($nd=='fondo'||$nd=='expediente'||$nd=='documento'){
                     echo' 
                       <form class="form-horizontal" >
                         <fieldset>

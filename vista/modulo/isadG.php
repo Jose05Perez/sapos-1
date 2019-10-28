@@ -48,15 +48,8 @@
                           <label for="inputName" class="col-sm-2 control-label">Nivel de descripción: </label>
                           <div class="col-sm-10">
                             <select  id="nivelDescripcion" class="form-control">
-                              <option value="">Seleccione</option>
-                              <option value="fondo" >Fondo</option>
-                              <option value="sub-fondo">Subfondo</option>
-                              <option value="seccion">Seccion</option>
-                              <option value="serie">Serie</option>
-                              <option value="expediente">Expediente</option>
-                              <option value="documento">Documento</option>
+                              <option value="<?=$nd?>"><?=$nd?></option>
                             </select>
-
                           </div>
                         </div>
 

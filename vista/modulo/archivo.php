@@ -31,7 +31,7 @@
                 <div class="post">
                   <div class="user-block">
                     <h2>
-                     <input type="search" id="busquedaArchivos" class="form-control" placeholder="Buscar ...">
+                     <input type="search" id="busquedaArchivos" class="form-control" placeholder="Buscar unidades ...">
                     </h2>
                   </div>  
                   <!-- /.user-block -->
@@ -173,8 +173,9 @@
               <!-- /.tab-pane -->
               <!-- ==============================ISAD-G================================================== -->
               <!-- tab-pane -->
+             
               <div class="tab-pane" id="settings">
-                <form class="form-horizontal" >
+              <form class="form-horizontal"action="#" method="post" >
                   <fieldset>
                     <legend>ÁREA DE IDENTIFICACIÓN</legend>
                     <div class="form-group">
@@ -204,14 +205,13 @@
                         <select  id="nivelDescripcion" class="form-control">
                           <option value="">Seleccione</option>
                           <option value="fondo" >Fondo</option>
+                          <option value="seccion" >Seccion</option>
                           <option value="serie">Serie</option>
                           <option value="expediente">Expediente</option>
                           <option value="documento">Documento</option>
                         </select>
-
                       </div>
-                    </div>
-
+                    </div>    
                     <div class="form-group">
                       <label for="inputName" class="col-sm-2 control-label">Volumen: </label>
                       <div class="col-sm-10">
@@ -219,193 +219,47 @@
                       </div>
                     </div>
                   </fieldset>  
-                </form>
-                <!--======================================================================================================-->
-                <form class="form-horizontal" >
-                  <fieldset>
-                    <legend>ÁREA DE CONTEXTO </legend>
-                    
-                    <div class="form-group">
-                      <label for="nombreProductor" class="col-sm-2 control-label">Nombre(s) de productor(es):</label>
-                      <div class="col-sm-10">
-                        <input type="text" class="form-control" id="nombreProductor">
-                      </div>
-                    </div>
+                </form> 
+                <?php 
+                $form = new formularios()
 
-                    <div class="form-group">
-                      <label for="historiaInstitucional" class="col-sm-2 control-label">Historia institucional: </label>
-                      <div class="col-sm-10">
-                        <input type="textarea" class="form-control" id="historiaInstitucional">
-                      </div>
-                    </div>
-
-                    <div class="form-group">
-                      <label for="historiaArchivística" class="col-sm-2 control-label">Historia archivística: </label>
-                      <div class="col-sm-10">
-                        <input type="textarea" class="form-control" id="historiaArchivística">
-                      </div>
-                    </div>
-
-                    <div class="form-group">
-                      <label for="formaIngreso" class="col-sm-2 control-label">Forma de ingreso: </label>
-                      <div class="col-sm-10">
-                        <input type="text" class="form-control" id="formaIngreso">
-                      </div>
-                    </div>             
-                  </fieldset>
-                </form>
-                <!-- ==================================================================================== -->
-                <form class="form-horizontal" >
-                  <fieldset>
-                    <legend>ÁREA DE CONTENIDO Y ESTRUCTURA </legend>
-                    
-                    <div class="form-group">
-                      <label for="alcanceContenido" class="col-sm-2 control-label">Alcance y contenido:</label>
-                      <div class="col-sm-10">
-                        <input type="text" class="form-control" id="alcanceContenido">
-                      </div>
-                    </div>
-
-                    <div class="form-group">
-                      <label for="organizacion" class="col-sm-2 control-label">Organización: </label>
-                      <div class="col-sm-10">
-                        <input type="text" class="form-control" id="organizacion">
-                      </div>
-                    </div>
-
-                    <div class="form-group">
-                      <label for="acumulacion" class="col-sm-2 control-label">Acumulación:</label>
-                      <div class="col-sm-10">
-                        <input type="text" class="form-control" id="acumulacion">
-                      </div>
-                    </div>
-
-                    <div class="form-group">
-                      <label for="sistemaAcuerdo" class="col-sm-2 control-label">Sistema de acuerdo:</label>
-                      <div class="col-sm-10">
-                        <input type="text" class="form-control" id="sistemaAcuerdo">
-                      </div>
-                    </div>
-                    </fieldset>
-                </form>
-                <!-- ================================================================================== -->
-                
-                <form class="form-horizontal" >
-                  <fieldset>
-                    <legend>ÁREA DE CONDICIONES DE ACCESO Y UTILIZACIÓN </legend>
-                    
-                    <div class="form-group">
-                      <label for="condicionesAcceso" class="col-sm-2 control-label">Condiciones de acceso: </label>
-                      <div class="col-sm-10">
-                        <input type="text" class="form-control" id="condicionesAcceso">
-                      </div>
-                    </div>
-
-                    <div class="form-group">
-                      <label for="condicionesReproduccion" class="col-sm-2 control-label">Condiciones de reproducción:</label>
-                      <div class="col-sm-10">
-                        <input type="text" class="form-control" id="condicionesReproduccion">
-                      </div>
-                    </div>
-
-                    <div class="form-group">
-                      <label for="lenguajeEscritura" class="col-sm-2 control-label">Lenguaje-Escritura de los documentos:  </label>
-                      <div class="col-sm-10">
-                        <input type="text" class="form-control" id="lenguajeEscritura">
-                      </div>
-                    </div>
-
-                    <div class="form-group">
-                      <label for="característicasFísicas" class="col-sm-2 control-label">Características físicas y requisitos técnicos: </label>
-                      <div class="col-sm-10">
-                        <input type="text" class="form-control" id="característicasFísicas">
-                      </div>
-                    </div>
-
-                    <div class="form-group">
-                      <label for="BusquedaOtrosMateriales" class="col-sm-2 control-label">Busqueda de otros materiales</label>
-                      <div class="col-sm-10">
-                        <input type="text" class="form-control" id="BusquedaOtrosMateriales">
-                      </div>
-                    </div>               
-                  </fieldset>
-                </form>
-                <!-- ================================================================================================ -->
-                <form class="form-horizontal" >
-                  <fieldset>
-                    <legend>ÁREA DE DOCUMENTACIÓN ASOCIADA </legend>
-                    
-                    <div class="form-group">
-                      <label for="ExistenciaLocalizacionOriginal" class="col-sm-2 control-label">Existencia y localización original: </label>
-                      <div class="col-sm-10">
-                        <input type="text" class="form-control" id="ExistenciaLocalizacionOriginal">
-                      </div>
-                    </div>
-
-                    <div class="form-group">
-                      <label for="existenciaLocalizacionCopias" class="col-sm-2 control-label">Existencia y localización de copias: </label>
-                      <div class="col-sm-10">
-                        <input type="text" class="form-control" id="existenciaLocalizacionCopias">
-                      </div>
-                    </div>
-
-                    <div class="form-group">
-                      <label for="unidadesRelacionadasDescripcion" class="col-sm-2 control-label">Unidades relacionadas de descripción: </label>
-                      <div class="col-sm-10">
-                        <input type="textarea" class="form-control" id="unidadesRelacionadasDescripcion">
-                      </div>
-                    </div>
-
-                    <div class="form-group">
-                      <label for="notaPublicación" class="col-sm-2 control-label">Nota de publicación: </label>
-                      <div class="col-sm-10">
-                        <input type="textarea" class="form-control" id="notaPublicación">
-                      </div>
-                    </div>              
-                  </fieldset>
-                </form>
-                <!-- ============================================================================================ -->
-                <form class="form-horizontal" >
-                  <fieldset>
-                    <legend>ÁREA DE NOTAS</legend>
-                    
-                    <div class="form-group">
-                      <label for="nota" class="col-sm-2 control-label">Notas: </label>
-                      <div class="col-sm-10">
-                        <input type="textarea" class="form-control" id="nota">
-                      </div>
-                    </div>
-                  </fieldset>
-                </form>
+                if(isset($_POST["nivelDescripcion"])){
+                  switch ($variable) {
+                    case 'fondo':
+                        formularios->areaContexto();
+                        function areaContenido();
+                        function areaCondicionesAcceso();
+                        function areaDocumentacion();
+                        function areaNotas();
+                        function areaControlDescripcion();
+                      break;
+                    case 'serie':
+                      
+                      break;
+                    case 'expediente':
+                        function areaContexto();
+                        function areaContenido();
+                        function areaDocumentacion();
+                        function areaControlDescripcion();
+                      break;
+                    case 'documento':
+                        function areaContexto();
+                        function areaContenido();
+                        function areaDocumentacion();
+                        function areaControlDescripcion();
+                      break;
+                    default:
+                      # code...
+                      break;
+                  }
+                  
+                }
+              
+              
+              
+              ?>
                 <!-- ============================================================================ -->
-                <form class="form-horizontal" >
-                  <fieldset>
-                    <legend>ÁREA DE CONTROL DE LA DESCRIPCIÓN </legend>
-                    
-                    <div class="form-group">
-                      <label for="notaArchivero" class="col-sm-2 control-label">Nota del archivero: </label>
-                      <div class="col-sm-10">
-                        <input type="textarea" class="form-control" id="notaArchivero">
-                      </div>
-                    </div>
-
-                    <div class="form-group">
-                      <label for="reglasNormas" class="col-sm-2 control-label">Reglas o normas: </label>
-                      <div class="col-sm-10">
-                        <input type="text" class="form-control" id="reglasNormas">
-                      </div>
-                    </div>
-
-                    <div class="form-group">
-                      <label for="fechaDescripcion" class="col-sm-2 control-label">Fecha de la descripción: </label>
-                      <div class="col-sm-10">
-                        <input type="text" class="form-control" id="fechaDescripcion">
-                      </div>
-                    </div>             
-                  </fieldset>
-                </form>
-                <!-- ============================================================================ -->
-                <form class="form-horizontal" >
+                <form class="form-horizontal" action="#" method="post">
                   <div class="form-group">
                     <div class="col-sm-offset-2 col-sm-10">
                       <button type="submit" class="btn btn-primary pull-right">

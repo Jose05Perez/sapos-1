@@ -84,8 +84,8 @@
           <div class="box-body no-padding">
             <div class="mailbox-controls">
               <!-- Check all button -->
-              <button type="button" class="btn btn-default btn-sm checkbox-toggle"><i class="fa fa-square-o"></i>
-              </button>
+              <!--button type="button" class="btn btn-default btn-sm checkbox-toggle"><i class="fa fa-square-o"></i>
+              </-->
               <div class="btn-group">
                 <button type="button" class="btn btn-default btn-sm"><i class="fa fa-trash-o"></i></button>
                 <button type="button" class="btn btn-default btn-sm"><i class="fa fa-reply"></i></button>
@@ -108,7 +108,7 @@
                 <tbody>
                 <tr>
                   <td><input type="checkbox"></td>
-                  <td class="mailbox-star"><a href="#"><i class="fa fa-star text-yellow"></i></a></td>
+                  <td class="mailbox-star"><a href="#"><i class="fa fa-circle-o text-red"></i></a></td>
                   <td class="mailbox-name"><a href="read-mail.html">00-var-emisor</a></td>
                   <td class="mailbox-subject"><b>Asunto </b> descripcion
                   </td>
@@ -117,7 +117,7 @@
                 </tr>
                 <tr>
                   <td><input type="checkbox"></td>
-                  <td class="mailbox-star"><a href="#"><i class="fa fa-star text-yellow"></i></a></td>
+                  <td class="mailbox-star"><a href="#"><i class="fa fa-circle-o text-light-blue"></i></a></td>
                   <td class="mailbox-name"><a href="read-mail.html">00-var-emisor</a></td>
                   <td class="mailbox-subject"><b>Asunto </b> descripcion
                   </td>
@@ -126,7 +126,7 @@
                 </tr>
                 <tr>
                   <td><input type="checkbox"></td>
-                  <td class="mailbox-star"><a href="#"><i class="fa fa-star text-yellow"></i></a></td>
+                  <td class="mailbox-star"><a href="#"><i class="fa fa-circle-o text-yellow"></i></a></td>
                   <td class="mailbox-name"><a href="read-mail.html">00-var-emisor</a></td>
                   <td class="mailbox-subject"><b>Asunto </b> descripcion
                   </td>
@@ -135,7 +135,7 @@
                 </tr>
                 <tr>
                   <td><input type="checkbox"></td>
-                  <td class="mailbox-star"><a href="#"><i class="fa fa-star text-yellow"></i></a></td>
+                  <td class="mailbox-star"><a href="#"><i class="fa fa-circle-o text-light-blue"></i></a></td>
                   <td class="mailbox-name"><a href="read-mail.html">00-var-emisor</a></td>
                   <td class="mailbox-subject"><b>Asunto </b> descripcion
                   </td>

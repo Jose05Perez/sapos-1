@@ -1,5 +1,6 @@
+<!-- content wrapper -->
 <div class="content-wrapper">
-  <!-- Content Header (Page header) -->
+  <!-- content header -->
   <section class="content-header">
     <h1>
       Archivistica
@@ -9,7 +10,8 @@
       <li><a href="#"><i class="fa fa-file-text"></i>Archivo</a></li>
     </ol>
   </section>
-
+  
+  
   <!-- Main content -->
   <section class="content">
     <!-- row -->
@@ -20,60 +22,72 @@
             <ul class="nav nav-tabs">
               <li class="active"><a href="#activity" data-toggle="tab">Archivos</a></li>
               <li><a href="#timeline" data-toggle="tab">historial</a></li>
-              <li><a href="#settings" data-toggle="tab">Isad-G</a></li>
+              <!-- tab-pane -->
             </ul>
             <!--====================================================================================
               tab-panel CONTENT
             ======================================================================================-->
             <div class="tab-content">
+              <!-- ============================ tree view  ====================================== -->
               <div class="active tab-pane" id="activity">
-                <!-- Post -->
-                <div class="post">
-                  <div class="user-block">
-                    <h2>
-                     <input type="search" id="busquedaArchivos" class="form-control" placeholder="Buscar unidades ...">
-                    </h2>
-                  </div>  
-                  <!-- /.user-block -->
-                </div>
-                <!-- /.post -->
-                <!-- Post -->
-                <div class="post">
-                  <div class="user-block">
-                    <h2><i class="fa fa-university"></i> Fondos</h2>
-                    <span class="description">Cantidad total de fondos registrados: 00-var</span>
+                <form action="isadG" method="post">
+                  <!-- Post -->
+                  <div class="post">
+                    <div class="form-group">
+                      <input class="form-control " type="search" id="busquedaArchivo" placeholder="Nueva busqueda ...">
+                    </div>
+                    <!-- /.user-block -->
                   </div>
-                  <!-- /.user-block -->
-                </div>
-                <!-- /.post -->
-                <!-- Post -->
-                <div class="post">
-                  <div class="user-block">
-                    
-                    <h2><i class="fa fa-archive"></i> Series</h2>
-                    <span class="description">Cantidad total de  series fondos registrados: 00-var</span>
+                  <!-- /.post -->
+                  <!-- Post -->
+                  <div class="post">
+                      <button  class="btn btn-danger pull-right" type="submit" name="nivelDescripcion" value="fondo" onClick="window.location='isadG'">
+                      <i class="fa fa-plus"></i> Nuevo fondo</button>
+                      <h3><i class="fa fa-university "></i> Fondos</h3>
+                      <label class="label label-danger"> Cantidad total de fondos registrados: 00-var</label>
                   </div>
-                  <!-- /.user-block -->
-                </div>
-                <!-- /.post -->
-                <!-- Post -->
-                <div class="post">
-                  <div class="user-block">
-                    <h2><i class="fa fa-folder"></i> Expedientes</h2>
-                    <span class="description">Cantidad total de expedientes registrados: 00-var</span>
+                  <!-- /.post -->
+                  <!-- Post -->
+                  <div class="post">
+                    <button class="btn btn-primary pull-right" type="submit" name="nivelDescripcion" value="seccion" onClick="window.location='isadG'">
+                    <i class="fa fa-plus"></i> Nueva seccion</button>
+                    <h3><i class="fa fa-th "></i> Seciones</h3>
+                    <label class="label label-primary"> Cantidad total de  secciones registradas: 00-var</label>
                   </div>
-                  <!-- /.user-block -->
-                </div>
-                <!-- /.post -->
-                <!-- Post -->
-                <div class="post">
-                  <div class="user-block">
-                    <h2><i class="fa fa-file"></i> Documentos</h2>
-                    <span class="description">Cantidad total de documentos registrados: 00-var</span>
+                  <!-- /.post -->
+                  <!-- Post -->
+                  <div class="post">
+                      <button class="btn btn-default pull-right" type="submit" name="nivelDescripcion" value="subseccion" onClick="window.location='isadG'">
+                      <i class="fa fa-plus"></i> Nueva sub-seccion</button>
+                      <h3><i class="fa fa-square"></i> Subsecciones</h3>
+                      <label class="label label-default"> Cantidad total de  subsecciones registrados: 00-var</label>
                   </div>
-                  <!-- /.user-block -->
-                </div>
-                <!-- /.post -->
+                  <!-- /.post -->
+                  <!-- Post -->
+                  <div class="post">
+                      <button  class="btn btn-warning pull-right"type="submit" name="nivelDescripcion" value="serie" onClick="window.location='isadG'">
+                      <i class="fa fa-plus"></i> Nueva serie</button>
+                      <h3><i class="fa fa-archive"></i> Series</h3>
+                      <label class="label label-warning"> Cantidad total de  series registradas: 00-var</label>
+                  </div>
+                  <!-- /.post -->
+                  <!-- Post -->
+                  <div class="post">
+                      <button class="btn btn-info pull-right" type="submit" name="nivelDescripcion" value="expediente" onClick="window.location='isadG'">
+                      <i class="fa fa-plus"></i> Nuevo expediente</button>
+                      <h3><i class="fa fa-folder"></i> Expedientes</h3>
+                      <label class="label label-info"> Cantidad total de expedientes registrados: 00-var</label>
+                  </div>
+                  <!-- /.post -->
+                  <!-- Post -->
+                  <div class="post">
+                      <button  class="btn btn-success pull-right"type="submit" name="nivelDescripcion" value="documento" onClick="window.location='isadG'">
+                      <i class="fa fa-plus"></i> Nuevo documento</button>
+                      <h3><i class="fa fa-file"></i> Documentos</h3>
+                      <label class="label label-success"> Cantidad total de  documentos registrados: 00-var</label>
+                  </div>
+                  <!-- /.post -->
+                </form>
               </div>
               <!-- /.tab-pane -->
               <!-- ==========================HISTORIAL============================================= -->
@@ -170,106 +184,6 @@
                   </li>
                 </ul>
               </div>
-              <!-- /.tab-pane -->
-              <!-- ==============================ISAD-G================================================== -->
-              <!-- tab-pane -->
-             
-              <div class="tab-pane" id="settings">
-              <form class="form-horizontal"action="#" method="post" >
-                  <fieldset>
-                    <legend>ÁREA DE IDENTIFICACIÓN</legend>
-                    <div class="form-group">
-                      <label for="inputName" class="col-sm-2 control-label">Código de referencia:</label>
-                      <div class="col-sm-10">
-                        <input type="text" class="form-control" id="codReferencia">
-                      </div>
-                    </div>
-
-                    <div class="form-group">
-                      <label for="inputName" class="col-sm-2 control-label">Título:</label>
-                      <div class="col-sm-10">
-                        <input type="text" class="form-control" id="titulo">
-                      </div>
-                    </div>
-
-                    <div class="form-group">
-                      <label for="inputName" class="col-sm-2 control-label">Fecha(s): </label>
-                      <div class="col-sm-10">
-                        <input type="text" class="form-control" id="fecha">
-                      </div>
-                    </div>
-
-                    <div class="form-group">
-                      <label for="inputName" class="col-sm-2 control-label">Nivel de descripción: </label>
-                      <div class="col-sm-10">
-                        <select  id="nivelDescripcion" class="form-control">
-                          <option value="">Seleccione</option>
-                          <option value="fondo" >Fondo</option>
-                          <option value="seccion" >Seccion</option>
-                          <option value="serie">Serie</option>
-                          <option value="expediente">Expediente</option>
-                          <option value="documento">Documento</option>
-                        </select>
-                      </div>
-                    </div>    
-                    <div class="form-group">
-                      <label for="inputName" class="col-sm-2 control-label">Volumen: </label>
-                      <div class="col-sm-10">
-                        <input type="text" class="form-control" id="volumen">
-                      </div>
-                    </div>
-                  </fieldset>  
-                </form> 
-                <?php 
-                $form = new formularios()
-
-                if(isset($_POST["nivelDescripcion"])){
-                  switch ($variable) {
-                    case 'fondo':
-                        formularios->areaContexto();
-                        function areaContenido();
-                        function areaCondicionesAcceso();
-                        function areaDocumentacion();
-                        function areaNotas();
-                        function areaControlDescripcion();
-                      break;
-                    case 'serie':
-                      
-                      break;
-                    case 'expediente':
-                        function areaContexto();
-                        function areaContenido();
-                        function areaDocumentacion();
-                        function areaControlDescripcion();
-                      break;
-                    case 'documento':
-                        function areaContexto();
-                        function areaContenido();
-                        function areaDocumentacion();
-                        function areaControlDescripcion();
-                      break;
-                    default:
-                      # code...
-                      break;
-                  }
-                  
-                }
-              
-              
-              
-              ?>
-                <!-- ============================================================================ -->
-                <form class="form-horizontal" action="#" method="post">
-                  <div class="form-group">
-                    <div class="col-sm-offset-2 col-sm-10">
-                      <button type="submit" class="btn btn-primary pull-right">
-                      <span><i class="fa fa-send"></i> Guardar</span>
-                      </button>
-                    </div>
-                  </div>
-                </form>
-              </div>
-              <!-- /.tab-pane -->
             </div>
             <!-- /.tab-content -->
           </div>

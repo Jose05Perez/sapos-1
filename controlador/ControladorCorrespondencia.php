@@ -13,7 +13,27 @@
 // caracter ('co' = corriente, 'im'= importante, 'ur'= urgente)
 // asunto 
 // descripcion
+    require_once "/modelo/Conexion.php";
+    Class  CorrespControl{
+        private $des;
+        function  __construct(){
+            $this->des = new Conexion();
+        }
+        //mesa entrada (param==oredenes y filtros)  
+        
+        function bandeja()
+        {
+           $_SESSION['Usuario']=array();
+           $_POST['filtros']=array();
+           $des->consultaSel();
+        }
+                
 
-    $tablaMesaEntrada = " corresp_correspondencia LEFT JOIN corresp_persona LEFT JOIN corresp_institucion ON  ";
-    $columnas= "nombre_persona, apellido_persona, fecha_emision, fecha_recibido, estado, privado, caracter, asunto, descripcion"
-    
+        function busqueda()
+        {
+            $_SESSION['usuario']=array();
+            $_POST['palabra']=$string;
+            $des->consultaSel();
+        }
+
+    }

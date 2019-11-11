@@ -1,3 +1,17 @@
+<?php
+
+
+$internos=5;//$_SESSION[];
+$externos=4;//$_SESSION[];
+$pendientes=5;//$_SESSION[];
+$gestion=3;//$_SESSION[];
+$todos= $internos+$externos+$pendientes+$gestion;
+
+$urgentes=7;//$_SESSION[];
+$importantes=5;//$_SESSION[];
+$corrientes=5;//$_SESSION[];
+
+?>
 <!-- Content Wrapper. Contains page content -->
 <div class="content-wrapper">
   <!-- Content Header (Page header) -->
@@ -29,18 +43,18 @@
           </div>
           <div class="box-body no-padding">
             <ul class="nav nav-pills nav-stacked">       
-              <li><a href="#"><i class="fa fa-inbox"></i>Todos
-                <span class="label label-default pull-right">00-Var</span></a></li>
-              <li><a href="#"><i class="fa fa-university"></i>Internos
-                <span class="label label-warning pull-right">00-Var</span></a></li>
-              <li><a href="#"><i class="fa fa-globe"></i>Externos
-                <span class="label label-danger pull-right">00-Var</span></a></li>
-              <li><a href="#"><i class="fa fa-send"></i>Enviados
-                <span class="label label-success pull-right">00-Var</span></a></li>
-              <li><a href="#"><i class="fa fa-envelope"></i> Pendientes
-                <span class="label label-info pull-right">00-Var</span></a></li>
-              <li><a href="#"><i class="fa fa-tag"></i>Con plazo de gestion
-                <span class="label label-primary pull-right">00-var</span></a></li>
+              <li><a href="#?filtro=t" ><i class="fa fa-inbox"></i>Todos
+                <span class="label label-default pull-right"><?php if($todos>0){echo $todos;}?></span></a></li>
+              <li><a href="#?filtro=i"><i class="fa fa-university"></i>Internos
+                <span class="label label-warning pull-right"><?php if($internos>0){echo $internos;}?></span></a></li>
+              <li><a href="#?filtro=e"><i class="fa fa-globe"></i>Externos
+                <span class="label label-danger pull-right"><?php if($externos>0) {echo $externos;}?></span></a></li>
+              <li><a href="#?filtro=en"><i class="fa fa-send"></i>Enviados
+                <span class="label label-success pull-right"></span></a></li>
+              <li><a href="#?filtro=pe"><i class="fa fa-envelope"></i> Pendientes
+                <span class="label label-info pull-right"><?php if($pendientes>0){echo $pendientes;}?></span></a></li>
+              <li><a href="#?filtro=pg"><i class="fa fa-tag"></i>Con plazo de gestion
+                <span class="label label-primary pull-right"><?php if($gestion>0){echo $gestion;}?></span></a></li>
             </ul>
           </div>
           <!-- /.box-body -->

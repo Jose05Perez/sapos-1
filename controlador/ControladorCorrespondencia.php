@@ -13,22 +13,19 @@
 // caracter ('co' = corriente, 'im'= importante, 'ur'= urgente)
 // asunto 
 // descripcion
-    require_once "/modelo/Conexion.php";
-    Class  CorrespControl{
+
+    Class  MesaEntrada{
         private $des;
         function  __construct(){
             $this->des = new Conexion();
         }
-        //mesa entrada (param==oredenes y filtros)  
-        
+        //mesa entrada (param==oredenes y filtros)     
         function bandeja()
         {
            $_SESSION['Usuario']=array();
-           $_POST['filtros']=array();
-           $des->consultaSel();
-        }
-                
-
+           $_POST['filtros']=array();// Filtros ()
+           echo '$des->consultaSel()';
+        }                
         function busqueda()
         {
             $_SESSION['usuario']=array();

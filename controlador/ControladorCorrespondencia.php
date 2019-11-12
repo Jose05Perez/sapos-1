@@ -22,9 +22,15 @@
         //mesa entrada (param==oredenes y filtros)     
         function bandeja()
         {
-           $_SESSION['Usuario']=array();
+           
+        
+           $datausuario=$_SESSION['Usuario'];
            $_POST['filtros']=array();// Filtros ()
-           echo '$des->consultaSel()';
+           $select="SELECT cor.id_correspondencia, cor.caracter, cor.estado, UPPER(CONCAT(per.nombre_persona,' ',per.apellido_persona)) AS emisor,cor.asunto, 
+           cor.descripcion, cor.fecha_emision, cor.estado, cor.autorizado, cor.privado
+           FROM corresp_persona AS per RIGHT JOIN corresp_correspondencia AS cor ON (cor.id_persona_emisor=per.id_persona) 
+           WHERE cor.id_persona_receptor=$persona or cor.estado!='el' ORDER BY cor.fecha_emision DESC";
+            $des->consultaSel($select);
         }                
         function busqueda()
         {

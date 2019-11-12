@@ -118,46 +118,67 @@ $corrientes=5;//$_SESSION[];
               <!-- /.pull-right -->
             </div>
             <div class="table-responsive mailbox-messages">
-              <table class="table table-hover table-striped">
+            <table class="table table-hover table-striped">
+                <thead>
+                  <tr>
+                    <th><i class="fa fa-check-square"></i></th>
+                    <th>Caracter</th>
+                    <th>Emisor</th>
+                    <th>Correspondencia</th>
+                    <th>Adjuntos</th>
+                    <th>Fecha de emision</th>
+                    <th>Estado</th>
+                    <th>Autorizado</th>
+                    <th>Privado</th>
+                  </tr>
+                </thead>
                 <tbody>
-                <tr>
-                  <td><input type="checkbox"></td>
-                  <td class="mailbox-star"><a href="#"><i class="fa fa-circle-o text-red"></i></a></td>
-                  <td class="mailbox-name"><a href="read-mail.html">00-var-emisor</a></td>
-                  <td class="mailbox-subject"><b>Asunto </b> descripcion
-                  </td>
-                  <td class="mailbox-attachment"></td>
-                  <td class="mailbox-date">00-timestamp</td>
-                </tr>
-                <tr>
-                  <td><input type="checkbox"></td>
-                  <td class="mailbox-star"><a href="#"><i class="fa fa-circle-o text-light-blue"></i></a></td>
-                  <td class="mailbox-name"><a href="read-mail.html">00-var-emisor</a></td>
-                  <td class="mailbox-subject"><b>Asunto </b> descripcion
-                  </td>
-                  <td class="mailbox-attachment"></td>
-                  <td class="mailbox-date">00-timestamp</td>
-                </tr>
-                <tr>
-                  <td><input type="checkbox"></td>
-                  <td class="mailbox-star"><a href="#"><i class="fa fa-circle-o text-yellow"></i></a></td>
-                  <td class="mailbox-name"><a href="read-mail.html">00-var-emisor</a></td>
-                  <td class="mailbox-subject"><b>Asunto </b> descripcion
-                  </td>
-                  <td class="mailbox-attachment"></td>
-                  <td class="mailbox-date">00-timestamp</td>
-                </tr>
-                <tr>
-                  <td><input type="checkbox"></td>
-                  <td class="mailbox-star"><a href="#"><i class="fa fa-circle-o text-light-blue"></i></a></td>
-                  <td class="mailbox-name"><a href="read-mail.html">00-var-emisor</a></td>
-                  <td class="mailbox-subject"><b>Asunto </b> descripcion
-                  </td>
-                  <td class="mailbox-attachment"></td>
-                  <td class="mailbox-date">00-timestamp</td>
-                </tr>
-                </tbody>
-              </table>
+                <?php
+                        
+                      //$ente----array
+                      foreach ($ente as $key){
+                        
+                          echo '<tr>
+                              <td><input type="checkbox" name="recibido" value="1"></td>
+                              <td><i class="fa fa-circle-o text-';
+                          switch ($key['caracter']){
+                              case 'im':   echo 'yellow"></i>';  
+                              break;        
+                              case 'ur':    echo 'red"></i>'; 
+                              break;
+                              case 'ge' :   echo 'light-blue"></i>'; 
+                              break;
+                          } 
+                          echo    '</td>     
+                                  
+                                  <td class="mailbox-name">'.$key['emisor'].'</td>
+                                  <td class="mailbox-subject"> <b>'.$key['asunto'].'</b> '.$key['descripcion'].'</td>
+                                  
+                                  <td class="mailbox-attachment"><i class="fa fa-clip"></td>
+                                  <td class="mailbox-date">'.$key['fecha_emision'].'</td>
+                                  <td> ';
+                                  
+                           switch ($key['estado']) {
+                             case 'pe':   echo '<span class="label label-info">Pendiente</span>';
+                              break;
+                             case 'pg':    echo '<span class="label label-primary">En plazo de gestion</span>';
+                              break;
+                             case 're':   echo '<span class="label label-default">Recibido</span>';
+                              break;
+                           } 
+
+                          echo '</td> 
+                                <td><input type="checkbox" name="autorizado'.$key['id_correspondencia'].'"';
+                          if ($key['autorizado']==1){   echo 'checked'; }
+                          
+                          echo '></td> 
+                                <td><input type="checkbox" name="pivado'.$key['id_correspondencia'].'"';
+                          if ($key['privado']==1){   echo 'checked'; }
+                          echo '></td><tr>';
+                          
+                          
+                      }
+                ?>
               <!-- /.table -->
             </div>
             <!-- /.mail-box-messages -->

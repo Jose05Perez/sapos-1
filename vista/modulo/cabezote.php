@@ -212,14 +212,14 @@ $urgentes=2;//$_SESSION[];
           <!-- User Account: style can be found in dropdown.less -->
           <li class="dropdown user user-menu">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-              <span class="hidden-xs"><?php echo $_SESSION["nombre"]; ?></span>
+              <span class="hidden-xs"><?php ECHO "USUARIO X";//echo $_SESSION["nombre"]; ?></span>
             </a>
             <ul class="dropdown-menu">
               <!-- User image -->
               <li class="user-header">
                 <p>
-                 <?php echo $_SESSION["nombre"]; ?>
-                  <small><?php echo $_SESSION["mail"]; ?></small>
+                 <?php  // $_SESSION["nombre"]; ?>
+                  <small><?php //echo $_SESSION["mail"]; ?></small>
                 </p>
               </li>
               <!-- Menu Footer-->

@@ -113,7 +113,7 @@ session_start();
                 if(isset($_GET["ruta"]))
                 {
                     if($_GET["ruta"] == "inicio" || $_GET["ruta"] == "salir" || $_GET["ruta"] == "emisor" || $_GET["ruta"] == "mesaEntrada"
-                    || $_GET["ruta"]== "archivo"|| $_GET["ruta"]=="isadG")
+                    || $_GET["ruta"]== "archivo"|| $_GET["ruta"]== "isadG")
                     {
                         include "modulo/".$_GET["ruta"].".php";
                     }

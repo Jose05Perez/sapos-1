@@ -1,3 +1,10 @@
+<?php
+
+$internos=2;//$_SESSION[];
+$externos=2;//$_SESSION[];
+$urgentes=2;//$_SESSION[];
+
+?>
 <header class="main-header">
     <!-- Logo -->
     <a href="inicio" class="logo">
@@ -23,7 +30,7 @@
           <li class="dropdown messages-menu">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
               <i class="fa fa-institution"></i>
-              <span class="label label-success">00-var</span>
+              <span class="label label-success"><?=$internos?></span>
             </a>
             <ul class="dropdown-menu">
               <li class="header">Nueva correspodencia: 00-var</li>
@@ -85,7 +92,7 @@
           <li class="dropdown notifications-menu">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
               <i class="fa fa-globe"></i>
-              <span class="label label-warning">00-var</span>
+              <span class="label label-warning"><?=$externos?></span>
             </a>
             <ul class="dropdown-menu">
               <li class="header">Tienes 00-var notificaciones</li>
@@ -127,7 +134,7 @@
           <li class="dropdown tasks-menu">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
               <i class="fa fa-exclamation-triangle"></i>
-              <span class="label label-danger">00-var</span>
+              <span class="label label-danger"><?=$urgentes?></span>
             </a>
             <ul class="dropdown-menu">
               <li class="header">You have 9 tasks</li>
@@ -201,17 +208,18 @@
               </li>
             </ul>
           </li>
+         
           <!-- User Account: style can be found in dropdown.less -->
           <li class="dropdown user user-menu">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-              <!-- <span class="hidden-xs"><?php echo $_SESSION["nombre"]; ?></span> -->
+              <span class="hidden-xs"><?php ECHO "USUARIO X";//echo $_SESSION["nombre"]; ?></span>
             </a>
             <ul class="dropdown-menu">
               <!-- User image -->
               <li class="user-header">
                 <p>
-                 <?php echo $_SESSION["nombre"]; ?>
-                  <small><?php echo $_SESSION["mail"]; ?></small>
+                 <?php  // $_SESSION["nombre"]; ?>
+                  <small><?php //echo $_SESSION["mail"]; ?></small>
                 </p>
               </li>
               <!-- Menu Footer-->

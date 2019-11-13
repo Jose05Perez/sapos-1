@@ -1,8 +1,12 @@
 <?php
+$c =new cabezote();
+$c->urgentes();
+$c->internos();
+$c->externos();
 
-$internos=2;//$_SESSION[];
-$externos=2;//$_SESSION[];
-$urgentes=2;//$_SESSION[];
+$internos=$_SESSION['internos'];
+$externos=$_SESSION['externos'];
+$urgentes=$_SESSION['urgentes'];
 
 ?>
 <header class="main-header">
@@ -30,7 +34,7 @@ $urgentes=2;//$_SESSION[];
           <li class="dropdown messages-menu">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
               <i class="fa fa-institution"></i>
-              <span class="label label-success"><?=$internos?></span>
+              <span class="label label-success"><?php if($internos>0){echo $internos;}?></span>
             </a>
             <ul class="dropdown-menu">
               <li class="header">Nueva correspodencia: 00-var</li>
@@ -92,7 +96,7 @@ $urgentes=2;//$_SESSION[];
           <li class="dropdown notifications-menu">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
               <i class="fa fa-globe"></i>
-              <span class="label label-warning"><?=$externos?></span>
+              <span class="label label-warning"><?php if($externos>0){echo $externos;}?></span>
             </a>
             <ul class="dropdown-menu">
               <li class="header">Tienes 00-var notificaciones</li>
@@ -134,7 +138,7 @@ $urgentes=2;//$_SESSION[];
           <li class="dropdown tasks-menu">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
               <i class="fa fa-exclamation-triangle"></i>
-              <span class="label label-danger"><?=$urgentes?></span>
+              <span class="label label-danger"><?php if($urgentes>0){echo $ugentes;}?></span>
             </a>
             <ul class="dropdown-menu">
               <li class="header">You have 9 tasks</li>
@@ -212,14 +216,15 @@ $urgentes=2;//$_SESSION[];
           <!-- User Account: style can be found in dropdown.less -->
           <li class="dropdown user user-menu">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-              <span class="hidden-xs"><?php ECHO "USUARIO X";//echo $_SESSION["nombre"]; ?></span>
+              <span class="hidden-xs"><?php echo $_SESSION["nombre_usuario"]; ?></span>
             </a>
             <ul class="dropdown-menu">
               <!-- User image -->
               <li class="user-header">
                 <p>
-                 <?php  // $_SESSION["nombre"]; ?>
-                  <small><?php //echo $_SESSION["mail"]; ?></small>
+                <small>ultima cesion: <?php echo $_SESSION["ultimo_login"]; ?></small>
+                <small>su Id: <?php echo $_SESSION["id_empleado"]; ?></small>
+                  <small><?php echo $_SESSION["nombre_institucion"]; ?></small>
                 </p>
               </li>
               <!-- Menu Footer-->

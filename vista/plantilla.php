@@ -12,6 +12,9 @@
  *  @link https://github.com/josueSerulle/correspondencia
  */
 session_start();
+$usuario = new ctrUsuario();
+           $usuario->usrx();
+           
 ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -134,8 +137,7 @@ session_start();
         // }
         // else
         // {
-        //    $usuario = new ctrUsuario();
-        //    $usuario->ctrIngresarUsuario(true);
+           
         // }
     ?>
 </body>

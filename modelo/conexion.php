@@ -14,7 +14,7 @@
   
 class Conexion{
     protected $dbc;
-    public function Conexion(){
+    public function __construct(){
     $con = NULL;
   
         try{
@@ -26,15 +26,14 @@ class Conexion{
                 }   
             $this->dbc = $con;
     }
-    function consultaSel($tabla){
+    function consultaSel($sentencia){
       try{
-      $inst=$this->dbc;
-      $sentecia="Select * from {$tabla}";
-      $query=$inst->query($sentencia);
+      $query=$this->dbc->prepare($sentencia);
+      $query->execute();
       $resultado= $query->fetchAll();
       }catch(PDOException $e){
         //header('Location: errores.php');
-      $resultado='que blatrí';  
+      $resultado='que blatrí'.$e->getMessage();  
       }
       return $resultado;    
     }

@@ -1,17 +1,22 @@
 <?php
+ $control = new mesaEntrada();
+ $ente = $control->bandeja();
+
+//varibles consulta
+  $internos=5;//$_SESSION[];
+  $externos=4;//$_SESSION[];
+  $pendientes=5;//$_SESSION[];
+  $gestion=3;//$_SESSION[];
+  $todos= $internos+$externos+$pendientes+$gestion;
+
+  $urgentes=7;//$_SESSION[];
+  $importantes=5;//$_SESSION[];
+  $corrientes=5;//$_SESSION[];
 
 
-$internos=5;//$_SESSION[];
-$externos=4;//$_SESSION[];
-$pendientes=5;//$_SESSION[];
-$gestion=3;//$_SESSION[];
-$todos= $internos+$externos+$pendientes+$gestion;
-
-$urgentes=7;//$_SESSION[];
-$importantes=5;//$_SESSION[];
-$corrientes=5;//$_SESSION[];
 
 ?>
+
 <!-- Content Wrapper. Contains page content -->
 <div class="content-wrapper">
   <!-- Content Header (Page header) -->
@@ -22,7 +27,8 @@ $corrientes=5;//$_SESSION[];
     </h1>
     <ol class="breadcrumb">
       <li><a href="inicio"><i class="fa fa-dashboard"></i> Inicio</a></li>
-      <li class="active">Mesa de Entrada</li>
+
+      <li class="active">Mesa de entrada</li>
     </ol>
   </section>
 
@@ -101,7 +107,7 @@ $corrientes=5;//$_SESSION[];
               <!--button type="button" class="btn btn-default btn-sm checkbox-toggle"><i class="fa fa-square-o"></i>
               </-->
               <div class="btn-group">
-                <button type="button" class="btn btn-default btn-sm"><i class="fa fa-trash-o"></i></button>
+                <button type="button" class="btn btn-default btn-sm" onclick=><i class="fa fa-trash-o"></i></button>
                 <button type="button" class="btn btn-default btn-sm"><i class="fa fa-reply"></i></button>
                 <button type="button" class="btn btn-default btn-sm"><i class="fa fa-share"></i></button>
               </div>
@@ -134,7 +140,7 @@ $corrientes=5;//$_SESSION[];
                 </thead>
                 <tbody>
                 <?php
-                        
+                       
                       //$ente----array
                       foreach ($ente as $key){
                         
@@ -142,18 +148,16 @@ $corrientes=5;//$_SESSION[];
                               <td><input type="checkbox" name="recibido" value="1"></td>
                               <td><i class="fa fa-circle-o text-';
                           switch ($key['caracter']){
-                              case 'im':   echo 'yellow"></i>';  
+                              case 'im':   echo 'yellow';  
                               break;        
-                              case 'ur':    echo 'red"></i>'; 
+                              case 'ur':    echo 'red'; 
                               break;
-                              case 'ge' :   echo 'light-blue"></i>'; 
+                              case 'ge' :   echo 'light-blue'; 
                               break;
                           } 
-                          echo    '</td>     
-                                  
+                          echo    '"></i></td>     
                                   <td class="mailbox-name">'.$key['emisor'].'</td>
                                   <td class="mailbox-subject"> <b>'.$key['asunto'].'</b> '.$key['descripcion'].'</td>
-                                  
                                   <td class="mailbox-attachment"><i class="fa fa-clip"></td>
                                   <td class="mailbox-date">'.$key['fecha_emision'].'</td>
                                   <td> ';
@@ -179,6 +183,8 @@ $corrientes=5;//$_SESSION[];
                           
                       }
                 ?>
+                </tbody>
+              </table>
               <!-- /.table -->
             </div>
             <!-- /.mail-box-messages -->
@@ -187,8 +193,6 @@ $corrientes=5;//$_SESSION[];
           <div class="box-footer no-padding">
             <div class="mailbox-controls">
               <!-- Check all button -->
-              <button type="button" class="btn btn-default btn-sm checkbox-toggle"><i class="fa fa-square-o"></i>
-              </button>
               <div class="btn-group">
                 <button type="button" class="btn btn-default btn-sm"><i class="fa fa-trash-o"></i></button>
                 <button type="button" class="btn btn-default btn-sm"><i class="fa fa-reply"></i></button>

@@ -10,7 +10,7 @@
 // autorizado (default = 1)//firma digital- 
 // estado ('el'=eliminado 'pe'=pendiente 'pg'=con plazo gestion 're'=recibido)
 // privado ( value '1'==privado if '0'==publico)
-// caracter ('co' = corriente, 'im'= importante, 'ur'= urgente)
+// caracter ('ge' = corriente, 'im'= importante, 'ur'= urgente)
 // asunto 
 // descripcion
     Class  MesaEntrada{
@@ -21,12 +21,18 @@
         //mesa entrada (param==oredenes y filtros)     
         function bandeja()
         {   
-            $sentencia="SELECT cor.id_correspondencia, cor.caracter, cor.estado, UPPER(CONCAT(per.nombre_persona,' ',per.apellido_persona)) AS emisor,
-                        cor.asunto, cor.descripcion, cor.fecha_emision, cor.estado, cor.autorizado, cor.privado
-                        FROM corresp_persona AS per RIGHT JOIN corresp_correspondencia AS cor ON (cor.id_persona_emisor=per.id_persona) 
-                        WHERE cor.id_persona_receptor={$_SESSION['id_persona']} AND cor.estado!='el' ORDER BY cor.fecha_emision DESC";
-           $resultado=$this->des->consultaSel($sentencia);
-           return $resultado;
+            $tablaprep=array(
+                "campos"    => array("cor.id_correspondencia","cor.estado","UPPER(CONCAT(per.nombre_persona,' ',per.apellido_persona)) AS emisor",
+                               "cor.asunto", "cor.descripcion","cor.descripcion", "cor.fecha_emision", "cor.estado", "cor.autorizado", "cor.privado","cor.caracter"),
+                "jointablas"=> "corresp_persona AS per JOIN corresp_correspondencia AS cor ON (cor.id_persona_emisor=per.id_persona) ",
+                "condicion" => "cor.id_persona_receptor= ? AND cor.estado!='el' ",
+                "orden"     => "ORDER BY cor.fecha_emision DESC"
+            );
+            $sentencia= "SELECT ".implode(", " , $tablaprep['campos'])." FROM ". $tablaprep['jointablas'].
+                        " WHERE ".$tablaprep['condicion'].$tablaprep['orden'];
+            $resultado=$this->des->consultaSel($sentencia);
+            return $resultado;
+            echo $resultado;
         }                
         function busqueda()
         {
@@ -51,7 +57,7 @@
             $_SESSION['urgentes']=$resultado[0]['urgentes'];
         }
         function internos()
-        {
+        {   
             $sentencia="SELECT COUNT(*) AS internos FROM corresp_correspondencia where id_persona_receptor=".$_SESSION['id_persona'];// ingresar condicion 
             $resultado=$this->des->consultaSel($sentencia);
             $_SESSION['internos']=$resultado[0]['internos'];
@@ -64,10 +70,4 @@
         }
     }
 
-    // $tablaprep=array(
-    //     "campos"    => array("cor.id_correspondencia","cor.estado","UPPER(CONCAT(per.nombre_persona,' ',per.apellido_persona)) AS nombre_usuario",
-    //                    "cor.descripcion","cor.descripcion", "cor.fecha_emision", "cor.estado", "cor.autorizado", "cor.privado","cor.caracter"),
-    //     "jointablas"=> " corresp_persona AS per JOIN corresp_correspondencia AS cor ON (cor.id_persona_emisor=per.id_persona) ;",
-    //     "condicion" => "cor.id_persona_receptor=2 AND cor.estado!='el'",
-    //     "orden"     => "ORDER BY cor.fecha_emision DESC"
-    // );
+

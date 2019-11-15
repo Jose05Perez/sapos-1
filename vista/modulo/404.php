@@ -10,6 +10,7 @@
       <li class="active">Pagina no encontrada</li>
     </ol>
   </section>
+  
   <section class="content">
       <div class="error-page">
         <h2 class="headline text-prmimary">404</h2>

@@ -1,14 +1,31 @@
+<?php
+ $control = new mesaEntrada();
+ $ente = $control->bandeja();
+
+ $fil= new cabezote();// filtros
+ $fil->pendientes();
+ $fil->pgestion();
+//varibles consulta
+  $internos=$_SESSION['internos'];
+  $externos=$_SESSION['externos'];
+  $pendientes=$_SESSION['pendientes'];
+  $gestion=$_SESSION['pgestion'];
+  $todos= $pendientes+$gestion ;
+
+?>
+
 <!-- Content Wrapper. Contains page content -->
 <div class="content-wrapper">
   <!-- Content Header (Page header) -->
   <section class="content-header">
     <h1>
       Mesa de Entrada
-      <small>00-varconsulta</small>
+      <small></small>
     </h1>
     <ol class="breadcrumb">
       <li><a href="inicio"><i class="fa fa-dashboard"></i> Inicio</a></li>
-      <li class="active">Mesa de Entrada</li>
+
+      <li class="active">Mesa de entrada</li>
     </ol>
   </section>
 
@@ -29,18 +46,18 @@
           </div>
           <div class="box-body no-padding">
             <ul class="nav nav-pills nav-stacked">       
-              <li><a href="#"><i class="fa fa-inbox"></i>Todos
-                <span class="label label-default pull-right">00-Var</span></a></li>
-              <li><a href="#"><i class="fa fa-university"></i>Internos
-                <span class="label label-warning pull-right">00-Var</span></a></li>
-              <li><a href="#"><i class="fa fa-globe"></i>Externos
-                <span class="label label-danger pull-right">00-Var</span></a></li>
-              <li><a href="#"><i class="fa fa-send"></i>Enviados
-                <span class="label label-success pull-right">00-Var</span></a></li>
-              <li><a href="#"><i class="fa fa-envelope"></i> Pendientes
-                <span class="label label-info pull-right">00-Var</span></a></li>
-              <li><a href="#"><i class="fa fa-tag"></i>Con plazo de gestion
-                <span class="label label-primary pull-right">00-var</span></a></li>
+              <li><a href="mesaEntrada_re" ><i class="fa fa-inbox"></i>Todos
+                <span class="label label-default pull-right"><?php if($todos>0){echo $todos;}?></span></a></li>
+              <li><a href="mesaEntrada_in"><i class="fa fa-university"></i>Internos
+                <span class="label label-warning pull-right"><?php if($internos>0){echo $internos;}?></span></a></li>
+              <li><a href="mesaEntrada_ex"><i class="fa fa-globe"></i>Externos
+                <span class="label label-danger pull-right"><?php if($externos>0) {echo $externos;}?></span></a></li>
+              <li><a href="mesaEntrada_en"><i class="fa fa-send"></i>Enviados
+                <span class="label label-success pull-right"></span></a></li>
+              <li><a href="mesaEntrada_pe"><i class="fa fa-envelope"></i> Pendientes
+                <span class="label label-info pull-right"><?php if($pendientes>0){echo $pendientes;}?></span></a></li>
+              <li><a href="mesaEntrada_pg"><i class="fa fa-tag"></i>Con plazo de gestion
+                <span class="label label-primary pull-right"><?php if($gestion>0){echo $gestion;}?></span></a></li>
             </ul>
           </div>
           <!-- /.box-body -->
@@ -57,9 +74,9 @@
           </div>
           <div class="box-body no-padding">
             <ul class="nav nav-pills nav-stacked">
-              <li><a href="#"><i class="fa fa-circle-o text-red"></i>Urgente</a></li>
-              <li><a href="#"><i class="fa fa-circle-o text-yellow"></i> Importante</a></li>
-              <li><a href="#"><i class="fa fa-circle-o text-light-blue"></i> Generico</a></li>
+              <li><a href="mesaEntrada_ur"><i class="fa fa-circle-o text-red"></i>Urgente</a></li>
+              <li><a href="mesaEntrada_im"><i class="fa fa-circle-o text-yellow"></i> Importante</a></li>
+              <li><a href="mesaEntrada_ge"><i class="fa fa-circle-o text-light-blue"></i> Generico</a></li>
             </ul>
           </div>
           <!-- /.box-body -->
@@ -87,7 +104,7 @@
               <!--button type="button" class="btn btn-default btn-sm checkbox-toggle"><i class="fa fa-square-o"></i>
               </-->
               <div class="btn-group">
-                <button type="button" class="btn btn-default btn-sm"><i class="fa fa-trash-o"></i></button>
+                <button type="button" class="btn btn-default btn-sm" onclick=><i class="fa fa-trash-o"></i></button>
                 <button type="button" class="btn btn-default btn-sm"><i class="fa fa-reply"></i></button>
                 <button type="button" class="btn btn-default btn-sm"><i class="fa fa-share"></i></button>
               </div>
@@ -104,44 +121,65 @@
               <!-- /.pull-right -->
             </div>
             <div class="table-responsive mailbox-messages">
-              <table class="table table-hover table-striped">
+            <table class="table table-hover table-striped">
+                <thead>
+                  <tr>
+                    <th><i class="fa fa-check-square"></i></th>
+                    <th>Caracter</th>
+                    <th>Emisor</th>
+                    <th>Correspondencia</th>
+                    <th>Adjuntos</th>
+                    <th>Fecha de emision</th>
+                    <th>Estado</th>
+                    <th>Autorizado</th>
+                    <th>Privado</th>
+                  </tr>
+                </thead>
                 <tbody>
-                <tr>
-                  <td><input type="checkbox"></td>
-                  <td class="mailbox-star"><a href="#"><i class="fa fa-circle-o text-red"></i></a></td>
-                  <td class="mailbox-name"><a href="read-mail.html">00-var-emisor</a></td>
-                  <td class="mailbox-subject"><b>Asunto </b> descripcion
-                  </td>
-                  <td class="mailbox-attachment"></td>
-                  <td class="mailbox-date">00-timestamp</td>
-                </tr>
-                <tr>
-                  <td><input type="checkbox"></td>
-                  <td class="mailbox-star"><a href="#"><i class="fa fa-circle-o text-light-blue"></i></a></td>
-                  <td class="mailbox-name"><a href="read-mail.html">00-var-emisor</a></td>
-                  <td class="mailbox-subject"><b>Asunto </b> descripcion
-                  </td>
-                  <td class="mailbox-attachment"></td>
-                  <td class="mailbox-date">00-timestamp</td>
-                </tr>
-                <tr>
-                  <td><input type="checkbox"></td>
-                  <td class="mailbox-star"><a href="#"><i class="fa fa-circle-o text-yellow"></i></a></td>
-                  <td class="mailbox-name"><a href="read-mail.html">00-var-emisor</a></td>
-                  <td class="mailbox-subject"><b>Asunto </b> descripcion
-                  </td>
-                  <td class="mailbox-attachment"></td>
-                  <td class="mailbox-date">00-timestamp</td>
-                </tr>
-                <tr>
-                  <td><input type="checkbox"></td>
-                  <td class="mailbox-star"><a href="#"><i class="fa fa-circle-o text-light-blue"></i></a></td>
-                  <td class="mailbox-name"><a href="read-mail.html">00-var-emisor</a></td>
-                  <td class="mailbox-subject"><b>Asunto </b> descripcion
-                  </td>
-                  <td class="mailbox-attachment"></td>
-                  <td class="mailbox-date">00-timestamp</td>
-                </tr>
+                <?php
+                       
+                      //$ente----array
+                      foreach ($ente as $key){
+                        
+                          echo '<tr>
+                              <td><input type="checkbox" name="recibido" value="1"></td>
+                              <td><i class="fa fa-circle-o text-';
+                          switch ($key['caracter']){
+                              case 'im':   echo 'yellow';  
+                              break;        
+                              case 'ur':    echo 'red'; 
+                              break;
+                              case 'ge' :   echo 'light-blue'; 
+                              break;
+                          } 
+                          echo    '"></i></td>     
+                                  <td class="mailbox-name">'.$key['emisor'].'</td>
+                                  <td class="mailbox-subject"> <b>'.$key['asunto'].'</b> '.$key['descripcion'].'</td>
+                                  <td class="mailbox-attachment"><i class="fa fa-clip"></td>
+                                  <td class="mailbox-date">'.$key['fecha_emision'].'</td>
+                                  <td> ';
+                                  
+                           switch ($key['estado']) {
+                             case 'pe':   echo '<span class="label label-info">Pendiente</span>';
+                              break;
+                             case 'pg':    echo '<span class="label label-primary">En plazo de gestion</span>';
+                              break;
+                             case 're':   echo '<span class="label label-default">Recibido</span>';
+                              break;
+                           } 
+
+                          echo '</td> 
+                                <td><input type="checkbox" name="autorizado'.$key['id_correspondencia'].'"';
+                          if ($key['autorizado']==1){   echo 'checked'; }
+                          
+                          echo '></td> 
+                                <td><input type="checkbox" name="pivado'.$key['id_correspondencia'].'"';
+                          if ($key['privado']==1){   echo 'checked'; }
+                          echo '></td><tr>';
+                          
+                          
+                      }
+                ?>
                 </tbody>
               </table>
               <!-- /.table -->
@@ -152,8 +190,6 @@
           <div class="box-footer no-padding">
             <div class="mailbox-controls">
               <!-- Check all button -->
-              <button type="button" class="btn btn-default btn-sm checkbox-toggle"><i class="fa fa-square-o"></i>
-              </button>
               <div class="btn-group">
                 <button type="button" class="btn btn-default btn-sm"><i class="fa fa-trash-o"></i></button>
                 <button type="button" class="btn btn-default btn-sm"><i class="fa fa-reply"></i></button>

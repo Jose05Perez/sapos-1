@@ -2,18 +2,15 @@
  $control = new mesaEntrada();
  $ente = $control->bandeja();
 
+ $fil= new cabezote();// filtos
+ $fil->pendientes();
+ $fil->pgestion();
 //varibles consulta
-  $internos=5;//$_SESSION[];
-  $externos=4;//$_SESSION[];
-  $pendientes=5;//$_SESSION[];
-  $gestion=3;//$_SESSION[];
-  $todos= $internos+$externos+$pendientes+$gestion;
-
-  $urgentes=7;//$_SESSION[];
-  $importantes=5;//$_SESSION[];
-  $corrientes=5;//$_SESSION[];
-
-
+  $internos=$_SESSION['internos'];
+  $externos=$_SESSION['externos'];
+  $pendientes=$_SESSION['pendientes'];
+  $gestion=$_SESSION['pgestion'];
+  $todos= $pendientes+$gestion;
 
 ?>
 
@@ -23,7 +20,7 @@
   <section class="content-header">
     <h1>
       Mesa de Entrada
-      <small>00-varconsulta</small>
+      <small></small>
     </h1>
     <ol class="breadcrumb">
       <li><a href="inicio"><i class="fa fa-dashboard"></i> Inicio</a></li>
@@ -49,17 +46,17 @@
           </div>
           <div class="box-body no-padding">
             <ul class="nav nav-pills nav-stacked">       
-              <li><a href="#?filtro=t" ><i class="fa fa-inbox"></i>Todos
+              <li><a href="mesaEntrada_re" ><i class="fa fa-inbox"></i>Todos
                 <span class="label label-default pull-right"><?php if($todos>0){echo $todos;}?></span></a></li>
-              <li><a href="#?filtro=i"><i class="fa fa-university"></i>Internos
+              <li><a href="mesaEntrada_in"><i class="fa fa-university"></i>Internos
                 <span class="label label-warning pull-right"><?php if($internos>0){echo $internos;}?></span></a></li>
-              <li><a href="#?filtro=e"><i class="fa fa-globe"></i>Externos
+              <li><a href="mesaEntrada_ex"><i class="fa fa-globe"></i>Externos
                 <span class="label label-danger pull-right"><?php if($externos>0) {echo $externos;}?></span></a></li>
-              <li><a href="#?filtro=en"><i class="fa fa-send"></i>Enviados
+              <li><a href="mesaEntrada_en"><i class="fa fa-send"></i>Enviados
                 <span class="label label-success pull-right"></span></a></li>
-              <li><a href="#?filtro=pe"><i class="fa fa-envelope"></i> Pendientes
+              <li><a href="mesaEntrada_pe"><i class="fa fa-envelope"></i> Pendientes
                 <span class="label label-info pull-right"><?php if($pendientes>0){echo $pendientes;}?></span></a></li>
-              <li><a href="#?filtro=pg"><i class="fa fa-tag"></i>Con plazo de gestion
+              <li><a href="mesaEntrada_pg"><i class="fa fa-tag"></i>Con plazo de gestion
                 <span class="label label-primary pull-right"><?php if($gestion>0){echo $gestion;}?></span></a></li>
             </ul>
           </div>
@@ -77,9 +74,9 @@
           </div>
           <div class="box-body no-padding">
             <ul class="nav nav-pills nav-stacked">
-              <li><a href="#"><i class="fa fa-circle-o text-red"></i>Urgente</a></li>
-              <li><a href="#"><i class="fa fa-circle-o text-yellow"></i> Importante</a></li>
-              <li><a href="#"><i class="fa fa-circle-o text-light-blue"></i> Generico</a></li>
+              <li><a href="mesaEntrada_ur"><i class="fa fa-circle-o text-red"></i>Urgente</a></li>
+              <li><a href="mesaEntrada_im"><i class="fa fa-circle-o text-yellow"></i> Importante</a></li>
+              <li><a href="mesaEntrada_ge"><i class="fa fa-circle-o text-light-blue"></i> Generico</a></li>
             </ul>
           </div>
           <!-- /.box-body -->

@@ -113,12 +113,14 @@ $usuario = new ctrUsuario();
                 /*===============================================================================================================
                 Incluyendo el Contenido Dinamico en la aplicacion
                 ===============================================================================================================*/
-                if(isset($_GET["ruta"]))
+                if(isset($_GET['ruta']))
                 {
-                    if($_GET["ruta"] == "inicio" || $_GET["ruta"] == "salir" || $_GET["ruta"] == "emisor" || $_GET["ruta"] == "mesaEntrada"
-                    || $_GET["ruta"]== "archivo"|| $_GET["ruta"]== "isadG")
+                    $ruta=explode("_",$_GET['ruta']);
+
+                    if($ruta[0] == "inicio" || $ruta[0] == "salir" || $ruta[0] == "emisor" || $ruta[0] == "mesaEntrada"
+                    || $ruta[0] == "archivo"|| $ruta[0]== "isadG")
                     {
-                        include "modulo/".$_GET["ruta"].".php";
+                        include "modulo/".$ruta[0].".php";
                     }
                     else
                     {

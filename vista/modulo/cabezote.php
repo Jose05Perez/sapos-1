@@ -46,7 +46,7 @@ $urgentes=$_SESSION['urgentes'];
           <li>
             <a href="mesaEntrada_ur">
               <i class="fa fa-exclamation-triangle"></i>
-              <span class="label label-danger"><?php if($urgentes>0){echo $ugentes;}?></span>
+              <span class="label label-danger"><?php if($urgentes>0){echo $urgentes;}?></span>
             </a>
           </li>
          

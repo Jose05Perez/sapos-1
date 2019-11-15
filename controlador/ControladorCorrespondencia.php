@@ -1,18 +1,5 @@
 <?php
 
-// Comnstruir los parametros de la consulpta que 
-// los select requieren de (salidas) => 'siempre seran las mismas: '
-// mesa de entrada:
-// id_persona_receptor => nombre persona, apellido persona
-// id_persona_emisor =>nombre persona, apellido persona
-// fecha_emision 
-// fecha_recibido
-// autorizado (default = 1)//firma digital- 
-// estado ('el'=eliminado 'pe'=pendiente 'pg'=con plazo gestion 're'=recibido)
-// privado ( value '1'==privado if '0'==publico)
-// caracter ('ge' = corriente, 'im'= importante, 'ur'= urgente)
-// asunto 
-// descripcion
     Class  MesaEntrada{
         private $des;
         function  __construct(){
@@ -24,6 +11,7 @@
         {
             $filtro= "";$er="";
             $f=explode("_",$_GET['ruta']);
+            
         switch ($f[1]) {
             case 'pe':
                 $filtro= " AND cor.estado='pe'";
@@ -127,9 +115,6 @@
             $resultado=$this->des->consultaSel($sentencia);
             $_SESSION['pgestion']=$resultado[0]['pgestion'];
         }
-        
-        
-        
     }
 
 

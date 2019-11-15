@@ -2,7 +2,7 @@
  $control = new mesaEntrada();
  $ente = $control->bandeja();
 
- $fil= new cabezote();// filtos
+ $fil= new cabezote();// filtros
  $fil->pendientes();
  $fil->pgestion();
 //varibles consulta
@@ -10,7 +10,7 @@
   $externos=$_SESSION['externos'];
   $pendientes=$_SESSION['pendientes'];
   $gestion=$_SESSION['pgestion'];
-  $todos= $pendientes+$gestion;
+  $todos= $pendientes+$gestion ;
 
 ?>
 

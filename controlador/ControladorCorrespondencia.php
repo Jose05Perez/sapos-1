@@ -6,7 +6,6 @@
             $this->des = new Conexion();
         }
         //mesa entrada (param==oredenes y filtros)     
-        
         function bandeja()
         {
             $filtro= "";$er="";

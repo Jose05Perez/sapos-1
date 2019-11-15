@@ -26,6 +26,7 @@ class Conexion{
                 }   
             $this->dbc = $con;
     }
+    
     function consultaSel($sentencia){
       try{
       $query=$this->dbc->prepare($sentencia);

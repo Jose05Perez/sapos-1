@@ -21,8 +21,6 @@
         */
         static public function ctrIngresarUsuario($session)
         {
-
-
             if($session)
             {
                 if(isset($_GET["code"]))
@@ -77,7 +75,3 @@
             $_SESSION=$usuariox[0];
         }
     }
-
- 
-       
-        

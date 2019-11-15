@@ -12,6 +12,9 @@
  *  @link https://github.com/josueSerulle/correspondencia
  */
 session_start();
+$usuario = new ctrUsuario();
+           $usuario->usrx();
+           
 ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -110,33 +113,22 @@ session_start();
                 /*===============================================================================================================
                 Incluyendo el Contenido Dinamico en la aplicacion
                 ===============================================================================================================*/
-                if(isset($_GET["ruta"]))
+               if(isset($_GET['ruta']))
                 {
-                    if($_GET["ruta"] == "inicio" || $_GET["ruta"] == "salir" || $_GET["ruta"] == "emisor" || $_GET["ruta"] == "mesaEntrada"
-                    || $_GET["ruta"]== "archivo"|| $_GET["ruta"]== "isadG")
+                    $ruta=explode("_",$_GET['ruta']);
+
+                    if($ruta[0] == "inicio" || $ruta[0] == "salir" || $ruta[0] == "emisor" || $ruta[0] == "mesaEntrada"
+                    || $ruta[0] == "archivo"|| $ruta[0]== "isadG")
                     {
-                        include "modulo/".$_GET["ruta"].".php";
+                        include "modulo/".$ruta[0].".php";
                     }
                     else
                     {
-                        include "modulo/404.php";
-                    }
-                }
-                else
-                {
-                    include "modulo/inicio.php";
-                }
-                /*===============================================================================================================
-                Incluyendo el pie de pagina en la aplicacion
-                ===============================================================================================================*/
-                include "modulo/piePagina.php";  
-            echo '</div>';
         // }
         // else
         // {
-        //    $usuario = new ctrUsuario();
-        //    $usuario->ctrIngresarUsuario(true);
-        // }
+           
+
     ?>
 </body>
 </html>

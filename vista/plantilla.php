@@ -118,7 +118,7 @@ $usuario = new ctrUsuario();
                     $ruta=explode("_",$_GET['ruta']);
 
                     if($ruta[0] == "inicio" || $ruta[0] == "salir" || $ruta[0] == "emisor" || $ruta[0] == "mesaEntrada"
-                    || $ruta[0] == "archivo"|| $ruta[0]== "isadG")
+                    || $ruta[0] == "archivo"|| $ruta[0]== "isadG" || $ruta[0] == "crearEmisor")
                     {
                         include "modulo/".$ruta[0].".php";
                     }

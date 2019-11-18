@@ -1,6 +1,7 @@
 <?php
  $control = new mesaEntrada();
  $ente = $control->bandeja();
+ $btn = new botones();
 
  $fil= new cabezote();// filtros
  $fil->pendientes();
@@ -11,7 +12,6 @@
   $pendientes=$_SESSION['pendientes'];
   $gestion=$_SESSION['pgestion'];
   $todos= $pendientes+$gestion ;
-
 ?>
 
 <!-- Content Wrapper. Contains page content -->
@@ -104,12 +104,12 @@
               <!--button type="button" class="btn btn-default btn-sm checkbox-toggle"><i class="fa fa-square-o"></i>
               </-->
               <div class="btn-group">
-                <button type="button" class="btn btn-default btn-sm" onclick=><i class="fa fa-trash-o"></i></button>
-                <button type="button" class="btn btn-default btn-sm"><i class="fa fa-reply"></i></button>
-                <button type="button" class="btn btn-default btn-sm"><i class="fa fa-share"></i></button>
+                <button type="submit" class="btn btn-default btn-sm" form="buzon" name="eliminar"><i class="fa fa-trash-o"></i></button>
+                <button type="submit" class="btn btn-default btn-sm" form="buzon"><i class="fa fa-reply"></i></button>
+                <button type="submit" class="btn btn-default btn-sm"><i class="fa fa-share"></i></button>
               </div>
               <!-- /.btn-group -->
-              <button type="button" class="btn btn-default btn-sm"><i class="fa fa-refresh"></i></button>
+              <button type="button" class="btn btn-default btn-sm" ><i class="fa fa-refresh"></i></button>
               <div class="pull-right">
                 00/00-indice
                 <div class="btn-group">
@@ -121,6 +121,7 @@
               <!-- /.pull-right -->
             </div>
             <div class="table-responsive mailbox-messages">
+            <form action="mesaEntrada" method="post" id="buzon">
             <table class="table table-hover table-striped">
                 <thead>
                   <tr>
@@ -136,13 +137,15 @@
                   </tr>
                 </thead>
                 <tbody>
+
                 <?php
                        
                       //$ente----array
+                      $fe=0;$idFe=array();
                       foreach ($ente as $key){
-                        
+                         $idFe[$fe]=$key['id_correspondencia']; 
                           echo '<tr>
-                              <td><input type="checkbox" name="recibido" value="1"></td>
+                              <td><input type="checkbox" name="seleccionado[]" value="'.$fe.'"></td>
                               <td><i class="fa fa-circle-o text-';
                           switch ($key['caracter']){
                               case 'im':   echo 'yellow';  
@@ -169,20 +172,22 @@
                            } 
 
                           echo '</td> 
-                                <td><input type="checkbox" name="autorizado'.$key['id_correspondencia'].'"';
+                                <td><input type="checkbox" name="autorizado[]" value="'.$fe.'"';
                           if ($key['autorizado']==1){   echo 'checked'; }
                           
                           echo '></td> 
-                                <td><input type="checkbox" name="pivado'.$key['id_correspondencia'].'"';
+                                <td><input type="checkbox" name="pivado[]" value="'.$fe.'"';
                           if ($key['privado']==1){   echo 'checked'; }
-                          echo '></td><tr>';
-                          
+                          echo '></td><tr>';  
+                          $fe++;
                           
                       }
-                ?>
+                   ?>
                 </tbody>
               </table>
               <!-- /.table -->
+              </form>
+
             </div>
             <!-- /.mail-box-messages -->
           </div>
@@ -190,13 +195,7 @@
           <div class="box-footer no-padding">
             <div class="mailbox-controls">
               <!-- Check all button -->
-              <div class="btn-group">
-                <button type="button" class="btn btn-default btn-sm"><i class="fa fa-trash-o"></i></button>
-                <button type="button" class="btn btn-default btn-sm"><i class="fa fa-reply"></i></button>
-                <button type="button" class="btn btn-default btn-sm"><i class="fa fa-share"></i></button>
-              </div>
-              <!-- /.btn-group -->
-              <button type="button" class="btn btn-default btn-sm"><i class="fa fa-refresh"></i></button>
+             
               <div class="pull-right">
                 1-50/200
                 <div class="btn-group">

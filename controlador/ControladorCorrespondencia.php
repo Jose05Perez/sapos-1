@@ -8,41 +8,42 @@
         //mesa entrada (param==oredenes y filtros)     
         function bandeja()
         {
-            $filtro= "";$er="";
+            $filtro= "";
             $f=explode("_",$_GET['ruta']);
+        if(isset($f[1])){
+            switch ($f[1]) {
+                case 'pe':
+                    $filtro= " AND cor.estado='pe'";
+                    break;
+                case 'pg':
+                    $filtro= " AND cor.estado='pg'";
+                    break;
+                default:  
+                    break;
+            }   
             
-        switch ($f[1]) {
-            case 'pe':
-                $filtro= " AND cor.estado='pe'";
-                break;
-            case 'pg':
-                $filtro= " AND cor.estado='pg'";
-                break;
-            default:  
-                break;
-        }   
-        switch ($f[1]) {
-            case 'en':
-                $filtro.= " AND cor.id_persona_emisor= ?";
-                break;
-            default:
+            switch($f[1]){
+                    case 'ur':
+                    $filtro.=" AND cor.caracter='ur'";
+                    break;
+                case 'im':
+                    $filtro.=" AND cor.caracter='im'";
+                    break;
+                case 'ge':
+                    $filtro.=" AND cor.caracter='ge'";
+                    break;
+                default:
+                    break;
+            
+            }
+            if($f[1]== 'en'){
+                 $filtro.="AND cor.id_persona_emisor= ?";
+            }else{
                 $filtro.= " AND cor.id_persona_receptor= ?";
-                break;
-        }   
-        switch($f[1]){
-              case 'ur':
-                $filtro.=" AND cor.caracter='ur'";
-                break;
-            case 'im':
-                $filtro.=" AND cor.caracter='im'";
-                break;
-            case 'ge':
-                $filtro.=" AND cor.caracter='ge'";
-                break;
-            default:
-                break;
-        }
-
+            }
+        }  else{
+            $filtro= " AND cor.id_persona_receptor= ?";
+        } 
             $tablaprep=array(
                 "campos"    => array("cor.id_correspondencia","cor.estado","UPPER(CONCAT(per.nombre_persona,' ',per.apellido_persona)) AS emisor",
                                "cor.asunto", "cor.descripcion","cor.descripcion", "cor.fecha_emision", "cor.estado", "cor.autorizado", "cor.privado","cor.caracter"),
@@ -62,9 +63,6 @@
             $_POST['palabra']=$string;
             $des->consultaSel();
         }
-
-
-
     }
     class cabezote{
         private $des;
@@ -74,45 +72,61 @@
         } 
         function urgentes()
         {
-            $sentencia="SELECT COUNT(*) AS urgentes FROM corresp_correspondencia where id_persona_receptor=".$_SESSION['id_persona']." AND caracter='ur' ";
+            $sentencia="SELECT COUNT(*) AS urgentes FROM corresp_correspondencia where id_persona_receptor= ? AND caracter='ur' ";
             $resultado=$this->des->consultaSel($sentencia);
             $_SESSION['urgentes']=$resultado[0]['urgentes'];
         }
         function internos()
         {   
-            $sentencia="SELECT COUNT(*) AS internos FROM corresp_correspondencia where id_persona_receptor=".$_SESSION['id_persona'];// ingresar condicion 
+            $sentencia="SELECT COUNT(*) AS internos FROM corresp_correspondencia where id_persona_receptor= ?" ;// ingresar condicion 
             $resultado=$this->des->consultaSel($sentencia);
             $_SESSION['internos']=$resultado[0]['internos'];
         }
         function externos()
         {
-            $sentencia="SELECT COUNT(*) AS externos FROM corresp_correspondencia where id_persona_receptor=".$_SESSION['id_persona'];// ingresar condicion 
+            $sentencia="SELECT COUNT(*) AS externos FROM corresp_correspondencia where id_persona_receptor= ? ";// ingresar condicion 
             $resultado=$this->des->consultaSel($sentencia);
             $_SESSION['externos']=$resultado[0]['externos'];
         }
         function importantes()
         {
-            $sentencia="SELECT COUNT(*) AS importantes FROM corresp_correspondencia where id_persona_receptor=".$_SESSION['id_persona']." AND caracter='im' ";// ingresar condicion 
+            $sentencia="SELECT COUNT(*) AS importantes FROM corresp_correspondencia where id_persona_receptor= ? AND caracter='im' ";// ingresar condicion 
             $resultado=$this->des->consultaSel($sentencia);
             $_SESSION['importantes']=$resultado[0]['importantes'];
         }
         function genericos()
         {
-            $sentencia="SELECT COUNT(*) AS genericos FROM corresp_correspondencia where id_persona_receptor=".$_SESSION['id_persona']." AND caracter='ge' ";// ingresar condicion 
+            $sentencia="SELECT COUNT(*) AS genericos FROM corresp_correspondencia where id_persona_receptor= ? AND caracter='ge' ";// ingresar condicion 
             $resultado=$this->des->consultaSel($sentencia);
             $_SESSION['genericos']=$resultado[0]['genericos'];
         }
         function pendientes()
         {
-            $sentencia="SELECT COUNT(*) AS pendientes FROM corresp_correspondencia where id_persona_receptor=".$_SESSION['id_persona']." AND estado='pe' ";// ingresar condicion 
+            $sentencia="SELECT COUNT(*) AS pendientes FROM corresp_correspondencia where id_persona_receptor= ? AND estado='pe' ";// ingresar condicion 
             $resultado=$this->des->consultaSel($sentencia);
             $_SESSION['pendientes']=$resultado[0]['pendientes'];
         }
         function pgestion()
         {
-            $sentencia="SELECT COUNT(*) AS pgestion FROM corresp_correspondencia where id_persona_receptor=".$_SESSION['id_persona']." AND estado='pg' ";// ingresar condicion 
+            $sentencia="SELECT COUNT(*) AS pgestion FROM corresp_correspondencia where id_persona_receptor= ? AND estado='pg' ";// ingresar condicion 
             $resultado=$this->des->consultaSel($sentencia);
             $_SESSION['pgestion']=$resultado[0]['pgestion'];
         }
     }
-
+class botones{
+    private $des;
+        function  __construct(){
+            $this->des = new Conexion();
+        }
+    function eliminar($id = array())//parametros de actualizacion 
+    {
+        $paramtroSet="estado='el'";
+        $f=0;
+        foreach ($id as $key => $value) {
+            $corRegistro[$f]= "id_correspondencia = ".$key[$f];
+            $f++;
+        }
+        $resultado=$this->des->consultaUpd($parametroSet,$corRegistro);
+        echo "ahi viene pirulo";
+    }
+}

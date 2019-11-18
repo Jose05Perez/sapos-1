@@ -38,26 +38,25 @@ class Conexion{
       }
       return $resultado;    
     }
-    function consultasIns($tabla ,$valores = array()){
+    function consultasIns($valores = array()){
         try{
             $inst=$this->dbc;
-            $sentencia ="INSERT INTO {$tabla} Values ".implode(",",$valores);
+            $sentencia ="INSERT INTO corresp_correspondencia Values ".implode(",",$valores);
             $query= $ins->prepare($sentencia);
             $query->execute();
-            $resultado= $query->fetchAll();
         }catch(PDOException $e){
             $resultado="Error de insercion";
         }
         return $resultado;
     }
-    function consultaUpd(){
+    function consultaUpd($paramSet,$paramWhr=array()){
     try
     {
         $inst=$this->dbc;
-        $sentencia ="UPDATE {$tabla} SET ".implode(",",$valores);
+        $sentencia ="UPDATE $paramSet SET ".implode(" OR ",$paramWhr);
         $query= $ins->prepare($sentencia);
         $query->execute();
-        $resultado= $query->fetchAll();
+        $resultado= "Actulizacion exitosa";
     }catch(PDOException $e){
         $resultado="Error de actualizacion";
     }

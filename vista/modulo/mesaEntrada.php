@@ -1,7 +1,7 @@
 <?php
  $control = new mesaEntrada();
  $ente = $control->bandeja();
- $btn = new botones();
+ $btn= new botones();
 
  $fil= new cabezote();// filtros
  $fil->pendientes();
@@ -11,7 +11,8 @@
   $externos=$_SESSION['externos'];
   $pendientes=$_SESSION['pendientes'];
   $gestion=$_SESSION['pgestion'];
-  $todos= $pendientes+$gestion ;
+  $todos= $pendientes+$gestion; 
+
 ?>
 
 <!-- Content Wrapper. Contains page content -->
@@ -104,7 +105,7 @@
               <!--button type="button" class="btn btn-default btn-sm checkbox-toggle"><i class="fa fa-square-o"></i>
               </-->
               <div class="btn-group">
-                <button type="submit" class="btn btn-default btn-sm" form="buzon" name="eliminar"><i class="fa fa-trash-o"></i></button>
+                <button type="submit" class="btn btn-default btn-sm" form="buzon" name="eliminar" value="1" onClick="<script>alert('Seguro que quiere borrar?');</script>"><i class="fa fa-trash-o"></i></button> 
                 <button type="submit" class="btn btn-default btn-sm" form="buzon"><i class="fa fa-reply"></i></button>
                 <button type="submit" class="btn btn-default btn-sm"><i class="fa fa-share"></i></button>
               </div>
@@ -121,7 +122,7 @@
               <!-- /.pull-right -->
             </div>
             <div class="table-responsive mailbox-messages">
-            <form action="mesaEntrada" method="post" id="buzon">
+            <form action="#" method="post" id="buzon">
             <table class="table table-hover table-striped">
                 <thead>
                   <tr>
@@ -143,7 +144,7 @@
                       //$ente----array
                       $fe=0;$idFe=array();
                       foreach ($ente as $key){
-                         $idFe[$fe]=$key['id_correspondencia']; 
+                        $idFe[$fe]=$key['id_correspondencia']; 
                           echo '<tr>
                               <td><input type="checkbox" name="seleccionado[]" value="'.$fe.'"></td>
                               <td><i class="fa fa-circle-o text-';
@@ -178,16 +179,20 @@
                           echo '></td> 
                                 <td><input type="checkbox" name="pivado[]" value="'.$fe.'"';
                           if ($key['privado']==1){   echo 'checked'; }
-                          echo '></td><tr>';  
+                          echo '></td><tr> <pre>';  
                           $fe++;
-                          
-                      }
-                   ?>
+                        }
+                        if(isset($_POST['eliminar']) && $_POST['eliminar']==1 && isset($_POST['seleccionado'])){
+                          $btn->eliminar($_POST['seleccionado'],$idFe);
+                          $_POST['eliminar']=0;unset($_POST['selecionado']);
+                          //header();
+                        }
+                        ?>
                 </tbody>
               </table>
               <!-- /.table -->
               </form>
-
+              
             </div>
             <!-- /.mail-box-messages -->
           </div>
@@ -217,4 +222,3 @@
   <!-- /.content -->
 </div>
 <!-- /.content-wrapper -->
-

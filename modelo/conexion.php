@@ -49,17 +49,17 @@ class Conexion{
         }
         return $resultado;
     }
-    function consultaUpd($paramSet,$paramWhr=array()){
+    function consultaUpd($tabla,$paramSet,$paramWhr=array()){//
     try
     {
         $inst=$this->dbc;
-        $sentencia ="UPDATE $paramSet SET ".implode(" OR ",$paramWhr);
-        $query= $ins->prepare($sentencia);
+        $sentencia ="UPDATE $tabla SET $paramSet WHERE ".implode(" OR ",$paramWhr);
+        var_dump($sentencia);
+        $query= $inst->prepare($sentencia);
         $query->execute();
-        $resultado= "Actulizacion exitosa";
+        $query->fetchAll();
     }catch(PDOException $e){
-        $resultado="Error de actualizacion";
+        echo $e->getMessage();
     }
-    return $resultado;
     }
   }

@@ -31,9 +31,9 @@
           </div>
           <div class="box-body no-padding">
             <ul class="nav nav-pills nav-stacked">
-              <li><a href="#"><i class="fa fa-circle-o text-red"></i>Urgente</a></li>
-              <li><a href="#"><i class="fa fa-circle-o text-yellow"></i> Importante</a></li>
-              <li><a href="#"><i class="fa fa-circle-o text-light-blue"></i> Genérico</a></li>
+              <li><a href="emisor_ur"><i class="fa fa-circle-o text-red"></i>Urgente</a></li>
+              <li><a href="emisor_im"><i class="fa fa-circle-o text-yellow"></i> Importante</a></li>
+              <li><a href="emisor_ge"><i class="fa fa-circle-o text-light-blue"></i> Genérico</a></li>
             </ul>
           </div>
           <!-- /.box-body -->
@@ -43,11 +43,13 @@
 
 
         <div class="col-md-9">
+        <form action="#" method="post" id="crear">
           <div class="box box-primary">
             <div class="box-header with-border">
               <h3 class="box-title">Ingresar nueva correspondencia</h3>
             </div>
             <!-- /.box-header -->
+            
             <div class="box-body">
               <div class="form-group">
                 <input class="form-control" placeholder="Para:">
@@ -76,16 +78,17 @@
             <!-- /.box-body -->
             <div class="box-footer">
               <div class="pull-right">
-                <button type="button" class="btn btn-default"><i class="fa fa-pencil"></i> Guardar</button>
-                <button type="submit" class="btn btn-primary"><i class="fa fa-envelope-o"></i> Enviar</button>
+                <button type="button" class="btn btn-default" name="guardar" form="crear" ><i class="fa fa-pencil"></i> Guardar</button>
+                <button type="submit" class="btn btn-primary" name="enviar"n form="crear"><i class="fa fa-envelope-o"></i> Enviar</button>
               </div>
-              <button type="reset" class="btn btn-default"><i class="fa fa-times"></i> Borrar</button>
+              <button type="reset" class="btn btn-default" nambre="borrar" form="crear"><i class="fa fa-times"></i> Borrar</button>
             </div>
             <!-- /.box-footer -->
           </div>
           <!-- /. box -->
         </div>
         <!-- /.col -->
+        </form>
       </div>
       <!-- /.row -->
     </section>

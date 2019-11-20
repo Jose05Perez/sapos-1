@@ -11,7 +11,7 @@
             $filtro= "";
             $f=explode("_",$_GET['ruta']);
 
-            $filtro = " AND cor.id_persona_receptor= ?";
+            //$filtro = " AND cor.id_persona_receptor= ?";
         
             if(isset($f[1])){
                 if($f[1]== 'en'){
@@ -121,8 +121,9 @@ class botones{
                 $corRegistro[$key]= "id_correspondencia = '".$id[$value]."'";    
             }
         }else{
-                $corRegistro=array(" FALSE ");    
+                $corRegistro=array();    
         }
         $this->des->consultaUpd($tabla,$parametroSet,$corRegistro);
+  
     }
 }

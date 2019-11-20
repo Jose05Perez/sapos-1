@@ -54,12 +54,10 @@ class Conexion{
     {
         $inst=$this->dbc;
         $sentencia ="UPDATE $tabla SET $paramSet WHERE ".implode(" OR ",$paramWhr);
-        var_dump($sentencia);
         $query= $inst->prepare($sentencia);
         $query->execute();
-        $query->fetchAll();
     }catch(PDOException $e){
-        echo $e->getMessage();
+        
     }
     }
   }

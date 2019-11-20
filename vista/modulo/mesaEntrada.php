@@ -13,6 +13,7 @@
   $gestion=$_SESSION['pgestion'];
   $todos= $pendientes+$gestion; 
 
+ 
 ?>
 
 <!-- Content Wrapper. Contains page content -->
@@ -105,7 +106,7 @@
               <!--button type="button" class="btn btn-default btn-sm checkbox-toggle"><i class="fa fa-square-o"></i>
               </-->
               <div class="btn-group">
-                <button type="submit" class="btn btn-default btn-sm" form="buzon" name="eliminar" value="1" onClick="<script>alert('Seguro que quiere borrar?');</script>"><i class="fa fa-trash-o"></i></button> 
+                <button type="submit" class="btn btn-default btn-sm" form="buzon" name="eliminar"><i class="fa fa-trash-o"></i></button> 
                 <button type="submit" class="btn btn-default btn-sm" form="buzon"><i class="fa fa-reply"></i></button>
                 <button type="submit" class="btn btn-default btn-sm"><i class="fa fa-share"></i></button>
               </div>
@@ -122,7 +123,7 @@
               <!-- /.pull-right -->
             </div>
             <div class="table-responsive mailbox-messages">
-            <form action="#" method="post" id="buzon">
+            <form action="<?=$_GET['ruta'] ?>" method="post" id="buzon">
             <table class="table table-hover table-striped">
                 <thead>
                   <tr>
@@ -142,6 +143,7 @@
                 <?php
                        
                       //$ente----array
+                      
                       $fe=0;$idFe=array();
                       foreach ($ente as $key){
                         $idFe[$fe]=$key['id_correspondencia']; 
@@ -179,13 +181,12 @@
                           echo '></td> 
                                 <td><input type="checkbox" name="pivado[]" value="'.$fe.'"';
                           if ($key['privado']==1){   echo 'checked'; }
-                          echo '></td><tr> <pre>';  
+                          echo '></td><tr>';  
                           $fe++;
                         }
-                        if(isset($_POST['eliminar']) && $_POST['eliminar']==1 && isset($_POST['seleccionado'])){
-                          $btn->eliminar($_POST['seleccionado'],$idFe);
-                          $_POST['eliminar']=0;unset($_POST['selecionado']);
-                          //header();
+
+                        if(isset($_POST['eliminar']) && isset($_POST['seleccionado'])){
+                          $btn->eliminar($_POST['seleccionado'],$idFe);unset($_POST['seleccionado'],$idFe);
                         }
                         ?>
                 </tbody>
@@ -197,21 +198,6 @@
             <!-- /.mail-box-messages -->
           </div>
           <!-- /.box-body -->
-          <div class="box-footer no-padding">
-            <div class="mailbox-controls">
-              <!-- Check all button -->
-             
-              <div class="pull-right">
-                1-50/200
-                <div class="btn-group">
-                  <button type="button" class="btn btn-default btn-sm"><i class="fa fa-chevron-left"></i></button>
-                  <button type="button" class="btn btn-default btn-sm"><i class="fa fa-chevron-right"></i></button>
-                </div>
-                <!-- /.btn-group -->
-              </div>
-              <!-- /.pull-right -->
-            </div>
-          </div>
         </div>
         <!-- /. box -->  
       </div>

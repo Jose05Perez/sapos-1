@@ -1,10 +1,10 @@
 <?php
     class Settings
     {
-        public static $clientId = 'a892f372-836e-4555-81b5-8ca4b680eee0';
-        public static $password = '4:DCz:07KGp1:RuRU?8F5X.qb-h]:U:Z';
+        public static $clientId = '586bdbe6-c0ce-4a36-9425-7560ec5aa04d';
+        public static $password = 'fJkqV88QoyB@h6YjCz_MWfU/X2LTf?vZ';
         public static $authority = 'https://login.microsoftonline.com/common/';
-        public static $redirectURI = 'http://localhost:8000/correspondencia/index.php';
+        public static $redirectURI = 'https://correspondencia.bnphu.gob.do:443/repollo/correspondencia/index.php';
         public static $unifiedAPIResource = 'https://graph.microsoft.com';
         public static $unifiedAPIEndpoint = 'https://graph.microsoft.com/beta/';
         public static $tokenCache = 'TOKEN_CACHE';

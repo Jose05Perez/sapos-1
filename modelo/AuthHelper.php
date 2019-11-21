@@ -9,7 +9,7 @@
           $authUrl = "";
           if($session)
           {
-            $authUrl = Settings::$authority . "oauth2/authorize?".
+            $authUrl = Settings::$authority . "oauth2/v2.0/authorize?".
             "response_type=code&" .
             "client_id=" . Settings::$clientId . "&" .
             "resource=" . Settings::$unifiedAPIResource . "&" .
@@ -33,7 +33,7 @@
             "code=" . $code;
 
             //setup the post to https://login.microsoftonlne.com/common/oauth2/token
-            $request = curl_init("https://login.microsoftonline.com/common/oauth2/token");
+            $request = curl_init("https://login.microsoftonline.com/common/oauth2/v2.0/token");
             curl_setopt($request, CURLOPT_RETURNTRANSFER, true);
             curl_setopt($request, CURLOPT_POST, 1);
             curl_setopt($request, CURLOPT_POSTFIELDS, $tokenRequestBody);
@@ -73,7 +73,7 @@
             "resource=" . Settings::$unifiedAPIResource;
 
             //setup the post to https://login.microsoftonlne.com/common/oauth2/token
-            $request = curl_init("https://login.microsoftonline.com/common/oauth2/token");
+            $request = curl_init("https://login.microsoftonline.com/common/oauth2/v2.0/token");
             curl_setopt($request, CURLOPT_RETURNTRANSFER, true);
             curl_setopt($request, CURLOPT_POST, 1);
             curl_setopt($request, CURLOPT_POSTFIELDS, $tokenRequestBody);

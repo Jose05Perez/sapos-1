@@ -27,6 +27,12 @@
             <span>Archivo</span>
           </a>
         </li>
+        <li>
+          <a href="crearEmisor">
+            <i class="fa fa-file-text"></i>
+            <span>Crear Emisor</span>
+          </a>
+        </li>
         <li class="treeview">
           <a href="#">
             <i class="fa fa-envelope"></i> 

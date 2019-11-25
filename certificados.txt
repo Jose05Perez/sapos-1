@@ -1,5 +1,28 @@
-client id: 78c8176d-b9ad-4f1e-b436-9b447af98530
-client Secret: nZRER@H*_BtsiWWpGY*TNqTpvfoT5730
 
 
 bnphurd.onmicrosoft.com
+
+prueba ==
+
+4:DCz:07KGp1:RuRU?8F5X.qb-h]:U:Z
+
+
+
+        public static $clientId = 'a892f372-836e-4555-81b5-8ca4b680eee0';
+        public static $password = '4:DCz:07KGp1:RuRU?8F5X.qb-h]:U:Z';
+
+
+
+        ihnstiucional
+
+        
+        public static $clientId = '78c8176d-b9ad-4f1e-b436-9b447af98530';
+        public static $password = 'nZRER@H*_BtsiWWpGY*TNqTpvfoT5730';
+
+
+a741354f-e375-476f-89cd-b7f1996db93a
+Id. de directorio (inquilino):586bdbe6-c0ce-4a36-9425-7560ec5aa04d
+Identificador de objeto:db9f0d42-db91-47f0-bfa9-9140a3a91478
+
+       public static $clientId = '78c8176d-b9ad-4f1e-b436-9b447af98530';
+       public static $password = 'fJkqV88QoyB@h6YjCz_MWfU/X2LTf?vZ

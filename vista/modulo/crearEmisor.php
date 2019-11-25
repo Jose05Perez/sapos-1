@@ -11,6 +11,7 @@
 </section>
 <section class="content">
 <!-- SELECT2 EXAMPLE -->
+<form>
 <div class="box box-default">
         <div class="box-header with-border">
         </div>
@@ -19,31 +20,31 @@
           <div class="row">
             <div class="col-md-6">
               <div class="form-group">
-                <label>Nombre:</label>
+                <label for="name">Nombre:</label>
               <div class="input-group">
                 <span class="input-group-addon"><i class="fa fa-user"></i></span>
-                <input type="email" class="form-control" placeholder="Nombre">
+                <input type="text" name="name" class="form-control" placeholder="Nombre" pattern="[A-Za-z]+" required>
               </div>
               <br>
               <!-- Sub Columna -->
               <div class="row">
                 <div class="col-md-6">
-                  <label>Fecha de Nacimiento:</label>
+                  <label for="date">Fecha de Nacimiento:</label>
                   <div class="input-group">
                   <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
-                    <input type="text" class="form-control">
+                    <input type="date" name="date" class="form-control" required>
                 </div>
               <br>
 
                   </div>
                   <div class="col-md-6">
-                  <label>Sexo:</label>
+                  <label for="sex">Sexo:</label>
                   <div class="input-group">
                   <span class="input-group-addon"><i class="fa fa-venus-mars"></i></span>
-                    <select type="text" class="form-control">
-                    <option selected="selected">Seleccionar Sexo</option>
-                  <option>Hombre</option>
-                  <option>Mujer</option>
+                    <select type="text" name="sex" class="form-control" required>
+                    <option value="" selected="selected">Seleccionar Sexo</option>
+                  <option value="1">Hombre</option>
+                  <option value="2">Mujer</option>
                     </select>
                 </div>
               <br>
@@ -55,28 +56,28 @@
               <!-- Segunda Sub Columna-->
               <div class="row">
                 <div class="col-md-6">
-                <label>Cedula:</label>
+                <label for="id">Cedula:</label>
                   <div class="input-group">
                   <span class="input-group-addon"><i class="fa fa-id-card"></i></span>
-                    <input type="text" class="form-control" placeholder="000-0000000-0">
+                    <input type="text"  name="id" class="form-control" placeholder="000-0000000-0" pattern="[0-9]{11}" required>
                 </div>
               <br>
 
                   </div>
                   <div class="col-md-6">
-                  <label>Telefono:</label>
+                  <label for="phone">Telefono:</label>
                   <div class="input-group">
                   <span class="input-group-addon"><i class="fa fa-phone"></i></span>
-                    <input type="text" class="form-control" placeholder="(000)-000-0000">
+                    <input type="text" name="phone" class="form-control" placeholder="(000)-000-0000" pattern="[0-9]{10}" required>
                 </div>
               <br>
 
                   </div>
               </div>
-              <label>E-mail:</label>
+              <label for="mail">E-mail:</label>
               <div class="input-group">
               <span class="input-group-addon"><i class="fa fa-envelope"></i></span>
-                <input type="text" class="form-control" placeholder="E-mail">
+                <input type="email" name="mail"class="form-control" placeholder="E-mail" required>
               </div>
               <br>
               </div>
@@ -85,36 +86,36 @@
             <!-- /.col -->
             <!-- Segunda Columna -->
             <div class="col-md-6">
-            <label>Apellido:</label>
+            <label for="lastname">Apellido:</label>
             <div class="input-group">
                 <span class="input-group-addon"><i class="fa fa-users"></i></span>
-                <input type="email" class="form-control" placeholder="Apellido">
+                <input type="text"  name="lastname" class="form-control" placeholder="Apellido" pattern="[A-Za-z]+" required>
               </div>
               <br>
-              <label>Direccion:</label>
+              <label for="address">Direccion:</label>
               <div class="input-group">
               <span class="input-group-addon"><i class="fa fa-map-marker"></i></span>
-                <input type="text" class="form-control" placeholder="Direccion">
+                <input type="text"  name="address"class="form-control" placeholder="Direccion" required>
               </div>
               <br>
               <!--Sub Columna-->
               <div class="row">
                 <div class="col-md-6">
-                <label>Celular:</label>
+                <label for="phone2">Celular:</label>
                   <div class="input-group">
                   <span class="input-group-addon"><i class="fa fa-phone"></i></span>
-                    <input type="text" class="form-control" placeholder="(000)-000-0000">
+                    <input type="text" name="phone2" class="form-control" placeholder="(000)-000-0000" pattern="[0-9]{10}" required >
                 </div>
               <br>
               
                   </div>
                   <div class="col-md-6">
-                  <label>Institucion:</label>
+                  <label for="institution">Institucion:</label>
                   <div class="input-group">
                   <span class="input-group-addon"><i class="fa fa-university"></i></span>
-                    <select type="text" class="form-control">
-                    <option selected="selected"> Seleccionar Institucion</option>
-                  <option>Ejemplo1</option>
+                    <select type="text" name="institution" class="form-control" required>
+                    <option value="" selected="selected"> Seleccionar Institucion</option>
+                  <option value="1">Ejemplo1</option>
                     </select>
                 </div>
               <br>
@@ -141,5 +142,6 @@
         <!-- /.box-body -->
       </div>
       <!-- /.box -->
+</form>
 </section>
 </div>

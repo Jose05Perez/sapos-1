@@ -11,7 +11,7 @@
 </section>
 <section class="content">
 <!-- SELECT2 EXAMPLE -->
-<form>
+<form action="#" method="post">
 <div class="box box-default">
         <div class="box-header with-border">
         </div>

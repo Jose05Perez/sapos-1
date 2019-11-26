@@ -135,11 +135,11 @@ session_start();
                 ===============================================================================================================*/
                 include "modulo/piePagina.php";  
             echo '</div>';
-        }
-        else
-        {
-            ctrUsuario::ctrIngresarUsuario(true);
-        }
+        // }
+        // else
+        // {
+        //     ctrUsuario::ctrIngresarUsuario(true);
+        // }
     ?>
 </body>
 </html>

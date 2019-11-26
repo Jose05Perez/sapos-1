@@ -9,16 +9,17 @@
           $authUrl = "";
           if($session)
           {
-            $authUrl = Settings::$authority . "oauth2/v2.0/authorize?".
-            "response_type=code&" .
+            $authUrl = Settings::$authority . 
+            "?response_type=code&" .
             "client_id=" . Settings::$clientId . "&" .
-            "resource=" . Settings::$unifiedAPIResource . "&" .
-            "redirect_uri=" . Settings::$redirectURI;
+            "redirect_uri=" . Settings::$redirectURI. "&" .
+            "scope=" . Settings::$unifiedAPIResource . "&" .
+            "response_mode=fragment&".
+            "state=12345";
           }
           else
           {
-            $authUrl = Settings::$authority . "oauth2/logout?".
-            "post_logout_redirect_uri=". Settings::$redirectURI;
+            
           }
           return $authUrl;
         }
@@ -54,7 +55,7 @@
             //parse the response json into a Token object
             $tokenJSON = json_decode($response, true);
             $token = new Token;
-            $token->resource = $tokenJSON["resource"];
+            $token->scope = $tokenJSON["scope"];
             $token->accessToken = $tokenJSON["access_token"];
             $token->refreshToken = $tokenJSON["refresh_token"];
             $token->idToken = $tokenJSON["id_token"];
@@ -70,7 +71,7 @@
             "refresh_token=" . $refreshToken . "&" .
             "client_id=" . Settings::$clientId . "&" .
             "client_secret=" . Settings::$password . "&" .
-            "resource=" . Settings::$unifiedAPIResource;
+            "scope=" . Settings::$unifiedAPIResource;
 
             //setup the post to https://login.microsoftonlne.com/common/oauth2/token
             $request = curl_init("https://login.microsoftonline.com/common/oauth2/v2.0/token");
@@ -94,7 +95,7 @@
             //parse the response json into a Token object
             $tokenJSON = json_decode($response, true);
             $token = new Token;
-            $token->resource = $tokenJSON["resource"];
+            $token->scope = $tokenJSON["scope"];
             $token->accessToken = $tokenJSON["access_token"];
             $token->refreshToken = $tokenJSON["refresh_token"];
 

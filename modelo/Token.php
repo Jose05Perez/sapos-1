@@ -1,7 +1,7 @@
 <?php
     class Token
     {
-      public $resource;
+      public $scope;
       public $accessToken;
       public $refreshToken;
       public $idToken;

@@ -12,9 +12,7 @@
  *  @link https://github.com/josueSerulle/correspondencia
  */
 session_start();
-$usuario = new ctrUsuario();
-           $usuario->usrx();
-           
+
 ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -99,7 +97,7 @@ $usuario = new ctrUsuario();
 
 <body class="hold-transition skin-blue sidebar-mini"> 
     <?php
-         if(isset($_SESSION["iniciarSession"]) && $_SESSION["iniciarSession"] == "ok")
+        if(isset($_SESSION["iniciarSession"]) && $_SESSION["iniciarSession"] == "ok")
         {
             echo '<div class="wrapper">';
                 /*===============================================================================================================
@@ -130,6 +128,7 @@ $usuario = new ctrUsuario();
                 else
                 {
                     include "modulo/inicio.php";
+                    
                 }
                 /*===============================================================================================================
                 Incluyendo el pie de pagina en la aplicacion

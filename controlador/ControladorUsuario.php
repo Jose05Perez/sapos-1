@@ -45,9 +45,9 @@
                             $_SESSION["mail"] = $me["mail"];
                             $_SESSION["departamento"] = $me["department"];
                             $_SESSION["tituloTrabajo"] = $me["jobTitle"];
-                            echo '<script>
-                                window.location = "inicio";
-                            </script>';
+                            // echo '<script>
+                            //     window.location = "inicio";
+                            // </script>';
                         }
                     }
                 }
@@ -64,14 +64,5 @@
                     window.location = "'.AuthHelper::getAuthorizationUrl(false).'";
                 </script>';
             }
-        }//PARCHE DE USUARIO
-        public static function usrx()
-        {
-            $con = new Conexion();
-            $sentencia="SELECT id_persona, CONCAT(nombre_persona,' ',apellido_persona) AS nombre_usuario, nombre_institucion, cedula_persona, id_empleado, ultimo_login
-            FROM corresp_persona JOIN corresp_institucion ON id_institucion_persona=id_institucion 
-            JOIN corresp_empleado as emp ON id_persona_empleado=id_persona  WHERE id_persona=1";
-            $usuariox= $con->consultaSel($sentencia);
-            $_SESSION=$usuariox[0];
         }
     }

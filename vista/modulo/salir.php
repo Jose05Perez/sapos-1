@@ -13,3 +13,5 @@
     */
     session_destroy();
     ctrUsuario::ctrIngresarUsuario(false);
+    ?>
+    <h1>me fui</h1>

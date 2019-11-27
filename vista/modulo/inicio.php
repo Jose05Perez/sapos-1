@@ -22,7 +22,7 @@
         ===============================================================================================================-->   
         <div class="box box-info">
           <div class="box-header with-border">
-            <h3 class="box-title">Pre visualizador de Correspondencia<?php var_dump($_SESSION); ?></h3>
+            <h3 class="box-title">Pre visualizador de Correspondencia</h3>
 
             <div class="box-tools pull-right">
               <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
@@ -33,56 +33,22 @@
           <!-- /.box-header -->
           <div class="box-body">
             <div class="table-responsive mailbox-messages">
-              <table class="table table-hover table-striped">
-                <tbody>
-                  <tr>
-                    <td><input type="checkbox"></td>
-                    <td class="mailbox-star"><a href="#"><i class="fa fa-star-o text-yellow"></i></a></td>
-                    <td class="mailbox-name"><a href="read-mail.html">Alexander Pierce</a></td>
-                    <td class="mailbox-subject"><b>AdminLTE 2.0 Issue</b> - Trying to find a solution to this problem...</td>
-                    <td class="mailbox-attachment"><i class="fa fa-paperclip"></i></td>
-                    <td class="mailbox-date">2 days ago</td>
-                  </tr>
-                  <tr>
-                    <td><input type="checkbox"></td>
-                    <td class="mailbox-star"><a href="#"><i class="fa fa-star-o text-yellow"></i></a></td>
-                    <td class="mailbox-name"><a href="read-mail.html">Alexander Pierce</a></td>
-                    <td class="mailbox-subject"><b>AdminLTE 2.0 Issue</b> - Trying to find a solution to this problem...</td>
-                    <td class="mailbox-attachment"><i class="fa fa-paperclip"></i></td>
-                    <td class="mailbox-date">2 days ago</td>
-                  </tr>
-                  <tr>
-                    <td><input type="checkbox"></td>
-                    <td class="mailbox-star"><a href="#"><i class="fa fa-star text-yellow"></i></a></td>
-                    <td class="mailbox-name"><a href="read-mail.html">Alexander Pierce</a></td>
-                    <td class="mailbox-subject"><b>AdminLTE 2.0 Issue</b> - Trying to find a solution to this problem...</td>
-                    <td class="mailbox-attachment"></td>
-                    <td class="mailbox-date">2 days ago</td>
-                  </tr>
-                  <tr>
-                    <td><input type="checkbox"></td>
-                    <td class="mailbox-star"><a href="#"><i class="fa fa-star text-yellow"></i></a></td>
-                    <td class="mailbox-name"><a href="read-mail.html">Alexander Pierce</a></td>
-                    <td class="mailbox-subject"><b>AdminLTE 2.0 Issue</b> - Trying to find a solution to this problem...</td>
-                    <td class="mailbox-attachment"></td>
-                    <td class="mailbox-date">2 days ago</td>
-                  </tr>
-                  <tr>
-                    <td><input type="checkbox"></td>
-                    <td class="mailbox-star"><a href="#"><i class="fa fa-star-o text-yellow"></i></a></td>
-                    <td class="mailbox-name"><a href="read-mail.html">Alexander Pierce</a></td>
-                    <td class="mailbox-subject"><b>AdminLTE 2.0 Issue</b> - Trying to find a solution to this problem...</td>
-                    <td class="mailbox-attachment"></td>
-                    <td class="mailbox-date">2 days ago</td>
-                  </tr>
+            <table class="table table-hover table-striped">
+               <tbody>
+
+                <?php
+                  $mesa = new mesaEntrada();
+                  echo $mesa->bandejaLoad();
+                ?>
                 </tbody>
               </table>
+              <!-- /.table -->
             </div>
             <!-- /.table-responsive -->
           </div>
         <!-- /.box-body -->
           <div class="box-footer clearfix">
-            <a href="#" class="btn btn-block btn-info">todos los mail</a>
+            <a href="mesaEntrada" class="btn btn-block btn-info">todos los mail</a>
           </div>
           <!-- /.box-footer -->
         </div>
@@ -99,7 +65,7 @@
           <span class="info-box-icon"><i class="ion ion-ios-pricetag-outline"></i></span>
           <div class="info-box-content">
             <span class="info-box-text">Correo Totales</span>
-            <span class="info-box-number">5,200</span>
+            <span class="info-box-number"><?= $_SESSION['pgestion']+$_SESSION['pendientes'];?></span>
             <!-- <div class="progress">
               <div class="progress-bar" style="width: 50%"></div>
             </div>-->
@@ -114,7 +80,7 @@
           <span class="info-box-icon"><i class="ion ion-ios-heart-outline"></i></span>
           <div class="info-box-content">
             <span class="info-box-text">Correo Externo</span>
-            <span class="info-box-number">92,050</span>
+            <span class="info-box-number"><?=$_SESSION['externos'];?></span>
             <!-- <div class="progress">
               <div class="progress-bar" style="width: 20%"></div>
             </div> -->
@@ -129,7 +95,7 @@
           <span class="info-box-icon"><i class="ion ion-ios-cloud-download-outline"></i></span>
           <div class="info-box-content">
             <span class="info-box-text">Correo Interno</span>
-            <span class="info-box-number">114,381</span>
+            <span class="info-box-number"><?=$_SESSION['internos']?></span>
             <!-- <div class="progress">
               <div class="progress-bar" style="width: 70%"></div>
             </div> -->

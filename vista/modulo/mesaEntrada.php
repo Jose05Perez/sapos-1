@@ -1,21 +1,11 @@
 <?php
  $control = new mesaEntrada();
- $ente = $control->bandeja();
  $btn= new botones();
 
  $fil= new cabezote();// filtros
  $fil->pendientes();
- $fil->pgestion();
-//varibles consulta
-  $internos=$_SESSION['internos'];
-  $externos=$_SESSION['externos'];
-  $pendientes=$_SESSION['pendientes'];
-  $gestion=$_SESSION['pgestion'];
-  $todos= $pendientes+$gestion; 
-
- 
+ $fil->pgestion(); 
 ?>
-
 <!-- Content Wrapper. Contains page content -->
 <div class="content-wrapper">
   <!-- Content Header (Page header) -->
@@ -49,17 +39,17 @@
           <div class="box-body no-padding">
             <ul class="nav nav-pills nav-stacked">       
               <li><a href="mesaEntrada_re" ><i class="fa fa-inbox"></i>Todos
-                <span class="label label-default pull-right"><?php if($todos>0){echo $todos;}?></span></a></li>
+                <span class="label label-default pull-right"><?= ($_SESSION['internos']+$_SESSION['pgestion'] > 0 ? $_SESSION['pendientes']+$_SESSION['pgestion'] : '')?></span></a></li>
               <li><a href="mesaEntrada_in"><i class="fa fa-university"></i>Internos
-                <span class="label label-warning pull-right"><?php if($internos>0){echo $internos;}?></span></a></li>
+                <span class="label label-warning pull-right"><?= ($_SESSION['internos'] > 0 ? $_SESSION['internos']: '')?></span></a></li>
               <li><a href="mesaEntrada_ex"><i class="fa fa-globe"></i>Externos
-                <span class="label label-danger pull-right"><?php if($externos>0) {echo $externos;}?></span></a></li>
+                <span class="label label-danger pull-right"><?=($_SESSION['externos'] > 0 ? $_SESSION['externos'] : '')?></span></a></li>
               <li><a href="mesaEntrada_en"><i class="fa fa-send"></i>Enviados
                 <span class="label label-success pull-right"></span></a></li>
               <li><a href="mesaEntrada_pe"><i class="fa fa-envelope"></i> Pendientes
-                <span class="label label-info pull-right"><?php if($pendientes>0){echo $pendientes;}?></span></a></li>
+                <span class="label label-info pull-right"><?= ($_SESSION['pendientes']> 0 ? $_SESSION['pendientes']:'')?></span></a></li>
               <li><a href="mesaEntrada_pg"><i class="fa fa-tag"></i>Con plazo de gestion
-                <span class="label label-primary pull-right"><?php if($gestion>0){echo $gestion;}?></span></a></li>
+                <span class="label label-primary pull-right"><?= ($_SESSION['pgestion']> 0 ? $_SESSION['pgestion']:'')?></span></a></li>
             </ul>
           </div>
           <!-- /.box-body -->
@@ -141,54 +131,15 @@
                 <tbody>
 
                 <?php
-                       
-                      //$ente----array
-                      
-                      $fe=0;$idFe=array();
-                      foreach ($ente as $key){
-                        $idFe[$fe]=$key['id_correspondencia']; 
-                          echo '<tr>
-                              <td><input type="checkbox" name="seleccionado[]" value="'.$fe.'"></td>
-                              <td><i class="fa fa-circle-o text-';
-                          switch ($key['caracter']){
-                              case 'im':   echo 'yellow';  
-                              break;        
-                              case 'ur':    echo 'red'; 
-                              break;
-                              case 'ge' :   echo 'light-blue'; 
-                              break;
-                          } 
-                          echo    '"></i></td>     
-                                  <td class="mailbox-name">'.$key['emisor'].'</td>
-                                  <td class="mailbox-subject"> <b>'.$key['asunto'].'</b> '.$key['descripcion'].'</td>
-                                  <td class="mailbox-attachment"><i class="fa fa-clip"></td>
-                                  <td class="mailbox-date">'.$key['fecha_emision'].'</td>
-                                  <td> ';
-                                  
-                           switch ($key['estado']) {
-                             case 'pe':   echo '<span class="label label-info">Pendiente</span>';
-                              break;
-                             case 'pg':    echo '<span class="label label-primary">En plazo de gestion</span>';
-                              break;
-                             case 're':   echo '<span class="label label-default">Recibido</span>';
-                              break;
-                           } 
+                      if(isset($_POST['eliminar']) && isset($_POST['seleccionado']) ){
+                          $btn->eliminar($_POST['seleccionado'],$_SESSION['idFe']);
+                          unset($_POST['seleccionado'],$_SESSION['idFe'],$_POST['eliminar']);
+                      }elseif(isset($_POST['eliminar']) && !(isset($_POST['seleccionado'])) ){
+                        echo "<script>alert('sebe seleccionar');</script>";
+                      }
+                      echo $control->bandejaLoad();
 
-                          echo '</td> 
-                                <td><input type="checkbox" name="autorizado[]" value="'.$fe.'"';
-                          if ($key['autorizado']==1){   echo 'checked'; }
-                          
-                          echo '></td> 
-                                <td><input type="checkbox" name="pivado[]" value="'.$fe.'"';
-                          if ($key['privado']==1){   echo 'checked'; }
-                          echo '></td><tr>';  
-                          $fe++;
-                        }
-
-                        if(isset($_POST['eliminar']) && isset($_POST['seleccionado'])){
-                          $btn->eliminar($_POST['seleccionado'],$idFe);unset($_POST['seleccionado'],$idFe);
-                        }
-                        ?>
+                ?>
                 </tbody>
               </table>
               <!-- /.table -->

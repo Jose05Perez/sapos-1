@@ -5,21 +5,21 @@
     class AuthHelper
     {
         public static function getAuthorizationUrl($session)
-        {
-          $authUrl = "";
+        {    
+          $authUrl="";      
           if($session)
           {
             $authUrl = Settings::$authority . 
-            "?response_type=code&" .
-            "client_id=" . Settings::$clientId . "&" .
+            "?client_id=" . Settings::$clientId . "&" .
+            "response_type=code&" .
             "redirect_uri=" . Settings::$redirectURI. "&" .
-            "scope=" . Settings::$unifiedAPIResource . "&" .
-            "response_mode=fragment&".
+            "scope=openid&" .
             "state=12345";
           }
           else
           {
-            
+            $authUrl = Settings::$authority . "oauth2/logout?".
+            "post_logout_redirect_uri=". Settings::$redirectURI;
           }
           return $authUrl;
         }
@@ -34,7 +34,7 @@
             "code=" . $code;
 
             //setup the post to https://login.microsoftonlne.com/common/oauth2/token
-            $request = curl_init("https://login.microsoftonline.com/common/oauth2/v2.0/token");
+            $request = curl_init("https://login.microsoftonline.com/586bdbe6-c0ce-4a36-9425-7560ec5aa04d/oauth2/v2.0/token");
             curl_setopt($request, CURLOPT_RETURNTRANSFER, true);
             curl_setopt($request, CURLOPT_POST, 1);
             curl_setopt($request, CURLOPT_POSTFIELDS, $tokenRequestBody);
@@ -74,7 +74,7 @@
             "scope=" . Settings::$unifiedAPIResource;
 
             //setup the post to https://login.microsoftonlne.com/common/oauth2/token
-            $request = curl_init("https://login.microsoftonline.com/common/oauth2/v2.0/token");
+            $request = curl_init("https://login.microsoftonline.com/586bdbe6-c0ce-4a36-9425-7560ec5aa04d/oauth2/v2.0/token");
             curl_setopt($request, CURLOPT_RETURNTRANSFER, true);
             curl_setopt($request, CURLOPT_POST, 1);
             curl_setopt($request, CURLOPT_POSTFIELDS, $tokenRequestBody);

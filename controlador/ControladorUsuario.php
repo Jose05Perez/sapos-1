@@ -53,6 +53,7 @@
                 }
                 else
                 {
+
                     echo '<script>
                         window.location = "'.AuthHelper::getAuthorizationUrl(true).'";
                     </script>';

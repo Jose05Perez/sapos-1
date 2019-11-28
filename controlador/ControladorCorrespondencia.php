@@ -11,7 +11,7 @@
             $filtro= "";
             $f=explode("_",$_GET['ruta']);
 
-            //$filtro = " AND cor.id_persona_receptor= ?";
+            $filtro = " AND cor.id_persona_receptor= ?";
         
             if(isset($f[1])){
                 if($f[1]== 'en'){
@@ -50,7 +50,52 @@
             $resultado=$this->des->consultaSel($sentencia);
             return $resultado;
             
-        }                
+        }   
+        function bandejaLoad()
+        {   
+            $ente=$this->bandeja();
+            $fe=0;$idFe=array();$tab="";
+            foreach ($ente as $key){
+            $idFe[$fe]=$key['id_correspondencia']; 
+                $tab.= '<tr>
+                    <td><input type="checkbox" name="seleccionado[]" value="'.$fe.'"></td>
+                    <td><i class="fa fa-circle-o text-';
+                switch ($key['caracter']){
+                    case 'im':  $tab.='yellow';  
+                    break;        
+                    case 'ur':    $tab.= 'red'; 
+                    break;
+                    case 'ge' :   $tab.= 'light-blue'; 
+                    break;
+                } 
+                $tab.=    '"></i></td>     
+                        <td class="mailbox-name">'.$key['emisor'].'</td>
+                        <td class="mailbox-subject"> <b>'.$key['asunto'].'</b> '.$key['descripcion'].'</td>
+                        <td class="mailbox-attachment"><i class="fa fa-clip"></td>
+                        <td class="mailbox-date">'.$key['fecha_emision'].'</td>
+                        <td> ';
+                        
+                switch ($key['estado']) {
+                    case 'pe':   $tab.= '<span class="label label-info">Pendiente</span>';
+                    break;
+                    case 'pg':    $tab.= '<span class="label label-primary">En plazo de gestion</span>';
+                    break;
+                    case 're':   $tab.= '<span class="label label-default">Recibido</span>';
+                    break;
+                } 
+                $tab.= '</td> 
+                    <td><input type="checkbox" name="autorizado[]" value="'.$fe.'"';
+                if ($key['autorizado']==1){   $tab.= 'checked'; }
+                
+                $tab.= '></td> 
+                    <td><input type="checkbox" name="pivado[]" value="'.$fe.'"';
+                if ($key['privado']==1){   $tab.= 'checked'; }
+                $tab.= '></td><tr>';  
+                $fe++;
+            }
+            $_SESSION["idFe"]=$idFe;
+            return $tab;
+        }             
         function busqueda()
         {
             $_SESSION['usuario']=array();

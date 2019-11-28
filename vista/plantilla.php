@@ -135,7 +135,8 @@ session_start();
                 ===============================================================================================================*/
                 include "modulo/piePagina.php";  
             echo '</div>';
-         }
+            // ctrUsuario::Aless
+        }
         else
         {
             ctrUsuario::ctrIngresarUsuario(true);

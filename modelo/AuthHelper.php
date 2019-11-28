@@ -13,12 +13,12 @@
             "?client_id=" . Settings::$clientId . "&" .
             "response_type=code&" .
             "redirect_uri=" . Settings::$redirectURI. "&" .
-            "scope=openid&" .
+            "scope=" . Settings::$unifiedAPIResource;
             "state=12345";
           }
           else
           {
-            $authUrl = Settings::$authority . "oauth2/logout?".
+            $authUrl = Settings::$authority . "oauth2/v2.0/logout?".
             "post_logout_redirect_uri=". Settings::$redirectURI;
           }
           return $authUrl;
@@ -32,6 +32,7 @@
             "redirect_uri=" . Settings::$redirectURI . "&" .
             "client_secret=" . Settings::$password . "&" .
             "code=" . $code;
+            var_dump($tokenRequestBody);
 
             //setup the post to https://login.microsoftonlne.com/common/oauth2/token
             $request = curl_init("https://login.microsoftonline.com/586bdbe6-c0ce-4a36-9425-7560ec5aa04d/oauth2/v2.0/token");

@@ -39,7 +39,7 @@
           <div class="box-body no-padding">
             <ul class="nav nav-pills nav-stacked">       
               <li><a href="mesaEntrada_re" ><i class="fa fa-inbox"></i>Todos
-                <span class="label label-default pull-right"><?= ($_SESSION['internos']+$_SESSION['pgestion'] > 0 ? $_SESSION['pendientes']+$_SESSION['pgestion'] : '')?></span></a></li>
+                <span class="label label-default pull-right"><?= ($_SESSION['pendientes']+$_SESSION['pgestion'] > 0 ? $_SESSION['pendientes']+$_SESSION['pgestion'] : '')?></span></a></li>
               <li><a href="mesaEntrada_in"><i class="fa fa-university"></i>Internos
                 <span class="label label-warning pull-right"><?= ($_SESSION['internos'] > 0 ? $_SESSION['internos']: '')?></span></a></li>
               <li><a href="mesaEntrada_ex"><i class="fa fa-globe"></i>Externos

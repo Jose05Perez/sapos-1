@@ -37,22 +37,22 @@
                         curl_setopt($request,CURLOPT_RETURNTRANSFER,true);
                         $response = curl_exec($request);
                         $me = json_decode($response,true);
-
+                        
                         if($me)
                         {
                             $_SESSION["iniciarSession"] = "ok";
-                            $_SESSION["nombre"] = $me["displayName"];
+                            $_SESSION["nombre"] = $me["nombre"];
                             $_SESSION["mail"] = $me["mail"];
-                            $_SESSION["departamento"] = $me["department"];
-                            $_SESSION["tituloTrabajo"] = $me["jobTitle"];
-                            // echo '<script>
-                            //     window.location = "inicio";
-                            // </script>';
+                            $_SESSION["departamento"] = $me["departmento"];
+                            $_SESSION["tituloTrabajo"] = $me["tituloTrabajo"];
+                             echo '<script>
+                             window.location = "inicio";
+                            </script>';
                         }
                     }
                 }
                 else
-                {
+                {   
                      echo '<script>
                         window.location = "'.AuthHelper::getAuthorizationUrl(true).'";
                         </script>';

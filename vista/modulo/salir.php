@@ -12,6 +12,10 @@
     *  @link https://github.com/josueSerulle/correspondencia
     */
     session_destroy();
-    ctrUsuario::ctrIngresarUsuario(false);
-    ?>
-    <h1>me fui</h1>
+    echo '<script>
+     window.location = "'.AuthHelper::getAuthorizationUrl(false).'";
+         </script>';
+    
+?>
+
+

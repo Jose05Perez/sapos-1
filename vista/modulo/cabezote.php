@@ -1,12 +1,12 @@
 <?php
 $c =new cabezote();
-$c->urgentes();
-$c->internos();
-$c->externos();
+// $c->urgentes();
+// $c->internos();
+// $c->externos();
 
-$internos=$_SESSION['internos'];
-$externos=$_SESSION['externos'];
-$urgentes=$_SESSION['urgentes'];
+// $internos=$_SESSION['internos'];
+// $externos=$_SESSION['externos'];
+// $urgentes=$_SESSION['urgentes'];
 
 ?>
 <header class="main-header">
@@ -33,27 +33,27 @@ $urgentes=$_SESSION['urgentes'];
           <!-- Messages: style can be found in dropdown.less-->
           <li >
             <a href="mesaEntrada_in"><i class="fa fa-institution"></i>
-              <span class="label label-success"><?php if($internos>0){echo $internos;}?></span>
+              <span class="label label-success"><?php //if($internos>0){echo $internos;}?></span>
             </a>
           </li>
           <!-- Notifications: style can be found in dropdown.less -->
           <li >
             <a href="mesaEntrada_ex"><i class="fa fa-globe"></i>
-              <span class="label label-warning"><?php if($externos>0){echo $externos;}?></span>
+              <span class="label label-warning"><?php //if($externos>0){echo $externos;}?></span>
             </a>
           </li>
           <!-- Tasks: style can be found in dropdown.less -->
           <li>
             <a href="mesaEntrada_ur">
               <i class="fa fa-exclamation-triangle"></i>
-              <span class="label label-danger"><?php if($urgentes>0){echo $urgentes;}?></span>
+              <span class="label label-danger"><?php //if($urgentes>0){echo $urgentes;}?></span>
             </a>
           </li>
          
           <!-- User Account: style can be found in dropdown.less -->
           <li class="dropdown user user-menu">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-              <span class="hidden-xs"><?php echo $_SESSION["nombre_usuario"]; ?></span>
+              <span><?=$_SESSION["nombre"] ?></span>
             </a>
             <ul class="dropdown-menu">
               <!-- User image -->
@@ -61,7 +61,7 @@ $urgentes=$_SESSION['urgentes'];
                 <p>
                 <small>ultima cesion: <?php echo $_SESSION["ultimo_login"]; ?></small>
                 <small>su Id: <?php echo $_SESSION["id_empleado"]; ?></small>
-                  <small><?php echo $_SESSION["nombre_institucion"]; ?></small>
+                  <small><?php  echo $_SESSION["nombre_institucion"]; ?></small>
                 </p>
               </li>
               <!-- Menu Footer-->

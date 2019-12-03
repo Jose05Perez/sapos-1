@@ -135,7 +135,7 @@
 if(isset($_POST['submit'])){
 $ola = new CrearEmisor();
 if($ola->valida_cedula($_POST['id'])==0){
-  echo "<script>alert('ola mama');</script>";
+  echo "<script>alert('Digite una cedula valida');</script>";
 }
 $ola->valida_cedula($_POST['id']);
 

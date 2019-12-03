@@ -97,8 +97,8 @@ session_start();
 
 <body class="hold-transition skin-blue sidebar-mini"> 
     <?php
-        if (isset($_SESSION["iniciarSession"]) && $_SESSION["iniciarSession"] == "ok")
-        {
+     if (isset($_SESSION["iniciarSession"]) && $_SESSION["iniciarSession"] == "ok")
+                // {
             echo '<div class="wrapper">';
                 /*===============================================================================================================
                 Incluyendo el cabezote en la aplicacion
@@ -116,7 +116,7 @@ session_start();
                     $ruta=explode("_",$_GET['ruta']);
 
                     if($ruta[0] == "inicio" || $ruta[0] == "salir" || $ruta[0] == "emisor" || $ruta[0] == "mesaEntrada"
-                    || $ruta[0] == "archivo"|| $ruta[0]== "isadG" || $ruta[0] == "crearEmisor")
+                    || $ruta[0] == "archivo"|| $ruta[0]== "isadG" || $ruta[0] == "crearEmisor" || $ruta[0] == "vistaEmisor")
                     {
                         include "modulo/".$ruta[0].".php";
                     }
@@ -135,11 +135,11 @@ session_start();
                 ===============================================================================================================*/
                 include "modulo/piePagina.php";  
             echo '</div>';
-            // ctrUsuario::Aless
-        }
-        else
-        {
-            ctrUsuario::ctrIngresarUsuario(true);
+             ctrUsuario::Aless
+         }
+         else
+         {
+             ctrUsuario::ctrIngresarUsuario(true);
         }
     ?>
 </body>

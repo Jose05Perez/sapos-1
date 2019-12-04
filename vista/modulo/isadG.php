@@ -281,7 +281,21 @@
                     <form class="form-horizontal" >
                       <div class="form-group">
                         <div class="col-sm-offset-2 col-sm-10">
-                          <button type="submit" class="btn btn-primary pull-right">
+                          <button onclick="ConfirmDemo()"type="submit" class="btn btn-primary pull-right">
+                          <!--Funcion-->
+                          <script>function ConfirmDemo() {
+                          //Ingresamos un mensaje a mostrar
+                            var mensaje = confirm("¿Seguro que quieres enviar el archivo?");
+                            //Detectamos si el usuario acepto el mensaje
+                            if (mensaje) {
+                            alert("¡Archivo enviado!");
+                            }
+                            //Detectamos si el usuario denegó el mensaje
+                            else {
+                            alert("¡Haz denegado el mensaje!");
+                            }
+                            }
+                              </script>
                           <span><i class="fa fa-send"></i> Guardar</span>
                           </button>
                         </div>

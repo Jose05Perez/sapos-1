@@ -97,7 +97,7 @@ session_start();
 
 <body class="hold-transition skin-blue sidebar-mini"> 
     <?php
-     if (isset($_SESSION["iniciarSession"]) && $_SESSION["iniciarSession"] == "ok")
+    //  if (isset($_SESSION["iniciarSession"]) && $_SESSION["iniciarSession"] == "ok")
                 // {
             echo '<div class="wrapper">';
                 /*===============================================================================================================
@@ -135,12 +135,12 @@ session_start();
                 ===============================================================================================================*/
                 include "modulo/piePagina.php";  
             echo '</div>';
-             ctrUsuario::Aless
-         }
-         else
-         {
-             ctrUsuario::ctrIngresarUsuario(true);
-        }
+            //  ctrUsuario::Aless
+        //  }
+        //  else
+        //  {
+            //  ctrUsuario::ctrIngresarUsuario(true);
+        // }
     ?>
 </body>
 </html>

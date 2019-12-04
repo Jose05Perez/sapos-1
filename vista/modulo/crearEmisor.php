@@ -136,10 +136,17 @@ if(isset($_POST['submit'])){
 $ola = new CrearEmisor();
 if($ola->valida_cedula($_POST['id'])==0){
   echo "<script>alert('Digite una cedula valida');</script>";
+}else{
+  echo "<script>confirm('¿Esta seguro de enviar el formulario?'); 
+if (confirm) {
+alert('¡Gracias por aceptar!');
+}
+else {
+alert('¡Haz denegado el mensaje!');
+}
+  </script>";
 }
 $ola->valida_cedula($_POST['id']);
-
-
 }
 ?>
               </div>

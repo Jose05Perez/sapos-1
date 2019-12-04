@@ -107,7 +107,21 @@
 
             </div>
         <div class="box-footer col-md-3">
-            <button type="submit" name="submit" form="validacion" class="btn btn-primary btn-lg">Enviar</button>
+            <button onclick="ConfirmDemo()" type="submit" name="submit" form="validacion" class="btn btn-primary btn-lg">Enviar</button>
+            <script>function ConfirmDemo() {
+
+                     //Ingresamos un mensaje a mostrar
+                           var mensaje = confirm("¿Seguro que quieres enviar");
+                     //Detectamos si el usuario acepto el mensaje
+                            if (mensaje) {
+                            alert("¡Enviado!");
+                            }
+                     //Detectamos si el usuario denegó el mensaje
+                            else {
+                            alert("¡No se ha envidado!");
+                            }
+                            }
+             </script>
    
    </form>
         

@@ -33,6 +33,12 @@
             <span>Crear Emisor</span>
           </a>
         </li>
+        <li>
+          <a href="vistaEmisor">
+            <i class="fa fa-file-text"></i>
+            <span>Vista Emisor</span>
+          </a>
+        </li>
         <li class="treeview">
           <a href="#">
             <i class="fa fa-envelope"></i> 

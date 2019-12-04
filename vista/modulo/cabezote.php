@@ -53,7 +53,7 @@ $c =new cabezote();
           <!-- User Account: style can be found in dropdown.less -->
           <li class="dropdown user user-menu">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-              <span><?=$_SESSION["nombre"] ?></span>
+              <!--<span><?=$_SESSION["nombre"] ?></span> -->
             </a>
             <ul class="dropdown-menu">
               <!-- User image -->

@@ -53,7 +53,7 @@ $c =new cabezote();
           <!-- User Account: style can be found in dropdown.less -->
           <li class="dropdown user user-menu">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-              <span><?=$_SESSION["nombre"] ?></span>
+              <span><?='$_SESSION["nombre"] ?></span>
             </a>
             <ul class="dropdown-menu">
               <!-- User image -->
@@ -61,7 +61,7 @@ $c =new cabezote();
                 <p>
                 <small>ultima cesion: <?php echo $_SESSION["ultimo_login"]; ?></small>
                 <small>su Id: <?php echo $_SESSION["id_empleado"]; ?></small>
-                  <small><?php  echo $_SESSION["nombre_institucion"]; ?></small>
+                  <small><?php  echo $_SESSION["nombre_institucion"]; '?></small>
                 </p>
               </li>
               <!-- Menu Footer-->

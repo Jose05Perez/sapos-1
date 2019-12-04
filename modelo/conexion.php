@@ -30,7 +30,7 @@ class Conexion{
     function consultaSel($sentencia){
       try{
       $query=$this->dbc->prepare($sentencia);
-      $query->execute(array($_SESSION['id_persona']));
+      $query->execute(array('1'));
       $resultado= $query->fetchAll();
       }catch(PDOException $e){
         //header('Location: errores.php');

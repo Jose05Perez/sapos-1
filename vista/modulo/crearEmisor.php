@@ -139,8 +139,6 @@
           echo "<script>alert('Digite una cedula valida');</script>";
         }
         $ola->valida_cedula($_POST['id']);
-
-
 }
 ?>
               </div>

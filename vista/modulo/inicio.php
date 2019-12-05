@@ -63,7 +63,7 @@
           </div>
         <!-- /.box-body -->
           <div class="box-footer clearfix">
-            <a href="#" class="btn btn-block btn-info">todos los mail</a>
+            <a href="mesaEntrada" class="btn btn-block btn-info">todos los mail</a>
           </div>
           <!-- /.box-footer -->
         </div>

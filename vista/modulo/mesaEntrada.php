@@ -38,20 +38,17 @@
           <div class="box-body no-padding">
             <ul class="nav nav-pills nav-stacked">       
               <li><a href="mesaEntrada_re" ><i class="fa fa-inbox"></i>Todos
-                <span class="label label-default pull-right"><?php
-                $s=$_SESSION['notificaciones']['pendientes']+$_SESSION['notificaciones']['pgestion'];
-                $s==0? $todos= '': $todos=$s; echo $todos;
-                ?></span></a></li>
+                <span class="label label-default pull-right"><?='' //($_SESSION['internos']+$_SESSION['pgestion'] > 0 ? $_SESSION['pendientes']+$_SESSION['pgestion'] : '')?></span></a></li>
               <li><a href="mesaEntrada_in"><i class="fa fa-university"></i>Internos
-                <span class="label label-warning pull-right"><?=$_SESSION['notificaciones']['internos'] > 0 ?$_SESSION['notificaciones']['internos']: ''?></span></a></li>
+                <span class="label label-warning pull-right"><?=''// ($_SESSION['internos'] > 0 ? $_SESSION['internos']: '')?></span></a></li>
               <li><a href="mesaEntrada_ex"><i class="fa fa-globe"></i>Externos
-                <span class="label label-danger pull-right"><?=($_SESSION['notificaciones']['externos'] > 0 ? $_SESSION['notificaciones']['externos'] : '')?></span></a></li>
+                <span class="label label-danger pull-right"><?= ''//($_SESSION['externos'] > 0 ? $_SESSION['externos'] : '')?></span></a></li>
               <li><a href="mesaEntrada_en"><i class="fa fa-send"></i>Enviados
                 <span class="label label-success pull-right"></span></a></li>
               <li><a href="mesaEntrada_pe"><i class="fa fa-envelope"></i> Pendientes
-                <span class="label label-info pull-right"><?= ($_SESSION['notificaciones']['pendientes']> 0 ? $_SESSION['notificaciones']['pendientes']:'')?></span></a></li>
+                <span class="label label-info pull-right"><?= ''//($_SESSION['pendientes']> 0 ? $_SESSION['pendientes']:'')?></span></a></li>
               <li><a href="mesaEntrada_pg"><i class="fa fa-tag"></i>Con plazo de gestion
-                <span class="label label-primary pull-right"><?= ($_SESSION['notificaciones']['pgestion']> 0 ? $_SESSION['notificaciones']['pgestion']:'')?></span></a></li>
+                <span class="label label-primary pull-right"><?=''// ($_SESSION['pgestion']> 0 ? $_SESSION['pgestion']:'')?></span></a></li>
             </ul>
           </div>
           <!-- /.box-body -->

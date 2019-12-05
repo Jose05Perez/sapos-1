@@ -25,7 +25,7 @@
             <h3 class="box-title">Caracter</h3>
 
             <div class="box-tools">
-              <button type="but0ton" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
+              <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
               </button>
             </div>
           </div>
@@ -79,7 +79,7 @@
             <div class="box-footer">
               <div class="pull-right">
                 <button type="button" class="btn btn-default" name="guardar" form="crear" ><i class="fa fa-pencil"></i> Guardar</button>
-                <button type="submit" class="btn btn-primary" name="enviar"n form="crear"><i class="fa fa-envelope-o"></i> Enviar</button>
+                <button onclick="ConfirmDemo()" type="submit" class="btn btn-primary" name="enviar"n form="crear"><i class="fa fa-envelope-o"></i> Enviar</button>
               </div>
               <button type="reset" class="btn btn-default" nambre="borrar" form="crear"><i class="fa fa-times"></i> Borrar</button>
             </div>
@@ -119,3 +119,16 @@
     $("#compose-textarea").wysihtml5();
   });
 </script>
+<script>function ConfirmDemo() {
+//Ingresamos un mensaje a mostrar
+var mensaje = confirm("¿Seguro que quieres enviar el archivo?");
+//Detectamos si el usuario acepto el mensaje
+if (mensaje) {
+alert("¡Archivo enviado!");
+}
+//Detectamos si el usuario denegó el mensaje
+else {
+alert("¡Haz denegado el mensaje!");
+}
+}
+  </script>";

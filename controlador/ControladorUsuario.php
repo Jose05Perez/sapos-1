@@ -75,6 +75,6 @@
         {               
             $con = new Conexion();
             $sentencia="SELECT id_persona FROM corresp_correspondencia WHERE ID_AD= ?";
-            $_SESSION['despite']=$con->consultaSel($sentencia,$_SESSION['id_AD']);
+            $_SESSION['id']=$con->consultaSel($sentencia,$_SESSION['id_AD']);
         }
     }

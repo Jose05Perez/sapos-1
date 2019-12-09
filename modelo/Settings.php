@@ -7,6 +7,7 @@
         public static $redirectURI = 'https://correspondencia.bnphu.gob.do:443/repollo/correspondencia/index.php';
         public static $unifiedAPIResource = 'https://graph.microsoft.com/';
         public static $unifiedAPIEndpoint = 'https://graph.microsoft.com/beta/';
+        public static $unifiedAPIphoto = 'https://graph.microsoft.com/v1.0/me/photo/';//cargar foto proxima
         public static $tokenCache = 'TOKEN_CACHE';
     }
 ?>

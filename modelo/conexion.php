@@ -36,20 +36,20 @@ class Conexion{
       $resultado= $query->fetchAll();
       }catch(PDOException $e){
         //header('Location: errores.php');
-        echo "<script>window.location='inicio';</script>";  
+        echo "<script>alert('error de consulta');</script>";  
         
       }
       return $resultado;    
     }
-    function consultasIns($valores = array())
+    function consultasIns($tabla,$valores = array())
     {
         try{
             $inst=$this->dbc;
-            $sentencia ="INSERT INTO corresp_correspondencia Values ".implode(",",$valores);
+            $sentencia ="INSERT INTO $tabla Values ".implode(",",$valores);
             $query= $ins->prepare($sentencia);
             $query->execute();
         }catch(PDOException $e){
-            echo "<script>window.location='inicio';</script>";
+            echo "<script>alert('ingreso fallido');</script>";
         }
         return $resultado;
     }
@@ -62,7 +62,7 @@ class Conexion{
             $query= $inst->prepare($sentencia);
             $query->execute();
         }catch(PDOException $e){
-            echo "<script>window.location='inicio';</script>";
+            echo "<script>alert('updte fallido');</script>";
         }
     }
   }

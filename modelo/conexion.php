@@ -14,7 +14,8 @@
   
 class Conexion{
     protected $dbc;
-    public function __construct(){
+    public function __construct()
+    {
     $con = NULL;
   
         try{
@@ -27,37 +28,41 @@ class Conexion{
             $this->dbc = $con;
     }
     
-    function consultaSel($sentencia){
+    function consultaSel($sentencia,$id)
+    {
       try{
       $query=$this->dbc->prepare($sentencia);
-      $query->execute(array($_SESSION['id_persona']));
+      $query->execute(array($id));
       $resultado= $query->fetchAll();
       }catch(PDOException $e){
         //header('Location: errores.php');
-      $resultado='que blatrí'.$e->getMessage();  
+        echo "<script>alert('error de consulta');</script>";  
+        
       }
       return $resultado;    
     }
-    function consultasIns($valores = array()){
+    function consultasIns($tabla,$valores = array())
+    {
         try{
             $inst=$this->dbc;
-            $sentencia ="INSERT INTO corresp_correspondencia Values ".implode(",",$valores);
+            $sentencia ="INSERT INTO $tabla Values ".implode(",",$valores);
             $query= $ins->prepare($sentencia);
             $query->execute();
         }catch(PDOException $e){
-            $resultado="Error de insercion";
+            echo "<script>alert('ingreso fallido');</script>";
         }
         return $resultado;
     }
-    function consultaUpd($tabla,$paramSet,$paramWhr=array()){//
-    try
+    function consultaUpd($tabla,$paramSet,$paramWhr=array())
     {
-        $inst=$this->dbc;
-        $sentencia ="UPDATE $tabla SET $paramSet WHERE ".implode(" OR ",$paramWhr);
-        $query= $inst->prepare($sentencia);
-        $query->execute();
-    }catch(PDOException $e){
-        
-    }
+        try
+        {
+            $inst=$this->dbc;
+            $sentencia ="UPDATE $tabla SET $paramSet WHERE ".implode(" OR ",$paramWhr);
+            $query= $inst->prepare($sentencia);
+            $query->execute();
+        }catch(PDOException $e){
+            echo "<script>alert('updte fallido');</script>";
+        }
     }
   }

@@ -17,18 +17,12 @@
     <div class="row">
       <!-- col-md-8-->
       <div class="col-md-8">
-        <!--===============================================================================================================
-        Pre vizualizador de email
-        ===============================================================================================================-->   
+  <!--===============================================================================================================
+  Pre vizualizador de email
+  ===============================================================================================================-->   
         <div class="box box-info">
           <div class="box-header with-border">
             <h3 class="box-title">Pre visualizador de Correspondencia</h3>
-
-            <div class="box-tools pull-right">
-              <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
-              </button>
-              <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
-            </div>
           </div>
           <!-- /.box-header -->
           <div class="box-body">
@@ -63,7 +57,7 @@
           </div>
         <!-- /.box-body -->
           <div class="box-footer clearfix">
-            <a href="#" class="btn btn-block btn-info">todos los mail</a>
+            <a href="mesaEntrada" class="btn btn-block btn-info">todos los mail</a>
           </div>
           <!-- /.box-footer -->
         </div>
@@ -72,36 +66,24 @@
       <!-- /col-md-8 -->
       <!-- col-md-4 -->
       <div class="col-md-4">
-        <!--===============================================================================================================
-        Caja de numeros de mail
-        ===============================================================================================================-->
+  <!--===============================================================================================================
+  Caja de numeros de mail
+  ===============================================================================================================-->
         <!-- Info Boxes Style 2 -->
-        <div class="info-box bg-yellow">
+        <div class="info-box bg-green">
           <span class="info-box-icon"><i class="ion ion-ios-pricetag-outline"></i></span>
           <div class="info-box-content">
             <span class="info-box-text">Correo Totales</span>
-            <span class="info-box-number">5,200</span>
-            <!-- <div class="progress">
-              <div class="progress-bar" style="width: 50%"></div>
-            </div>-->
-            <span class="progress-description">
-              50% Increase in 30 Days
-            </span> 
+            <span class="info-box-number"><?=$_SESSION['notificaciones']['externos']+$_SESSION['notificaciones']['internos']; ?></span>
           </div>
           <!-- /.info-box-content -->
         </div>
         <!-- /.info-box -->
-        <div class="info-box bg-green">
+        <div class="info-box bg-yellow">
           <span class="info-box-icon"><i class="ion ion-ios-heart-outline"></i></span>
           <div class="info-box-content">
             <span class="info-box-text">Correo Externo</span>
-            <span class="info-box-number">92,050</span>
-            <!-- <div class="progress">
-              <div class="progress-bar" style="width: 20%"></div>
-            </div> -->
-            <span class="progress-description">
-              20% Increase in 30 Days
-            </span>
+            <span class="info-box-number"><?=$_SESSION['notificaciones']['internos']; ?></span>
           </div>
           <!-- /.info-box-content -->
         </div>
@@ -110,13 +92,7 @@
           <span class="info-box-icon"><i class="ion ion-ios-cloud-download-outline"></i></span>
           <div class="info-box-content">
             <span class="info-box-text">Correo Interno</span>
-            <span class="info-box-number">114,381</span>
-            <!-- <div class="progress">
-              <div class="progress-bar" style="width: 70%"></div>
-            </div> -->
-            <span class="progress-description">
-              70% Increase in 30 Days
-            </span>
+            <span class="info-box-number"><?=$_SESSION['notificaciones']['externos']; ?>
           </div>
           <!-- /.info-box-content -->
         </div>
@@ -125,20 +101,14 @@
       <!-- /col-md-4 -->
       <!-- col-md-8 -->
       <div class="col-md-8">
-        <!--===============================================================================================================
-        Mensaje Rapido
-        ===============================================================================================================-->   
+  <!--===============================================================================================================
+  Mensaje Rapido
+  ===============================================================================================================-->   
         <div class="box box-info">
           <div class="box-header">
               <i class="fa fa-envelope"></i>
-
               <h3 class="box-title">Correo Rapido</h3>
             <!-- tools box -->
-            <div class="pull-right box-tools">
-              <button type="button" class="btn btn-info btn-sm" data-widget="remove" data-toggle="tooltip" title="Remove">
-                <i class="fa fa-times"></i>
-              </button>
-            </div>
             <!-- /. tools -->
           </div>
           <div class="box-body">
@@ -150,7 +120,7 @@
                 <input type="text" class="form-control" name="subject" placeholder="Asunto:">
               </div>
               <div>
-                <textarea class="textarea" placeholder="Mensaje" style="width: 100%; height: 125px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;"></textarea>
+                <textarea class="form-control" placeholder="Mensaje" rows="9"></textarea>
               </div>
             </form>
           </div>
@@ -164,18 +134,12 @@
       <!-- /col-md-8 -->
       <!-- col-md-4 -->
       <div class="col-md-4">
-        <!--===============================================================================================================
-        Trackeo de email
-        ===============================================================================================================-->   
+  <!--===============================================================================================================
+  Trackeo de email
+  ===============================================================================================================-->   
         <div class="box box-primary">
             <div class="box-header with-border">
               <h3 class="box-title">Tracking de Correo</h3>
-
-              <div class="box-tools pull-right">
-                <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
-                </button>
-                <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
-              </div>
             </div>
             <!-- /.box-header -->
             <div class="box-body">
@@ -185,11 +149,12 @@
                     <i class="fa fa-envelope"></i>
                   </div>
                   <div class="product-info">
-                    <a href="#" class="product-title">Correo 1
-                      <span class="label label-warning pull-right">Amarillo</span></a>
-                    <span class="product-description">
-                          100
-                        </span>
+                  <a href="#" class="product-title">Correo 1
+                     <span class="label label-warning pull-right">Amarillo</span></a>
+                      <span class="product-description">100</span>
+                        <div class="progress">
+                        <div class="progress-bar" style="width: 20%"></div>
+                      </div>
                   </div>
                 </li>
                 <!-- /.item -->
@@ -203,6 +168,10 @@
                     <span class="product-description">
                           200
                         </span>
+                      </span>
+                        <div class="progress">
+                        <div class="progress-bar" style="width: 20%"></div>
+                      </div>
                   </div>
                 </li>
                 <!-- /.item -->
@@ -216,22 +185,13 @@
                     <span class="product-description">
                           300
                         </span>
+                        <div class="progress">
+                        <div class="progress-bar" style="width: 20%"></div>
+                      </div>
                   </div>
                 </li>
                 <!-- /.item -->
-                <li class="item">
-                  <div class="product-img">
-                    <i class="fa fa-envelope"></i>
-                  </div>
-                  <div class="product-info">
-                    <a href="#" class="product-title">Correo 4
-                      <span class="label label-success pull-right">Verde</span></a>
-                    <span class="product-description">
-                          400
-                        </span>
-                  </div>
-                </li>
-                <!-- /.item -->
+               
               </ul>
             </div>
             <!-- /.box-body -->

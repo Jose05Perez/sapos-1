@@ -12,7 +12,7 @@
 <div class="content-wrapper">
 <!-- Content Header (Page header) -->
 <section class="content-header">
-<H1>Crear Emisor
+<H1>Vista Emisor
 
 <small>Herramienta del emisor </small>
 
@@ -33,35 +33,35 @@
                 <label for="name">Emisor:</label>
               <div class="input-group">
                 <span class="input-group-addon"><i class="fa fa-user"></i></span>
-                <input type="text" form="validacion" name="name" class="form-control" placeholder="Nombre" pattern="[A-Za-z]+" required>
+                <input type="text" form="validacion" name="name" class="form-control" placeholder="Emisor:" required>
         </div>
         <div class="col-lg">
               <div class="form-group">
                 <label for="name">Para:</label>
               <div class="input-group">
                 <span class="input-group-addon"><i class="fa fa-user"></i></span>
-                <input type="text" form="validacion" name="name" class="form-control" placeholder="Nombre" pattern="[A-Za-z]+" required>
+                <input type="text" form="validacion" name="name" class="form-control" placeholder="Para:" required>
         </div>
         <div class="col-lg">
               <div class="form-group">
                 <label for="name">Asunto:</label>
               <div class="input-group">
                 <span class="input-group-addon"><i class="fa fa-user"></i></span>
-                <input type="text" form="validacion" name="name" class="form-control" placeholder="Nombre" pattern="[A-Za-z]+" required>
+                <input type="text" form="validacion" name="name" class="form-control" placeholder="Asunto:"  required>
         </div>
         <div class="col-lg">
               <div class="form-group">
                 <label for="name">Numero de referencia:</label>
               <div class="input-group">
                 <span class="input-group-addon"><i class="fa fa-user"></i></span>
-                <input type="text" form="validacion" name="name" class="form-control" placeholder="Nombre" pattern="[A-Za-z]+" required>
+                <input type="text" form="validacion" name="name" class="form-control" placeholder="Numero de referencia:" pattern="[0-9]+" required>
         </div>
         <div class="col-lg">
               <div class="form-group">
                 <label for="name">Comentario:</label>
               <div class="input-group">
                 <span class="input-group-addon"><i class="fa fa-user"></i></span>
-                <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+                <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" placeholder="Escriba un comentario..." required ></textarea>
         </div>
         <label for="name">Caracter:</label>
         <div class="row">

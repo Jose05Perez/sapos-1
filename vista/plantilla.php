@@ -97,8 +97,10 @@ session_start();
 
 <body class="hold-transition skin-blue sidebar-mini"> 
     <?php
-    //  if (isset($_SESSION["iniciarSession"]) && $_SESSION["iniciarSession"] == "ok")
-                // {
+
+     //if (isset($_SESSION["iniciarSession"]) && $_SESSION["iniciarSession"] == "ok")
+     // {
+
             echo '<div class="wrapper">';
                 /*===============================================================================================================
                 Incluyendo el cabezote en la aplicacion

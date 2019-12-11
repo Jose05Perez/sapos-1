@@ -1,5 +1,8 @@
 <?php
- $nd = $_POST['nivelDescripcion'];
+    if(isset($_POST['nivelDescripcion'])){
+      $_SESSION['isadg']=$_POST['nivelDescripcion'];
+    }
+    $nd=$_SESSION['isadg'];
 ?>
 <!-- content-wrapper -->
 <div class="content-wrapper">
@@ -285,14 +288,14 @@
                           <!--Funcion-->
                           <script>function ConfirmDemo() {
                           //Ingresamos un mensaje a mostrar
-                            var mensaje = confirm("¿Seguro que quieres enviar el archivo?");
+                            var mensaje = confirm("¿Seguro que quieres guardar <?=$nd?>?");
                             //Detectamos si el usuario acepto el mensaje
                             if (mensaje) {
-                            alert("¡Archivo enviado!");
+                            alert("¡Descripción guardada!");
                             }
                             //Detectamos si el usuario denegó el mensaje
                             else {
-                            alert("¡Haz denegado el mensaje!");
+                            alert("¡Descripción Cancelada!");
                             }
                             }
                               </script>

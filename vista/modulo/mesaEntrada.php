@@ -95,7 +95,7 @@
               <!--button type="button" class="btn btn-default btn-sm checkbox-toggle"><i class="fa fa-square-o"></i>
               </-->
               <div class="btn-group">
-                <button type="submit" class="btn btn-default btn-sm" form="buzon" name="eliminar"><i class="fa fa-trash-o"></i></button> 
+                <button type="submit" onclick="ConfirmDemo()" class="btn btn-default btn-sm" form="buzon" name="eliminar"><i class="fa fa-trash-o"></i></button> 
                 <button type="submit" class="btn btn-default btn-sm" form="buzon"><i class="fa fa-reply"></i></button>
                 <button type="submit" class="btn btn-default btn-sm"><i class="fa fa-share"></i></button>
               </div>
@@ -139,6 +139,20 @@
                       echo $control->bandejaLoad();
 
                 ?>
+                <!--Funcion-->
+                <script>function ConfirmDemo() {
+                    //Ingresamos un mensaje a mostrar
+                    var mensaje = confirm("¿Seguro que quieres borrar ");
+                    //Detectamos si el usuario acepto el mensaje
+                    if (mensaje) {
+                    alert("¡Archivo eliminado!");
+                    }
+                    //Detectamos si el usuario denegó el mensaje
+                    else {
+                    alert("¡Cancelado!");
+                    }
+                    }
+                  </script>
                 </tbody>
               </table>
               <!-- /.table -->

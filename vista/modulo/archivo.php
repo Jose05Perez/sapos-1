@@ -43,7 +43,7 @@
                   <div class="post">
                       <button  class="btn btn-danger pull-right" type="submit" name="nivelDescripcion" value="fondo" onClick="window.location='isadG'">
                       <i class="fa fa-plus"></i> Nuevo fondo</button>
-                      <h3><i class="fa fa-university "></i> Fondos</h3>
+                      <h3><i class="fa fa-university "><a href="#"></i> Fondos</h3></a>
                       <label class="label label-danger"> Cantidad total de fondos registrados: 00-var</label>
                   </div>
                   <!-- /.post -->
@@ -51,7 +51,7 @@
                   <div class="post">
                     <button class="btn btn-primary pull-right" type="submit" name="nivelDescripcion" value="seccion" onClick="window.location='isadG'">
                     <i class="fa fa-plus"></i> Nueva seccion</button>
-                    <h3><i class="fa fa-th "></i> Seciones</h3>
+                    <h3><i class="fa fa-th "> <a href="#"></i> Seciones</h3></a>
                     <label class="label label-primary"> Cantidad total de  secciones registradas: 00-var</label>
                   </div>
                   <!-- /.post -->
@@ -59,7 +59,7 @@
                   <div class="post">
                       <button class="btn btn-default pull-right" type="submit" name="nivelDescripcion" value="subseccion" onClick="window.location='isadG'">
                       <i class="fa fa-plus"></i> Nueva sub-seccion</button>
-                      <h3><i class="fa fa-square"></i> Subsecciones</h3>
+                      <h3><i class="fa fa-square"><a href="#"></i> Subsecciones</h3></a>
                       <label class="label label-default"> Cantidad total de  subsecciones registrados: 00-var</label>
                   </div>
                   <!-- /.post -->
@@ -67,7 +67,7 @@
                   <div class="post">
                       <button  class="btn btn-warning pull-right"type="submit" name="nivelDescripcion" value="serie" onClick="window.location='isadG'">
                       <i class="fa fa-plus"></i> Nueva serie</button>
-                      <h3><i class="fa fa-archive"></i> Series</h3>
+                      <h3><i class="fa fa-archive"> <a href="#"></i> Series</h3></a>
                       <label class="label label-warning"> Cantidad total de  series registradas: 00-var</label>
                   </div>
                   <!-- /.post -->
@@ -75,7 +75,7 @@
                   <div class="post">
                       <button class="btn btn-info pull-right" type="submit" name="nivelDescripcion" value="expediente" onClick="window.location='isadG'">
                       <i class="fa fa-plus"></i> Nuevo expediente</button>
-                      <h3><i class="fa fa-folder"></i> Expedientes</h3>
+                      <h3><i class="fa fa-folder"><a href="#"> </i> Expedientes</h3> </a>
                       <label class="label label-info"> Cantidad total de expedientes registrados: 00-var</label>
                   </div>
                   <!-- /.post -->
@@ -83,7 +83,7 @@
                   <div class="post">
                       <button  class="btn btn-success pull-right"type="submit" name="nivelDescripcion" value="documento" onClick="window.location='isadG'">
                       <i class="fa fa-plus"></i> Nuevo documento</button>
-                      <h3><i class="fa fa-file"></i> Documentos</h3>
+                      <h3><i class="fa fa-file"><a href="#"></i> Documentos</h3></a>
                       <label class="label label-success"> Cantidad total de  documentos registrados: 00-var</label>
                   </div>
                   <!-- /.post -->

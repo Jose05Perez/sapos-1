@@ -87,10 +87,10 @@
                         LEFT JOIN corresp_rol as rol ON em.id_rol_empleado=rol.id_rol         
                         WHERE em.ID_AD= ? limit 1";
 
-            $_SESSION['usuario']=$con->consultaSel($sentencia,$_SESSION['id_AD'])[0];
-            $upd= "ultimo_login='".date('y-m-d H:i:s')."'";
-            $whr=array("ID_AD= '{$_SESSION['AD']}'");
+            $_SESSION['usuario']=$con->consultaSel($sentencia,$_SESSION['id_AD'])[0];echo 'koooopa';
+            $upd= "ultimo_login='".date('y-m-d h:i:s')."'";
+            $whr=array("ID_AD= '{$_SESSION['id_AD']}'");
             $con->consultaUpd('corresp_empleado',$upd,$whr);
-
+            echo "patricii";
         }
     }

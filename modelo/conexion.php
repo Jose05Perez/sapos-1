@@ -58,11 +58,11 @@ class Conexion{
         try
         {
             $inst=$this->dbc;
-            $sentencia ="UPDATE $tabla SET $paramSet WHERE ".implode(" OR ",$paramWhr);
+            $sentencia ="UPDATE $tabla SET $paramSet WHERE ".implode(" R ",$paramWhr);
             $query= $inst->prepare($sentencia);
             $query->execute();
         }catch(PDOException $e){
-            echo "<script>alert('updte fallido');</script>";
+            echo "<script>alert('updte fallido');</script>";            
         }
     }
   }

@@ -46,20 +46,18 @@ $c->notificaciones();
          
           <!-- User Account: style can be found in dropdown.less -->
           <li class="dropdown user user-menu">
-            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-              <span><?='$_SESSION["nombre"] ?></span>
-            </a>
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown"><span><?=""//$_SESSION['nombre'];?></span></a>
             <ul class="dropdown-menu">
               <!-- User image -->
               <li class="user-header">
                 <p>
-                <small><strong>Su ID:</strong><?=$_SESSION["id_AD"]?></small>
-               <small><strong>Ultima sesión:</strong> <?=$_SESSION["lastLogin"]->format(\'Y-m-d H:i:s\')?></small>
-                <small><strong><?= $_SESSION["nombre_institucion"]'?></strong></small>               
+                  <!-- <small><strong>Su ID:</strong><?=$_SESSION['id_AD'];?></small>
+                  <small><strong>Ultima sesión:</strong> <?=$_SESSION['usuario']['ultimaSesion']?></small>
+                  <small><strong>Mi correo:</strong><?= $_SESSION['usuario']['correo'];?></small>  -->
                 </p>
               </li>
               <!-- Menu Footer-->
-              <li class="user-footer">
+              <li class="user-footer"> 
                 <div class="pull-right">
                   <a href="salir" class="btn btn-default btn-flat">Salir</a>
                 </div>

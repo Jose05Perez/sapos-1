@@ -3,15 +3,14 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 15-11-2019 a las 18:44:56
+-- Tiempo de generación: 11-12-2019 a las 16:19:27
 -- Versión del servidor: 10.4.6-MariaDB
 -- Versión de PHP: 7.3.9
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
 START TRANSACTION;
-SET  time_zone = "+00:00";
-
+SET time_zone = "+00:00";
 
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
@@ -48,13 +47,15 @@ CREATE TABLE `corresp_correspondencia` (
 --
 
 INSERT INTO `corresp_correspondencia` (`id_correspondencia`, `id_persona_emisor`, `id_persona_receptor`, `fecha_emision`, `fecha_recibido`, `asunto`, `autorizado`, `caracter`, `descripcion`, `privado`, `estado`) VALUES
-('corresp2', 9, 10, '2019-11-05', '2019-11-14', 'PRUEBA 2 ---------', b'0', 'im', 'GZRXDTCFGVBHJKKLyhgwfyf', b'1', 'pe'),
-('corresp3', 2, 3, '2019-11-07', '2019-11-08', 'prueba3', b'0', 'ge', 'sdbfuyaqfyuwgfu', b'1', 'pe'),
-('corresp4', 8, 2, '2019-11-05', NULL, 'prueba 4', b'1', 'ur', 'descreipcion ', b'0', 'pg'),
-('corresp5', 11, 3, '2019-11-12', NULL, 'asunto5', b'0', 'im', 'descricio5 gfqbwsdqiefu', b'1', 'pg'),
+('corresp10', 1, 3, '2019-11-14', '2019-11-15', 'asunto correspondencia 10', b'0', 'ge', 'descripcion correspondencia 10', b'1', 'pe'),
+('corresp2', 9, 10, '2019-11-05', '2019-11-14', 'PRUEBA 2 ---------', b'0', 'im', 'GZRXDTCFGVBHJKKLyhgwfyf', b'1', 're'),
+('corresp3', 2, 3, '2019-11-07', '2019-11-08', 'prueba3', b'0', 'ge', 'sdbfuyaqfyuwgfu', b'1', 're'),
+('corresp4', 8, 2, '2019-11-05', NULL, 'prueba 4', b'1', 'ur', 'descreipcion ', b'0', 're'),
+('corresp5', 11, 3, '2019-11-12', NULL, 'asunto5', b'0', 'im', 'descricio5 gfqbwsdqiefu', b'1', 're'),
 ('corresp6', 3, 3, '2019-11-04', NULL, 'prueba asunto 6', b'1', 'ur', 'descripcion 6vsdgtwbu', b'1', 're'),
-('corresp7', 8, 1, '2019-09-03', '2019-11-12', 'prueba 123', b'0', 'ur', 'descripcion', b'1', 're'),
-('corresp8', 2, 1, '2019-11-07', '2019-11-08', 'Asunto 1335', b'0', 'ge', 'descripciion 12345', b'0', 'pe');
+('corresp7', 8, 1, '2019-09-03', '2019-11-12', 'prueba 123', b'0', 'ur', 'descripcion', b'1', 'pg'),
+('corresp8', 2, 1, '2019-11-07', '2019-11-08', 'Asunto 1335', b'0', 'ge', 'descripciion 12345', b'0', 'pg'),
+('corresp9', 1, 2, '2019-11-06', '2019-11-07', 'Asunto correspondencia 9', b'1', 'im', 'descripcion correspondencia 9', b'1', 're');
 
 -- --------------------------------------------------------
 
@@ -103,15 +104,17 @@ CREATE TABLE `corresp_empleado` (
   `id_departamento_empleado` varchar(100) NOT NULL,
   `status` char(1) DEFAULT 'A',
   `fecha_ingreso` date NOT NULL,
-  `ultimo_login` date NOT NULL
+  `ultimo_login` date NOT NULL,
+  `ID_AD` varchar(200) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Volcado de datos para la tabla `corresp_empleado`
 --
 
-INSERT INTO `corresp_empleado` (`id_empleado`, `id_persona_empleado`, `id_rol_empleado`, `id_departamento_empleado`, `status`, `fecha_ingreso`, `ultimo_login`) VALUES
-('uno', 1, 5, 'RRHH', 'A', '2015-11-11', '2019-11-12');
+INSERT INTO `corresp_empleado` (`id_empleado`, `id_persona_empleado`, `id_rol_empleado`, `id_departamento_empleado`, `status`, `fecha_ingreso`, `ultimo_login`, `ID_AD`) VALUES
+('dos', 2, 2, 'ti', 'A', '2014-11-11', '2019-12-09', NULL),
+('uno', 1, 5, 'RRHH', 'A', '2015-11-11', '2019-12-09', '80828488-9fc9-4e7f-badd-3c1a09a1cf21');
 
 -- --------------------------------------------------------
 
@@ -366,22 +369,22 @@ CREATE TABLE `corresp_persona` (
   `apellido_persona` text NOT NULL,
   `sexo_persona` char(1) NOT NULL,
   `fecha_nacimiento_persona` date NOT NULL,
-  `status_persona` tinyint(4) DEFAULT 1,
-  `id_institucion_persona` int(20) NOT NULL
+  `id_institucion_persona` int(20) NOT NULL,
+  `Email` varchar(200) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Volcado de datos para la tabla `corresp_persona`
 --
 
-INSERT INTO `corresp_persona` (`id_persona`, `cedula_persona`, `nombre_persona`, `apellido_persona`, `sexo_persona`, `fecha_nacimiento_persona`, `status_persona`, `id_institucion_persona`) VALUES
-(1, '12345678901', 'Arless Violeta', 'Matos Reyes', 'f', '1997-02-22', 1, 13),
-(2, '7855555', 'ana carmen', 'soler', 'f', '1978-02-05', 1, 4),
-(3, '7855556', 'juana', 'mendez', 'f', '1994-02-05', 1, 33),
-(8, '4444140', 'fremio', 'cuesta', 'm', '1970-05-05', 1, 21),
-(9, '5533333', 'yulissa', 'montero', 'f', '1997-05-01', 1, 4),
-(10, '4444403', 'fremio', 'cuesta', 'm', '1970-05-05', 1, 21),
-(11, '5555555', 'yenny', 'montero', 'f', '1997-05-01', 1, 4);
+INSERT INTO `corresp_persona` (`id_persona`, `cedula_persona`, `nombre_persona`, `apellido_persona`, `sexo_persona`, `fecha_nacimiento_persona`, `id_institucion_persona`, `Email`) VALUES
+(1, '12345678901', 'Arless Violeta', 'Matos Reyes', 'f', '1997-02-22', 13, ''),
+(2, '7855555', 'ana carmen', 'soler', 'f', '1978-02-05', 13, ''),
+(3, '7855556', 'juana', 'mendez', 'f', '1994-02-05', 33, ''),
+(8, '4444140', 'fremio', 'cuesta', 'm', '1970-05-05', 21, ''),
+(9, '5533333', 'yulissa', 'montero', 'f', '1997-05-01', 4, ''),
+(10, '4444403', 'herminio', 'cuesta', 'm', '1970-05-05', 21, ''),
+(11, '5555555', 'yenny', 'montero', 'f', '1997-05-01', 4, '');
 
 -- --------------------------------------------------------
 

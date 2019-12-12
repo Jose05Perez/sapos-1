@@ -16,6 +16,7 @@
     require_once "controlador/ControladorPlantilla.php";
     require_once "controlador/ControladorUsuario.php";
     require_once "controlador/ControladorValidacionEmisor.php"; 
+    require_once "controlador/ControladorEmisor.php"; 
     require_once "modelo/AuthHelper.php";
     require_once "modelo/Settings.php";
     require_once "modelo/Token.php";

@@ -58,7 +58,7 @@ class Conexion{
         try
         {
             $inst=$this->dbc;
-            $sentencia ="UPDATE $tabla SET $paramSet WHERE ".implode(" R ",$paramWhr);
+            $sentencia ="UPDATE $tabla SET $paramSet WHERE ".implode(" OR ",$paramWhr);
             $query= $inst->prepare($sentencia);
             $query->execute();
         }catch(PDOException $e){

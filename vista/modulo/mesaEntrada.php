@@ -131,14 +131,15 @@
 
                 <?php
                       if(isset($_POST['eliminar']) && isset($_POST['seleccionado']) ){
+                        echo "<script>alert('seguro que desea Borrar');</script>";
+                        
                           $btn->eliminar($_POST['seleccionado'],$_SESSION['idFe']);
                           unset($_POST['seleccionado'],$_SESSION['idFe'],$_POST['eliminar']);
                       }elseif(isset($_POST['eliminar']) && !(isset($_POST['seleccionado'])) ){
                         echo "<script>alert('sebe seleccionar');</script>";
                       }
                       echo $control->bandejaLoad();
-
-                ?>
+                  ?>
                 </tbody>
               </table>
               <!-- /.table -->

@@ -43,12 +43,15 @@
                         if($me)
                         {
                             $_SESSION["iniciarSession"] = "ok";
-                            $_SESSION["id_AD"]= $me['id']; 
-                            $_SESSION["nombre"]=$me['displayName'];
-                            ctrUsuario::identificador();
-                             echo '<script>
-                             window.location = "inicio";
-                            </script>';
+                            $_SESSION['usuario']["id_AD"]= $me['id']; 
+                            $_SESSION['usuario']['nombre']=$me['displayName'];
+                            $_SESSION['usuario']['correo']=$me['mail'];
+                            $_SESSION['usuario']['alias'] = $me['mailNickname'];
+
+                            ctrUsuario::identificador();print_r($me);
+                            //  echo '<script>
+                            //  window.location = "inicio";
+                            // </script>';
                         }
                     }
                 }
@@ -72,14 +75,8 @@
             $con = new Conexion();
             $sentencia="SELECT
                         per.id_persona as ID,
-                        per.cedula_persona as cedula,
-                        per.sexo_persona as sexo,
-                        per.fecha_nacimiento_persona as natalicio,
-                        per.Email as correo,
-                        rol.id_rol as puesto,
+                        rol.nombre_rol as puesto,
                         dep.nombre_departamento as departamento,
-                        em.status as estado,
-                        em.fecha_ingreso as ingreso,
                         em.ultimo_login as ultimaSesion                                                
                         FROM    corresp_persona as per 
                         LEFT JOIN corresp_empleado as em ON  em.id_persona_empleado= per.id_persona
@@ -87,10 +84,9 @@
                         LEFT JOIN corresp_rol as rol ON em.id_rol_empleado=rol.id_rol         
                         WHERE em.ID_AD= ? limit 1";
 
-            $_SESSION['usuario']=$con->consultaSel($sentencia,$_SESSION['id_AD'])[0];echo 'koooopa';
+            $_SESSION['usuario'] = array_merge($_SESSION['usuario'],$con->consultaSel($sentencia,$_SESSION['id_AD'])[0]);
             $upd= "ultimo_login='".date('y-m-d h:i:s')."'";
             $whr=array("ID_AD= '{$_SESSION['id_AD']}'");
             $con->consultaUpd('corresp_empleado',$upd,$whr);
-            echo "patricii";
         }
     }

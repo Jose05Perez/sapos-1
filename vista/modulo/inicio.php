@@ -43,7 +43,7 @@
                   </tr>
                 </thead>
                 <tbody>
-
+                
                 <?php
                       $pv = new mesaEntrada();
                       echo $pv->bandejaLoad();

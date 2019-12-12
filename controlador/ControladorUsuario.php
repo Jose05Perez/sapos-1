@@ -19,6 +19,7 @@
         * @param boolena $session para saber si esta iniciando o cerrando session 
         * @return 
         */
+
         static public function ctrIngresarUsuario($session)
         {
             if($session)
@@ -41,10 +42,14 @@
                         if($me)
                         {
                             $_SESSION["iniciarSession"] = "ok";
-                            $_SESSION["nombre"] = $me["nombre"];
+                            $_SESSION["nombre"] = $me["displayName"];
                             $_SESSION["mail"] = $me["mail"];
-                            $_SESSION["departamento"] = $me["departmento"];
-                            $_SESSION["tituloTrabajo"] = $me["tituloTrabajo"];
+                            $_SESSION["departamento"] = $me["department"];
+                            $_SESSION["tituloTrabajo"] = $me["jobTitle"];
+                            $_SESSION["lastLogin"]= new DateTime($me["onPremisesLastSyncDateTime"]);
+                            $_SESSION["id_AD"]= $me['id']; 
+                            $_SESSION["nombre_institucion"] = "Biblioteca Nacional Pedro Henríquez Ureña";
+                            ctrUsuario::identificador();
                              echo '<script>
                              window.location = "inicio";
                             </script>';
@@ -64,5 +69,12 @@
                     window.location = "'.AuthHelper::getAuthorizationUrl(false).'";
                 </script>';
             }
+        }
+
+        function identificador()
+        {               
+            $con = new Conexion();
+            $sentencia="SELECT id_persona FROM corresp_correspondencia WHERE ID_AD= ?";
+            $_SESSION['id']=$con->consultaSel($sentencia,$_SESSION['id_AD']);
         }
     }

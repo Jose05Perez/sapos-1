@@ -53,7 +53,7 @@ $c->notificaciones();
                 <p>
                   <small><strong>Su ID:</strong><?=$_SESSION['usuario']['id_AD'];?></small>
                   <small><strong>Ultima sesión:</strong> <?=$_SESSION['usuario']['ultimaSesion']?></small>
-                  <small><strong>Mi correo:</strong><?= $_SESSION['usuario']['correo'];?></small> 
+                  <small><strong>Mi correo:</strong><?= $_SESSION['usuario']['correo'];?></small>  -->
                 </p>
               </li>
               <!-- Menu Footer-->

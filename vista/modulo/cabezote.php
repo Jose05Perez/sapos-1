@@ -33,14 +33,14 @@ $c->notificaciones();
           <!-- Notifications: style can be found in dropdown.less -->
           <li >
             <a href="mesaEntrada_ex"><i class="fa fa-globe"></i>
-              <span class="label label-warning"><?=$_SESSION['notificaciones']['externos']==0?'':$_SESSION['notificaciones']['externos']?></span>
+              <span class="label label-warning"><?='' //$_SESSION['notificaciones']['externos']==0?'':$_SESSION['notificaciones']['externos']?></span>
             </a>
           </li>
           <!-- Tasks: style can be found in dropdown.less -->
           <li>
             <a href="mesaEntrada_ur">
               <i class="fa fa-exclamation-triangle"></i>
-              <span class="label label-danger"><?=$_SESSION['notificaciones']['urgentes']==0?'':$_SESSION['notificaciones']['urgentes']?></span>
+              <span class="label label-danger"><?='' //$_SESSION['notificaciones']['urgentes']==0?'':$_SESSION['notificaciones']['urgentes']?></span>
             </a>
           </li>
          
@@ -51,9 +51,9 @@ $c->notificaciones();
               <!-- User image -->
               <li class="user-header">
                 <p>
-                  <small><strong>Su ID:</strong><?=$_SESSION['usuario']['id_AD'];?></small>
-                  <small><strong>Ultima sesión:</strong> <?=$_SESSION['usuario']['ultimaSesion']?></small>
-                  <small><strong>Mi correo:</strong><?= $_SESSION['usuario']['correo'];?></small>  -->
+                  <?php foreach ($_SESSION['usuario'] as $key => $value):?>
+                  <small><strong><?=$key?>: </strong><?=$value?></small>
+                  <?php endforeach; ?>
                 </p>
               </li>
               <!-- Menu Footer-->

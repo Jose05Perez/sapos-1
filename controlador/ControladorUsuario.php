@@ -43,12 +43,12 @@
                         if($me)
                         {
                             $_SESSION["iniciarSession"] = "ok";
-                            $_SESSION['usuario']["id_AD"]= $me['id']; 
+                            $_SESSION['id_AD']= $me['id']; 
                             $_SESSION['usuario']['nombre']=$me['displayName'];
                             $_SESSION['usuario']['correo']=$me['mail'];
                             $_SESSION['usuario']['alias'] = $me['mailNickname'];
-
-                            ctrUsuario::identificador();print_r($me);
+                            $w=new ctrUsuario();
+                            $w->identificador();
                             //  echo '<script>
                             //  window.location = "inicio";
                             // </script>';
@@ -74,7 +74,6 @@
         {               
             $con = new Conexion();
             $sentencia="SELECT
-                        per.id_persona as ID,
                         rol.nombre_rol as puesto,
                         dep.nombre_departamento as departamento,
                         em.ultimo_login as ultimaSesion                                                
@@ -82,9 +81,10 @@
                         LEFT JOIN corresp_empleado as em ON  em.id_persona_empleado= per.id_persona
                         LEFT JOIN corresp_departamento as dep ON em.id_departamento_empleado=dep.id_departamento
                         LEFT JOIN corresp_rol as rol ON em.id_rol_empleado=rol.id_rol         
-                        WHERE em.ID_AD= ? limit 1";
-
-            $_SESSION['usuario'] = array_merge($_SESSION['usuario'],$con->consultaSel($sentencia,$_SESSION['id_AD'])[0]);
+                        WHERE em.ID_AD= :idad  limit 1";
+            $arg=array(':idad'=>$_SESSION['id_AD']);
+            $_SESSION['usuario'] = array_merge($_SESSION['usuario'],$con->consultaSel($sentencia,$arg)[0]);
+           var_dump($_SESSION['usuario']);
             $upd= "ultimo_login='".date('y-m-d h:i:s')."'";
             $whr=array("ID_AD= '{$_SESSION['id_AD']}'");
             $con->consultaUpd('corresp_empleado',$upd,$whr);

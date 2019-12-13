@@ -8,22 +8,28 @@
         //mesa entrada (param==oredenes y filtros)     
         function bandeja()
         {
-            $filtro = " AND cor.id_persona_receptor= ?";           
+            $filtro = " AND cor.id_persona_receptor=pe.rid_persona ";           
             if(isset($_GET['ruta'])){
                 $f=explode("_",$_GET['ruta']);
                 if(isset($f[1])){
                     if($f[1]== 'en'){
                         if(isset($f[1])){
-                            $filtro =" AND cor.id_persona_emisor= ?";                    
-                        }}
-                        switch ($f[1]) {
+                            $filtro =" AND cor.id_persona_emisor= per.id_persona";                    
+                        }
+                    }
+                    if(isset($f[2])){
+                        switch ($f[2]) {
                             case 'pe':
                                 $filtro.= " AND cor.estado='pe'";
                                 break;
                             case 'pg':
                                 $filtro.= " AND cor.estado='pg'";
                                 break; 
-                                ///////////////////////////////////
+                                default:
+                            break;
+                        }
+                        if (isset($f[3])){
+                            switch ($f[3]) {
                             case 'ur':
                                 $filtro.=" AND cor.caracter='ur'";
                                 break;
@@ -33,32 +39,43 @@
                             case 'ge':
                                 $filtro.=" AND cor.caracter='ge'";
                                 break;
-                                ///////////////////////////////////
-                            case 'ex':
-                                $filtro.= "";
+                                default:
                             break;
-                            case 'in':
-                                $filtro.= "";
-                            break;
-                            default:
-                                break;
+                            }
+                            if(isset($f[4])){
+                                switch ($f[4]) {
+                                    case 'ex':
+                                        $filtro.= " AND id_institucion_persona!= 13 ";
+                                    break;
+                                    case 'in':
+                                        $filtro.= " AND id_institucion_persona= 13 ";
+                                    break;
+                                    default:
+                                        break;
+                                }
+                            }
                         }
                     }
-                }    
+                            
+                }
+            }    
             $tablaprep=array(
                 "campos"    => array("cor.id_correspondencia","cor.estado","UPPER(CONCAT(per.nombre_persona,' ',per.apellido_persona)) AS emisor",
                                "cor.asunto", "cor.descripcion","cor.descripcion", "cor.fecha_emision", "cor.estado", "cor.autorizado", "cor.privado","cor.caracter"),
-                "jointablas"=> "corresp_persona AS per JOIN corresp_correspondencia AS cor ON (cor.id_persona_emisor=per.id_persona) ",
-                "condicion" => " cor.estado!='el'".$filtro,
+                "jointablas"=> "corresp_persona AS per JOIN corresp_correspondencia AS cor ON (cor.id_persona_emisor=per.id_persona) 
+                                JOIN corresp_empleado AS em ON (em.id_persona_empleado=per.persona) ",
+                "condicion" => "em.ID_AD= :idad cor.estado!='el'".$filtro,
                 "orden"     => "ORDER BY cor.fecha_emision DESC"
             );
+            
             $sentencia= "SELECT ".implode(", " , $tablaprep['campos'])." FROM ". $tablaprep['jointablas'].
                         " WHERE ".$tablaprep['condicion'].$tablaprep['orden'];
-            $resultado=$this->des->consultaSel($sentencia,"{$_SESSION['usuario']['ID']}");
+            $arg=array(':idad'=> $_SESSION['id_AD']);
+            $resultado=$this->des->consultaSel($sentencia,$arg);
             return $resultado;
             
         }   
-        function bandejaLoad()
+        function bandejaLoad()// MODIFICAR
         {   
             $ente=$this->bandeja();
             $fe=0;$idFe=array();$tab="";
@@ -125,37 +142,76 @@
             //------------------------------------------------------reducir tamaño de codigo PENDIENTE--------------------------------------------------------DESPARCGHE POR SESSION ['ID']
             //================================================================================================================================================
 
-            $sentencia="SELECT COUNT(*) AS internos FROM corresp_correspondencia where id_persona_receptor= ? AND estado!='el'AND estado!='re'" ;// ingresar condicion 
-            $resultado=$this->des->consultaSel($sentencia,"{$_SESSION['usuario']['ID']}");
-            $_SESSION['notificaciones']['internos']=$resultado[0]['internos'];
+            $sentencia="SELECT COUNT(*) internos
+            FROM corresp_correspondencia as cor 
+            JOIN corresp_persona as per ON (cor.id_persona_receptor= per.id_persona) 
+            join corresp_empleado as em on (em.id_persona_empleado=per.id_persona) 
+            where em.ID_AD= :idad AND estado!='el'AND estado!='re'" ; 
+            $arg=array(':idad'=>$_SESSION['id_AD']);
+            $resultado=$this->des->consultaSel($sentencia,$arg);
+            $_SESSION['notificaciones']['internos']=$resultado[0];
         
-            $sentencia="SELECT COUNT(*) AS externos FROM corresp_correspondencia where id_persona_receptor= ? AND estado!='el' AND estado!='re'";// ingresar condicion 
-            $resultado=$this->des->consultaSel($sentencia,"{$_SESSION['usuario']['ID']}");
-            $_SESSION['notificaciones']['externos']=$resultado[0]['externos'];
+            $sentencia="SELECT COUNT(*) externos
+            FROM corresp_correspondencia as cor 
+            JOIN corresp_persona as per ON (cor.id_persona_receptor= per.id_persona) 
+            join corresp_empleado as em on (em.id_persona_empleado=per.id_persona) 
+            where em.ID_AD= :idad AND estado!='el'AND estado!='re'" ; 
+            $arg=array(':id'=>$_SESSION['usuario']['ID']);
+            $resultado=$this->des->consultaSel($sentencia,$arg);
+            $_SESSION['notificaciones']=array_merge($_SESSION['notificaciones'],$resultado[0]);
             
             //-----------------------------------------------------------------------------------------------------------------------------------------------------------
 
-            $sentencia="SELECT COUNT(*) AS urgentes FROM corresp_correspondencia where id_persona_receptor= ? AND caracter='ur'AND estado!='el' AND estado!='re' ";
-            $resultado=$this->des->consultaSel($sentencia,"{$_SESSION['usuario']['ID']}");
-            $_SESSION['notificaciones']['urgentes']=$resultado[0]['urgentes'];
+            $sentencia="SELECT COUNT(*) urgentes
+            FROM corresp_correspondencia as cor 
+            JOIN corresp_persona as per ON (cor.id_persona_receptor= per.id_persona) 
+            join corresp_empleado as em on (em.id_persona_empleado=per.id_persona) 
+            where em.ID_AD= :idad AND estado!='el'AND estado!='re'" ; 
+            $arg=array(':id'=>$_SESSION['usuario']['ID']);
+            $resultado=$this->des->consultaSel($sentencia,$arg);
+            $_SESSION['notificaciones']=array_merge($_SESSION['notificaciones'],$resultado[0]);
                   
-            $sentencia="SELECT COUNT(*) AS importantes FROM corresp_correspondencia where id_persona_receptor= ? AND caracter='im'AND estado!='el' ";// ingresar condicion 
-            $resultado=$this->des->consultaSel($sentencia,"{$_SESSION['usuario']['ID']}");
-            $_SESSION['notificaciones']['importantes']=$resultado[0]['importantes'];
+            
+            $sentencia="SELECT COUNT(*) importantes
+            FROM corresp_correspondencia as cor 
+            JOIN corresp_persona as per ON (cor.id_persona_receptor= per.id_persona) 
+            join corresp_empleado as em on (em.id_persona_empleado=per.id_persona) 
+            where em.ID_AD= :idad AND estado!='el'AND estado!='re'" ; 
+            $arg=array(':id'=>$_SESSION['usuario']['ID']);
+            $resultado=$this->des->consultaSel($sentencia,$arg);
+            $_SESSION['notificaciones']=array_merge($_SESSION['notificaciones'],$resultado[0]);
         
-            $sentencia="SELECT COUNT(*) AS genericos FROM corresp_correspondencia where id_persona_receptor= ? AND caracter='ge' AND estado!='el'";// ingresar condicion 
-            $resultado=$this->des->consultaSel($sentencia,"{$_SESSION['usuario']['ID']}");
-            $_SESSION['notificaciones']['genericos']=$resultado[0]['genericos'];
+            
+            $sentencia="SELECT COUNT(*) genericos
+            FROM corresp_correspondencia as cor 
+            JOIN corresp_persona as per ON (cor.id_persona_receptor= per.id_persona) 
+            join corresp_empleado as em on (em.id_persona_empleado=per.id_persona) 
+            where em.ID_AD= :idad AND estado!='el'AND estado!='re'" ; 
+            $arg=array(':id'=>$_SESSION['usuario']['ID']);
+            $resultado=$this->des->consultaSel($sentencia,$arg);
+            $_SESSION['notificaciones']=array_merge($_SESSION['notificaciones'],$resultado[0]);
         
             //------------------------------------------------------------------------------------------------------------------------------------------------------------
 
-            $sentencia="SELECT COUNT(*) AS pendientes FROM corresp_correspondencia where id_persona_receptor= ? AND estado='pe' AND estado!='el' ";// ingresar condicion 
-            $resultado=$this->des->consultaSel($sentencia,"{$_SESSION['usuario']['ID']}");
-            $_SESSION['notificaciones']['pendientes']=$resultado[0]['pendientes'];
+            
+            $sentencia="SELECT COUNT(*) pendiendientes
+            FROM corresp_correspondencia as cor 
+            JOIN corresp_persona as per ON (cor.id_persona_receptor= per.id_persona) 
+            join corresp_empleado as em on (em.id_persona_empleado=per.id_persona) 
+            where em.ID_AD= :idad AND estado!='el'AND estado!='re'" ; 
+            $arg=array(':id'=>$_SESSION['usuario']['ID']);
+            $resultado=$this->des->consultaSel($sentencia,$arg);
+            $_SESSION['notificaciones']=array_merge($_SESSION['notificaciones'],$resultado[0]);
         
-            $sentencia="SELECT COUNT(*) AS pgestion FROM corresp_correspondencia where id_persona_receptor= ? AND estado='pg' AND estado!='el' ";// ingresar condicion 
-            $resultado=$this->des->consultaSel($sentencia,"{$_SESSION['usuario']['ID']}");
-            $_SESSION['notificaciones']['pgestion']=$resultado[0]['pgestion'];
+            
+            $sentencia="SELECT COUNT(*) pgestion
+            FROM corresp_correspondencia as cor 
+            JOIN corresp_persona as per ON (cor.id_persona_receptor= per.id_persona) 
+            join corresp_empleado as em on (em.id_persona_empleado=per.id_persona) 
+            where em.ID_AD= :idad AND estado!='el'AND estado!='re'" ; 
+            $arg=array(':id'=>$_SESSION['usuario']['ID']);
+            $resultado=$this->des->consultaSel($sentencia,$arg);
+            $_SESSION['notificaciones']=array_merge($_SESSION['notificaciones'],$resultado[0]);
         }
     }
 

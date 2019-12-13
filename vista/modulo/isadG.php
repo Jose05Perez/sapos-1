@@ -76,33 +76,30 @@
                           </div>
                         </div>
                         <?php
-                        if ($nd=='fondo' || $nd=='seccion' || $nd=='subseccion'){
-                          echo '
+                        if ($nd=='fondo' || $nd=='seccion' || $nd=='subseccion'):?>
                           <div class="form-group">
                             <label for="historiaInstitucional" class="col-sm-2 control-label">Historia institucional: </label>
                             <div class="col-sm-10">
                               <textarea class="form-control" name="historiaInstitucional" id="historiaInstitucional" rows="3"></textarea>
                             </div>
-                          </div>';
-                        }                    
-                        if($nd=='fondo'){
-                          echo '
+                          </div>
+                        <?php endif;?>                    
+                        <?php if($nd=='fondo'):?>
                           <div class="form-group">
                             <label for="historiaArchivística" class="col-sm-2 control-label">Historia archivística: </label>
                             <div class="col-sm-10">
                               <textarea class="form-control" name="historiaArchivistica" id="historiaArchivistica" rows="3"></textarea>
                             </div>
-                          </div>';
-                        }
-                        if($nd=='fondo' || $nd=='serie' || $nd=='expediente' || $nd=='documento' ){
-                          echo '
+                          </div>
+                        <?php endif;?>
+                        <?php if($nd=='fondo' || $nd=='serie' || $nd=='expediente' || $nd=='documento' ):?>
                         <div class="form-group">
                           <label for="formaIngreso" class="col-sm-2 control-label">Forma de ingreso: </label>
                           <div class="col-sm-10">
                             <input type="text" class="form-control" id="formaIngreso">
                           </div>
-                        </div>';}
-                        ?>  
+                        </div>
+                        <?php endif; ?>  
                       </fieldset>
                     </form>
                     <!-- ==================================================================================== -->
@@ -116,43 +113,39 @@
                             <input type="text" class="form-control" id="alcanceContenido">
                           </div>
                         </div>
-                        <?php
-                        if($nd=='fondo'||$nd=='serie'||$nd=='expediente'||$nd=='documento'){
-                          echo '
+                        <?php if($nd=='fondo'||$nd=='serie'||$nd=='expediente'||$nd=='documento'): ?>
                             <div class="form-group">
                               <label for="valoracionSeleccionEliminacion" class="col-sm-2 control-label">valoracion, seleccion y eliminacion:</label>
                               <div class="col-sm-10">
                                 <input type="text" class="form-control" id="organizacion">
                               </div>
-                            </div>';}
-                        if($nd=='fondo'){
-                          echo'
+                            </div>
+                        <?php endif;?>
+                        <?php  if($nd=='fondo'):?>
                             <div class="form-group">
                               <label for="nuevasPublicacion" class="col-sm-2 control-label">Nuevas publicaciones: </label>
                               <div class="col-sm-10">
                                 <input type="text" class="form-control" id="acumulacion">
                               </div>
-                            </div>';}
-                        if ($nd=='fondo' || $nd=='seccion'||$nd=='subseccion'|| $nd=='serie'){
-                          echo '
+                            </div>
+                        <?php endif; ?> 
+                        <?php  if ($nd=='fondo' || $nd=='seccion'||$nd=='subseccion'|| $nd=='serie'):?>
                             <div class="form-group">
                               <label for="sistemaAcuerdo" class="col-sm-2 control-label">Organizacion: </label>
                               <div class="col-sm-10">
                                 <input type="text" class="form-control" id="sistemaAcuerdo">
                               </div>
-                            </div>';}
-                        ?>
+                            </div>
+                        <?php endif;?>
                         </fieldset>
                     </form>
                     <!-- ================================================================================== -->
-                    <?php
-                    if($nd=='fondo' || $nd=='serie'){
-                      echo'
+                    <?php if($nd=='fondo' || $nd=='serie'):?>
                         <form class="form-horizontal" >
                         <fieldset>
-                        <legend>ÁREA DE CONDICIONES DE ACCESO Y UTILIZACIÓN </legend>';}
-                    if($nd=='fondo'||  $nd=='serie' ){
-                          echo'                  
+                        <legend>ÁREA DE CONDICIONES DE ACCESO Y UTILIZACIÓN </legend>
+                    <?php endif;?>
+                    <?php if($nd=='fondo'||  $nd=='serie' ):?>
                             <div class="form-group">
                               <label for="condicionesAcceso" class="col-sm-2 control-label">Condiciones de acceso: </label>
                               <div class="col-sm-10">
@@ -164,9 +157,9 @@
                               <div class="col-sm-10">
                                 <input type="text" class="form-control" id="condicionesReproduccion">
                               </div>
-                            </div>';}
-                    if($nd=='fondo'){
-                          echo '
+                            </div>
+                    <?php endif;?>
+                    <?php if($nd=='fondo'):?>
                             <div class="form-group">
                               <label for="lenguajeEscritura" class="col-sm-2 control-label">Lenguaje-Escritura de los documentos:  </label>
                               <div class="col-sm-10">
@@ -178,45 +171,44 @@
                               <div class="col-sm-10">
                                 <input type="text" class="form-control" id="característicasFísicas">
                               </div>
-                            </div>';}
-                    if($nd=='fondo'||  $nd=='serie'){
-                          echo '
+                            </div>
+                    <?php endif;?>
+                    <?php if($nd=='fondo'||  $nd=='serie'):?>
                             <div class="form-group">
                               <label for="IintrumentosDescripcion" class="col-sm-2 control-label">Instrumentos de descripción</label>
                               <div class="col-sm-10">
                                 <input type="text" class="form-control" id="BusquedaOtrosMateriales">
                               </div>
-                            </div>';}             
-                    if($nd=='fondo' || $nd=='serie'){
+                            </div>
+                    <?php endif;?>             
+                    <?php if($nd=='fondo' || $nd=='serie'):?>
                           echo'
                           </fieldset>
-                        </form>';}
-                    ?>
+                        </form>
+                    <?php endif;?>
                     <!-- ================================================================================================================ -->
-                    <?php
-                    if($nd=='fondo'||$nd=='expediente'||$nd=='documento'){
-                    echo' 
+                    <?php if($nd=='fondo'||$nd=='expediente'||$nd=='documento'):?>
                       <form class="form-horizontal" >
                         <fieldset>
-                          <legend>ÁREA DE DOCUMENTACIÓN ASOCIADA </legend>';}
-                    if($nd=='fondo'){
-                      echo '
+                          <legend>ÁREA DE DOCUMENTACIÓN ASOCIADA </legend>
+                    <?php endif; ?>
+                    <?php if($nd=='fondo'):?>
                           <div class="form-group">
                             <label for="ExistenciaLocalizacionOriginal" class="col-sm-2 control-label">Existencia y localización original: </label>
                             <div class="col-sm-10">
                               <input type="text" class="form-control" id="ExistenciaLocalizacionOriginal">
                             </div>
-                          </div>';}
-                    if($nd=='fondo'||$nd=='expediente'||$nd=='documento'){
-                      echo'
+                          </div>
+                    <?php endif; ?>
+                    <?php if($nd=='fondo'||$nd=='expediente'||$nd=='documento'): ?>
                           <div class="form-group">
                             <label for="existenciaLocalizacionCopias" class="col-sm-2 control-label">Existencia y localización de copias: </label>
                             <div class="col-sm-10">
                               <input type="text" class="form-control" id="existenciaLocalizacionCopias">
                             </div>
-                          </div>';}
-                    if($nd=='fondo'){
-                      echo '
+                          </div>
+                    <?php endif; ?>
+                    <?php if($nd=='fondo'):?>
                           <div class="form-group">
                             <label for="unidadesRelacionadasDescripcion" class="col-sm-2 control-label">Unidades relacionadas de descripción: </label>
                             <div class="col-sm-10">
@@ -228,16 +220,14 @@
                             <div class="col-sm-10">
                               <textarea class="form-control" name="notaPublicación" id="notaPublicación" rows="3"></textarea>
                             </div>
-                          </div>';}
-                      if($nd=='fondo'||$nd=='expediente'||$nd=='documento'){
-                        echo'
+                          </div>
+                    <?php endif;?>
+                    <?php if($nd=='fondo'||$nd=='expediente'||$nd=='documento'):?>
                         </fieldset>
-                      </form>';}
-                      ?>
+                      </form>
+                    <?php endif;?>
                     <!-- ============================================================================================ -->
-                    <?php
-                    if($nd=='fondo'){
-                      echo'
+                    <?php if($nd=='fondo'):?>
                         <form class="form-horizontal"  >
                           <fieldset>
                             <legend>ÁREA DE NOTAS</legend>
@@ -249,8 +239,8 @@
                               </div>
                             </div>
                           </fieldset>
-                        </form>';}
-                    ?>
+                        </form>
+                    <?php endif;?>
                     <!-- ============================================================================ -->
                     <form class="form-horizontal" >
                       <fieldset>
@@ -262,16 +252,14 @@
                           <textarea class="form-control" name="notaArchivero" id="notaArchivero" rows="3"></textarea>
                           </div>
                         </div>
-                    <?php
-                    if($nd=='fondo'){
-                        echo'
+                    <?php if($nd=='fondo'):?>
                         <div class="form-group">
                           <label for="reglasNormas" class="col-sm-2 control-label">Reglas o normas: </label>
                           <div class="col-sm-10">
                             <input type="text" class="form-control" id="reglasNormas">
                           </div>
-                        </div>';}
-                    ?>
+                    </div>
+                    <?php endif;?>
                         <div class="form-group">
                           <label for="fechaDescripcion" class="col-sm-2 control-label">Fecha de la descripción: </label>
                           <div class="col-sm-10">

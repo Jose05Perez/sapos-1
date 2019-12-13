@@ -47,7 +47,6 @@
                 <?php
                       $pv = new mesaEntrada();
                       echo $pv->bandejaLoad();
-
                 ?>
 
                 </tbody>
@@ -80,18 +79,18 @@
         </div>
         <!-- /.info-box -->
         <div class="info-box bg-yellow">
-          <span class="info-box-icon"><i class="ion ion-ios-heart-outline"></i></span>
+          <span class="info-box-icon"><i class="ion ion-ios-home-outline"></i></span>
           <div class="info-box-content">
-            <span class="info-box-text">Correo Externo</span>
+            <span class="info-box-text">Correo Interno</span>
             <span class="info-box-number"><?=$_SESSION['notificaciones']['internos']; ?></span>
           </div>
           <!-- /.info-box-content -->
         </div>
         <!-- /.info-box -->
         <div class="info-box bg-red">
-          <span class="info-box-icon"><i class="ion ion-ios-cloud-download-outline"></i></span>
+          <span class="info-box-icon"><i class="icon ion-ios-world-outline"></i></span>
           <div class="info-box-content">
-            <span class="info-box-text">Correo Interno</span>
+            <span class="info-box-text">Correo Externo</span>
             <span class="info-box-number"><?=$_SESSION['notificaciones']['externos']; ?>
           </div>
           <!-- /.info-box-content -->

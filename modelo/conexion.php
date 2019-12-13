@@ -28,18 +28,18 @@ class Conexion{
             $this->dbc = $con;
     }
     
-    function consultaSel($sentencia,$id)
+    function consultaSel($sentencia,$args=array())
     {
-      try{
+      try{        
       $query=$this->dbc->prepare($sentencia);
-      $query->execute(array($id));
+      $query->execute($args);
       $resultado= $query->fetchAll();
-      }catch(PDOException $e){
-        //header('Location: errores.php');
+    }catch(PDOException $e){;
         echo "<script>alert('error de consulta');</script>";  
-        
-      }
-      return $resultado;    
+        $resultado=array();
+    }
+    return $resultado;
+          
     }
     function consultasIns($tabla,$valores = array())
     {

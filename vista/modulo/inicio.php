@@ -52,7 +52,7 @@
                 </tbody>
               </table>
             </div>
-            <!-- /.table-responsive -->
+            <!-- /.table-responsive --> <?php print_r($_SESSION['notificaciones']);?>
           </div>
         <!-- /.box-body -->
           <div class="box-footer clearfix">

@@ -30,16 +30,15 @@ class Conexion{
     
     function consultaSel($sentencia,$args=array())
     {
-      try{        
-      $query=$this->dbc->prepare($sentencia);
-      $query->execute($args);
-      $resultado= $query->fetchAll();
-    }catch(PDOException $e){;
-        echo "<script>alert('error de consulta');</script>";  
-        $resultado=array();
-    }
-    return $resultado;
-          
+        try{        
+        $query=$this->dbc->prepare($sentencia);
+        $query->execute($args);
+        $resultado= $query->fetchAll();
+        }catch(PDOException $e){;
+            //echo "<script>alert('error de consulta');</script>";  
+            $resultado=array($e->getMessage());
+        }
+        return $resultado;
     }
     function consultasIns($tabla,$valores = array())
     {
@@ -65,4 +64,4 @@ class Conexion{
             echo "<script>alert('updte fallido');</script>";            
         }
     }
-  }
+  } 

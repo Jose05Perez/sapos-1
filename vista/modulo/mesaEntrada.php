@@ -131,7 +131,7 @@
 
                 <?php
                       if(isset($_POST['eliminar']) && isset($_POST['seleccionado']) ){
-                        echo "<script>alert('seguro que desea Borrar');</script>";
+                        echo "<script>confirm('seguro que desea Borrar');</script>";
                         
                           $btn->eliminar($_POST['seleccionado'],$_SESSION['idFe']);
                           unset($_POST['seleccionado'],$_SESSION['idFe'],$_POST['eliminar']);

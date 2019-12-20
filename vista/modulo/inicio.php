@@ -27,32 +27,15 @@
           <!-- /.box-header -->
           <div class="box-body">
             <div class="table-responsive mailbox-messages">
-              <table class="table table-hover table-striped">
-                <tbody>
-                <thead>
-                  <tr>
-                    <th><i class="fa fa-check-square"></i></th>
-                    <th>Caracter</th>
-                    <th>Emisor</th>
-                    <th>Correspondencia</th>
-                    <th>Adjuntos</th>
-                    <th>Fecha de emision</th>
-                    <th>Estado</th>
-                    <th>Autorizado</th>
-                    <th>Privado</th>
-                  </tr>
-                </thead>
-                <tbody>
-                
+              <table class="table table-hover table-striped">                
                 <?php
                       $pv = new mesaEntrada();
                       echo $pv->bandejaLoad();
                 ?>
-
                 </tbody>
               </table>
             </div>
-            <!-- /.table-responsive --> <?php print_r($_SESSION['notificaciones']);?>
+            <!-- /.table-responsive -->
           </div>
         <!-- /.box-body -->
           <div class="box-footer clearfix">
@@ -73,7 +56,7 @@
           <span class="info-box-icon"><i class="ion ion-ios-pricetag-outline"></i></span>
           <div class="info-box-content">
             <span class="info-box-text">Correo Totales</span>
-            <span class="info-box-number"><?=$_SESSION['notificaciones']['externos']+$_SESSION['notificaciones']['internos']; ?></span>
+            <span class="info-box-number"><?=$_SESSION['notificaciones']['pendientes']+$_SESSION['notificaciones']['pgestion']; ?></span>
           </div>
           <!-- /.info-box-content -->
         </div>

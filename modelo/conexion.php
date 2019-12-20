@@ -17,7 +17,6 @@ class Conexion{
     public function __construct()
     {
     $con = NULL;
-  
         try{
             $con = new PDO("mysql:host=localhost;dbname=pruebasconexion","usr", "");
             $con->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);

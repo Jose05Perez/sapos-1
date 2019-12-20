@@ -4,6 +4,9 @@
 
  $fil= new cabezote();// filtros
  $fil->notificaciones();
+ foreach (array_keys($_SESSION['notificaciones']) as $key) {
+    $var[$key]=$_SESSION['notificaciones'][$key];
+ }  
 ?>
 <!-- Content Wrapper. Contains page content -->
 <div class="content-wrapper">
@@ -37,18 +40,18 @@
           </div>
           <div class="box-body no-padding">
             <ul class="nav nav-pills nav-stacked">       
-              <li><a href="mesaEntrada_re" ><i class="fa fa-inbox"></i>Todos
-                <span class="label label-default pull-right"><?='' //($_SESSION['internos']+$_SESSION['pgestion'] > 0 ? $_SESSION['pendientes']+$_SESSION['pgestion'] : '')?></span></a></li>
+              <li><a href="mesaEntrada_t" ><i class="fa fa-inbox"></i>Todos <small>(recibidos)</small>
+                <span class="label label-default pull-right"><?=$var['pendientes']+$var['pgestion']> 0?$var['pendientes']+$var['pgestion']:'';?></span></a></li>
               <li><a href="mesaEntrada_in"><i class="fa fa-university"></i>Internos
-                <span class="label label-warning pull-right"><?=''// ($_SESSION['internos'] > 0 ? $_SESSION['internos']: '')?></span></a></li>
+                <span class="label label-warning pull-right"><?=$var['internos'] > 0 ? $var['internos']:'';?></span></a></li>
               <li><a href="mesaEntrada_ex"><i class="fa fa-globe"></i>Externos
-                <span class="label label-danger pull-right"><?= ''//($_SESSION['externos'] > 0 ? $_SESSION['externos'] : '')?></span></a></li>
+                <span class="label label-danger pull-right"><?=$var['externos'] > 0 ? $var['externos'] : '';?></span></a></li>
               <li><a href="mesaEntrada_en"><i class="fa fa-send"></i>Enviados
                 <span class="label label-success pull-right"></span></a></li>
               <li><a href="mesaEntrada_pe"><i class="fa fa-envelope"></i> Pendientes
-                <span class="label label-info pull-right"><?= ''//($_SESSION['pendientes']> 0 ? $_SESSION['pendientes']:'')?></span></a></li>
+                <span class="label label-info pull-right"><?= $var['pendientes']> 0 ? $var['pendientes']:'';?></span></a></li>
               <li><a href="mesaEntrada_pg"><i class="fa fa-tag"></i>Con plazo de gestion
-                <span class="label label-primary pull-right"><?=''// ($_SESSION['pgestion']> 0 ? $_SESSION['pgestion']:'')?></span></a></li>
+                <span class="label label-primary pull-right"><?=$var['pgestion']> 0 ? $var['pgestion']:'';?></span></a></li>
             </ul>
           </div>
           <!-- /.box-body -->
@@ -114,20 +117,6 @@
             <div class="table-responsive mailbox-messages">
             <form action="<?=$_GET['ruta'] ?>" method="post" id="buzon">
             <table class="table table-hover table-striped">
-                <thead>
-                  <tr>
-                    <th><i class="fa fa-check-square"></i></th>
-                    <th>Caracter</th>
-                    <th>Emisor</th>
-                    <th>Correspondencia</th>
-                    <th>Adjuntos</th>
-                    <th>Fecha de emision</th>
-                    <th>Estado</th>
-                    <th>Autorizado</th>
-                    <th>Privado</th>
-                  </tr>
-                </thead>
-                <tbody>
 
                 <?php
                       if(isset($_POST['eliminar']) && isset($_POST['seleccionado']) ){
@@ -140,7 +129,6 @@
                       }
                       echo $control->bandejaLoad();
                   ?>
-                </tbody>
               </table>
               <!-- /.table -->
               </form>

@@ -23,10 +23,12 @@
         <div class="box box-info">
           <div class="box-header with-border">
             <h3 class="box-title">Pre visualizador de Correspondencia</h3>
+
           </div>
           <!-- /.box-header -->
           <div class="box-body">
             <div class="table-responsive mailbox-messages">
+
               <table class="table table-hover table-striped">                
                 <?php
                       $pv = new mesaEntrada();
@@ -56,7 +58,9 @@
           <span class="info-box-icon"><i class="ion ion-ios-pricetag-outline"></i></span>
           <div class="info-box-content">
             <span class="info-box-text">Correo Totales</span>
+
             <span class="info-box-number"><?=$_SESSION['notificaciones']['pendientes']+$_SESSION['notificaciones']['pgestion']; ?></span>
+
           </div>
           <!-- /.info-box-content -->
         </div>
@@ -64,8 +68,10 @@
         <div class="info-box bg-yellow">
           <span class="info-box-icon"><i class="ion ion-ios-home-outline"></i></span>
           <div class="info-box-content">
+
             <span class="info-box-text">Correo Interno</span>
             <span class="info-box-number"><?=$_SESSION['notificaciones']['internos']; ?></span>
+
           </div>
           <!-- /.info-box-content -->
         </div>
@@ -73,8 +79,10 @@
         <div class="info-box bg-red">
           <span class="info-box-icon"><i class="icon ion-ios-world-outline"></i></span>
           <div class="info-box-content">
+
             <span class="info-box-text">Correo Externo</span>
             <span class="info-box-number"><?=$_SESSION['notificaciones']['externos']; ?>
+
           </div>
           <!-- /.info-box-content -->
         </div>

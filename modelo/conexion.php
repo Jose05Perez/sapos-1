@@ -59,8 +59,9 @@ class Conexion{
             $sentencia ="UPDATE $tabla SET $paramSet WHERE ".implode(" OR ",$paramWhr);
             $query= $inst->prepare($sentencia);
             $query->execute();
+
         }catch(PDOException $e){
-            echo "<script>alert('updte fallido');</script>";            
+            echo "<script>alert('proceso fallido ');</script>";            
         }
     }
   } 

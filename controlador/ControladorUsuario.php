@@ -48,10 +48,10 @@
                             $_SESSION['usuario']['correo']=$me['mail'];
                             $_SESSION['usuario']['alias'] = $me['mailNickname'];
                             $w=new ctrUsuario();
-                            $w->identificador();
-                            //  echo '<script>
-                            //  window.location = "inicio";
-                            // </script>';
+                            $w->datosUsuario();
+                             echo '<script>
+                             window.location = "inicio";
+                            </script>';
                         }
                     }
                 }
@@ -70,7 +70,7 @@
             }
         }
 
-        protected function identificador()
+        protected function datosUsuario()
         {               
             $con = new Conexion();
             $sentencia="SELECT

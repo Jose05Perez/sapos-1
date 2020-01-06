@@ -31,15 +31,47 @@
           </div>
           <div class="box-body no-padding">
             <ul class="nav nav-pills nav-stacked">
-              <li><a href="emisor_ur"><i class="fa fa-circle-o text-red"></i>Urgente</a></li>
-              <li><a href="emisor_im"><i class="fa fa-circle-o text-yellow"></i> Importante</a></li>
-              <li><a href="emisor_ge"><i class="fa fa-circle-o text-light-blue"></i> Genérico</a></li>
+              <li><a href="emisor_ur"><i class="fa fa-circle-o fa-lg text-red"></i>Urgente</a></li>
+              <li><a href="emisor_im"><i class="fa fa-circle-o fa-lg text-yellow"></i> Importante</a></li>
+              <li><a href="emisor_ge"><i class="fa fa-circle-o fa-lg text-light-blue"></i> Genérico</a></li>
+            </ul>
+          </div>
+          <!-- /.box-body -->
+      </div>
+      <div class="box box-solid">
+          <div class="box-header with-border">
+            <h3 class="box-title">Autoridad</h3>
+            <div class="box-tools">
+              <button type="but0ton" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
+              </button>
+            </div>
+          </div>
+          <div class="box-body no-padding">
+            <ul class="nav nav-pills nav-stacked">
+              <li><a href="mesaEntrada_ur"><i class="fa fa-lock  fa-lg text-red"></i>No Autorizado</a></li>
+              <li><a href="mesaEntrada_im"><i class="fa fa-unlock fa-lg text-yellow"></i> Autorizado</a></li>
+            </ul>
+          </div>
+          <!-- /.box-body -->
+        </div>
+        <div class="box box-solid">
+          <div class="box-header with-border">
+            <h3 class="box-title">Acceso</h3>
+            <div class="box-tools">
+              <button type="but0ton" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
+              </button>
+            </div>
+          </div>
+          <div class="box-body no-padding">
+            <ul class="nav nav-pills nav-stacked">
+              <li><a href="mesaEntrada_ur"><i class="fa fa-square fa-lg text-teal"></i> Público</a></li>
+              <li><a href="mesaEntrada_im"><i class="fa fa-square fa-lg text-info"></i> Privado</a></li>
             </ul>
           </div>
           <!-- /.box-body -->
         </div>
         <!-- /.box -->
-      </div>
+        </div>
 
 
         <div class="col-md-9">
@@ -113,7 +145,7 @@
 <!-- Bootstrap WYSIHTML5 -->
 <script src="../../plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.all.min.js"></script>
 <!-- Page Script -->
-<script>
+<!-- <script>
   $(function () {
     //Add text editor
     $("#compose-textarea").wysihtml5();
@@ -131,4 +163,4 @@ else {
 alert("¡Haz denegado el mensaje!");
 }
 }
-  </script>";
+  </script>"; -->

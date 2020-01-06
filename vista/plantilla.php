@@ -111,14 +111,15 @@ session_start();
                 /*===============================================================================================================
                 Incluyendo el Contenido Dinamico en la aplicacion
                 ===============================================================================================================*/
+                $contenido=array("","inicio","salir", "emisor", "mesaEntrada", "archivo", "isadG", "crearEmisor", "vistaEmisor");
+                
                 if(isset($_GET['ruta']))
                 {
-                    $ruta=explode("_",$_GET['ruta']);
-
-                    if($ruta[0] == "inicio" || $ruta[0] == "salir" || $ruta[0] == "emisor" || $ruta[0] == "mesaEntrada"
-                    || $ruta[0] == "archivo"|| $ruta[0]== "isadG" || $ruta[0] == "crearEmisor" || $ruta[0] == "vistaEmisor")
+                    $r=explode("_",$_GET['ruta']);
+                    $disponible=array_search($r[0],$contenido);
+                    if($disponible!=false)
                     {
-                        include "modulo/".$ruta[0].".php";
+                        include "modulo/".$r[0].".php";
                     }
                     else
                     {

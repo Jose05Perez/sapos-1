@@ -54,10 +54,10 @@
   Caja de numeros de mail
   ===============================================================================================================-->
         <!-- Info Boxes Style 2 -->
-        <div class="info-box bg-green">
-          <span class="info-box-icon"><i class="ion ion-ios-pricetag-outline"></i></span>
+        <div class="info-box bg-light-blue">
+          <span class="info-box-icon"><i class="fa fa-inbox fa-lg"></i></span>
           <div class="info-box-content">
-            <span class="info-box-text">Correo Totales</span>
+            <span class="info-box-text">Total de correos</span>
 
             <span class="info-box-number"><?=$_SESSION['notificaciones']['pendientes']+$_SESSION['notificaciones']['pgestion']; ?></span>
 
@@ -65,22 +65,22 @@
           <!-- /.info-box-content -->
         </div>
         <!-- /.info-box -->
-        <div class="info-box bg-yellow">
-          <span class="info-box-icon"><i class="ion ion-ios-home-outline"></i></span>
+        <div class="info-box bg-green">
+          <span class="info-box-icon"><i class="fa fa-university fa-lg"></i></span>
           <div class="info-box-content">
 
-            <span class="info-box-text">Correo Interno</span>
+            <span class="info-box-text">Correos internos</span>
             <span class="info-box-number"><?=$_SESSION['notificaciones']['internos']; ?></span>
 
           </div>
           <!-- /.info-box-content -->
         </div>
         <!-- /.info-box -->
-        <div class="info-box bg-red">
-          <span class="info-box-icon"><i class="icon ion-ios-world-outline"></i></span>
+        <div class="info-box bg-yellow">
+          <span class="info-box-icon"><i class="fa fa-globe fa-lg"></i></span>
           <div class="info-box-content">
 
-            <span class="info-box-text">Correo Externo</span>
+            <span class="info-box-text">Correos externos</span>
             <span class="info-box-number"><?=$_SESSION['notificaciones']['externos']; ?>
 
           </div>

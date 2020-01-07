@@ -76,15 +76,38 @@
           </div>
           <div class="box-body no-padding">
             <ul class="nav nav-pills nav-stacked">       
-              <li><a href="mesaEntrada_t" ><i class="fa fa-inbox fa-2x text-black"></i>Todos <small>(recibidos)</small>
-                <span class="label label-default pull-right"><?=$var['pendientes']+$var['pgestion']> 0?$var['pendientes']+$var['pgestion']:'';?></span></a></li>
-              <li><a href="mesaEntrada_in"><i class="fa fa-university fa-lg text-green"></i>Internos
-                <span class="label label-success pull-right"><?=$var['internos'] > 0 ? $var['internos']:'';?></span></a></li>
-              <li><a href="mesaEntrada_ex"><i class="fa fa-globe fa-lg text-yellow"></i>Externos
-                <span class="label label-warning pull-right"><?=$var['externos'] > 0 ? $var['externos'] : '';?></span></a></li>
-              <li><a href="mesaEntrada_en"><i class="fa fa-send fa-lg text-danger"></i>Enviados
-              <!--   enviados no lleva notifcaciones -->
-              <li><a href="mesaEntrada_pe"><i class="fa fa-envelope fa-lg text-teal"></i> Pendientes
+              <li>
+                <a href="mesaEntrada_t" >
+                  <i class="fa fa-inbox fa-2x text-black"></i>Todos 
+                  <small>(recibidos)</small>                
+                  <span class="label label-default pull-right">
+                    <?=$var['pendientes']+$var['pgestion']>0?$var['pendientes']+$var['pgestion']:'';?>
+                  </span>
+                </a>
+              </li>
+              <li>
+                <a href="mesaEntrada_in">
+                  <i class="fa fa-university fa-lg text-green"></i>Internos
+                  <span class="label label-success pull-right">
+                    <?=$var['internos'] > 0 ? $var['internos']:'';?>
+                  </span>
+                </a>
+              </li>
+              <li>
+                <a href="mesaEntrada_ex">
+                <i class="fa fa-globe fa-lg text-yellow"></i>Externos
+                <span class="label label-warning pull-right">
+                  <?=$var['externos'] > 0 ? $var['externos'] : '';?>
+                </span>
+                </a>
+              </li>
+              <li>
+                <a href="mesaEntrada_en">
+                <i class="fa fa-send fa-lg text-danger"></i>Enviados
+                </a>
+              </li>
+              <li>
+              <a href="mesaEntrada_pe"><i class="fa fa-envelope fa-lg text-teal"></i> Pendientes
                 <span class="label label-info pull-right"><?= $var['pendientes']> 0 ? $var['pendientes']:'';?></span></a></li>
               <li><a href="mesaEntrada_pg"><i class="fa fa-tag fa-lg text-info"></i>Con plazo de gestion
                 <span class="label label-primary pull-right"><?=$var['pgestion']> 0 ? $var['pgestion']:'';?></span></a></li>
@@ -134,9 +157,13 @@
               
               <div class="pull-right">
               <div class="">
-                <button type="submit" class="btn btn-primary btn-md" title="anterior" name="pag" value="<?=$_SESSION['pag']-1;?>"><i class="fa fa-chevron-left"></i></button>
+                <button type="submit" class="btn btn-primary btn-md" title="anterior" name="pag" 
+                value="<?=$_SESSION['pag']-1;?>"><i class="fa fa-chevron-left"></i></button>
+
                   <?=$_SESSION['paginacion'];?>
-                <button type="submit" class="btn btn-primary btn-md" title="siguente" name="pag" value="<?=$_SESSION['pag']+1;?>"><i class="fa fa-chevron-right"></i></button>
+
+                <button type="submit" class="btn btn-primary btn-md" title="siguente" name="pag" 
+                value="<?=$_SESSION['pag']+1;?>"><i class="fa fa-chevron-right"></i></button>
                 &emsp;
               </div>
               <!-- /.btn-group -->
@@ -144,16 +171,20 @@
               
               <div class="">
               &emsp;
-                <button type="submit" class="btn btn-default btn-md" form="buzon" name="btn" value="responder"><i class="fa fa-reply"></i></button>
-                <button type="submit" class="btn btn-default btn-md" form="buzon" name="btn" value="reenviar"><i class="fa fa-share"></i></button>
-                <button type="submit" class="btn btn-default btn-md" form="buzon" name="btn" value="refrescar"><i class="fa fa-refresh"></i></button>
-                <button type="submit" class="btn btn-default btn-md" form="buzon" name="btn" value="eliminar"><i class="fa fa-trash-o"></i></button> 
+                <button type="submit" class="btn btn-default btn-md" form="buzon" name="btn" value="responder">
+                <i class="fa fa-reply"></i></button>
+                <button type="submit" class="btn btn-default btn-md" form="buzon" name="btn" value="reenviar">
+                <i class="fa fa-share"></i></button>
+                <button type="submit" class="btn btn-default btn-md" form="buzon" name="btn" value="refrescar">
+                <i class="fa fa-refresh"></i></button>
+                <button type="submit" class="btn btn-default btn-md" form="buzon" name="btn" value="eliminar">
+                <i class="fa fa-trash-o"></i></button> 
                 
               </div>
               <!-- /.btn-group -->
                 
-            <div class="table-responsive mailbox-messages">
-            <table class="table table-hover table-striped">
+              <div class="table-responsive mailbox-messages">
+              <table class="table table-hover table-striped">
               <?php echo $tabla ;?>
               </table>
               <!-- /.table -->

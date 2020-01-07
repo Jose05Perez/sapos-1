@@ -83,7 +83,7 @@
             
             /////////////////// gestion de paginacion
             $btn = new btnMesaEntrada();//instancia de clase - funcion paginacion
-            $limite=3;// numero de filas limite por pagina (modificable)
+            $limite=10;// numero de filas limite por pagina (modificable)
             $display='';//variable de retorno 
             $posicion= $btn->btnPaginacion($limite,$ente); // array que ubica los indices de donde parte cada paginacion
 
@@ -156,7 +156,7 @@
                         </td>
                         <td class="mailbox-name">'.$er.'</td>
                         <td class="mailbox-subject">
-                            <a href="'.'mesaEntrada'.'"><b>'.$kl['asunto'].'</b> '.$kl['descripcion'].'</a>
+                            <a href="'.'correspondencia'.'"><b>'.$kl['asunto'].'</b> '.$kl['descripcion'].'</a>
                         </td>
                         <td class="mailbox-date">'.$kl['fecha_emision'].'</td>
                         <td>

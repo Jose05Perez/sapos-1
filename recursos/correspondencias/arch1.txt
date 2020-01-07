@@ -1,0 +1,4 @@
+
+<h1>modulo comprovante</h1>
+<h3><b>muestar de contenido</b></h3>
+<pre>loren epsum hulsem uenkihdiomc iuydnocdslob udbuakm iudnydxnu</pre>

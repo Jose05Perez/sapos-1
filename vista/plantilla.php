@@ -22,7 +22,7 @@ session_start();
   <title>Correspondencia BNPHU</title>
   <!-- Tell the browser to be responsive to screen width -->
   <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
-  <link rel="icon" href="#">
+  <link rel="icon" href="">
    <!--=====================================
   PLUGINS DE CSS
   ======================================-->
@@ -111,7 +111,9 @@ session_start();
                 /*===============================================================================================================
                 Incluyendo el Contenido Dinamico en la aplicacion
                 ===============================================================================================================*/
-                $contenido=array("","inicio","salir", "emisor", "mesaEntrada", "archivo", "isadG", "crearEmisor", "vistaEmisor");
+                $contenido=array("",
+                    "inicio","salir", "emisor", "mesaEntrada", "archivo", "isadG", "crearEmisor", "vistaEmisor",
+                    "correspondencia");
                 
                 if(isset($_GET['ruta']))
                 {

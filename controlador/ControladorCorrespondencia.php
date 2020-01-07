@@ -83,7 +83,7 @@
             
             /////////////////// gestion de paginacion
             $btn = new btnMesaEntrada();//instancia de clase - funcion paginacion
-            $limite=3;// numero de filas limite por pagina (modificable)
+            $limite=15;// numero de filas limite por pagina (modificable)
             $display='';//variable de retorno 
             $posicion= $btn->btnPaginacion($limite,$ente); // array que ubica los indices de donde parte cada paginacion
 
@@ -146,6 +146,8 @@
                     $auto = $kl["autorizado"]==0? array('danger','NA'):array('warning',' A');
                     $priv = $kl["privado"]==0? array('success','PUBLICO'):array('default','PRIVADO');
                     //  +
+                        //$ClearText = preg_replace( "/\n\s+/", "\n", rtrim(html_entity_decode(strip_tags($HTMLText))) );
+
                     // a continuacion el cuerpo de la tabla 
                     $display.= '
                     <tr>       '.$sd.'
@@ -156,7 +158,7 @@
                         </td>
                         <td class="mailbox-name">'.$er.'</td>
                         <td class="mailbox-subject">
-                            <a href="'.'mesaEntrada'.'"><b>'.$kl['asunto'].'</b> '.$kl['descripcion'].'</a>
+                            <a href="correspondencia_'.$ind.'"><b>'.$kl['asunto'].'</b> '.$kl['descripcion'].'</a>
                         </td>
                         <td class="mailbox-date">'.$kl['fecha_emision'].'</td>
                         <td>
@@ -170,11 +172,13 @@
                     if($ind>=$limite){break;} // numero de filas limite por pagina (modificable) linea:86
                 }
                 $_SESSION['idc']=$idc;
-                $display.= '</tbody>';
+                $display.= '</tbody>';$estado=1;
             }else{
-                $display.= '<br>&emsp;<h3>Actualmente no tiene correspondencia de esta categoría</h3>';
+                $display.= '<br><h3>&emsp;&emsp;Actualmente no tiene correspondencia de esta categoría</h3>';
+                $estado=0;
             }
-            return $display;
+            $respuesta = array($display,$estado);
+            return $respuesta;
         }            
     }
 
@@ -203,20 +207,73 @@
         }
         function btnPaginacion($lim,$fuente=array())
         {
+            $_SESSION['paginacion']=array('','');
             $delimitador=count($fuente); //numero de registros reslutantes
-            if($delimitador>0){ //por si viene vacio 
+            $enlaces='';
             $paginacion=ceil($delimitador/$lim); //cantidad de links
-            $enlaces= '';
+            if($delimitador>0){ //por si viene vacio 
             for($i=0;$i<$paginacion;$i++){
                 $v=$i+1;
                 $enlaces.= '<input class="btn btn-default btn-md" type="submit" form="buzon" name="pag" value='.$v.' title='.$v.'>';
                 $posiciones[$i]=$i*$lim;
-                $_SESSION['paginacion']=$enlaces;
             }
             }else{
-                $_SESSION['paginacion']='';
                 $posiciones = array();
-            }            
+            }   
+            $_SESSION['paginacion'][0]=$enlaces;
+            $_SESSION['paginacion'][1]=$paginacion;         
             return $posiciones; 
+        }
+    }
+
+    Class PrevCorresp{
+        private $cnx;
+            function  __construct(){
+                $this->cnx = new Conexion();
+            }
+        function correspondencia($ruta){
+            $num= explode("_",$ruta)[1];
+            $idc = $_SESSION['idc'][$num];
+            if (isset($_SESSION['env'])){
+                $cc = 'de';$env = 'receptor';
+
+            }else{
+                $cc = 'a'; $env = 'emisor';
+            }
+            
+            $sentencia = "SELECT
+                CONCAT(p.nombre_persona,' ',p.apellido_persona) AS $cc ,
+                p.correo_electronico, p.status_persona,
+                c.asunto, c.descripcion, c.fecha_emision,c.estado, 
+                c.autorizado,c.privado, c.contenido, c.fecha_emision, c.fecha_recibido, c.caracter, c.adjuntos
+              FROM corresp_correspondencia c join corresp_persona p on (p.id_persona=c.id_persona_$env) where  id_correspondencia= :idc";
+            $arg= array('idc'=>$idc);
+            return $this->cnx->consultaSel($sentencia,$arg)[0];
+        }
+        function preView(){
+            $correo = $this->correspondencia($_GET['ruta']);
+            $env = isset($correo['de'])? 'de': 'a';
+            $acceso = $correo['status_persona']==4? 'publico':'privado';
+            $correo="
+            <hr>
+            <span class='label label-default pull-right'>{$acceso}</span>
+            <span>{$env}: {<b>{$correo[$env]}</b>} {$correo['correo_electronico']}</span>
+            <hr>
+            <h3>Asunto : <b>{$correo['asunto']}</b></h3>
+            
+            
+            
+            
+            ";
+            
+            // $lectura=fopen("recursos/correspondencias/arch1.txt","r");
+            // $contenido=fread($lectura,filesize("recursos/correspondencias/arch1.txt"));
+            // fclose($lectura);
+            
+            
+            
+            return $correo;
+
+            
         }
     }

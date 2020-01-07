@@ -23,14 +23,16 @@
         <div class="box box-info">
           <div class="box-header with-border">
             <h3 class="box-title">Pre visualizador de Correspondencia</h3>
+
           </div>
           <!-- /.box-header -->
           <div class="box-body">
             <div class="table-responsive mailbox-messages">
+
               <table class="table table-hover table-striped">                
                 <?php
-                      $pv = new mesaEntrada();
-                      echo $pv->bandejaLoad();
+                     $pv = new mesaEntrada();
+                      echo $pv->bandejaLoad()[0];
                 ?>
                 </tbody>
               </table>
@@ -52,29 +54,35 @@
   Caja de numeros de mail
   ===============================================================================================================-->
         <!-- Info Boxes Style 2 -->
-        <div class="info-box bg-green">
-          <span class="info-box-icon"><i class="ion ion-ios-pricetag-outline"></i></span>
+        <div class="info-box bg-light-blue">
+          <span class="info-box-icon"><i class="fa fa-inbox fa-lg"></i></span>
           <div class="info-box-content">
-            <span class="info-box-text">Correo Totales</span>
+            <span class="info-box-text">Total de correos</span>
+
             <span class="info-box-number"><?=$_SESSION['notificaciones']['pendientes']+$_SESSION['notificaciones']['pgestion']; ?></span>
+
+          </div>
+          <!-- /.info-box-content -->
+        </div>
+        <!-- /.info-box -->
+        <div class="info-box bg-green">
+          <span class="info-box-icon"><i class="fa fa-university fa-lg"></i></span>
+          <div class="info-box-content">
+
+            <span class="info-box-text">Correos internos</span>
+            <span class="info-box-number"><?=$_SESSION['notificaciones']['internos']; ?></span>
+
           </div>
           <!-- /.info-box-content -->
         </div>
         <!-- /.info-box -->
         <div class="info-box bg-yellow">
-          <span class="info-box-icon"><i class="ion ion-ios-home-outline"></i></span>
+          <span class="info-box-icon"><i class="fa fa-globe fa-lg"></i></span>
           <div class="info-box-content">
-            <span class="info-box-text">Correo Interno</span>
-            <span class="info-box-number"><?=$_SESSION['notificaciones']['internos']; ?></span>
-          </div>
-          <!-- /.info-box-content -->
-        </div>
-        <!-- /.info-box -->
-        <div class="info-box bg-red">
-          <span class="info-box-icon"><i class="icon ion-ios-world-outline"></i></span>
-          <div class="info-box-content">
-            <span class="info-box-text">Correo Externo</span>
+
+            <span class="info-box-text">Correos externos</span>
             <span class="info-box-number"><?=$_SESSION['notificaciones']['externos']; ?>
+
           </div>
           <!-- /.info-box-content -->
         </div>

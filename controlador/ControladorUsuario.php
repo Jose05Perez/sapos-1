@@ -43,10 +43,7 @@
                         if($me)
                         {
                             $_SESSION["iniciarSession"] = "ok";
-                            $_SESSION['id_AD']= $me['id']; 
-                            $_SESSION['usuario']['nombre']=$me['displayName'];
-                            $_SESSION['usuario']['correo']=$me['mail'];
-                            $_SESSION['usuario']['alias'] = $me['mailNickname'];
+                            $_SESSION['id_AD']= $me['id'];                                                  
                             $w=new ctrUsuario();
                             $w->datosUsuario();
                              echo '<script>
@@ -74,6 +71,9 @@
         {               
             $con = new Conexion();
             $sentencia="SELECT
+
+                        concat(per.nombre_persona,' ',per.apellido_persona) as nombre ,
+                        per.correo_electronico as correo,
                         rol.nombre_rol as puesto,
                         dep.nombre_departamento as departamento,
                         em.ultimo_login as ultimaSesion                                                
@@ -83,10 +83,11 @@
                         LEFT JOIN corresp_rol as rol ON em.id_rol_empleado=rol.id_rol         
                         WHERE em.ID_AD= :idad  limit 1";
             $arg=array(':idad'=>$_SESSION['id_AD']);
-            $_SESSION['usuario'] = array_merge($_SESSION['usuario'],$con->consultaSel($sentencia,$arg)[0]);
+            $_SESSION['usuario'] = $con->consultaSel($sentencia,$arg)[0];
            var_dump($_SESSION['usuario']);
             $upd= "ultimo_login='".date('y-m-d h:i:s')."'";
             $whr=array("ID_AD= '{$_SESSION['id_AD']}'");
             $con->consultaUpd('corresp_empleado',$upd,$whr);
+            
         }
     }

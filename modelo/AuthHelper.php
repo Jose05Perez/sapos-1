@@ -16,7 +16,7 @@
             "resource=" . Settings::$unifiedAPIResource."&";
           }
           else
-          {
+          {            
             $authUrl = Settings::$authority . "oauth2/logout".
             "?post_logout_redirect_uri=". Settings::$redirectURI;
           }
@@ -33,8 +33,7 @@
             "code=" . $code;
 
             //setup the post to https://login.microsoftonlne.com/common/oauth2/token
-            $request = curl_init("https://login.microsoftonline.com/7adb5d12-853c-4eb2-b075-4aaeb70b51e4/oauth2/token");
-            //$request = curl_init("https://login.microsoftonline.com/586bdbe6-c0ce-4a36-9425-7560ec5aa04d/oauth2/token");
+            $request = curl_init("https://login.microsoftonline.com/586bdbe6-c0ce-4a36-9425-7560ec5aa04d/oauth2/token");
             curl_setopt($request, CURLOPT_RETURNTRANSFER, true);
             curl_setopt($request, CURLOPT_POST, 1);
             curl_setopt($request, CURLOPT_POSTFIELDS, $tokenRequestBody);
@@ -73,8 +72,7 @@
             "client_secret=" . Settings::$password . "&" .
             "resource=" . Settings::$unifiedAPIResource;
             //setup the post to https://login.microsoftonlne.com/common/oauth2/token
-            $request = curl_init("https://login.microsoftonline.com/7adb5d12-853c-4eb2-b075-4aaeb70b51e4/oauth2/token");
-            //$request = curl_init("https://login.microsoftonline.com/586bdbe6-c0ce-4a36-9425-7560ec5aa04d/oauth2/token");
+            $request = curl_init("https://login.microsoftonline.com/586bdbe6-c0ce-4a36-9425-7560ec5aa04d/oauth2/token");
             curl_setopt($request, CURLOPT_RETURNTRANSFER, true);
             curl_setopt($request, CURLOPT_POST, 1);
             curl_setopt($request, CURLOPT_POSTFIELDS, $tokenRequestBody);

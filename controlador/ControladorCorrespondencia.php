@@ -226,23 +226,23 @@
         }
     }
 
-    Class PrevCorresp{
+    Class Correspondencia{
         private $cnx;
             function  __construct(){
                 $this->cnx = new Conexion();
             }
-        function correspondencia($ruta){
+        function consulta($ruta){
             $num= explode("_",$ruta)[1];
             $idc = $_SESSION['idc'][$num];
             if (isset($_SESSION['env'])){
-                $cc = 'de';$env = 'receptor';
+                $env = 'receptor';
 
             }else{
-                $cc = 'a'; $env = 'emisor';
+                $env = 'emisor';
             }
             
             $sentencia = "SELECT
-                CONCAT(p.nombre_persona,' ',p.apellido_persona) AS $cc ,
+                CONCAT(p.nombre_persona,' ',p.apellido_persona) AS nombre ,
                 p.correo_electronico, p.status_persona,
                 c.asunto, c.descripcion, c.fecha_emision,c.estado, 
                 c.autorizado,c.privado, c.contenido, c.fecha_emision, c.fecha_recibido, c.caracter, c.adjuntos
@@ -250,21 +250,21 @@
             $arg= array('idc'=>$idc);
             return $this->cnx->consultaSel($sentencia,$arg)[0];
         }
-        function preView(){
-            $correo = $this->correspondencia($_GET['ruta']);
-            $env = isset($correo['de'])? 'de': 'a';
-            $acceso = $correo['status_persona']==4? 'publico':'privado';
-            $correo="
-            <hr>
-            <span class='label label-default pull-right'>{$acceso}</span>
-            <span>{$env}: {<b>{$correo[$env]}</b>} {$correo['correo_electronico']}</span>
-            <hr>
-            <h3>Asunto : <b>{$correo['asunto']}</b></h3>
+        function Vista(){
+            $correo = $this->consulta($_GET['ruta']);
+            // $env = isset($correo['de'])? 'de': 'a';
+            // $acceso = $correo['status_persona']==4? 'publico':'privado';
+            // $correo="
+            // <hr>
+            // <span class='label label-default pull-right'>{$acceso}</span>
+            // <span>{$env}: {<b>{$correo[$env]}</b>} {$correo['correo_electronico']}</span>
+            // <hr>
+            // <h3>Asunto : <b>{$correo['asunto']}</b></h3>
             
             
             
             
-            ";
+            // ";
             
             // $lectura=fopen("recursos/correspondencias/arch1.txt","r");
             // $contenido=fread($lectura,filesize("recursos/correspondencias/arch1.txt"));

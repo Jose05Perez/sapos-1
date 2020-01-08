@@ -1,7 +1,8 @@
 <?php
- 
+
+
     
-    if(isset($_POST['enviar']) && $_POST['contenido']!=''){      
+    if(isset($_POST['enviar']) && $_POST['contenido']!=false){      
       $nombre = $_SESSION['usuario']['nombre'].rand().'('.date('d-m-y').')'.'.txt';
       $ruta= "recursos/correspondencias/";
       $rutArch = $ruta . $nombre;
@@ -56,14 +57,14 @@
           <div class="box-header with-border">
             <h3 class="box-title">Autoridad</h3>
             <div class="box-tools">
-              <button type="but0ton" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
+              <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
               </button>
             </div>
           </div>
           <div class="box-body no-padding">
             <ul class="nav nav-pills nav-stacked">
-              <li><a href="#"><i class="fa fa-lock  fa-lg text-red"></i>No Autorizado</a></li>
-              <li><a href="#"><i class="fa fa-unlock fa-lg text-yellow"></i> Autorizado</a></li>
+              <li><a href="emisor_a"><i class="fa fa-lock  fa-lg text-red"></i>No Autorizado</a></li>
+              <li><a href="emisor_na"><i class="fa fa-unlock fa-lg text-yellow"></i> Autorizado</a></li>
             </ul>
           </div>
           <!-- /.box-body -->
@@ -78,8 +79,8 @@
           </div>
           <div class="box-body no-padding">
             <ul class="nav nav-pills nav-stacked">
-              <li><a href="#"><i class="fa fa-square fa-lg text-teal"></i> Público</a></li>
-              <li><a href="#"><i class="fa fa-square fa-lg text-info"></i> Privado</a></li>
+              <li><a href="emisor_pu"><i class="fa fa-square fa-lg text-teal"></i> Público</a></li>
+              <li><a href="emisor_pr"><i class="fa fa-square fa-lg text-info"></i> Privado</a></li>
             </ul>
           </div>
           <!-- /.box-body -->
@@ -109,7 +110,7 @@
               </div>
               <div class="form-group">
                 <div class="btn btn-default btn-file">
-                  <i class="fa fa-paperclip"></i> Archivo Adjunto
+                  <i class="fa fa-paperclip"></i> Archivo Adjunto <?=print_r($_POST);?>
                   <input type="file" name="attachment">
                 </div>
                 <p class="help-block">Max. 32MB</p>
@@ -119,7 +120,7 @@
             <div class="box-footer">
               <div class="pull-right">
                 <button type="submit" class="btn btn-default" id="guardar" name="guardar" form="crear" ><i class="fa fa-pencil"></i> Guardar</button>
-                <button type="submit" class="btn btn-primary" id="enviar" name="enviar" form="crear" onclick="ConfirmDemo()" ><i class="fa fa-envelope-o"></i> Enviar</button>
+                <button type="submit" class="btn btn-primary" id="enviar" name="enviar" form="crear" onclick="conf()" ><i class="fa fa-envelope-o"></i> Enviar</button>
               </div>
               <button type="reset" class="btn btn-default" name="borrar" form="crear"><i class="fa fa-times"></i> Borrar</button>
             </div>
@@ -166,7 +167,7 @@
         $('#contenido').text('#contenido').wysihtml5('getText');
         $('#crear').submit();
       });
-
+      
   });
 </script>
 <!--

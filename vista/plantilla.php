@@ -22,7 +22,7 @@ session_start();
   <title>Correspondencia BNPHU</title>
   <!-- Tell the browser to be responsive to screen width -->
   <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
-  <link rel="icon" href="#">
+  <link rel="icon" href="">
    <!--=====================================
   PLUGINS DE CSS
   ======================================-->
@@ -97,8 +97,8 @@ session_start();
 
 <body class="hold-transition skin-blue sidebar-mini"> 
     <?php
-     //if (isset($_SESSION["iniciarSession"]) && $_SESSION["iniciarSession"] == "ok")
-     // {
+     if (isset($_SESSION["iniciarSession"]) && $_SESSION["iniciarSession"] == "ok")
+     {
             echo '<div class="wrapper">';
                 /*===============================================================================================================
                 Incluyendo el cabezote en la aplicacion
@@ -111,14 +111,17 @@ session_start();
                 /*===============================================================================================================
                 Incluyendo el Contenido Dinamico en la aplicacion
                 ===============================================================================================================*/
+                $contenido=array("",
+                    "inicio","salir", "emisor", "mesaEntrada", "archivo", "isadG", "crearEmisor", "vistaEmisor",
+                    "correspondencia");
+                
                 if(isset($_GET['ruta']))
                 {
-                    $ruta=explode("_",$_GET['ruta']);
-
-                    if($ruta[0] == "inicio" || $ruta[0] == "salir" || $ruta[0] == "emisor" || $ruta[0] == "mesaEntrada"
-                    || $ruta[0] == "archivo"|| $ruta[0]== "isadG" || $ruta[0] == "crearEmisor" || $ruta[0] == "vistaEmisor")
+                    $r=explode("_",$_GET['ruta']);
+                    $disponible=array_search($r[0],$contenido);
+                    if($disponible!=false)
                     {
-                        include "modulo/".$ruta[0].".php";
+                        include "modulo/".$r[0].".php";
                     }
                     else
                     {
@@ -135,12 +138,12 @@ session_start();
                 ===============================================================================================================*/
                 include "modulo/piePagina.php";  
             echo '</div>';
-            //  ctrUsuario::Aless
-        //  }
-        //  else
-        //  {
-            //  ctrUsuario::ctrIngresarUsuario(true);
-        // }
+           
+         }
+         else
+         {
+             ctrUsuario::ctrIngresarUsuario(true);
+        }
     ?>
 </body>
 </html>

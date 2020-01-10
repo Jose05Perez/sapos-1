@@ -2,6 +2,8 @@
     <!-- sidebar: style can be found in sidebar.less -->
     <section class="sidebar">
       
+
+
       <ul class="sidebar-menu" data-widget="tree">
        <li>
           <a href="inicio">
@@ -19,6 +21,12 @@
             <a href="emisor">
                 <i class="fa fa-user"></i> 
                 <span>EMISOR</span>
+            </a>
+        </li>
+        <li>
+            <a href="">
+                <i class="fa fa-bus"></i> 
+                <span>Tracking</span>
             </a>
         </li>
         <li class="treeview">
@@ -77,3 +85,4 @@
     </section>
     <!-- /.sidebar -->
 </aside>
+

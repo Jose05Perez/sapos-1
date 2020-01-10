@@ -131,7 +131,7 @@ session_start();
                 ===============================================================================================================*/
                 $contenido=array("",
                     "inicio","salir", "emisor", "mesaEntrada", "archivo", "isadG", "crearEmisor", "vistaEmisor",
-                    "correspondencia");
+                    "correspondencia", "tracking");
                 
                 if(isset($_GET['ruta']))
                 {

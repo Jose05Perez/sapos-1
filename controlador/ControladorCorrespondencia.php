@@ -83,7 +83,7 @@
             
             /////////////////// gestion de paginacion
             $btn = new btnMesaEntrada();//instancia de clase - funcion paginacion
-            $limite=15;// numero de filas limite por pagina (modificable)
+            $limite=12;// numero de filas limite por pagina (modificable)
             $display='';//variable de retorno 
             $posicion= $btn->btnPaginacion($limite,$ente); // array que ubica los indices de donde parte cada paginacion
 
@@ -241,6 +241,7 @@
             }
             
             $sentencia = "SELECT
+                c.id_correspondencia,
                 CONCAT(p.nombre_persona,' ',p.apellido_persona) AS nombre ,
                 p.correo_electronico, p.status_persona,
                 c.asunto, c.descripcion, c.fecha_emision,c.estado, 

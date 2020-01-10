@@ -120,9 +120,7 @@
                    } 
                    $fe = new DateTime($datos['fecha_emision']); $fechaE=date_format($fe,'d-F-Y');
                    $fr = new DateTime($datos['fecha_recibido']); $fechaR=date_format($fr,'l,d-F-Y');
-                   
-                   var_dump($datos);
-
+                   //var_dump($datos);
                 ?>
                 <div class="pull-right"> 
                    <h4>
@@ -147,12 +145,12 @@
               <!-- /.mailbox-read-info -->
               <div class="mailbox-controls with-border pull-right" >
                  <?php if($datos['estado']=='pe' ||$datos['estado']=='pg' ) {?>
-                  <button type="button" class="btn btn-sm" data-toggle="tooltip" title="" data-original-title="recibido">
+                  <button type="button" class="btn  btn-sm" data-toggle="tooltip" title="" data-original-title="recibido">
                   <i class="fa fa-check "></i> marcar como recibido</button>                 
-                 <?php }if ($datos['estado']=='pe' ){?>
-                  <button type="button" class="btn btn-sm" data-toggle="tooltip" title="" data-original-title="recibido">
-                  <i class="fa fa-check text-info"></i> marcar como recibido</button>
-                  <?php  } ?>
+                 <?php } if ($datos['estado']=='pe' ){?>
+                  <button type="button" class="btn btn-primary btn-sm" data-toggle="tooltip" title="" data-original-title="recibido">
+                  <i class="fa fa-check "></i> poner en plazo de gestion</button>
+                  <?php } ?>
               </div>
               <div class="mailbox-controls with-border">
                 <div class="btn-group">
@@ -172,15 +170,13 @@
               <?php 
                   if(!is_null($datos['contenido'])){
                     $rutaArch= "recursos/correspondencias/{$datos['contenido']}";
-                    if(!file_exists($rutaArch)){
-                        $arch= fopen ($rutaArch,'c+');
-                        fwrite($arch,"<h1>nuevo Archivo</h1>toy solterosky");
-                        fclose($arch);              
+                    if(file_exists($rutaArch)){
+                      $arch= fopen ($rutaArch,'r');
+                      $correspondencia=fread($arch, filesize($rutaArch));
+                      fclose($arch);
+                      echo $correspondencia;          
                       }
-                        $arch= fopen ($rutaArch,'r');
-                        $correspondencia=fread($arch, filesize($rutaArch));
-                        fclose($arch);
-                        echo $correspondencia;                   
+                                          
                     }
                    // } 
                 ?>

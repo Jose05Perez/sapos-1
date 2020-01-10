@@ -2,6 +2,8 @@
     <!-- sidebar: style can be found in sidebar.less -->
     <section class="sidebar">
       
+
+
       <ul class="sidebar-menu" data-widget="tree">
        <li>
           <a href="inicio">
@@ -22,22 +24,33 @@
             </a>
         </li>
         <li>
-          <a href="archivo">
-            <i class="fa fa-file-text"></i>
-            <span>Archivo</span>
-          </a>
+            <a href="">
+                <i class="fa fa-bus"></i> 
+                <span>Tracking</span>
+            </a>
         </li>
-        <li>
-          <a href="crearEmisor">
-            <i class="fa fa-file-text"></i>
-            <span>Crear Emisor</span>
+        <li class="treeview">
+          <a href="#">
+            <i class="fa fa-envelope-open"></i> 
+            <span>Correspondencia</span>
+                    <span class="pull-right-container">
+              <i class="fa fa-angle-left pull-right"></i>
+            </span>
           </a>
-        </li>
-        <li>
-          <a href="vistaEmisor">
-            <i class="fa fa-file-text"></i>
-            <span>Vista Emisor</span>
-          </a>
+          <ul class="treeview-menu">
+              <li>
+                <a href="crearEmisor">
+                  <i class="fa fa-circle-o"></i>
+                  <span>Crear Emisor</span>
+                </a>
+              </li>
+              <li>
+                <a href="vistaEmisor">
+                  <i class="fa fa-circle-o"></i>
+                  <span>Vista de Emisor</span>
+                </a>
+              </li>
+          </ul>
         </li>
         <li class="treeview">
           <a href="#">
@@ -62,7 +75,14 @@
               </li>
           </ul>
         </li>
+        <li>
+          <a href="archivo">
+            <i class="fa fa-file-text"></i>
+            <span>Archivo</span>
+          </a>
+        </li>
       </ul>
     </section>
     <!-- /.sidebar -->
 </aside>
+

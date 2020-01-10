@@ -152,51 +152,49 @@
           </div>
           <!-- /.box-header -->
           <div class="box-body no-padding"  >
-          <?php if($tabla[1]==1):?>
+          <?php if($tabla[1]==1){?>
             <div class="mailbox-controls">
               <form action="" method="post" id="buzon">
-              <?php if($_SESSION['paginacion'][0]!=''): ?>
-              <div class="pull-right">
                 <div class="">
-                  <button type="submit" class="btn btn-primary btn-md" title="anterior" name="pag" 
-                  value="<?=$_SESSION['pag']-1;?>"><i class="fa fa-chevron-left"></i></button>
-
-                    <?=$_SESSION['paginacion'][0];?>
-
-                  <button type="submit" class="btn btn-primary btn-md" title="siguente" name="pag" 
-                  value="<?=$_SESSION['pag']+1;?>"><i class="fa fa-chevron-right"></i></button>
                   &emsp;
+                  <button type="submit" class="btn btn-default btn-md" form="buzon" name="btn" value="refrescar">
+                  <i class="fa fa-refresh"></i></button>
+                  <button type="submit" class="btn btn-default btn-md" form="buzon" name="btn" value="eliminar">
+                  <i class="fa fa-trash-o"></i></button> 
+                  <?php if(isset($_SESSION['env'])){ ?>
+                      <small>
+                      Usted esta revisando los mensajes que ha enviado, 
+                      si quiere volver a ver los recibidos de un click a la categoria(Todos)";
+                      </small>
+                   <?php   } ?>
+                </div><hr>
+                <!-- /.btn-group -->                
+                <div class="table-responsive mailbox-messages">
+                  <table class="table table-hover table-striped" >
+                  <?php echo $tabla[0];?>
+                  </table>
+                  <!-- /.table -->
                 </div>
-                <!-- /.btn-group -->
-              </div>
-              <?php endif;?>
-              <div class="">
-              &emsp;
-                <button type="submit" class="btn btn-default btn-md" form="buzon" name="btn" value="responder">
-                <i class="fa fa-reply"></i></button>
-                <button type="submit" class="btn btn-default btn-md" form="buzon" name="btn" value="reenviar">
-                <i class="fa fa-share"></i></button>
-                <button type="submit" class="btn btn-default btn-md" form="buzon" name="btn" value="refrescar">
-                <i class="fa fa-refresh"></i></button>
-                <button type="submit" class="btn btn-default btn-md" form="buzon" name="btn" value="eliminar">
-                <i class="fa fa-trash-o"></i></button> 
-                
-              </div>
-              <!-- /.btn-group -->
-                
-              <div class="table-responsive mailbox-messages">
-              <table class="table table-hover table-striped" >
-              <?php echo $tabla[0] ;?>
-              </table>
-              <!-- /.table -->
-              </div>
-              </form>
-              
+                <?php if($_SESSION['paginacion'][1]>1 ){ ?>
+                  <div class=""><hr>
+                    <div class="text-center">
+                      <button type="submit" class="btn btn-primary btn-md" title="anterior" name="pag" 
+                      value="<?=$_SESSION['pag']-1;?>"><i class="fa fa-chevron-left"></i></button>
+
+                        <?=$_SESSION['paginacion'][0];?>
+
+                      <button type="submit" class="btn btn-primary btn-md" title="siguente" name="pag" 
+                      value="<?=$_SESSION['pag']+1;?>"><i class="fa fa-chevron-right"></i></button>
+                    </div>
+                    <!-- /.btn-group -->
+                  </div>
+                <?php } ?><hr>
+              </form>              
              </div>
             <!-- /.mail-box-messages -->
-              <?php else:
+              <?php }else{
                 echo $tabla[0];
-                endif;?>
+              }?>
                 
             </div>
           <!-- /.box-body -->

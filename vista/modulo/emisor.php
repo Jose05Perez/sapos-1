@@ -1,15 +1,18 @@
 <?php
-
-
-    
-    if(isset($_POST['enviar']) && $_POST['contenido']!=false){      
-      $nombre = $_SESSION['usuario']['nombre'].rand().'('.date('d-m-y').')'.'.txt';
+   
+if(isset($_POST['enviar']) && $_POST['contenido']!=false){      
+      $contenido =$_POST['contenido'];
+  generadorArchivos:{
+      $nombre = 'BNPHU-'.$_SESSION['usuario']['codigo_depto'].rand(0001,9999).'-'.date('y').'.txt';
       $ruta= "recursos/correspondencias/";
       $rutArch = $ruta . $nombre;
-      $contenido =$_POST['contenido'];
-      $arch = fopen($rutArch,"x") or die();
+      if(file_exists($rutArch)){
+        goto generadorArchivos;
+      }
+      $arch = fopen($rutArch,"w") or die();
       fwrite($arch,$contenido);
       fclose($arch);
+      }
    }
   //  mail('arlessvimare@hotmail.es','no one', 'imwatchingyou');
 

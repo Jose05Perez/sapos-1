@@ -16,7 +16,7 @@
             "resource=" . Settings::$unifiedAPIResource."&";
           }
           else
-          {
+          {            
             $authUrl = Settings::$authority . "oauth2/logout".
             "?post_logout_redirect_uri=". Settings::$redirectURI;
           }

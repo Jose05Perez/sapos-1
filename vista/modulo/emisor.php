@@ -1,3 +1,19 @@
+<?php
+
+
+    
+    if(isset($_POST['enviar']) && $_POST['contenido']!=false){      
+      $nombre = $_SESSION['usuario']['nombre'].rand().'('.date('d-m-y').')'.'.txt';
+      $ruta= "recursos/correspondencias/";
+      $rutArch = $ruta . $nombre;
+      $contenido =$_POST['contenido'];
+      $arch = fopen($rutArch,"x") or die();
+      fwrite($arch,$contenido);
+      fclose($arch);
+   }
+  //  mail('arlessvimare@hotmail.es','no one', 'imwatchingyou');
+
+?>
  <!-- Content Wrapper. Contains page content -->
  <div class="content-wrapper">
     <!-- Content Header (Page header) -->
@@ -31,19 +47,51 @@
           </div>
           <div class="box-body no-padding">
             <ul class="nav nav-pills nav-stacked">
-              <li><a href="emisor_ur"><i class="fa fa-circle-o text-red"></i>Urgente</a></li>
-              <li><a href="emisor_im"><i class="fa fa-circle-o text-yellow"></i> Importante</a></li>
-              <li><a href="emisor_ge"><i class="fa fa-circle-o text-light-blue"></i> Genérico</a></li>
+              <li><a href="emisor_ur"><i class="fa fa-circle-o fa-lg text-red"></i>Urgente</a></li>
+              <li><a href="emisor_im"><i class="fa fa-circle-o fa-lg text-yellow"></i> Importante</a></li>
+              <li><a href="emisor_ge"><i class="fa fa-circle-o fa-lg text-light-blue"></i> Genérico</a></li>
+            </ul>
+          </div>
+          <!-- /.box-body -->
+      </div>
+      <div class="box box-solid">
+          <div class="box-header with-border">
+            <h3 class="box-title">Autoridad</h3>
+            <div class="box-tools">
+              <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
+              </button>
+            </div>
+          </div>
+          <div class="box-body no-padding">
+            <ul class="nav nav-pills nav-stacked">
+              <li><a href="emisor_a"><i class="fa fa-lock  fa-lg text-red"></i>No Autorizado</a></li>
+              <li><a href="emisor_na"><i class="fa fa-unlock fa-lg text-yellow"></i> Autorizado</a></li>
+            </ul>
+          </div>
+          <!-- /.box-body -->
+        </div>
+        <div class="box box-solid">
+          <div class="box-header with-border">
+            <h3 class="box-title">Acceso</h3>
+            <div class="box-tools">
+              <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
+              </button>
+            </div>
+          </div>
+          <div class="box-body no-padding">
+            <ul class="nav nav-pills nav-stacked">
+              <li><a href="emisor_pu"><i class="fa fa-square fa-lg text-teal"></i> Público</a></li>
+              <li><a href="emisor_pr"><i class="fa fa-square fa-lg text-info"></i> Privado</a></li>
             </ul>
           </div>
           <!-- /.box-body -->
         </div>
         <!-- /.box -->
-      </div>
+        </div>
 
 
         <div class="col-md-9">
-        <form action="#" method="post" id="crear">
+        <form action="<?=$_GET['ruta'];?>" method="post" id="crear">
           <div class="box box-primary">
             <div class="box-header with-border">
               <h3 class="box-title">Ingresar nueva correspondencia</h3>
@@ -52,24 +100,18 @@
             
             <div class="box-body">
               <div class="form-group">
-                <input class="form-control" placeholder="Para:">
+                <input class="form-control" placeholder="Para:" name="destinantario">
               </div>
               <div class="form-group">
-                <input class="form-control" placeholder="Asunto:">
+                <input class="form-control" placeholder="Asunto: " name="asunto">
               </div>
               <div class="form-group">
-                    <textarea id="compose-textarea" class="form-control" style="height: 300px">
-                      <h1><u>Encabezado</u></h1>
-                      <h4>Subtitulo</h4>
-                      <p>contenid de correspondencia</p>
-                      
-                      <p>nota,</p>
-                      <p>usuario **** ADiractory</p>
+                    <textarea id="contenido" name="contenido" class="form-control" style="height: 300px">
                     </textarea>
               </div>
               <div class="form-group">
                 <div class="btn btn-default btn-file">
-                  <i class="fa fa-paperclip"></i> Archivo Adjunto
+                  <i class="fa fa-paperclip"></i> Archivo Adjunto <?=print_r($_POST);?>
                   <input type="file" name="attachment">
                 </div>
                 <p class="help-block">Max. 32MB</p>
@@ -78,10 +120,10 @@
             <!-- /.box-body -->
             <div class="box-footer">
               <div class="pull-right">
-                <button type="button" class="btn btn-default" name="guardar" form="crear" ><i class="fa fa-pencil"></i> Guardar</button>
-                <button onclick="ConfirmDemo()" type="submit" class="btn btn-primary" name="enviar"n form="crear"><i class="fa fa-envelope-o"></i> Enviar</button>
+                <button type="submit" class="btn btn-default" id="guardar" name="guardar" form="crear" ><i class="fa fa-pencil"></i> Guardar</button>
+                <button type="submit" class="btn btn-primary" id="enviar" name="enviar" form="crear" onclick="conf()" ><i class="fa fa-envelope-o"></i> Enviar</button>
               </div>
-              <button type="reset" class="btn btn-default" nambre="borrar" form="crear"><i class="fa fa-times"></i> Borrar</button>
+              <button type="reset" class="btn btn-default" name="borrar" form="crear"><i class="fa fa-times"></i> Borrar</button>
             </div>
             <!-- /.box-footer -->
           </div>
@@ -113,12 +155,23 @@
 <!-- Bootstrap WYSIHTML5 -->
 <script src="../../plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.all.min.js"></script>
 <!-- Page Script -->
-<script>
+ <script>
   $(function () {
     //Add text editor
     $("#compose-textarea").wysihtml5();
   });
+  $(document).ready(function(){
+      $('#contenido').wysihtml5();
+
+      $('#guardar').click(function(e){
+        e.preventDefault();
+        $('#contenido').text('#contenido').wysihtml5('getText');
+        $('#crear').submit();
+      });
+      
+  });
 </script>
+<!--
 <script>function ConfirmDemo() {
 //Ingresamos un mensaje a mostrar
 var mensaje = confirm("¿Seguro que quieres enviar el archivo?");
@@ -131,4 +184,4 @@ else {
 alert("¡Haz denegado el mensaje!");
 }
 }
-  </script>";
+  </script>"; -->

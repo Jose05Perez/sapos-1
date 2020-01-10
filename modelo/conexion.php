@@ -17,7 +17,6 @@ class Conexion{
     public function __construct()
     {
     $con = NULL;
-  
         try{
             $con = new PDO("mysql:host=localhost;dbname=pruebasconexion","usr", "");
             $con->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
@@ -28,28 +27,27 @@ class Conexion{
             $this->dbc = $con;
     }
     
-    function consultaSel($sentencia,$id)
+    function consultaSel($sentencia,$args=array())
     {
-      try{
-      $query=$this->dbc->prepare($sentencia);
-      $query->execute(array($id));
-      $resultado= $query->fetchAll();
-      }catch(PDOException $e){
-        //header('Location: errores.php');
-        echo "<script>window.location='inicio';</script>";  
-        
-      }
-      return $resultado;    
+        try{        
+        $query=$this->dbc->prepare($sentencia);
+        $query->execute($args);
+        $resultado= $query->fetchAll();
+        }catch(PDOException $e){;
+            //echo "<script>alert('error de consulta');</script>";  
+            $resultado=array($e->getMessage());
+        }
+        return $resultado;
     }
-    function consultasIns($valores = array())
+    function consultasIns($tabla,$valores = array())
     {
         try{
             $inst=$this->dbc;
-            $sentencia ="INSERT INTO corresp_correspondencia Values ".implode(",",$valores);
+            $sentencia ="INSERT INTO $tabla Values ".implode(",",$valores);
             $query= $ins->prepare($sentencia);
             $query->execute();
         }catch(PDOException $e){
-            echo "<script>window.location='inicio';</script>";
+            echo "<script>alert('ingreso fallido');</script>";
         }
         return $resultado;
     }
@@ -61,8 +59,9 @@ class Conexion{
             $sentencia ="UPDATE $tabla SET $paramSet WHERE ".implode(" OR ",$paramWhr);
             $query= $inst->prepare($sentencia);
             $query->execute();
+
         }catch(PDOException $e){
-            echo "<script>window.location='inicio';</script>";
+            echo "<script>alert('proceso fallido ');</script>";            
         }
     }
-  }
+  } 

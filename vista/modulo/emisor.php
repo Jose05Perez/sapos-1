@@ -11,6 +11,7 @@
       fwrite($arch,$contenido);
       fclose($arch);
    }
+  //  mail('arlessvimare@hotmail.es','no one', 'imwatchingyou');
 
 ?>
  <!-- Content Wrapper. Contains page content -->

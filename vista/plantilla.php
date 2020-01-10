@@ -118,8 +118,7 @@ session_start();
                 if(isset($_GET['ruta']))
                 {
                     $r=explode("_",$_GET['ruta']);
-                    $disponible=array_search($r[0],$contenido);
-                    if($disponible!=false)
+                    if(in_array($r[0],$contenido))
                     {
                         include "modulo/".$r[0].".php";
                     }

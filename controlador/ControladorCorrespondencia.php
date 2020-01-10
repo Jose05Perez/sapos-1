@@ -236,7 +236,6 @@
             $idc = $_SESSION['idc'][$num];
             if (isset($_SESSION['env'])){
                 $env = 'receptor';
-
             }else{
                 $env = 'emisor';
             }

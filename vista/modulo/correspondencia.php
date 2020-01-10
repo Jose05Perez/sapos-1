@@ -7,8 +7,7 @@
   }     
   $mensaje= new Correspondencia();
   $datos = $mensaje-> vista();
-
-  
+    
 ?>
 <!-- Content Wrapper. Contains page content-->
 <div class="content-wrapper"> 
@@ -96,8 +95,17 @@
             <div class="box-body">
               <div class="mailbox-read-info">
                 <?php 
+                  
+
+                   // $datos['caracter'] => im 
+                   //$ruta = recibido
+                  //  echo $archcontenido= date_format($f,'Y/F');
+                  // $datos['contenido'] 
+                  // $datos['autorizado'] => 1 
+
+                   $autoridad=($datos['autorizado'] == 1)?  array('warning','Autorizado'):array('danger','No Autorizado'); 
                    $alcance=($datos['status_persona'] == 4)?  array('success','interno'):array('warning','externo'); 
-                   $acceso= ($datos['privado'] == 0 )? array('primary','privado'): array('teal','publico');
+                   $acceso= ($datos['privado'] == 0 )? array('primary','privado'): array('info','publico');
                    // => 
                    switch ($datos['estado']) {
                      case 'pe':
@@ -107,33 +115,34 @@
                        $estado = array('primary','En plazo de gestión'); 
                         break;
                      default:
-                       $estado = array('grey','Recibido');
+                       $estado = array('default','Recibido');
                        break;
                    } 
-                   // $datos['caracter'] => im 
-                   //$ruta = 
-                  //  echo $archcontenido= date_format($f,'Y/F');
-                  // $datos['contenido'] 
-                   $lectura=fopen("recursos/correspondencias/arch1.txt","r");
-                   $contenido=fread($lectura,filesize("recursos/correspondencias/arch1.txt"));
-                   fclose($lectura);
-                   $f = new DateTime($datos['fecha_emision']); $fecha=date_format($f,'d-F-Y');
-                   // $datos['adjuntos'] => )
+                   $fe = new DateTime($datos['fecha_emision']); $fechaE=date_format($fe,'d-F-Y');
+                   $fr = new DateTime($datos['fecha_recibido']); $fechaR=date_format($fr,'l,d-F-Y');
                    
-                // fopen()   
-                // $datos['nombre'] => ernesto hernadez 
-                // $datos['correo_electronico'] => ehernadezdgii.gob.do 
-                // $datos['asunto'] => prueba 4 
-                // $datos['autorizado'] => 1 
+                   var_dump($datos);
+
                 ?>
-                <h5><span class="label" ></span></h5>
-                <h3><?=$datos['asunto'];?></h3>
+                <div class="pull-right"> 
+                   <h4>
+                   <span class="label label-<?=$autoridad[0];?>" ><?= $autoridad[1];?></span>
+                    <span class="label label-<?=$acceso[0];?>" ><?= $acceso[1];?></span>
+                    <span class="label label-<?=$alcance[0];?>" ><?= $alcance[1];?></span> 
+                    <span class="label label-<?=$estado[0];?>" ><?= $estado[1];?></span>
+                  </h4>
+                </div>
+                <h2><strong><?=$datos['asunto'];?></strong></h2>
                 <h5>
                   <?php 
-                  if(isset($_SESSION['env'])){echo 'Para: <b>'.ucwords($datos['nombre']).'</b>    ('.$datos['correo_electronico'].')<br> De: usted';}
-                  else{echo "De: <b>".ucfirst($datos['nombre'])."</b>   ({$datos['correo_electronico']})";}
+                  if(isset($_SESSION['env'])){
+                    echo 'Para: <b>'.ucwords($datos['nombre']).'</b>    ('.$datos['correo_electronico'].')<br> De: usted';
+                  }
+                  else{
+                    echo "De: <b>".ucfirst($datos['nombre'])."</b>   ({$datos['correo_electronico']})";
+                  }
                   ?>
-                  <span class="mailbox-read-time pull-right"><?php  echo $fecha;?></span></h5>
+                  <span class="mailbox-read-time pull-right">Enviado el: <?php  echo $fechaE;?></span></h5>
               </div>
               <!-- /.mailbox-read-info -->
               <div class="mailbox-controls with-border text-center">
@@ -148,65 +157,85 @@
                 <!-- /.btn-group -->
                 <button type="button" class="btn btn-default btn-sm" data-toggle="tooltip" title="" data-original-title="Print">
                   <i class="fa fa-print"></i></button>
+                 <?php if($datos['estado']!='re') {echo
+                '<button type="button" class="btn btn-primary btn-sm" data-toggle="tooltip" title="" data-original-title="recibido">
+                  <i class="fa fa-check"></i> marcar como recibido</button>';
+                 } ?>
               </div>
               <!-- /.mailbox-controls -->
               <div class="mailbox-read-message">
-              <?=$contenido;?>
+              <?php 
+                  if(!is_null($datos['contenido'])){
+                    $rutaArch= "recursos/correspondencias/{$datos['contenido']}";
+                    if(!file_exists($rutaArch)){
+                        $arch= fopen ($rutaArch,'c+');
+                        fwrite($arch,"<h1>nuevo Archivo</h1>toy solterosky");
+                        fclose($arch);              
+                      }
+                        $arch= fopen ($rutaArch,'r');
+                        $correspondencia=fread($arch, filesize($rutaArch));
+                        fclose($arch);
+                        echo $correspondencia;                   
+                    }
+                   // } 
+                ?>
               </div>
               <hr>
-              <?php print_r($datos);?>
               <!-- /.mailbox-read-message -->
-              <span class="pull-right " ><?=$recibidoFecha = (is_null($datos['fecha_recibido']))? '': '<b>Recibido el dia: </b> '.date_format($f,'l, d F Y').'&emsp;';?></span>
+              <span class="pull-right " ><?=$recibidoFecha = (is_null($datos['fecha_recibido']))? '': '<b>Recibido el dia: 
+              </b> '.$fechaR.'&emsp;';?></span>
             </div>
             <!-- /.box-body -->
-            <div class="box-footer">
-              <ul class="mailbox-attachments clearfix">
-                <li>
-                  <span class="mailbox-attachment-icon"><i class="fa fa-file-pdf-o"></i></span>
+            <?php if(!is_null($datos['adjuntos'])){;?>
+              <div class="box-footer">
+                <ul class="mailbox-attachments clearfix">              
+                  <li>
+                    <span class="mailbox-attachment-icon"><i class="fa fa-file-pdf-o"></i></span>
 
-                  <div class="mailbox-attachment-info">
-                    <a href="#" class="mailbox-attachment-name"><i class="fa fa-paperclip"></i> Sep2014-report.pdf</a>
-                        <span class="mailbox-attachment-size">
-                          1,245 KB
-                          <a href="#" class="btn btn-default btn-xs pull-right"><i class="fa fa-cloud-download"></i></a>
-                        </span>
-                  </div>
-                </li>
-                <li>
-                  <span class="mailbox-attachment-icon"><i class="fa fa-file-word-o"></i></span>
+                    <div class="mailbox-attachment-info">
+                      <a href="#" class="mailbox-attachment-name"><i class="fa fa-paperclip"></i> Sep2014-report.pdf</a>
+                          <span class="mailbox-attachment-size">
+                            1,245 KB
+                            <a href="#" class="btn btn-default btn-xs pull-right"><i class="fa fa-cloud-download"></i></a>
+                          </span>
+                    </div>
+                  </li>
+                  <li>
+                    <span class="mailbox-attachment-icon"><i class="fa fa-file-word-o"></i></span>
 
-                  <div class="mailbox-attachment-info">
-                    <a href="#" class="mailbox-attachment-name"><i class="fa fa-paperclip"></i> App Description.docx</a>
-                        <span class="mailbox-attachment-size">
-                          1,245 KB
-                          <a href="#" class="btn btn-default btn-xs pull-right"><i class="fa fa-cloud-download"></i></a>
-                        </span>
-                  </div>
-                </li>
-                <li>
-                  <span class="mailbox-attachment-icon has-img"><img src="../../dist/img/photo1.png" alt="Attachment"></span>
+                    <div class="mailbox-attachment-info">
+                      <a href="#" class="mailbox-attachment-name"><i class="fa fa-paperclip"></i> App Description.docx</a>
+                          <span class="mailbox-attachment-size">
+                            1,245 KB
+                            <a href="#" class="btn btn-default btn-xs pull-right"><i class="fa fa-cloud-download"></i></a>
+                          </span>
+                    </div>
+                  </li>
+                  <li>
+                    <span class="mailbox-attachment-icon has-img"><img src="../../dist/img/photo1.png" alt="Attachment"></span>
 
-                  <div class="mailbox-attachment-info">
-                    <a href="#" class="mailbox-attachment-name"><i class="fa fa-camera"></i> photo1.png</a>
-                        <span class="mailbox-attachment-size">
-                          2.67 MB
-                          <a href="#" class="btn btn-default btn-xs pull-right"><i class="fa fa-cloud-download"></i></a>
-                        </span>
-                  </div>
-                </li>
-                <li>
-                  <span class="mailbox-attachment-icon has-img"><img src="../../dist/img/photo2.png" alt="Attachment"></span>
+                    <div class="mailbox-attachment-info">
+                      <a href="#" class="mailbox-attachment-name"><i class="fa fa-camera"></i> photo1.png</a>
+                          <span class="mailbox-attachment-size">
+                            2.67 MB
+                            <a href="#" class="btn btn-default btn-xs pull-right"><i class="fa fa-cloud-download"></i></a>
+                          </span>
+                    </div>
+                  </li>
+                  <li>
+                    <span class="mailbox-attachment-icon has-img"><img src="../../dist/img/photo2.png" alt="Attachment"></span>
 
-                  <div class="mailbox-attachment-info">
-                    <a href="#" class="mailbox-attachment-name"><i class="fa fa-camera"></i> photo2.png</a>
-                        <span class="mailbox-attachment-size">
-                          1.9 MB
-                          <a href="#" class="btn btn-default btn-xs pull-right"><i class="fa fa-cloud-download"></i></a>
-                        </span>
-                  </div>
-                </li>
-              </ul>
-            </div>
+                    <div class="mailbox-attachment-info">
+                      <a href="#" class="mailbox-attachment-name"><i class="fa fa-camera"></i> photo2.png</a>
+                          <span class="mailbox-attachment-size">
+                            1.9 MB
+                            <a href="#" class="btn btn-default btn-xs pull-right"><i class="fa fa-cloud-download"></i></a>
+                          </span>
+                    </div>
+                  </li>
+                </ul>
+              </div>
+            <?php }?>
             <!-- /.box-footer -->
             <div class="box-footer">
               <div class="pull-right">

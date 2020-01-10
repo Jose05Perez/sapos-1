@@ -145,7 +145,16 @@
                   <span class="mailbox-read-time pull-right">Enviado el: <?php  echo $fechaE;?></span></h5>
               </div>
               <!-- /.mailbox-read-info -->
-              <div class="mailbox-controls with-border text-center">
+              <div class="mailbox-controls with-border pull-right" >
+                 <?php if($datos['estado']=='pe' ||$datos['estado']=='pg' ) {?>
+                  <button type="button" class="btn btn-sm" data-toggle="tooltip" title="" data-original-title="recibido">
+                  <i class="fa fa-check "></i> marcar como recibido</button>                 
+                 <?php }if ($datos['estado']=='pe' ){?>
+                  <button type="button" class="btn btn-sm" data-toggle="tooltip" title="" data-original-title="recibido">
+                  <i class="fa fa-check text-info"></i> marcar como recibido</button>
+                  <?php  } ?>
+              </div>
+              <div class="mailbox-controls with-border">
                 <div class="btn-group">
                   <button type="button" class="btn btn-default btn-sm" data-toggle="tooltip" data-container="body" title="" data-original-title="Delete">
                     <i class="fa fa-trash-o"></i></button>
@@ -153,15 +162,11 @@
                     <i class="fa fa-reply"></i></button>
                   <button type="button" class="btn btn-default btn-sm" data-toggle="tooltip" data-container="body" title="" data-original-title="Forward">
                     <i class="fa fa-share"></i></button>
-                </div>
                 <!-- /.btn-group -->
-                <button type="button" class="btn btn-default btn-sm" data-toggle="tooltip" title="" data-original-title="Print">
+                  <button type="button " class="btn btn-default btn-sm" data-toggle="tooltip" title="" data-original-title="Print">
                   <i class="fa fa-print"></i></button>
-                 <?php if($datos['estado']!='re') {echo
-                '<button type="button" class="btn btn-primary btn-sm" data-toggle="tooltip" title="" data-original-title="recibido">
-                  <i class="fa fa-check"></i> marcar como recibido</button>';
-                 } ?>
-              </div>
+                </div>
+              </div>              
               <!-- /.mailbox-controls -->
               <div class="mailbox-read-message">
               <?php 

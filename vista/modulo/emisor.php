@@ -3,7 +3,7 @@
 if(isset($_POST['enviar']) && $_POST['contenido']!=false){      
       $contenido =$_POST['contenido'];
   generadorArchivos:{
-      $nombre = 'BNPHU-'.$_SESSION['usuario']['codigo_depto'].rand(0001,9999).'-'.date('y').'.txt';
+      $nombre = $_SESSION['usuario']['codigo_depto'].rand(0001,9999).'-'.date('y').'.txt';
       $ruta= "recursos/correspondencias/";
       $rutArch = $ruta . $nombre;
       if(file_exists($rutArch)){

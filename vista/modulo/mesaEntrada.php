@@ -103,7 +103,7 @@
               </li>
               <li>
                 <a href="mesaEntrada_en">
-                <i class="fa fa-send fa-lg text-danger"></i>Enviados
+                <i class="fa fa-send fa-lg text-maroon"></i>Enviados
                 </a>
               </li>
               <li>

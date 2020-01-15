@@ -18,6 +18,7 @@
     require_once "controlador/ControladorUsuario.php";
     require_once "controlador/ControladorValidacionEmisor.php"; 
     require_once "controlador/controladorNotificaciones.php";
+    require_once "controlador/ControladorTracking.php";
     require_once "modelo/AuthHelper.php";
     require_once "modelo/Settings.php";
     require_once "modelo/Token.php";

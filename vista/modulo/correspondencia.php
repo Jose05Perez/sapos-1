@@ -48,7 +48,7 @@
                 <span class="label label-success pull-right"><?=$var['internos'] > 0 ? $var['internos']:'';?></span></a></li>
               <li><a href="mesaEntrada_ex"><i class="fa fa-globe fa-lg text-yellow"></i>Externos
                 <span class="label label-warning pull-right"><?=$var['externos'] > 0 ? $var['externos'] : '';?></span></a></li>
-              <li><a href="mesaEntrada_en"><i class="fa fa-send fa-lg text-danger"></i>Enviados
+              <li><a href="mesaEntrada_en"><i class="fa fa-send fa-lg text-maroon"></i>Enviados
               <!--   enviados no lleva notifcaciones -->
               <li><a href="mesaEntrada_pe"><i class="fa fa-envelope fa-lg text-teal"></i> Pendientes
                 <span class="label label-info pull-right"><?= $var['pendientes']> 0 ? $var['pendientes']:'';?></span></a></li>

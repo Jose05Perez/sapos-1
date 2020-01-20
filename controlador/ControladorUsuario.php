@@ -45,6 +45,7 @@
                             $_SESSION["iniciarSession"] = "ok";
                             $_SESSION['id_AD']= $me['id'];                                                  
                             $w=new ctrUsuario();
+
                             $w->datosUsuario();
                              echo '<script>
                              window.location = "inicio";

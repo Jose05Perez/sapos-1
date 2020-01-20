@@ -11,7 +11,6 @@
  *  @license GPL
  *  @link https://github.com/josueSerulle/correspondencia
  */
-  
 class Conexion{
     protected $dbc;
     public function __construct()

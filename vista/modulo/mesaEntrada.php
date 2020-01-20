@@ -67,9 +67,10 @@
 
         <div class="box box-solid">
           <div class="box-header with-border">
-            <h3 class="box-title"></h3>
+            <h3 class="box-title">Categoría</h3>
 
             <div class="box-tools">
+              
               <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
               </button>
             </div>
@@ -79,7 +80,7 @@
               <li>
                 <a href="mesaEntrada_t" >
                   <i class="fa fa-inbox fa-2x text-black"></i>Todos 
-                  <small>(recibidos)</small>                
+                  <small>(correspondencia recibida)</small>                
                   <span class="label label-default pull-right">
                     <?=$var['pendientes']+$var['pgestion']>0?$var['pendientes']+$var['pgestion']:'';?>
                   </span>
@@ -160,12 +161,12 @@
                   <button type="submit" class="btn btn-default btn-md" form="buzon" name="btn" value="refrescar">
                   <i class="fa fa-refresh"></i></button>
                   <button type="submit" class="btn btn-default btn-md" form="buzon" name="btn" value="eliminar">
-                  <i class="fa fa-trash-o"></i></button> 
-                  <?php if(isset($_SESSION['env'])){ ?>
-                      <small>
+                  <i class="fa fa-trash-o"></i></button> &emsp;
+                  <?php if(isset($_SESSION['env'])){ ?>                   
+                      <small class="label bg-maroon">
                       Usted esta revisando los mensajes que ha enviado, 
-                      si quiere volver a ver los recibidos de un click a la categoria(Todos)";
-                      </small>
+                      si quiere volver a ver los recibidos de un click a la categoría Todos
+                      </small>                   
                    <?php   } ?>
                 </div><hr>
                 <!-- /.btn-group -->                

@@ -174,7 +174,7 @@
                 $_SESSION['idc']=$idc;
                 $display.= '</tbody>';$estado=1;
             }else{
-                $display.= '<br><h3>&emsp;&emsp;Actualmente no tiene correspondencia de esta categoría</h3>';
+                $display.= '<br><h3>&emsp;&emsp;Actualmente no tiene correspondencia de esta categoría y/o caracter</h3>';
                 $estado=0;
             }
             $respuesta = array($display,$estado);

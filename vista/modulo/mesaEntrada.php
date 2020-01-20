@@ -163,10 +163,12 @@
                   <button type="submit" class="btn btn-default btn-md" form="buzon" name="btn" value="eliminar">
                   <i class="fa fa-trash-o"></i></button> &emsp;
                   <?php if(isset($_SESSION['env'])){ ?>                   
+                      <div class="text-center">
                       <small class="label bg-maroon">
                       Usted esta revisando los mensajes que ha enviado, 
                       si quiere volver a ver los recibidos de un click a la categoría Todos
-                      </small>                   
+                      </small>                
+                    </div>   
                    <?php   } ?>
                 </div><hr>
                 <!-- /.btn-group -->                

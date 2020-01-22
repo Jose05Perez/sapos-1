@@ -106,6 +106,13 @@
               <div class="form-group">
                     <textarea id="contenido" name="contenido" class="form-control" style="height: 300px">
                     </textarea>
+                    <input type="checkbox">
+              <?php
+              var_dump ($_POST)
+
+              ?>
+
+
               </div>
               <div class="form-group">
                 <div class="btn btn-default btn-file">

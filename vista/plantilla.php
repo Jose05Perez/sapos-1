@@ -12,7 +12,7 @@
  *  @link https://github.com/josueSerulle/correspondencia
  */
 session_start();
-
+$_SESSION['id_AD']= 1;
 ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -97,8 +97,8 @@ session_start();
 
 <body class="hold-transition skin-blue sidebar-mini"> 
     <?php
-     if (isset($_SESSION["iniciarSession"]) && $_SESSION["iniciarSession"] == "ok")
-     {
+    //  if (isset($_SESSION["iniciarSession"]) && $_SESSION["iniciarSession"] == "ok")
+    //  {
             echo '<div class="wrapper">';
                 /*===============================================================================================================
                 Incluyendo el cabezote en la aplicacion
@@ -139,11 +139,11 @@ session_start();
                 include "modulo/piePagina.php";  
             echo '</div>';
            
-         }
-         else
-         {
-             ctrUsuario::ctrIngresarUsuario(true);
-        }
+        //  }
+        //  else
+        //  {
+        //      ctrUsuario::ctrIngresarUsuario(true);
+        // }
     ?>
 </body>
 </html>

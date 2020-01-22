@@ -154,21 +154,8 @@
           <div class="box-body no-padding"  >
           <?php if($tabla[1]==1):?>
             <div class="mailbox-controls">
-<<<<<<< HEAD
-              <!-- Check all button -->
-              <!--button type="button" class="btn btn-default btn-sm checkbox-toggle"><i class="fa fa-square-o"></i>
-              </-->
-              <div class="btn-group">
-                <button type="submit" onclick="ConfirmDemo()" class="btn btn-default btn-sm" form="buzon" name="eliminar"><i class="fa fa-trash-o"></i></button> 
-                <button type="submit" class="btn btn-default btn-sm" form="buzon"><i class="fa fa-reply"></i></button>
-                <button type="submit" class="btn btn-default btn-sm"><i class="fa fa-share"></i></button>
-              </div>
-              <!-- /.btn-group -->
-              <button type="button" class="btn btn-default btn-sm" ><i class="fa fa-refresh"></i></button>
-=======
               <form action="" method="post" id="buzon">
               <?php if($_SESSION['paginacion'][0]!=''): ?>
->>>>>>> 28641df22100bdb15c7ac35eae8ed53d165e8eb7
               <div class="pull-right">
                 <div class="">
                   <button type="submit" class="btn btn-primary btn-md" title="anterior" name="pag" 
@@ -182,53 +169,6 @@
                 </div>
                 <!-- /.btn-group -->
               </div>
-<<<<<<< HEAD
-              <!-- /.pull-right -->
-            </div>
-            <div class="table-responsive mailbox-messages">
-            <form action="<?=$_GET['ruta'] ?>" method="post" id="buzon">
-            <table class="table table-hover table-striped">
-                <thead>
-                  <tr>
-                    <th><i class="fa fa-check-square"></i></th>
-                    <th>Caracter</th>
-                    <th>Emisor</th>
-                    <th>Correspondencia</th>
-                    <th>Adjuntos</th>
-                    <th>Fecha de emision</th>
-                    <th>Estado</th>
-                    <th>Autorizado</th>
-                    <th>Privado</th>
-                  </tr>
-                </thead>
-                <tbody>
-
-                <?php
-                      if(isset($_POST['eliminar']) && isset($_POST['seleccionado']) ){
-                          $btn->eliminar($_POST['seleccionado'],$_SESSION['idFe']);
-                          unset($_POST['seleccionado'],$_SESSION['idFe'],$_POST['eliminar']);
-                      }elseif(isset($_POST['eliminar']) && !(isset($_POST['seleccionado'])) ){
-                        echo "<script>alert('sebe seleccionar');</script>";
-                      }
-                      echo $control->bandejaLoad();
-
-                ?>
-                <!--Funcion-->
-                <script>function ConfirmDemo() {
-                    //Ingresamos un mensaje a mostrar
-                    var mensaje = confirm("¿Seguro que quieres borrar ");
-                    //Detectamos si el usuario acepto el mensaje
-                    if (mensaje) {
-                    alert("¡Archivo eliminado!");
-                    }
-                    //Detectamos si el usuario denegó el mensaje
-                    else {
-                    alert("¡Cancelado!");
-                    }
-                    }
-                  </script>
-                </tbody>
-=======
               <?php endif;?>
               <div class="">
               &emsp;
@@ -247,7 +187,6 @@
               <div class="table-responsive mailbox-messages">
               <table class="table table-hover table-striped" >
               <?php echo $tabla[0] ;?>
->>>>>>> 28641df22100bdb15c7ac35eae8ed53d165e8eb7
               </table>
               <!-- /.table -->
               </div>

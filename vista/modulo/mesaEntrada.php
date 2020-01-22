@@ -63,7 +63,7 @@
   <section class="content">
     <div class="row">
       <div class="col-md-3">
-        <a href="emisor" class="btn btn-primary btn-block margin-bottom">Crear correspondencia</a>
+      <a href="emisor" class="btn btn-primary btn-block margin-bottom">Crear correspondencia</a>
 
         <div class="box box-solid">
           <div class="box-header with-border">

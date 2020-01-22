@@ -35,63 +35,20 @@ if(isset($_POST['enviar']) && $_POST['contenido']!=false){
     <section class="content">
       <div class="row">
         <div class="col-md-3">
-          <a href="mesaEntrada" class="btn btn-primary btn-block margin-bottom">Mesa de Entrada</a>
-           
-        
-        <!-- /. box -->
-        <div class="box box-solid">
-          <div class="box-header with-border">
-            <h3 class="box-title">Caracter</h3>
-
-            <div class="box-tools">
-              <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
-              </button>
-            </div>
+          <div>
+            <a href="mesaEntrada" class="btn btn-primary btn-block margin-bottom">Mesa de Entrada</a>       
+          </div><div>
+          <div class="btn-group  " role="group" aria-label="Basic example">
+            <button type="button" class="btn btn-default bg-red"><i class='fa fa-circle-o fa-lg'></i> Urgente</button>
+            <button type="button" class="btn btn-default bg-yellow"><i class='fa fa-circle-o fa-lg'></i> Importante</button>
+            <button type="button" class="btn btn-default bg-light-blue"><i class='fa fa-circle-o fa-lg'></i> Genérico</button>
           </div>
-          <div class="box-body no-padding">
-            <ul class="nav nav-pills nav-stacked">
-              <li><a href="emisor_ur"><i class="fa fa-circle-o fa-lg text-red"></i>Urgente</a></li>
-              <li><a href="emisor_im"><i class="fa fa-circle-o fa-lg text-yellow"></i> Importante</a></li>
-              <li><a href="emisor_ge"><i class="fa fa-circle-o fa-lg text-light-blue"></i> Genérico</a></li>
-            </ul>
+          </div><div>
+            <h3 class="form-control bg-orange form-control-lg"><i class="fa fa-shield fa-lg "></i> Autorizado &emsp;<input type="checkbox" name="autorizado" id=""> </h3>
+          </div><div>
+            <h3 class="form-control bg-navy form-control-lg"><i class="fa fa-lock fa-lg"></i> Privado &emsp;<input type="checkbox" name="privado" id=""> </h3>
           </div>
-          <!-- /.box-body -->
-      </div>
-      <div class="box box-solid">
-          <div class="box-header with-border">
-            <h3 class="box-title">Autoridad</h3>
-            <div class="box-tools">
-              <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
-              </button>
-            </div>
-          </div>
-          <div class="box-body no-padding">
-            <ul class="nav nav-pills nav-stacked">
-              <li><a href="emisor_a"><i class="fa fa-lock  fa-lg text-red"></i>No Autorizado</a></li>
-              <li><a href="emisor_na"><i class="fa fa-unlock fa-lg text-yellow"></i> Autorizado</a></li>
-            </ul>
-          </div>
-          <!-- /.box-body -->
-        </div>
-        <div class="box box-solid">
-          <div class="box-header with-border">
-            <h3 class="box-title">Acceso</h3>
-            <div class="box-tools">
-              <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
-              </button>
-            </div>
-          </div>
-          <div class="box-body no-padding">
-            <ul class="nav nav-pills nav-stacked">
-              <li><a href="emisor_pu"><i class="fa fa-square fa-lg text-teal"></i> Público</a></li>
-              <li><a href="emisor_pr"><i class="fa fa-square fa-lg text-info"></i> Privado</a></li>
-            </ul>
-          </div>
-          <!-- /.box-body -->
-        </div>
-        <!-- /.box -->
-        </div>
-
+         </div>
 
         <div class="col-md-9">
         <form action="<?=$_GET['ruta'];?>" method="post" id="crear">

@@ -1,11 +1,11 @@
 <?php
    
-if(isset($_POST['enviar']) && $_POST['contenido']!=false){      
-      $contenido =$_POST['contenido'];
+if(isset($_POST['enviar']) && $_POST['contenido']!==false){      
+  $contenido =$_POST['contenido'];
+  $nombre = $_SESSION['usuario']['codigo_depto'].rand(0001,9999).'-'.date('y');
   generadorArchivos:{
-      $nombre = $_SESSION['usuario']['codigo_depto'].rand(0001,9999).'-'.date('y').'.txt';
       $ruta= "recursos/correspondencias/";
-      $rutArch = $ruta . $nombre;
+      $rutArch = $ruta . $nombre.'.txt';
       if(file_exists($rutArch)){
         goto generadorArchivos;
       }
@@ -13,9 +13,20 @@ if(isset($_POST['enviar']) && $_POST['contenido']!=false){
       fwrite($arch,$contenido);
       fclose($arch);
       }
-   }
+  if (isset($_FILES['adjunto']['size'])<=30000){
+    $rutaAdj="recursos/adjuntos";
+    $carpeta=$rutaAdj.'/'.$nombre; 
+    mkdir($carpeta, 755);
+    $ficheroSubido= $carpeta.'/'.$_FILES['adjunto']['name'];
+    if(!file_exists($ficheroSubido)){
+      move_uploaded_file($_FILES['adjunto']['tmp_name'], $ficheroSubido);
+    }
+  } 
+  echo "<script>alert('Eviado Exitosamente');</script>";
+  echo "<script>window.location='".$_GET['ruta']."';</script>";
+}
   //  mail('arlessvimare@hotmail.es','no one', 'imwatchingyou');
-
+  
 ?>
  <!-- Content Wrapper. Contains page content -->
  <div class="content-wrapper">
@@ -35,23 +46,10 @@ if(isset($_POST['enviar']) && $_POST['contenido']!=false){
     <section class="content">
       <div class="row">
         <div class="col-md-3">
-          <div>
-            <a href="mesaEntrada" class="btn btn-primary btn-block margin-bottom">Mesa de Entrada</a>       
-          </div><div>
-          <div class="btn-group  " role="group" aria-label="Basic example">
-            <button type="button" class="btn btn-default bg-red"><i class='fa fa-circle-o fa-lg'></i> Urgente</button>
-            <button type="button" class="btn btn-default bg-yellow"><i class='fa fa-circle-o fa-lg'></i> Importante</button>
-            <button type="button" class="btn btn-default bg-light-blue"><i class='fa fa-circle-o fa-lg'></i> Genérico</button>
-          </div>
-          </div><div>
-            <h3 class="form-control bg-orange form-control-lg"><i class="fa fa-shield fa-lg "></i> Autorizado &emsp;<input type="checkbox" name="autorizado" id=""> </h3>
-          </div><div>
-            <h3 class="form-control bg-navy form-control-lg"><i class="fa fa-lock fa-lg"></i> Privado &emsp;<input type="checkbox" name="privado" id=""> </h3>
-          </div>
-         </div>
-
+          <a  href="mesaEntrada" class="btn btn-primary btn-block margin-bottom">Mesa de Entrada</a>        
+       </div>
         <div class="col-md-9">
-        <form action="<?=$_GET['ruta'];?>" method="post" id="crear">
+        <form action="<?=$_GET['ruta'];?>" method="post" id="crear" enctype="multipart/form-data">
           <div class="box box-primary">
             <div class="box-header with-border">
               <h3 class="box-title">Ingresar nueva correspondencia</h3>
@@ -59,24 +57,44 @@ if(isset($_POST['enviar']) && $_POST['contenido']!=false){
             <!-- /.box-header -->
             
             <div class="box-body">
-              <div class="form-group">
-                <input class="form-control" placeholder="Para:" name="destinantario">
+              <div class="row">
+                <div class="col-md-9">                  
+                  <div class="form-group">
+                    <input class="form-control" placeholder="Para:" name="destinantario">
+                  </div>
+                  <div class="form-group">
+                    <input class="form-control" placeholder="Asunto: " name="asunto">
+                  </div>                  
+                </div>
+                <div class="col-md-3">                  
+                  <div class="form-group">
+                    <div class="form-control  bg-yellow"><i class="fa fa-shield"></i> Autorizado <input type="checkbox" class="" name="autorizado" id=""></div>
+                    <div class="form-control  bg-green"><i class="fa fa-shield"></i> Privado <input type="checkbox" class="" name="privado" id=""></div>
+                    <select class="form-control " role="group" require="required">
+                      <option class="btn btn-default text-light-blue"><i class='fa fa-circle-o'></i> Genérico</option>
+                      <option class="btn btn-default text-yellow"><i class='fa fa-circle-o '></i> Importante</option>
+                      <option class="btn btn-default text-red"><i class='fa fa-circle-o '></i> Urgente</option>
+                    </select>  
+                  </div>
+                </div>
               </div>
-              <div class="form-group">
-                <input class="form-control" placeholder="Asunto: " name="asunto">
-              </div>
+              
+              
               <div class="form-group">
                     <textarea id="contenido" name="contenido" class="form-control" style="height: 300px">
                     </textarea>
               </div>
               <div class="form-group">
                 <div class="btn btn-default btn-file">
-                  <i class="fa fa-paperclip"></i> Archivo Adjunto <?=print_r($_POST);?>
-                  <input type="file" name="attachment">
+                  <i class="fa fa-paperclip"></i> Archivo Adjunto 
+                  <input type="file" name="adjunto">
                 </div>
-                <p class="help-block">Max. 32MB</p>
+                <p class="help-block">Tamaño máximo por archivo: 32MB</p>
               </div>
             </div>
+            <div>
+            <?=print_r($_POST);print_r($_FILES)?>
+          <div>
             <!-- /.box-body -->
             <div class="box-footer">
               <div class="pull-right">

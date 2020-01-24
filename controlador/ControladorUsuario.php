@@ -72,12 +72,11 @@
         {               
             $con = new Conexion();
             $sentencia="SELECT
-
                         concat(per.nombre_persona,' ',per.apellido_persona) as nombre ,
                         per.correo_electronico as correo,
                         rol.nombre_rol as puesto,
                         dep.id_departamento as codigo_depto,
-                        concat(dep.nombre_departamento,'/', dep.nombre_division)as departamento,
+                        concat(dep.nombre_departamento,'-', dep.nombre_division)as departamento,
                         em.ultimo_login as ultimaSesion                                                
                         FROM    corresp_persona as per 
                         LEFT JOIN corresp_empleado as em ON  em.id_persona_empleado= per.id_persona

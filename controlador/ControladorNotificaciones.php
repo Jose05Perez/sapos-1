@@ -3,18 +3,21 @@
 
 class Cabezote{
         private $des;
+        private $meId;//mesa entrada id
         function  __construct()
         {
             $this->des = new Conexion();
+            $this->meId = new MesaEntrada();
         } 
         function notificaciones()
         {  
              //================================================================================================================================================
             //------------------------------------------------------reducir tamaño de codigo PENDIENTE--------------------------------------------------------DESPARCGHE POR SESSION ['ID']
             //================================================================================================================================================
-            $i=new MesaEntrada();
-            $id=1;//$i->id();
-            $arg=array(':id'=>$id);            
+            
+            $id=$this->meId->id();
+            $arg=array(':id'=>$id);     
+            //------------------------------------------------------carga de id       
             $sentencia="SELECT COUNT(*) internos FROM corresp_correspondencia as cor 
             JOIN corresp_persona as per ON (cor.id_persona_emisor= per.id_persona)
             WHERE cor.id_persona_receptor= :id AND cor.estado!='el'AND cor.estado!='re' AND per.status_persona!= '4'" ; 

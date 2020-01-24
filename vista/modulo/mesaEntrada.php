@@ -80,26 +80,22 @@
               <li>
                 <a href="mesaEntrada_t" >
                   <i class="fa fa-inbox fa-2x text-black"></i>Todos 
-                  <small>(correspondencia recibida)</small>                
-                  <span class="label label-default pull-right">
-                    <?=$var['pendientes']+$var['pgestion']>0?$var['pendientes']+$var['pgestion']:'';?>
-                  </span>
+                  <small>(correspondencia recibida)</small>  
+                    <?php 
+                    $todos = $var['pendientes']+$var['pgestion'];
+                    if($todos>0){echo '<span class="label label-default pull-right">'.$todos.'</span>';}?>
                 </a>
               </li>
               <li>
                 <a href="mesaEntrada_in">
                   <i class="fa fa-university fa-lg text-green"></i>Internos
-                  <span class="label label-success pull-right">
-                    <?=$var['internos'] > 0 ? $var['internos']:'';?>
-                  </span>
+                    <?=$var['internos'] > 0 ? '<span class="label label-success pull-right">'. $var['internos'].'</span>':'';?>
                 </a>
               </li>
               <li>
                 <a href="mesaEntrada_ex">
                 <i class="fa fa-globe fa-lg text-yellow"></i>Externos
-                <span class="label label-warning pull-right">
-                  <?=$var['externos'] > 0 ? $var['externos'] : '';?>
-                </span>
+                  <?=$var['externos'] > 0 ? '<span class="label label-warning pull-right">'. $var['externos'].'</span>' : '';?>
                 </a>
               </li>
               <li>

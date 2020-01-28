@@ -69,7 +69,7 @@
                 "jointablas"=> "corresp_correspondencia AS cor JOIN corresp_persona AS per ON (cor.id_persona_$ncol=per.id_persona)"
              );            
             $sentencia= "SELECT ".implode(", " , $tablaprep['campos'])." FROM ". $tablaprep['jointablas'].
-                        " WHERE ".$filtro." ORDER BY cor.fecha_emision DESC"; 
+                        " WHERE ".$filtro." ORDER BY cor.estado,cor.fecha_emision DESC"; 
             $arg=array(':id'=> $id); 
             $resultado=$this->des->consultaSel($sentencia,$arg);
             return $resultado;
@@ -174,7 +174,7 @@
                 $_SESSION['idc']=$idc;
                 $display.= '</tbody>';$estado=1;
             }else{
-                $display.= '<br><h3>&emsp;&emsp;Actualmente no tiene correspondencia de esta categoría y/o caracter</h3>';
+                $display.= '<br><h3>&emsp;&emsp;Actualmente no tiene correspondencia en este renglón </h3>';
                 $estado=0;
             }
             $respuesta = array($display,$estado);

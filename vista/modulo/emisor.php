@@ -1,18 +1,24 @@
 <?php
-   
+     
 if(isset($_POST['enviar']) && $_POST['contenido']!==false){      
+  $adjunto="";
+  $priv=isset($_POST["privado"])?1:0;
+  $auto=isset($_POST["autorizado"])?1:0;
+  $cont=isset($_POST["contenido"])?$_POST["contenido"]:'';   
+  
+  $arr=array();
   $contenido =$_POST['contenido'];
   $nombre = $_SESSION['usuario']['codigo_depto'].rand(0001,9999).'-'.date('y');
   generadorArchivos:{
-      $ruta= "recursos/correspondencias/";
-      $rutArch = $ruta . $nombre.'.txt';
-      if(file_exists($rutArch)){
-        goto generadorArchivos;
-      }
-      $arch = fopen($rutArch,"w") or die();
-      fwrite($arch,$contenido);
-      fclose($arch);
-      }
+    $ruta= "recursos/correspondencias/";
+    $rutArch = $ruta . $nombre.'.txt';
+    if(file_exists($rutArch)){
+      goto generadorArchivos;
+    }
+    $arch = fopen($rutArch,"w") or die();
+    fwrite($arch,$contenido);
+    fclose($arch);
+  }
   if (isset($_FILES['adjunto']['size'])<=30000){
     $rutaAdj="recursos/adjuntos";
     $carpeta=$rutaAdj.'/'.$nombre; 
@@ -20,12 +26,24 @@ if(isset($_POST['enviar']) && $_POST['contenido']!==false){
     $ficheroSubido= $carpeta.'/'.$_FILES['adjunto']['name'];
     if(!file_exists($ficheroSubido)){
       move_uploaded_file($_FILES['adjunto']['tmp_name'], $ficheroSubido);
+      $adjunto = $ficheroSubido;
     }
-  } 
-  echo "<script>alert('Eviado Exitosamente');</script>";
-  echo "<script>window.location='".$_GET['ruta']."';</script>";
+  } else{echo "<script>alert('archivo con mucho espacio.');</script>";}
+  //echo "<script>alert('Eviado Exitosamente');</script>";
+  //echo "<script>window.location='".$_GET['ruta']."';</script>";
+  
+  $datos= array(
+    "destinatario" =>$_POST["destinantario"],
+    "asunto"=> $_POST["asunto"],
+    "caracter"=> $_POST["caracter"],
+    "contenido"=>$cont,
+    "autorizado"=> $auto,
+    "privado"=> $priv,
+    "adjunto"=> $adjunto
+  );
+  $insertado = new Ingreso();
+  $insertado->ingresoCorresp($datos);
 }
-  //  mail('arlessvimare@hotmail.es','no one', 'imwatchingyou');
   
 ?>
  <!-- Content Wrapper. Contains page content -->
@@ -60,20 +78,20 @@ if(isset($_POST['enviar']) && $_POST['contenido']!==false){
               <div class="row">
                 <div class="col-md-9">                  
                   <div class="form-group">
-                    <input class="form-control" placeholder="Para:" name="destinantario">
+                    <input type="email" required class="form-control" placeholder="Para:" name="destinantario">
                   </div>
                   <div class="form-group">
-                    <input class="form-control" placeholder="Asunto: " name="asunto">
+                    <input type="text" required class="form-control" placeholder="Asunto: " name="asunto">
                   </div>                  
                 </div>
                 <div class="col-md-3">                  
                   <div class="form-group">
                     <div class="form-control  bg-yellow"><i class="fa fa-shield"></i> Autorizado <input type="checkbox" class="" name="autorizado" id=""></div>
                     <div class="form-control  bg-green"><i class="fa fa-shield"></i> Privado <input type="checkbox" class="" name="privado" id=""></div>
-                    <select class="form-control " role="group" require="required">
-                      <option class="btn btn-default text-light-blue"><i class='fa fa-circle-o'></i> Genérico</option>
-                      <option class="btn btn-default text-yellow"><i class='fa fa-circle-o '></i> Importante</option>
-                      <option class="btn btn-default text-red"><i class='fa fa-circle-o '></i> Urgente</option>
+                    <select class="form-control " role="group" name="caracter">
+                      <option class="btn btn-default text-light-blue" value="ge"><i class='fa fa-circle-o'></i> Genérico</option>
+                      <option class="btn btn-default text-yellow" value="im"><i class='fa fa-circle-o '></i> Importante</option>
+                      <option class="btn btn-default text-red" value="ur"><i class='fa fa-circle-o '></i> Urgente</option>
                     </select>  
                   </div>
                 </div>
@@ -98,7 +116,7 @@ if(isset($_POST['enviar']) && $_POST['contenido']!==false){
             <!-- /.box-body -->
             <div class="box-footer">
               <div class="pull-right">
-                <button type="submit" class="btn btn-default" id="guardar" name="guardar" form="crear" ><i class="fa fa-pencil"></i> Guardar</button>
+                <!-- <button type="submit" class="btn btn-default" id="guardar" name="guardar" form="crear" ><i class="fa fa-pencil"></i> Guardar</button> -->
                 <button type="submit" class="btn btn-primary" id="enviar" name="enviar" form="crear" onclick="conf()" ><i class="fa fa-envelope-o"></i> Enviar</button>
               </div>
               <button type="reset" class="btn btn-default" name="borrar" form="crear"><i class="fa fa-times"></i> Borrar</button>

@@ -19,12 +19,18 @@
         <!-- /.box-header -->
         <div class="box-body">
           <div class="row">
-            <div class="col-md-6">
+            <div class="col-md-6"><?=var_dump($_POST);?>
               <div class="form-group">
                 <label for="name">Nombre:</label>
               <div class="input-group">
                 <span class="input-group-addon"><i class="fa fa-user"></i></span>
-                <input type="text" form="validacion" name="name" class="form-control" placeholder="Nombre" pattern="[A-Za-z \s]+" required>
+                <input type="text" form="validacion" name="nombre" class="form-control" placeholder="Nombre" pattern="[A-Za-z \s]+" required>
+              </div>
+              <br>
+              <label for="lastname">Apellido:</label>
+              <div class="input-group">
+                <span class="input-group-addon"><i class="fa fa-users"></i></span>
+                  <input type="text" form="validacion" name="apellido" class="form-control" placeholder="Apellido" pattern="[A-Za-z \s]+" required>
               </div>
               <br>
               <!-- Sub Columna -->
@@ -33,7 +39,7 @@
                   <label for="date">Fecha de Nacimiento:</label>
                   <div class="input-group">
                   <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
-                    <input type="date" form="validacion" name="date" class="form-control" required>
+                    <input type="date" form="validacion" name="fechaNacimiento" class="form-control" required>
                 </div>
               <br>
 
@@ -42,10 +48,10 @@
                   <label for="sex">Sexo:</label>
                   <div class="input-group">
                   <span class="input-group-addon"><i class="fa fa-venus-mars"></i></span>
-                    <select type="text" form="validacion" name="sex" class="form-control" required>
+                    <select type="text" form="validacion" name="sexo" class="form-control" required>
                     <option value="" selected="selected">Seleccionar Sexo</option>
-                  <option value="1">Hombre</option>
-                  <option value="2">Mujer</option>
+                  <option value="m">Hombre</option>
+                  <option value="f">Mujer</option>
                     </select>
                 </div>
               <br>
@@ -60,7 +66,7 @@
                 <label for="id">Cedula:</label>
                   <div class="input-group">
                   <span class="input-group-addon"><i class="fa fa-id-card"></i></span>
-                    <input type="text" form="validacion" name="id" class="form-control" placeholder="000-0000000-0" pattern="[0-9-]+{13}" required>
+                    <input type="text" form="validacion" name="cedula" class="form-control" placeholder="000-0000000-0" pattern="[0-9-]+{13}" required>
                 </div>
               <br>
 
@@ -69,33 +75,27 @@
                   <label for="phone">Telefono:</label>
                     <div class="input-group">
                     <span class="input-group-addon"><i class="fa fa-phone"></i></span>
-                      <input type="text" form="validacion" name="phone" class="form-control" placeholder="(000)-000-0000" pattern="[0-9]{10}" required>
+                      <input type="text" form="validacion" name="telefono[]" class="form-control" placeholder="(000)-000-0000" pattern="[0-9]{10}" required>
                   </div>
                 <br>
                   </div>
-              </div>
-               <label for="mail">E-mail:</label>
-                <div class="input-group">
-                <span class="input-group-addon"><i class="fa fa-envelope"></i></span>
-                  <input type="email" form="validacion" name="mail"class="form-control" placeholder="E-mail" required>
-                </div>
-              <br>
+              </div>              
               </div>
               <!-- /.form-group -->
             </div>
             <!-- /.col -->
             <!-- Segunda Columna -->
-            <div class="col-md-6">
-              <label for="lastname">Apellido:</label>
-              <div class="input-group">
-                <span class="input-group-addon"><i class="fa fa-users"></i></span>
-                  <input type="text" form="validacion" name="lastname" class="form-control" placeholder="Apellido" pattern="[A-Za-z \s]+" required>
-                </div>
-              <br>
+            <div class="col-md-6">   
+              <label for="mail">E-mail:</label>
+                  <div class="input-group">
+                  <span class="input-group-addon"><i class="fa fa-envelope"></i></span>
+                    <input type="email" form="validacion" name="email" class="form-control" placeholder="E-mail" required>
+                  </div>
+                <br>           
               <label for="address">Direccion:</label>
                 <div class="input-group">
                 <span class="input-group-addon"><i class="fa fa-map-marker"></i></span>
-                  <input type="text" form="validacion"  name="address"class="form-control" placeholder="Direccion" required>
+                  <input type="text" form="validacion"  name="direccion" class="form-control" placeholder="Direccion" required>
                 </div>
               <br>
               <!--Sub Columna-->
@@ -104,7 +104,7 @@
                 <label for="phone2">Celular:</label>
                   <div class="input-group">
                   <span class="input-group-addon"><i class="fa fa-phone"></i></span>
-                    <input type="text" form="validacion" name="phone2" class="form-control" placeholder="(000)-000-0000" pattern="[0-9]{10}" required >
+                    <input type="text" form="validacion" name="telefono[]" class="form-control" placeholder="(000)-000-0000" pattern="[0-9]{10}" required >
                 </div>
               <br>
                   </div>
@@ -112,7 +112,7 @@
                   <label for="institution">Institucion:</label>
                     <div class="input-group">
                     <span class="input-group-addon"><i class="fa fa-university"></i></span>
-                      <select type="text"  form="validacion" name="institution" class="form-control" required>
+                      <select type="text"  form="validacion" name="institucion" class="form-control" required>
                       <option value="" selected="selected"> Seleccionar Institucion</option>
                       <option value="1">Ejemplo1</option>
                     </select>
@@ -142,15 +142,16 @@
 </div>
 <?php
         if(isset($_POST['submit'])){
-            $ola = new CrearEmisor();
-            if($ola->valida_cedula($_POST['id'])==0){
-              echo "<script>alert('Digite una cedula valida');</script>";
+           // $ola = new CrearEmisor();
+            // if($ola->valida_cedula($_POST['id'])==0){
+            //   echo "<script>alert('Digite una cedula valida');</script>";
 
-            }else{
-                $ola2 = new InsertarDatos();
-                $ola2 -> Ingreso();
+            // }else{
+                $ola2 = new Ingreso();
+                $ola2 -> ingresoEmisor();
                 echo "<script>alert('Se ingresaron los datos correctamente');</script>";
             }
             $ola->valida_cedula($_POST['id']);
-        }
+            var_dump($_POST);
+        
 ?>

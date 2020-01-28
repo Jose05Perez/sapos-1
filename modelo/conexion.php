@@ -38,11 +38,11 @@ class Conexion{
         }
         return $resultado;
     }
-    function consultasIns($tabla,$valores = array())
+    function consultaIns($tabla,$valores = array())
     {
         try{
             $inst=$this->dbc;
-            $sentencia ="INSERT INTO $tabla Values ".implode(",",$valores);
+            $sentencia ="INSERT INTO $tabla(".implode(", ",array_keys($valores)).") Values ".implode(",",array_values($valores));
             $query= $ins->prepare($sentencia);
             $query->execute();
         }catch(PDOException $e){

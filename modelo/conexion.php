@@ -39,12 +39,16 @@ class Conexion{
         return $resultado;
     }
     function consultaIns($tabla,$valores = array())
-    {
+    {  
         try{
             $inst=$this->dbc;
-            $sentencia ="INSERT INTO $tabla(".implode(", ",array_keys($valores)).") Values ".implode(",",array_values($valores));
+            $sentencia ="INSERT INTO `$tabla` (".implode(", ",array_keys($valores)).") Values (".implode(", :",array_keys($valores)).")";
+            
             $query= $ins->prepare($sentencia);
-            $query->execute();
+            foreach ($valores as $k => $v) {
+                $query->bindParam(':'.$k, $v);
+            }
+            $query->execute($datos);
         }catch(PDOException $e){
             echo "<script>alert('ingreso fallido');</script>";
         }
@@ -60,7 +64,17 @@ class Conexion{
             $query->execute();
 
         }catch(PDOException $e){
-            echo "<script>alert('proceso fallido ');</script>";            
+            echo '<script>alert("proceso fallido ");</script>';            
         }
+    }
+    function consultaCount($sentencia)
+    {
+        try{        
+            $q=$this->dbc->query($sentencia);
+            }catch(PDOException $e){;
+                //echo "<script>alert('error de consulta');</script>";  
+               
+            }
+            var_dump($q);
     }
   } 

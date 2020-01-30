@@ -64,7 +64,7 @@
             $filtro .=" AND cor.id_persona_$cond= :id";
             $tablaprep=array(
                 "campos"    => array("cor.id_correspondencia", "cor.caracter", "per.status_persona", "UPPER(CONCAT(per.nombre_persona,' ',per.apellido_persona)) AS $ncol",
-                                    "cor.asunto", "cor.descripcion", "cor.fecha_emision","cor.estado", "cor.autorizado", 
+                                    "cor.asunto", "cor.codigo_correspondencia", "cor.fecha_emision","cor.estado", "cor.autorizado", 
                                     "cor.privado"),
                 "jointablas"=> "corresp_correspondencia AS cor JOIN corresp_persona AS per ON (cor.id_persona_$ncol=per.id_persona)"
              );            
@@ -158,7 +158,7 @@
                         </td>
                         <td class="mailbox-name">'.$er.'</td>
                         <td class="mailbox-subject">
-                            <a href="correspondencia_'.$ind.'"><b>'.$kl['asunto'].'</b> '.$kl['descripcion'].'</a>
+                            <a href="correspondencia_'.$ind.'"><b>'.$kl['asunto'].'</b></a>
                         </td>
                         <td class="mailbox-date">'.$kl['fecha_emision'].'</td>
                         <td>
@@ -244,7 +244,7 @@
                 c.id_correspondencia,
                 CONCAT(p.nombre_persona,' ',p.apellido_persona) AS nombre ,
                 p.correo_electronico, p.status_persona,
-                c.asunto, c.descripcion, c.fecha_emision,c.estado, 
+                c.asunto, c.codigo_correspondencia, c.fecha_emision,c.estado, 
                 c.autorizado,c.privado, c.contenido, c.fecha_emision, c.fecha_recibido, c.caracter, c.adjuntos
               FROM corresp_correspondencia c join corresp_persona p on (p.id_persona=c.id_persona_$env) where  id_correspondencia= :idc";
             $arg= array('idc'=>$idc);

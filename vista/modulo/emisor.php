@@ -1,48 +1,26 @@
 <?php
      
 if(isset($_POST['enviar']) && $_POST['contenido']!==false){      
-  $adjunto="";
+  $adj=isset($_FILES['adjuntos'])?$_FILES['adjuntos']:'';
   $priv=isset($_POST["privado"])?1:0;
   $auto=isset($_POST["autorizado"])?1:0;
   $cont=isset($_POST["contenido"])?$_POST["contenido"]:'';   
   
-  $arr=array();
-  $contenido =$_POST['contenido'];
-  $nombre = $_SESSION['usuario']['codigo_depto'].rand(0001,9999).'-'.date('y');
-  generadorArchivos:{
-    $ruta= "recursos/correspondencias/";
-    $rutArch = $ruta . $nombre.'.txt';
-    if(file_exists($rutArch)){
-      goto generadorArchivos;
-    }
-    $arch = fopen($rutArch,"w") or die();
-    fwrite($arch,$contenido);
-    fclose($arch);
+  if($cont!='' && $adj!=''){
+    $datos= array(
+      "destinatario" =>$_POST["destinantario"],
+      "asunto"=> $_POST["asunto"],
+      "caracter"=> $_POST["caracter"],
+      "autorizado"=> $auto,
+      "privado"=> $priv,
+      "contenido"=>$cont,
+      "adjuntos"=> $_FILES['adjuntos']
+    );
+    $insertado = new Ingreso();
+    $insertado->ingresoCorresp($datos);
+  }else{
+    echo '<script>alert("debe añadir correspondenciA")</script>';
   }
-  if (isset($_FILES['adjunto']['size'])<=30000){
-    $rutaAdj="recursos/adjuntos";
-    $carpeta=$rutaAdj.'/'.$nombre; 
-    mkdir($carpeta, 755);
-    $ficheroSubido= $carpeta.'/'.$_FILES['adjunto']['name'];
-    if(!file_exists($ficheroSubido)){
-      move_uploaded_file($_FILES['adjunto']['tmp_name'], $ficheroSubido);
-      $adjunto = $ficheroSubido;
-    }
-  } else{echo "<script>alert('archivo con mucho espacio.');</script>";}
-  //echo "<script>alert('Eviado Exitosamente');</script>";
-  //echo "<script>window.location='".$_GET['ruta']."';</script>";
-  
-  $datos= array(
-    "destinatario" =>$_POST["destinantario"],
-    "asunto"=> $_POST["asunto"],
-    "caracter"=> $_POST["caracter"],
-    "contenido"=>$cont,
-    "autorizado"=> $auto,
-    "privado"=> $priv,
-    "adjunto"=> $adjunto
-  );
-  $insertado = new Ingreso();
-  $insertado->ingresoCorresp($datos);
 }
   
 ?>
@@ -105,7 +83,7 @@ if(isset($_POST['enviar']) && $_POST['contenido']!==false){
               <div class="form-group">
                 <div class="btn btn-default btn-file">
                   <i class="fa fa-paperclip"></i> Archivo Adjunto 
-                  <input type="file" name="adjunto">
+                  <input type="file" name="adjuntos[]" multiple="multiple">
                 </div>
                 <p class="help-block">Tamaño máximo por archivo: 32MB</p>
               </div>

@@ -31,7 +31,7 @@
             if(isset($_POST['seleccionado'])){
         $btn->eliminar($_POST['seleccionado'],$_SESSION['idc']); 
       }else{    
-        echo'<script type="text/javascript">alert("seleccione la correspondencia");</script>';              
+        echo'<script type="text/javascript">alert("seleccione la correspondencia que desea eliminar");</script>';              
       }   
       echo $rf; 
         break;

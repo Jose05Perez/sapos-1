@@ -38,21 +38,28 @@ class Conexion{
         }
         return $resultado;
     }
-    function consultaIns($tabla,$valores = array())
+    function consultaIns($tabla,$valores = array(),$param=array())
     {  
         try{
-            $inst=$this->dbc;
-            $sentencia ="INSERT INTO `$tabla` (".implode(", ",array_keys($valores)).") Values (".implode(", :",array_keys($valores)).")";
-            
-            $query= $ins->prepare($sentencia);
-            foreach ($valores as $k => $v) {
-                $query->bindParam(':'.$k, $v);
+            foreach ($valores as $k => $v) {                
+                $transf[":{$k}"] = $v;
             }
-            $query->execute($datos);
+            $parametros=array();
+            $cols= implode(', ', array_keys($valores)); $vals =implode(', ',array_keys($transf)) ;
+            $cadena ="INSERT INTO $tabla ({$cols})  VALUES ({$vals})";
+            $sentencia = $this->dbc->prepare($cadena);
+            foreach ($transf as $k => $val) {
+                if($val[1] == 0){
+                    $sentencia->bindParam($k,$val[0],PDO::PARAM_STR);
+                }else{
+                    $sentencia->bindParam($k,$val[0],PDO::PARAM_INT);
+                }
+            }
+            $sentencia->execute();
         }catch(PDOException $e){
-            echo "<script>alert('ingreso fallido');</script>";
+            $n = $e->getMessage();
+            echo "<script>alert('ingreso fallido:{$n});</script>";
         }
-        return $resultado;
     }
     function consultaUpd($tabla,$paramSet,$paramWhr=array())
     {
@@ -67,14 +74,5 @@ class Conexion{
             echo '<script>alert("proceso fallido ");</script>';            
         }
     }
-    function consultaCount($sentencia)
-    {
-        try{        
-            $q=$this->dbc->query($sentencia);
-            }catch(PDOException $e){;
-                //echo "<script>alert('error de consulta');</script>";  
-               
-            }
-            var_dump($q);
-    }
+  
   } 

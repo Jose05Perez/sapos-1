@@ -8,16 +8,16 @@ if(isset($_POST['enviar']) && $_POST['contenido']!==false){
   
   if($cont!='' && $adj!=''){
     $datos= array(
-      "destinatario" =>$_POST["destinantario"],
+      "destinatario" =>$_POST["destinatario"],
       "asunto"=> $_POST["asunto"],
+      "contenido"=>$cont,
       "caracter"=> $_POST["caracter"],
       "autorizado"=> $auto,
       "privado"=> $priv,
-      "contenido"=>$cont,
       "adjuntos"=> $_FILES['adjuntos']
     );
-    $insertado = new Ingreso();
-    $insertado->ingresoCorresp($datos);
+    $insertado = new GeneradorCorrespondencia();
+    $insertado->ingresarCorresp($datos);
   }else{
     echo '<script>alert("debe añadir correspondenciA")</script>';
   }
@@ -56,7 +56,7 @@ if(isset($_POST['enviar']) && $_POST['contenido']!==false){
               <div class="row">
                 <div class="col-md-9">                  
                   <div class="form-group">
-                    <input type="email" required class="form-control" placeholder="Para:" name="destinantario">
+                    <input type="email" required class="form-control" placeholder="Para:" name="destinatario">
                   </div>
                   <div class="form-group">
                     <input type="text" required class="form-control" placeholder="Asunto: " name="asunto">

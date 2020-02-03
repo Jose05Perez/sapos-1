@@ -182,53 +182,36 @@
               </b> '.$fechaR.'&emsp;';?></span>
             </div>
             <!-- /.box-body -->
-            <?php if(!is_null($datos['adjuntos'])){;?>
+            <?php if(!is_null($datos['adjuntos'])){;
+              $adj = explode("#" , $datos['adjuntos']); $nadj=count($adj);?>
               <div class="box-footer">
-                <ul class="mailbox-attachments clearfix">              
-                  <li>
+                <ul class="mailbox-attachments clearfix">    
+                <?php for($i=1;$i<$nadj;$i++){
+                  $ext=split(".",$adj[$i]);
+                  
+                  switch ($variable) {
+                    case 'value':
+                      # code...
+                      break;
+                    
+                    default:
+                      # code...
+                      break;
+                  }
+                  
+                  ?>          
+                  <li>                    
                     <span class="mailbox-attachment-icon"><i class="fa fa-file-pdf-o"></i></span>
 
                     <div class="mailbox-attachment-info">
-                      <a href="#" class="mailbox-attachment-name"><i class="fa fa-paperclip"></i> Sep2014-report.pdf</a>
+                      <a href="#" class="mailbox-attachment-name"><i class="fa fa-paperclip"></i><?=$adj[$i];?></a>
                           <span class="mailbox-attachment-size">
-                            1,245 KB
+                            
                             <a href="#" class="btn btn-default btn-xs pull-right"><i class="fa fa-cloud-download"></i></a>
                           </span>
                     </div>
                   </li>
-                  <li>
-                    <span class="mailbox-attachment-icon"><i class="fa fa-file-word-o"></i></span>
-
-                    <div class="mailbox-attachment-info">
-                      <a href="#" class="mailbox-attachment-name"><i class="fa fa-paperclip"></i> App Description.docx</a>
-                          <span class="mailbox-attachment-size">
-                            1,245 KB
-                            <a href="#" class="btn btn-default btn-xs pull-right"><i class="fa fa-cloud-download"></i></a>
-                          </span>
-                    </div>
-                  </li>
-                  <li>
-                    <span class="mailbox-attachment-icon has-img"><img src="../../dist/img/photo1.png" alt="Attachment"></span>
-
-                    <div class="mailbox-attachment-info">
-                      <a href="#" class="mailbox-attachment-name"><i class="fa fa-camera"></i> photo1.png</a>
-                          <span class="mailbox-attachment-size">
-                            2.67 MB
-                            <a href="#" class="btn btn-default btn-xs pull-right"><i class="fa fa-cloud-download"></i></a>
-                          </span>
-                    </div>
-                  </li>
-                  <li>
-                    <span class="mailbox-attachment-icon has-img"><img src="../../dist/img/photo2.png" alt="Attachment"></span>
-
-                    <div class="mailbox-attachment-info">
-                      <a href="#" class="mailbox-attachment-name"><i class="fa fa-camera"></i> photo2.png</a>
-                          <span class="mailbox-attachment-size">
-                            1.9 MB
-                            <a href="#" class="btn btn-default btn-xs pull-right"><i class="fa fa-cloud-download"></i></a>
-                          </span>
-                    </div>
-                  </li>
+                <?php } ?>
                 </ul>
               </div>
             <?php }?>

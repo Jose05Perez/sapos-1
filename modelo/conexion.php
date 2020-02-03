@@ -17,7 +17,7 @@ class Conexion{
     {
     $con = NULL;
         try{
-            $con = new PDO("mysql:host=localhost;dbname=pruebasconexion","usr", "");
+            $con = new PDO("mysql:host=localhost;dbname=pruebasconexion","root", "");
             $con->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
             $con->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_ASSOC);
             } catch(PDOException $e){
@@ -38,27 +38,20 @@ class Conexion{
         }
         return $resultado;
     }
-    function consultaIns($tabla,$valores = array(),$param=array())
+    function consultaIns($tabla,$valores = array())
     {  
         try{
-            foreach ($valores as $k => $v) {                
-                $transf[":{$k}"] = $v;
+            foreach ($valores as $k => $v) {
+                $enna [":{$k}"]=$v;
+                $list[]="`{$k}`"; 
             }
-            $parametros=array();
-            $cols= implode(', ', array_keys($valores)); $vals =implode(', ',array_keys($transf)) ;
-            $cadena ="INSERT INTO $tabla ({$cols})  VALUES ({$vals})";
-            $sentencia = $this->dbc->prepare($cadena);
-            foreach ($transf as $k => $val) {
-                if($val[1] == 0){
-                    $sentencia->bindParam($k,$val[0],PDO::PARAM_STR);
-                }else{
-                    $sentencia->bindParam($k,$val[0],PDO::PARAM_INT);
-                }
-            }
-            $sentencia->execute();
-        }catch(PDOException $e){
+            $tcol= implode(', ', $list); $vals =implode(', ',array_keys($enna)) ;
+            $cadena ="INSERT INTO `{$tabla}` ({$tcol})  VALUES ({$vals})";
+            $query = $this->dbc->prepare($cadena);       
+            $query->execute($enna);
+         }catch(PDOException $e){
             $n = $e->getMessage();
-            echo "<script>alert('ingreso fallido:{$n});</script>";
+            echo '<script>alert("'.$n.'")</script>';
         }
     }
     function consultaUpd($tabla,$paramSet,$paramWhr=array())

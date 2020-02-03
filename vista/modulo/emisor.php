@@ -1,28 +1,6 @@
 <?php
-     
-if(isset($_POST['enviar']) && $_POST['contenido']!==false){      
-  $adj=isset($_FILES['adjuntos'])?$_FILES['adjuntos']:'';
-  $priv=isset($_POST["privado"])?1:0;
-  $auto=isset($_POST["autorizado"])?1:0;
-  $cont=isset($_POST["contenido"])?$_POST["contenido"]:'';   
-  
-  if($cont!='' && $adj!=''){
-    $datos= array(
-      "destinatario" =>$_POST["destinatario"],
-      "asunto"=> $_POST["asunto"],
-      "contenido"=>$cont,
-      "caracter"=> $_POST["caracter"],
-      "autorizado"=> $auto,
-      "privado"=> $priv,
-      "adjuntos"=> $_FILES['adjuntos']
-    );
-    $insertado = new GeneradorCorrespondencia();
-    $insertado->ingresarCorresp($datos);
-  }else{
-    echo '<script>alert("debe añadir correspondenciA")</script>';
-  }
-}
-  
+     $verif= new GeneradorCorrespondencia();
+     $verif->corroborar();
 ?>
  <!-- Content Wrapper. Contains page content -->
  <div class="content-wrapper">
@@ -89,7 +67,6 @@ if(isset($_POST['enviar']) && $_POST['contenido']!==false){
               </div>
             </div>
             <div>
-            <?=print_r($_POST);print_r($_FILES)?>
           <div>
             <!-- /.box-body -->
             <div class="box-footer">

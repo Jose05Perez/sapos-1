@@ -11,61 +11,94 @@ class GeneradorCorrespondencia {
     
     function genIdCorresp(){
         $sent = "SELECT COUNT(*) AS n FROM corresp_correspondencia";
-        return $this->des->consultaSel($sent)[0]['n'];
+        return $this->des->consultaSel($sent)[0]['n']+1;
     }
     function genCodCorresp(){
-        $CodigoD= $_SESSION['usuario']['codigo_depto'];
+        $CodigoD= $_SESSION['usuario']['codigo_depto'];$anio=date('Y');
         $sent ="SELECT COUNT(*) AS nc FROM corresp_correspondencia as c 
-        JOIN corresp_empleado  as e ON c.id_persona_emisor = e.id_persona_empleado  
-        WHERE  e.id_departamento_empleado = ':depto' AND c.fecha_emision = ':fecha'";
-        $depto =array(':depto'=>$CodigoD,':fecha'=>date('Y'));
+        JOIN corresp_empleado as e ON c.id_persona_emisor = e.id_persona_empleado  
+        WHERE  e.id_departamento_empleado = :depto AND YEAR(c.fecha_emision)= :fecha ";
+        $depto =array(':depto'=>$CodigoD,':fecha'=>$anio);        
         $numeracion = $this->des->consultaSel($sent,$depto)[0]['nc']+1; 
-        return "{$CodigoD}-{$numeracion}-".date('Y');
+        return "{$CodigoD}-{$numeracion}-{$anio}";
     }
-    function idBusquedaxCorreo($correo){ 
-        $correo='amatos@bnphu.gob.do';       
-        $sent= "SELECT id_persona AS id FROM corresp_persona WHERE correo_electronico = '{$correo}' ";
+    function idBusquedaxCorreo($correo){  
+        $sent= "SELECT id_persona AS id FROM corresp_persona WHERE correo_electronico = '{$correo}'";
         $f= $this->des->consultaSel($sent)[0]['id'];           
         return $f;
     }
+
     function regContenido($contenido){
-        if ( $contenido!=""){
-                $ruta= "recursos/correspondencias/";
-                $rutArch = $ruta . $this->codigo_correspondencia.'.txt';
-                $arch = fopen($rutArch,"w") or die("ya existe el archivo");
-                fwrite($arch,$contenido);
-                fclose($arch);
-        }
-        return $this->codigo_correspondencia;
+        $ruta= "recursos/correspondencias/";
+        $nomArch = $this->codigo_correspondencia.'.txt';
+        $arch = fopen($ruta.$nomArch,"w") or die("ya existe el archivo");
+        fwrite($arch,$contenido);
+        fclose($arch);
+        return $nomArch;
     }
+
     function regAdjCorresp($adjuntos =array()){
-        $carpeta ="recursos/adjuntos/".$this->codigo_correspondencia;$nombreArchivos = "";                   
-            for($i=0;$i>count($adjuntos);$i++){                
-                if ($adjuntos['error'][$i]==0 && !file_exists($ficheroSubido)){ 
-                    mkdir($carpeta,755)or die(); 
-                    $archSubido= $carpeta.'/'.$adjuntos['name'][$i];
-                    move_uploaded_file($adjuntos['tmp_name'][$i], $archSubido);  
-                    $nombreArchivos += " #".$adjuntos['name'][$i];
-                }
-            }   
+            $carpeta ="recursos/adjuntos/".$this->codigo_correspondencia;$nombreArchivos = "";                   
+            mkdir($carpeta,755)or die(); 
+            $po= count($adjuntos['error']);
+            for($i=0;$i<$po;$i++){     
+                    $fs = $carpeta."/".$adjuntos['name'][$i]; 
+                    move_uploaded_file($adjuntos['tmp_name'][$i],$fs);
+                    $nombreArchivos .= "#".$adjuntos['name'][$i];
+                }                  
           return $nombreArchivos;
     }
     function ingresarCorresp($co=array()){
         $ingreso=array(
-        'id_correspondencia'=> array( 'corresp'.$this->genIdCorresp(),0),
-        'id_persona_emisor'=> array($this->idBusquedaxCorreo($_SESSION['usuario']['correo']),0),
-        'id_persona_receptor'=> array($this->idBusquedaxCorreo($co['destinatario']),0),
-        'fecha_emision'=>array(date('Y-m-d'),0),
-        'fecha_recibido'=>array('',0),
-        'asunto'=>array($co['asunto'],0),
-        'codigo_correspondencia'=>array($this->codigo_correspondencia,0),
-        'contenido'=>array($this->regContenido($co['contenido']),0),
-        'caracter'=>array($co['caracter'],0),
-        'estado'=>array('pe',0),
-        'autorizado'=>array($co['autorizado'],1),
-        'privado'=> array($co['privado'],1),
-        'adjuntos'=> array($this->regAdjCorresp($co['adjuntos']) ,0 )
+        'id_correspondencia'=> "corresp{$this->genIdCorresp()}",
+        'id_persona_emisor'=>$this->idBusquedaxCorreo($_SESSION['usuario']['correo']),
+        'id_persona_receptor'=> $this->idBusquedaxCorreo($co['destinatario']),
+        'fecha_emision'=>date('y-m-d'),
+        'asunto'=>$co['asunto'],
+        'codigo_correspondencia'=>$this->codigo_correspondencia,
+        'caracter'=>$co['caracter']       
         );
+        if(isset($co['privado'])){
+            $ingreso['privado']=$co['privado'];
+        }
+        if(isset($co['autorizado'])){
+           $ingreso['autorizado']=$co['autorizado'];
+        }
+        if(isset($co['contenido'])){
+            $ingreso['contenido']=$this->regContenido($co['contenido']);
+        }
+        if(isset($co['adjuntos'])){
+            $ingreso['adjuntos']=$this->regAdjCorresp($co['adjuntos']);
+        }
         $this->des->consultaIns('corresp_correspondencia',$ingreso);
+    }
+    function corroborar(){
+        if(isset($_POST['enviar']) && $_POST['contenido']!==false){      
+            $adj=($_FILES['adjuntos']['error'][0]==4)?NULL:$_FILES['adjuntos'];
+            $cont=$_POST["contenido"]==""?NULL:$_POST["contenido"];   
+            
+            if(!($cont==NULL && $adj==null)){
+              $datos= array(
+                "destinatario" =>$_POST["destinatario"],
+                "asunto"=> $_POST["asunto"],
+                "caracter"=> $_POST["caracter"]
+              );
+              if (isset($_POST["privado"])){
+                $datos['privado']=1;
+              }
+              if (isset($_POST["autorizado"])){
+                $datos['autorizado']=1;
+              }
+              if(!$cont==null){
+                $datos['contenido']=$cont;
+              }
+              if (!$adj==null){
+                $datos['adjuntos']=$adj;
+              }
+              $this->ingresarCorresp($datos);
+            }else{
+              echo '<script>alert("debe añadir informacion a esta correspondencia")</script>';
+            }
+          }
     }
 }

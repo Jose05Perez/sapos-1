@@ -90,17 +90,10 @@
             <div class="box-body">
               <div class="mailbox-read-info">
                 <?php 
-                  
-
-                   // $datos['caracter'] => im 
-                   //$ruta = recibido
-                  //  echo $archcontenido= date_format($f,'Y/F');
-                  // $datos['contenido'] 
-                  // $datos['autorizado'] => 1 
 
                    $autoridad=($datos['autorizado'] == 1)?  array('warning','Autorizado'):array('danger','No Autorizado'); 
+                   $acceso= ($datos['privado'] == 1 )? array('primary','privado'): array('info','publico');
                    $alcance=($datos['status_persona'] == 4)?  array('success','interno'):array('warning','externo'); 
-                   $acceso= ($datos['privado'] == 0 )? array('primary','privado'): array('info','publico');
                    // => 
                    switch ($datos['estado']) {
                      case 'pe':
@@ -119,8 +112,8 @@
                 ?>
                 <div class="pull-right"> 
                    <h4>
-                   <span class="label label-<?=$autoridad[0];?>" ><?= $autoridad[1];?></span>
                     <span class="label label-<?=$acceso[0];?>" ><?= $acceso[1];?></span>
+                   <span class="label label-<?=$autoridad[0];?>" ><?= $autoridad[1];?></span>
                     <span class="label label-<?=$alcance[0];?>" ><?= $alcance[1];?></span> 
                     <span class="label label-<?=$estado[0];?>" ><?= $estado[1];?></span>
                   </h4>
@@ -187,28 +180,28 @@
               <div class="box-footer">
                 <ul class="mailbox-attachments clearfix">    
                 <?php for($i=1;$i<$nadj;$i++){
-                  $ext=split(".",$adj[$i]);
-                  
-                  switch ($variable) {
-                    case 'value':
-                      # code...
-                      break;
-                    
-                    default:
-                      # code...
-                      break;
-                  }
-                  
+                  $extns=  array('docx','pdf','txt', 'xls', 'doc', 'odt', 'zip' , 'jpg', 'png');$extraer = explode(".",$adj[$i]);
+                  $ext=end($extraer);
+                  switch ($ext) {
+                    case 'pdf': $icoExt = 'pdf'; break;
+                    case 'xls': $icoExt = 'excel'; break;
+                    case 'zip': $icoExt = 'zip'; break;
+                    case 'docx': $icoExt = 'word'; break;
+                    case 'doc': $icoExt = 'word'; break;
+                    case 'txt': $icoExt = 'text';  break;                     
+                    case 'png': $icoExt = 'image'; break;
+                    case 'jpg': $icoExt = 'image'; break;                     
+                    default: $icoExt = ''; break;
+                  }                  
                   ?>          
                   <li>                    
-                    <span class="mailbox-attachment-icon"><i class="fa fa-file-pdf-o"></i></span>
+                    <span class="mailbox-attachment-icon"><i class="fa fa-file-<?=$icoExt?>-o"></i></span>
 
                     <div class="mailbox-attachment-info">
-                      <a href="#" class="mailbox-attachment-name"><i class="fa fa-paperclip"></i><?=$adj[$i];?></a>
-                          <span class="mailbox-attachment-size">
-                            
-                            <a href="#" class="btn btn-default btn-xs pull-right"><i class="fa fa-cloud-download"></i></a>
-                          </span>
+                      <span class="mailbox-attachment-size">
+                        <a href="#" class="btn btn-default btn-xs pull-right"><i class="fa fa-cloud-download"></i></a>
+                      </span>
+                      <a href="#" class="mailbox-attachment-name"><i class="fa fa-paperclip"></i> <?=$adj[$i];?></a>      
                     </div>
                   </li>
                 <?php } ?>

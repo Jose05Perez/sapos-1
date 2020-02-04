@@ -34,7 +34,7 @@
               <div class="row">
                 <div class="col-md-9">                  
                   <div class="form-group">
-                    <input type="email" required class="form-control" placeholder="Para:" name="destinatario">
+                    <input type="text" required class="form-control" placeholder="Para:" name="destinatario">
                   </div>
                   <div class="form-group">
                     <input type="text" required class="form-control" placeholder="Asunto: " name="asunto">

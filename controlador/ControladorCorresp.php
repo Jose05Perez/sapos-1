@@ -22,9 +22,10 @@ class GeneradorCorrespondencia {
         $numeracion = $this->des->consultaSel($sent,$depto)[0]['nc']+1; 
         return "{$CodigoD}-{$numeracion}-{$anio}";
     }
-    function idBusquedaxCorreo($correo){  
-        $sent= "SELECT id_persona AS id FROM corresp_persona WHERE correo_electronico = '{$correo}'";
-        $f= $this->des->consultaSel($sent)[0]['id'];           
+    function idBusquedaxNombre($nombre){  
+    $sent= "SELECT id_persona AS id FROM corresp_persona WHERE CONCAT(nombre_persona,' ',apellido_persona)= :nombre OR correo_electronico = :nombre";
+    $param =  array(":nombre"=>$nombre);
+        $f= $this->des->consultaSel($sent,$param)[0]['id'];
         return $f;
     }
 
@@ -51,8 +52,8 @@ class GeneradorCorrespondencia {
     function ingresarCorresp($co=array()){
         $ingreso=array(
         'id_correspondencia'=> "corresp{$this->genIdCorresp()}",
-        'id_persona_emisor'=>$this->idBusquedaxCorreo($_SESSION['usuario']['correo']),
-        'id_persona_receptor'=> $this->idBusquedaxCorreo($co['destinatario']),
+        'id_persona_emisor'=>$this->idBusquedaxNombre($_SESSION['usuario']['nombre']),
+        'id_persona_receptor'=> $this->idBusquedaxNombre($co['destinatario']),
         'fecha_emision'=>date('y-m-d'),
         'asunto'=>$co['asunto'],
         'codigo_correspondencia'=>$this->codigo_correspondencia,

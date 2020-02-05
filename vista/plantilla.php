@@ -12,7 +12,7 @@
  *  @link https://github.com/josueSerulle/correspondencia
  */
 session_start();
-
+$_SESSION['id_AD']= 1;
 ?>
 <!DOCTYPE html>
 <html lang="es">

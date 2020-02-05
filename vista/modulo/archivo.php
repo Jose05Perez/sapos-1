@@ -43,49 +43,130 @@
                   <div class="post">
                       <button  class="btn btn-danger pull-right" type="submit" name="nivelDescripcion" value="fondo" onClick="window.location='isadG'">
                       <i class="fa fa-plus"></i> Nuevo fondo</button>
-                      <h3><i class="fa fa-university "></i> Fondos</h3>
-                      <label class="label label-danger"> Cantidad total de fondos registrados: 00-var</label>
+                      <h3><i class="fa fa-university "></i> 
+                      
+                      <a data-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
+                      Fondos 
+                      </a></h3>
+                       <div class="collapse" id="collapseExample">
+                      <div class="card card-body">  </div>
+                    <div id="header">
+                      <ul class="nav">
+                            <li><a href="#">Fondo1</a></li>
+                            <li><a href="#">Fondo2</a></li>
+                            <li><a href="#">Fondo3</a></li>
+                            <li><a href="#">Fondo4</a></li>
+                      </ul>
+                      </div>
                   </div>
+                  </div>
+                      <label class="label label-danger"> Cantidad total de fondos registrados: 00-var</label>
                   <!-- /.post -->
                   <!-- Post -->
                   <div class="post">
                     <button class="btn btn-primary pull-right" type="submit" name="nivelDescripcion" value="seccion" onClick="window.location='isadG'">
                     <i class="fa fa-plus"></i> Nueva seccion</button>
-                    <h3><i class="fa fa-th "></i> Seciones</h3>
-                    <label class="label label-primary"> Cantidad total de  secciones registradas: 00-var</label>
+                    <h3><i class="fa fa-th "></i> 
+                    <a data-toggle="collapse" href="#collapseExample1" role="button" aria-expanded="false" aria-controls="collapseExample">
+                    Secciones  
+                      </a></h3>
+                       <div class="collapse" id="collapseExample1">
+                      <div class="card card-body">  </div>
+                      <div id="header">
+                      <ul class="nav">
+                            <li><a href="#">Sección1</a></li>
+                            <li><a href="#">Sección2</a></li>
+                            <li><a href="#">Sección3</a></li>
+                            <li><a href="#">Sección4</a></li>
+                      </ul>
+                      </div>
                   </div>
+                  </div>
+                    <label class="label label-primary"> Cantidad total de  secciones registradas: 00-var</label>
                   <!-- /.post -->
                   <!-- Post -->
                   <div class="post">
                       <button class="btn btn-default pull-right" type="submit" name="nivelDescripcion" value="subseccion" onClick="window.location='isadG'">
                       <i class="fa fa-plus"></i> Nueva sub-seccion</button>
-                      <h3><i class="fa fa-square"></i> Subsecciones</h3>
-                      <label class="label label-default"> Cantidad total de  subsecciones registrados: 00-var</label>
+                      <h3><i class="fa fa-square"></i> <a data-toggle="collapse" href="#collapseExample2" role="button" aria-expanded="false" aria-controls="collapseExample">
+                      Subsecciones 
+                      </a></h3>
+                       <div class="collapse" id="collapseExample2">
+                      <div class="card card-body">  </div>
+                      <div id="header">
+                      <ul class="nav">
+                            <li><a href="#">Sub-sección1</a></li>
+                            <li><a href="#">Sub-sección2</a></li>
+                            <li><a href="#">Sub-sección3</a></li>
+                            <li><a href="#">Sub-sección4</a></li>
+                      </ul>
+                      </div>
                   </div>
+                  </div>
+                      <label class="label label-default"> Cantidad total de  subsecciones registrados: 00-var</label>
                   <!-- /.post -->
                   <!-- Post -->
                   <div class="post">
                       <button  class="btn btn-warning pull-right"type="submit" name="nivelDescripcion" value="serie" onClick="window.location='isadG'">
                       <i class="fa fa-plus"></i> Nueva serie</button>
-                      <h3><i class="fa fa-archive"></i> Series</h3>
-                      <label class="label label-warning"> Cantidad total de  series registradas: 00-var</label>
+                      <h3><i class="fa fa-archive"></i> <a data-toggle="collapse" href="#collapseExample3" role="button" aria-expanded="false" aria-controls="collapseExample">
+                      Series 
+                      </a></h3>
+                       <div class="collapse" id="collapseExample3">
+                      <div class="card card-body">  </div>
+                      <div id="header">
+                      <ul class="nav">
+                            <li><a href="#">Serie1</a></li>
+                            <li><a href="#">Serie2</a></li>
+                            <li><a href="#">Serie3</a></li>
+                            <li><a href="#">Serie4</a></li>
+                      </ul>
+                      </div>
                   </div>
+                  </div>
+                      <label class="label label-warning"> Cantidad total de  series registradas: 00-var</label>
                   <!-- /.post -->
                   <!-- Post -->
                   <div class="post">
                       <button class="btn btn-info pull-right" type="submit" name="nivelDescripcion" value="expediente" onClick="window.location='isadG'">
                       <i class="fa fa-plus"></i> Nuevo expediente</button>
-                      <h3><i class="fa fa-folder"></i> Expedientes</h3>
-                      <label class="label label-info"> Cantidad total de expedientes registrados: 00-var</label>
+                      <h3><i class="fa fa-folder"></i> <a data-toggle="collapse" href="#collapseExample4" role="button" aria-expanded="false" aria-controls="collapseExample">
+                      Expediente
+                      </a></h3>
+                       <div class="collapse" id="collapseExample4">
+                      <div class="card card-body">  </div>
+                      <div id="header">
+                      <ul class="nav">
+                            <li><a href="#">Expediente1</a></li>
+                            <li><a href="#">Expediente2</a></li>
+                            <li><a href="#">Expediente3</a></li>
+                            <li><a href="#">Expediente4</a></li>
+                      </ul>
+                      </div>
                   </div>
+                  </div>
+                      <label class="label label-info"> Cantidad total de expedientes registrados: 00-var</label>
                   <!-- /.post -->
                   <!-- Post -->
                   <div class="post">
                       <button  class="btn btn-success pull-right"type="submit" name="nivelDescripcion" value="documento" onClick="window.location='isadG'">
                       <i class="fa fa-plus"></i> Nuevo documento</button>
-                      <h3><i class="fa fa-file"></i> Documentos</h3>
-                      <label class="label label-success"> Cantidad total de  documentos registrados: 00-var</label>
+                      <h3><i class="fa fa-file"></i> <a data-toggle="collapse" href="#collapseExample5" role="button" aria-expanded="false" aria-controls="collapseExample">
+                      Documentos
+                      </a></h3>
+                       <div class="collapse" id="collapseExample5">
+                      <div class="card card-body">  </div>
+                      <div id="header">
+                      <ul class="nav">
+                            <li><a href="#">Documento1</a></li>
+                            <li><a href="#">Documento2</a></li>
+                            <li><a href="#">Documento3</a></li>
+                            <li><a href="#">Documento4</a></li>
+                      </ul>
+                      </div>
                   </div>
+                  </div>
+                      <label class="label label-success"> Cantidad total de  documentos registrados: 00-var</label>
                   <!-- /.post -->
                 </form>
               </div>

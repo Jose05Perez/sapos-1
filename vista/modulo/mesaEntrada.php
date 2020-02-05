@@ -124,9 +124,9 @@
           </div>
           <div class="box-body no-padding">
             <ul class="nav nav-pills nav-stacked">
-              <li><a href="mesaEntrada_ur"><i class="fa fa-circle-o  fa-lg text-red"></i>Urgente</a></li>
-              <li><a href="mesaEntrada_im"><i class="fa fa-circle-o fa-lg text-yellow"></i> Importante</a></li>
-              <li><a href="mesaEntrada_ge"><i class="fa fa-circle-o fa-lg text-light-blue"></i> Generico</a></li>
+              <li><a href="mesaEntrada_ur"><i class="fa fa-circle  fa-lg text-red"></i>Urgente</a></li>
+              <li><a href="mesaEntrada_im"><i class="fa fa-circle fa-lg text-yellow"></i> Importante</a></li>
+              <li><a href="mesaEntrada_ge"><i class="fa fa-circle fa-lg text-light-blue"></i> Generico</a></li>
             </ul>
           </div>
           <!-- /.box-body -->

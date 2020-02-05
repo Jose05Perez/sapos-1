@@ -45,9 +45,9 @@
                     <div class="form-control  bg-yellow"><i class="fa fa-shield"></i> Autorizado <input type="checkbox" class="" name="autorizado" id=""></div>
                     <div class="form-control  bg-green"><i class="fa fa-shield"></i> Privado <input type="checkbox" class="" name="privado" id=""></div>
                     <select class="form-control " role="group" name="caracter">
-                      <option class="btn btn-default text-light-blue" value="ge"><i class='fa fa-circle-o'></i> Genérico</option>
-                      <option class="btn btn-default text-yellow" value="im"><i class='fa fa-circle-o '></i> Importante</option>
-                      <option class="btn btn-default text-red" value="ur"><i class='fa fa-circle-o '></i> Urgente</option>
+                      <option class="text-light-blue" value="ge"><i class='fa fa-circle-o'></i> Genérico</option>
+                      <option class="text-yellow" value="im"><i class='fa fa-circle-o '></i> Importante</option>
+                      <option class="text-red" value="ur"><i class='fa fa-circle-o '></i> Urgente</option>
                     </select>  
                   </div>
                 </div>

@@ -5,7 +5,14 @@ Class  Ingreso{
     function  __construct(){
         $this->des = new Conexion();
     }
-
+    function instituciones(){
+        $stmt= "SELECT id_institucion as id, nombre_institucion as nom, acronimo_institucion as ac FROM corresp_institucion";
+        $instituciones = $this->des->consultaSel($stmt);
+        foreach ($instituciones as $k) {
+            $html = utf8_encode ($k['nom']);
+            echo "<option value='{$k['id']}'>{$html}({$k['ac']})</option>";
+        }
+    }
     function ingresoEmisor($persona=array())
     {
         $tab= 'corresp_persona';
@@ -14,10 +21,9 @@ Class  Ingreso{
             'nombre_persona'=>$persona['nombre'],
             'apellido_persona'=>$persona['apellido'],
             'sexo_persona'=>$persona['sexo'],
-            'fecha_nacimiento_persona' =>$persona['fechaNacimiento'],
             'id_institucion_persona'=>$persona['institucion'],
-            'correo_persona'=>$persona['email'],
-            'telefonos'=>implode(" #", $persona['telefono'])           
+            'correo_electronico'=>$persona['email'],
+            'telefonos'=>implode(" #", $persona['telefono']),           
              ) ;
         $this->des->consultaIns($tab,$sql);
     }

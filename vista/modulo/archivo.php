@@ -43,8 +43,7 @@
                   <div class="post">
                       <button  class="btn btn-danger pull-right" type="submit" name="nivelDescripcion" value="fondo" onClick="window.location='isadG'">
                       <i class="fa fa-plus"></i> Nuevo fondo</button>
-                      <h3><i class="fa fa-university "></i> 
-                      
+                      <h3><i class="fa fa-university "></i>                      
                       <a data-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
                       Fondos 
                       </a></h3>
@@ -59,9 +58,10 @@
                       </ul>
                       </div>
                   </div>
-                  </div>
                       <label class="label label-danger"> Cantidad total de fondos registrados: 00-var</label>
+                  </div>
                   <!-- /.post -->
+
                   <!-- Post -->
                   <div class="post">
                     <button class="btn btn-primary pull-right" type="submit" name="nivelDescripcion" value="seccion" onClick="window.location='isadG'">
@@ -81,8 +81,8 @@
                       </ul>
                       </div>
                   </div>
-                  </div>
                     <label class="label label-primary"> Cantidad total de  secciones registradas: 00-var</label>
+                  </div>
                   <!-- /.post -->
                   <!-- Post -->
                   <div class="post">
@@ -102,8 +102,8 @@
                       </ul>
                       </div>
                   </div>
-                  </div>
                       <label class="label label-default"> Cantidad total de  subsecciones registrados: 00-var</label>
+                  </div>
                   <!-- /.post -->
                   <!-- Post -->
                   <div class="post">
@@ -123,8 +123,8 @@
                       </ul>
                       </div>
                   </div>
-                  </div>
                       <label class="label label-warning"> Cantidad total de  series registradas: 00-var</label>
+                  </div>
                   <!-- /.post -->
                   <!-- Post -->
                   <div class="post">
@@ -144,8 +144,8 @@
                       </ul>
                       </div>
                   </div>
-                  </div>
                       <label class="label label-info"> Cantidad total de expedientes registrados: 00-var</label>
+                  </div>
                   <!-- /.post -->
                   <!-- Post -->
                   <div class="post">
@@ -165,8 +165,8 @@
                       </ul>
                       </div>
                   </div>
-                  </div>
                       <label class="label label-success"> Cantidad total de  documentos registrados: 00-var</label>
+                  </div>
                   <!-- /.post -->
                 </form>
               </div>

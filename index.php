@@ -11,18 +11,18 @@
 *  @license GPL
 *  @link https://github.com/josueSerulle/correspondencia
 */
-    require_once "controlador/ControladorCorresp.php";
     require_once "controlador/ControladorCorrespondencia.php";
+    require_once "controlador/ControladorMesaEntrada.php";
     require_once "controlador/ControladorPlantilla.php";
     require_once "controlador/ControladorUsuario.php";
-    require_once "controlador/ControladorValidacionEmisor.php"; 
     require_once "controlador/controladorNotificaciones.php";
     require_once "controlador/ControladorTracking.php";
-    require_once "controlador/ControladorEmisor.php";
     require_once "modelo/AuthHelper.php";
     require_once "modelo/Settings.php";
     require_once "modelo/Token.php";
     require_once "modelo/conexion.php";
+    require_once "controlador/emisor/ControladorEmisor.php";
+    require_once "controlador/emisor/ControladorValidacionEmisor.php"; 
     
     
     $plantilla = new ControladorPlantilla();

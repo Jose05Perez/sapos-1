@@ -1,7 +1,6 @@
 <?php
 $c =new cabezote();
 $c->notificaciones();
-
 ?>
 <header class="main-header">
     <!-- Logo -->
@@ -52,7 +51,7 @@ $c->notificaciones();
               <li class="user-header">
                 <p>
                   <?php foreach ($_SESSION['usuario'] as $key => $value):?>
-                  <small><strong><?=$key?>: </strong><?=$value?></small>
+                  <small><strong><?=ucfirst($key)?>: </strong><?= utf8_encode ($value)?></small>
                   <?php endforeach; ?>
                 </p>
               </li>

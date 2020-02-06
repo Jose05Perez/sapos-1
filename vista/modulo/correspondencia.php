@@ -7,6 +7,26 @@
   }     
   $mensaje= new Correspondencia();
   $datos = $mensaje-> vista();
+  
+
+$autoridad=($datos['autorizado'] == 1)?  array('warning','Autorizado'):array('danger','No Autorizado'); 
+$acceso= ($datos['privado'] == 1 )? array('primary','privado'): array('info','publico');
+$alcance=($datos['status_persona'] == 4)?  array('success','interno'):array('warning','externo'); 
+// => 
+switch ($datos['estado']) {
+  case 'pe':
+    $estado = array('info','Pendiente');
+    break;
+   case 'pg':
+    $estado = array('primary','En plazo de gestión'); 
+     break;
+  default:
+    $estado = array('default','Recibido');
+    break;
+} 
+$fe = new DateTime($datos['fecha_emision']); $fechaE=date_format($fe,'d-F-Y');
+$fr = new DateTime($datos['fecha_recibido']); $fechaR=date_format($fr,'l,d-F-Y');
+//var_dump($datos);
 ?>
 <!-- Content Wrapper. Contains page content-->
 <div class="content-wrapper"> 
@@ -83,32 +103,6 @@
         <div class="p-3 border bg-light">
           <div class="box box-primary">
             <div class="box-header with-border">
-              <h3 class="box-title"></h3>
-            </div>
-            <!-- /.box-header -->
-            <div class="box-body">
-              <div class="mailbox-read-info">
-                <?php 
-
-                   $autoridad=($datos['autorizado'] == 1)?  array('warning','Autorizado'):array('danger','No Autorizado'); 
-                   $acceso= ($datos['privado'] == 1 )? array('primary','privado'): array('info','publico');
-                   $alcance=($datos['status_persona'] == 4)?  array('success','interno'):array('warning','externo'); 
-                   // => 
-                   switch ($datos['estado']) {
-                     case 'pe':
-                       $estado = array('info','Pendiente');
-                       break;
-                      case 'pg':
-                       $estado = array('primary','En plazo de gestión'); 
-                        break;
-                     default:
-                       $estado = array('default','Recibido');
-                       break;
-                   } 
-                   $fe = new DateTime($datos['fecha_emision']); $fechaE=date_format($fe,'d-F-Y');
-                   $fr = new DateTime($datos['fecha_recibido']); $fechaR=date_format($fr,'l,d-F-Y');
-                   //var_dump($datos);
-                ?>
                 <div class="pull-right"> 
                    <h4>
                     <span class="label label-<?=$acceso[0];?>" ><?= $acceso[1];?></span>
@@ -117,7 +111,12 @@
                     <span class="label label-<?=$estado[0];?>" ><?= $estado[1];?></span>
                   </h4>
                 </div>
-                <h2><strong><?=$datos['asunto'];?></strong></h2>
+              <h2 class="box-title"><?=$datos['asunto'];?></h2>
+            </div>
+            <!-- /.box-header -->
+            <div class="box-body">
+              <div class="mailbox-read-info">             
+                
                 <h5>
                   <?php 
                   if(isset($_SESSION['env'])){

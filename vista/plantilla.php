@@ -12,7 +12,6 @@
  *  @link https://github.com/josueSerulle/correspondencia
  */
 session_start();
-$_SESSION['id_AD']= 1;
 ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -96,27 +95,9 @@ $_SESSION['id_AD']= 1;
 </head>
 
 <body class="hold-transition skin-blue sidebar-mini"> 
-    <?php  $_SESSION['id_AD']=2;
-    $con = new Conexion();
-    $sentencia="SELECT
-                        concat(per.nombre_persona,' ',per.apellido_persona) as nombre ,
-                        per.correo_electronico as correo,
-                        rol.nombre_rol as puesto,
-                        dep.id_departamento as codigo_depto,
-                        concat(dep.nombre_departamento,'-', dep.nombre_division)as departamento,
-                        em.ultimo_login as ultimaSesion                                                
-                        FROM    corresp_persona as per 
-                        LEFT JOIN corresp_empleado as em ON  em.id_persona_empleado= per.id_persona
-                        LEFT JOIN corresp_departamento as dep ON em.id_departamento_empleado=dep.id_departamento
-                        LEFT JOIN corresp_rol as rol ON em.id_rol_empleado=rol.id_rol         
-                        WHERE em.ID_AD= :idad  limit 1";
-    $arg=array(':idad'=>$_SESSION['id_AD']);
-    $_SESSION['usuario'] = $con->consultaSel($sentencia,$arg)[0];
-    $upd= "ultimo_login='".date('y-m-d h:i:s')."'";
-    $whr=array("ID_AD= '{$_SESSION['id_AD']}'");
-    $con->consultaUpd('corresp_empleado',$upd,$whr);
-    //  if (isset($_SESSION["iniciarSession"]) && $_SESSION["iniciarSession"] == "ok")
-    //  {
+    <?php 
+     if (isset($_SESSION["iniciarSession"]) && $_SESSION["iniciarSession"] == "ok")
+     {
             echo '<div class="wrapper">';
                 /*===============================================================================================================
                 Incluyendo el cabezote en la aplicacion
@@ -147,6 +128,7 @@ $_SESSION['id_AD']= 1;
                 }
                 else
                 {
+                    
                     include "modulo/inicio.php";
                     
                 }
@@ -156,11 +138,11 @@ $_SESSION['id_AD']= 1;
                 include "modulo/piePagina.php";  
             echo '</div>';
            
-        //  }
-        //  else
-        //  {
-        //      ctrUsuario::ctrIngresarUsuario(true);
-        // }
+         }
+         else
+         {
+             ctrUsuario::ctrIngresarUsuario(true);
+        }
     ?>
 </body>
 </html>

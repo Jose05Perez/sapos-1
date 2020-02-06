@@ -24,12 +24,11 @@ class GeneradorCorrespondencia {
         return "{$CodigoD}-{$n}-{$anio}";
     }
     function idBusquedaxNombre($nombre){  
-    $sent= "SELECT id_persona AS id FROM corresp_persona WHERE CONCAT(nombre_persona,' ',apellido_persona)= :nombre OR correo_electronico = :nombre";
-    $param =  array(":nombre"=>$nombre);
+        $sent= "SELECT id_persona AS id FROM corresp_persona WHERE CONCAT(nombre_persona,' ',apellido_persona)= :nombre OR correo_electronico = :nombre";
+        $param =  array(":nombre"=>$nombre);
         $f= $this->des->consultaSel($sent,$param)[0]['id'];
         return $f;
     }
-
     function regContenido($contenido){
         $ruta= "recursos/correspondencias/";
         $nomArch = $this->codigo_correspondencia.'.txt';
@@ -38,7 +37,6 @@ class GeneradorCorrespondencia {
         fclose($arch);
         return $nomArch;
     }
-
     function regAdjCorresp($adjuntos =array()){
             $carpeta ="recursos/adjuntos/".$this->codigo_correspondencia;$nombreArchivos = "";                   
             mkdir($carpeta,755)or die(); 

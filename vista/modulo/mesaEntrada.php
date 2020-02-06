@@ -141,7 +141,7 @@
             
             <div class="box-tools pull-right">
               <div class="has-feedback">
-                <input type="text" class="form-control input-md" placeholder="Search Mail">
+                <input type="search" id="buscador" onkeyup="busqueda()" class="form-control input-md" placeholder="Search Mail">
                 <span class="glyphicon glyphicon-search form-control-feedback"></span>
               </div>
             </div>
@@ -169,7 +169,7 @@
                 </div><hr>
                 <!-- /.btn-group -->                
                 <div class="table-responsive mailbox-messages">
-                  <table class="table table-hover table-striped" >
+                  <table class="table table-hover table-striped" id="corresp" >
                   <?php echo $tabla[0];?>
                   </table>
                   <!-- /.table -->
@@ -207,3 +207,26 @@
   <!-- /.content -->
 </div>
 <!-- /.content-wrapper -->
+<script>
+function busqueda() {
+  // Declare variables
+  var input, filter, table, tr, td, i, txtValue;
+  input = document.getElementById("buscador");
+  filter = input.value.toUpperCase();
+  table = document.getElementById("corresp");
+  tr = table.getElementsByTagName("tr");
+
+  // Loop through all table rows, and hide those who don't match the search query
+  for (i = 0; i < tr.length; i++) {
+    td = tr[i].getElementsByTagName("td")[3];
+    if (td) {
+      txtValue = td.textContent || td.innerText;
+      if (txtValue.toUpperCase().indexOf(filter) > -1) {
+        tr[i].style.display = "";
+      } else {
+        tr[i].style.display = "none";
+      }
+    }
+  }
+}
+</script>

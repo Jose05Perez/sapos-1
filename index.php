@@ -11,6 +11,7 @@
 *  @license GPL
 *  @link https://github.com/josueSerulle/correspondencia
 */
+    require_once "controlador/vistaCorresp/controladorVistaCorresp.php";
     require_once "controlador/ControladorCorrespondencia.php";
     require_once "controlador/ControladorMesaEntrada.php";
     require_once "controlador/ControladorPlantilla.php";

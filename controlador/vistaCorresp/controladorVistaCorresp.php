@@ -15,7 +15,7 @@
             $esta = array_search($estados);
             if (!($esta===0)){
                 $parametroSet=array("estado = '{$estados[$btn]}'"); //la uncia modificacion para eliminar e.e
-                corRegistro = array("id_correspondencia = '{$idc}'");
+                $corRegistro = array("id_correspondencia = '{$idc}'");
                 $this->des->consultaUpd('corresp_correspondencia',$parametroSet,$corRegistro);    
             }
             

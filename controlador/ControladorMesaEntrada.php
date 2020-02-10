@@ -245,30 +245,8 @@ Class Correspondencia{
         return $this->cnx->consultaSel($sentencia,$arg)[0];
     }
     function Vista(){
-        $correo = $this->consulta($_GET['ruta']);
-        // $env = isset($correo['de'])? 'de': 'a';
-        // $acceso = $correo['status_persona']==4? 'publico':'privado';
-        // $correo="
-        // <hr>
-        // <span class='label label-default pull-right'>{$acceso}</span>
-        // <span>{$env}: {<b>{$correo[$env]}</b>} {$correo['correo_electronico']}</span>
-        // <hr>
-        // <h3>Asunto : <b>{$correo['asunto']}</b></h3>
-        
-        
-        
-        
-        // ";
-        
-        // $lectura=fopen("recursos/correspondencias/arch1.txt","r");
-        // $contenido=fread($lectura,filesize("recursos/correspondencias/arch1.txt"));
-        // fclose($lectura);
-        
-        
-        
-        return $correo;
-
-        
+        $correo = $this->consulta($_GET['ruta']);       
+        return $correo;        
     }
     function buscarCorresp($cadena){
         $filtro .=" AND cor.id_persona_$cond= :id";

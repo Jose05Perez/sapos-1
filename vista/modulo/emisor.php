@@ -1,6 +1,8 @@
 <?php
+     
      $verif= new GeneradorCorrespondencia();
      $verif->corroborar();
+     header("modulo/isadG.php",5);
 ?>
  <!-- Content Wrapper. Contains page content -->
  <div class="content-wrapper">

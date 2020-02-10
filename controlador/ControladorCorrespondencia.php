@@ -30,12 +30,45 @@ class GeneradorCorrespondencia {
         return $f;
     }
     function regContenido($contenido){
-        $ruta= "recursos/correspondencias/";
-        $nomArch = $this->codigo_correspondencia.'.txt';
-        $arch = fopen($ruta.$nomArch,"w") or die("ya existe el archivo");
-        fwrite($arch,$contenido);
-        fclose($arch);
-        return $nomArch;
+      
+      require_once 'libs/vendor/autoload.php';
+      $nomArch = $this->codigo_correspondencia;
+      $phpWord = new \PhpOffice\PhpWord\PhpWord();
+
+      $properties = $phpWord->getDocInfo();
+      $properties->setCreator($_SESSION['usuario']['nombre']);
+      $properties->setCompany('BNPHU');
+      $properties->setTitle($nomArch);
+      $properties->setCreated(mktime(0, 0, 0, 3, 12, 2014));
+
+      $section = $phpWord->addSection();
+
+      $cabeza = $section->addHeader();
+      $phpWord->addParagraphStyle ('txtctr',array('alignment'=> \PhpOffice\PhpWord\SimpleType\Jc::CENTER));
+      $cabeza->addImage("vista/img/logo.jpg",array('width' => 100,'height'=> 117,'alignment'=> \PhpOffice\PhpWord\SimpleType\Jc::CENTER));
+      $cabeza->addText( '¡Manos a la obra!', array('bold'=> true), 'txtctr');
+      $cabeza->addText('“Año de la Consolidación de la Seguridad Alimentaria”',array(),'txtctr');
+      
+      $section->addText($nomArch,['bold'=> true]);
+      $section->addText("Santo Domingo, DN");
+      $section->addText(date('d-M-Y'));
+
+      $section->addText("A: " ,['bold'=> true]);
+      $section->addText($_SESSION['usuario']['nombre']);
+      
+      $section->addText("De: " ,['bold'=> true]);
+      $section->addText($_SESSION['usuario']['nombre']);
+      
+      PhpOffice\PhpWord\Shared\Html::addHtml($section,$contenido);
+
+      $pie = $section->addFooter();
+      $pie->addText(
+        'Av. César Nicolás Penson # 91, Plaza de la Cultura Juan Pablo Duarte, Gazcue, Santo Domingo, D. N.
+        RNC. 401-03133-7 / Tel.: 829-946-2674 / info@bnphu.gob.do', array('name' => 'Tahoma', 'size' => 9),'txtctr'
+      );
+      $objWriter = \PhpOffice\PhpWord\IOFactory::createWriter($phpWord, 'Word2007');
+      $objWriter->save("recursos/correspondencias/{$nomArch}.docx");
+
     }
     function regAdjCorresp($adjuntos =array()){
             $carpeta ="recursos/adjuntos/".$this->codigo_correspondencia;$nombreArchivos = "";                   
@@ -102,3 +135,19 @@ class GeneradorCorrespondencia {
           }
     }
 }
+
+// require "libs/vendor/autoload.php";
+//       $ruta= "recursos/correspondencias/";
+//       $nomArch = $this->codigo_correspondencia.".pdf";
+
+//       $dom = new Dompdf\Dompdf();
+//       $dom->loadHtml($contenido);
+//       $dom->setPaper('A4', 'portrait'); // (Opcional) Configurar papel y orientación
+//       $dom->render(); // Generar el PDF desde contenido HTML
+//       $pdf = $dom->output(); // Obtener el PDF generado
+//       $arch = fopen($ruta.$nomArch,"w") or die("ya existe el archivo");
+//           fwrite($arch,$pdf);
+//           fclose($arch);
+//           return $nomArch;
+
+

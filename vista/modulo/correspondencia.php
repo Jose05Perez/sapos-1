@@ -6,12 +6,11 @@
     $var[$key]=$_SESSION['notificaciones'][$key];
   }     
   $mensaje= new Correspondencia();
-  $datos = $mensaje-> vista();
-  
+  $datos = $mensaje-> vista();  
 
 $autoridad=($datos['autorizado'] == 1)?  array('warning','Autorizado'):array('danger','No Autorizado'); 
-$acceso= ($datos['privado'] == 1 )? array('primary','privado'): array('info','publico');
-$alcance=($datos['status_persona'] == 4)?  array('success','interno'):array('warning','externo'); 
+$acceso= ($datos['privado'] == 1 )? array('primary','Privado'): array('info','Publico');
+$alcance=($datos['status_persona'] == 4)?  array('success','Interno'):array('warning','Externo'); 
 // => 
 switch ($datos['estado']) {
   case 'pe':
@@ -104,12 +103,10 @@ $fr = new DateTime($datos['fecha_recibido']); $fechaR=date_format($fr,'l,d-F-Y')
           <div class="box box-primary">
             <div class="box-header with-border">
                 <div class="pull-right"> 
-                   <h4>
                     <span class="label label-<?=$acceso[0];?>" ><?= $acceso[1];?></span>
                    <span class="label label-<?=$autoridad[0];?>" ><?= $autoridad[1];?></span>
                     <span class="label label-<?=$alcance[0];?>" ><?= $alcance[1];?></span> 
                     <span class="label label-<?=$estado[0];?>" ><?= $estado[1];?></span>
-                  </h4>
                 </div>
               <h2 class="box-title"><?=$datos['asunto'];?></h2>
             </div>
@@ -161,8 +158,39 @@ $fr = new DateTime($datos['fecha_recibido']); $fechaR=date_format($fr,'l,d-F-Y')
                       $correspondencia=fread($arch, filesize($rutaArch));
                       fclose($arch);
                       echo $correspondencia;          
-                      }
-                                          
+                      }      
+                      try
+{
+    require 'libs/vendor/autoload.php';
+    $name = basename(__FILE__, '.php');
+    $name="file-name";
+    $source = __DIR__ . "/{$name}.docx";
+
+    $phpWord = \PhpOffice\PhpWord\IOFactory::load($source);
+    // Adding an empty Section to the document...
+    $section = $phpWord->addSection();
+    // Adding Text element to the Section having font styled by default...
+    $section->addText($data);
+
+    $name=basename(__FILE__, '.php');
+    $source = __DIR__ . "/results/{$name}.html";
+
+    // Saving the document as HTML file...
+    $objWriter = \PhpOffice\PhpWord\IOFactory::createWriter($phpWord, 'HTML');
+    $objWriter->save($source);
+
+
+}catch(Exception $e)
+{
+    echo $e->getLine();
+    echo "<br>/";
+    echo $e->getMessage();
+    echo "<br/>";
+    echo $e->getFile();
+    exit;
+}
+                      
+
                     }
                    // } 
                 ?>

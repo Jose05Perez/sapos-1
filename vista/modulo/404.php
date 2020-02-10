@@ -20,6 +20,7 @@
             Ops! Pagina no encontrada  
           </h3>
           <p>
+         
             Ingrese al men&uacute; lateral y all&iacute; podr&aacute; encontrar las p&aacute;gina disponibles. Tambi&eacute;n puedes regresar haciendo <a href="inicio" alt="Volver al inicio">Clicl aqu&iacute;</a>
           </p>
         </div>

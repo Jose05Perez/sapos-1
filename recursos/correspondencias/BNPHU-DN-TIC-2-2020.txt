@@ -1,3 +1,0 @@
-<blockquote><h3></h3><h3><p><code>&lt;link href="<a target="_blank" rel="nofollow" href="http://hayageek.github.io/jQuery-Upload-File/4.0.11/uploadfile.css">http://hayageek.github.io/jQuery-Upload-File/4.0.11/uploadfile.css</a>" rel="stylesheet"&gt;
-&lt;script src="<a target="_blank" rel="nofollow" href="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js">http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js</a>"&gt;&lt;/script&gt;
-&lt;script src="<a target="_blank" rel="nofollow" href="http://hayageek.github.io/jQuery-Upload-File/4.0.11/jquery.uploadfile.min.js">http://hayageek.github.io/jQuery-Upload-File/4.0.11/jquery.uploadfile.min.js</a>"&gt;&lt;/script&gt;</code></p><p></p></h3></blockquote>

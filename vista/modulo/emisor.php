@@ -1,8 +1,33 @@
 <?php
+     if(isset($_POST['enviar']) && $_POST['contenido']!==false){      
+      $adj=($_FILES['adjuntos']['error'][0]==4)?NULL:$_FILES['adjuntos'];
+      $cont=$_POST["contenido"]==""?NULL:$_POST["contenido"];         
+      if(!($cont==NULL && $adj==null)){
+        $datos= array(
+          "destinatario" =>$_POST["destinatario"],
+          "asunto"=> $_POST["asunto"],
+          "caracter"=> $_POST["caracter"]
+        );
+        if (isset($_POST["privado"])){
+          $datos['privado']=1;
+        }
+        if (isset($_POST["autorizado"])){
+          $datos['autorizado']=1;
+        }
+        if(!$cont==null){
+          $datos['contenido']=$cont;
+        }
+        if (!$adj==null){
+          $datos['adjuntos']=$adj;
+        }    
+        $verif= new GeneradorCorrespondencia($datos);
+        $verif->ingresarCorresp();
+      }else{
+        echo '<script>alert("debe añadir informacion a esta correspondencia")</script>';
+      } 
      
-     $verif= new GeneradorCorrespondencia();
-     $verif->corroborar();
-     header("modulo/isadG.php",5);
+    }
+    
 ?>
  <!-- Content Wrapper. Contains page content -->
  <div class="content-wrapper">

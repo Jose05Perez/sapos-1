@@ -96,6 +96,7 @@ session_start();
 
 <body class="hold-transition skin-blue sidebar-mini"> 
     <?php 
+    setlocale(LC_ALL,"es_DO","es_DO","DO");
      if (isset($_SESSION["iniciarSession"]) && $_SESSION["iniciarSession"] == "ok")
      {
             echo '<div class="wrapper">';

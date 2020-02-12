@@ -3,5 +3,5 @@ Thumbs.db
 npm-debug.log
 /bower_components
 /node_modules
-/libs/vendor
+
 /01-data

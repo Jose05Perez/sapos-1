@@ -14,11 +14,20 @@
         if (isset($_POST["autorizado"])){
           $datos['autorizado']=1;
         }
-        if(!$cont==null){
+        if(!($cont==null)){
           $datos['contenido']=$cont;
         }
-        if (!$adj==null){
+        if (!($adj==null)){
+          $po= count($adj['error']);
+          for($i=0;$i<$po;$i++){              
+             if ($adj['error'][$i]==1 || $adj['error'][$i]==2){
+               echo "<script>alert:('El archivo {$adj['name'][$i]}excede la capacidad establecida .');</script>";break;
+             }elseif($adj['error'][$i]!=0){
+              echo "<script>alert:('Error de subida en el archivo {$adj['name'][$i]}.');</script>";break;
+              }
+            }               
           $datos['adjuntos']=$adj;
+
         }    
         $verif= new GeneradorCorrespondencia($datos);
         $verif->ingresarCorresp();

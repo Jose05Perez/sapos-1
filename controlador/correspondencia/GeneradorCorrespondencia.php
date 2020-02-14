@@ -13,8 +13,7 @@ class GeneradorCorrespondencia{
         $this->id_correspondencia= "corresp{$this->genIdCorresp()}";
         $this->emisor = $_SESSION['usuario']['nombre'];   
         $this->co = $co; 
-    }         
-    
+    } 
     function genIdCorresp(){
         $sent = "SELECT COUNT(*) AS n FROM corresp_correspondencia";
         return $this->des->consultaSel($sent)[0]['n']+1;
@@ -30,7 +29,7 @@ class GeneradorCorrespondencia{
         return "{$CodigoD}-{$n}-{$anio}";
     }
     function idBusquedaxNombre($nombre){  
-      echo "<script>alert:('bazinga');</script>";
+        echo "<script>alert:('bazinga');</script>";
         $sent= "SELECT id_persona AS id, CONCAT(nombre_persona,' ',apellido_persona) as nom FROM corresp_persona WHERE 
         UPPER(CONCAT(nombre_persona,' ',apellido_persona))= UPPER(:nombre) OR correo_electronico = :nombre";
         $param =  array(":nombre"=>$nombre);

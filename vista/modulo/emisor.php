@@ -59,7 +59,7 @@
           <a  href="mesaEntrada" class="btn btn-primary btn-block margin-bottom">Mesa de Entrada</a>        
        </div>
         <div class="col-md-9">
-        <form action="<?=$_GET['ruta'];?>" method="post" id="crear" enctype="multipart/form-data">
+        <form action="<?=$_GET['ruta'];?>" method="post" id="crearCorresp" enctype="multipart/form-data">
           <div class="box box-primary">
             <div class="box-header with-border">
               <h3 class="box-title">Ingresar nueva correspondencia</h3>
@@ -108,7 +108,7 @@
             <div class="box-footer">
               <div class="pull-right">
                 <!-- <button type="submit" class="btn btn-default" id="guardar" name="guardar" form="crear" ><i class="fa fa-pencil"></i> Guardar</button> -->
-                <button type="submit" class="btn btn-primary" id="enviar" name="enviar" form="crear" onclick="conf()" ><i class="fa fa-envelope-o"></i> Enviar</button>
+                <button type="submit" class="btn btn-primary" id="enviar" name="enviar" form="crearCorresp" onclick="conf()" ><i class="fa fa-envelope-o"></i> Enviar</button>
               </div>
               <button type="reset" class="btn btn-default" name="borrar" form="crear"><i class="fa fa-times"></i> Borrar</button>
             </div>

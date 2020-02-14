@@ -174,8 +174,8 @@ $fr = new DateTime($datos['fecha_recibido']); $fechaR=date_format($fr,'d-m-Y');
                         case 'doc': $icoExt = array('word',1); break;
                         case 'txt': $icoExt = array('text',0);  break;
                         case 'png': $icoExt = array('image',0); break;
-                        case 'jpg': $icoExt = array('image',0); break;
-                        default: $icoExt = ''; break;
+                        case 'jpg': $icoExt = array('image',0); break;                        
+                        default: $icoExt = array('',1); break;
                       }            
                       $download = ($icoExt!=0)?'download': '';
                       ?>          

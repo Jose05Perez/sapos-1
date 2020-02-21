@@ -1,11 +1,10 @@
 <?php
   $emi = new generadorEmisor();
   if(isset($_POST["guardar"])){
-    if($emi->validarCedula($_POST['cedula'])==1){
-      $emi->ingresoEmisor($_POST);
-      echo "<script>alert:('Guardado exitosamente');window.location='{$_GET['ruta']}'</script>";
+    if($emi->ingresoEmisor($_POST)==1){      
+      echo "<script>alert('Guardado exitosamente');</script>";
     }else{
-      echo "<script>alert:('cedula no valida');</script>";
+      echo "<script>alert('Verifique sus datos');</script>";
     }
   }
 ?>

@@ -8,15 +8,9 @@
           "asunto"=> $_POST["asunto"],
           "caracter"=> $_POST["caracter"]
         );
-        if (isset($_POST["privado"])){
-          $datos['privado']=1;
-        }
-        if (isset($_POST["autorizado"])){
-          $datos['autorizado']=1;
-        }
-        if(!($cont==null)){
-          $datos['contenido']=$cont;
-        }
+        if (isset($_POST["privado"])){  $datos['privado']=1;   }
+        if (isset($_POST["autorizado"])){  $datos['autorizado']=1;   }        
+        if(!($cont==null)){  $datos['contenido']=$cont;   }        
         if (!($adj==null)){
           $po= count($adj['error']);
           for($i=0;$i<$po;$i++){              
@@ -36,7 +30,7 @@
       } 
      
     }
-    
+
 ?>
  <!-- Content Wrapper. Contains page content -->
  <div class="content-wrapper">
@@ -78,7 +72,7 @@
                 </div>
                 <div class="col-md-3">                  
                   <div class="form-group">
-                    <div class="form-control  bg-yellow"><i class="fa fa-shield"></i> Autorizado <input type="checkbox" class="" name="autorizado" id=""></div>
+                    <!-- <div class="form-control  bg-yellow"><i class="fa fa-shield"></i> Autorizado <input type="checkbox" class="" name="autorizado" id=""></div> -->
                     <div class="form-control  bg-green"><i class="fa fa-shield"></i> Privado <input type="checkbox" class="" name="privado" id=""></div>
                     <select class="form-control " role="group" name="caracter">
                       <option class="text-light-blue" value="ge"><i class='fa fa-circle-o'></i> Genérico</option>

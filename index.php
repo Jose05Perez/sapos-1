@@ -12,7 +12,7 @@
 *  @link https://github.com/josueSerulle/correspondencia
 */
     
-    require_once "controlador/vistaCorresp/controladorVistaCorresp.php";
+    require_once "controlador/correspondencia/controladorCorrespondencia.php";
     require_once "controlador/correspondencia/generadorCorrespondencia.php";
     require_once "controlador/ControladorMesaEntrada.php";
     require_once "controlador/ControladorPlantilla.php";

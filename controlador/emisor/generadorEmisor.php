@@ -14,19 +14,24 @@ Class  generadorEmisor{
         }
     }
     function ingresoEmisor($persona=array())
-    {
-        echo 'jesus esta pasando por aqui';
-        $tab= 'corresp_persona';
-        $sql = array( 
-            'cedula_persona' =>$persona['cedula'],
-            'nombre_persona'=>$persona['nombre'],
-            'apellido_persona'=>$persona['apellido'],
-            'sexo_persona'=>$persona['sexo'],
-            'id_institucion_persona'=>$persona['institucion'],
-            'correo_electronico'=>$persona['email'],
-            'telefonos'=>implode(" #", $persona['telefono']),           
-             ) ;
-        $this->des->consultaIns($tab,$sql);
+    {   
+        if($this->validarCedula($persona['cedula'])==1){               
+            $tab= 'corresp_persona';
+            $sql = array( 
+                'cedula_persona' =>str_replace("-", "",$persona['cedula']),
+                'nombre_persona'=>$persona['nombre'],
+                'apellido_persona'=>$persona['apellido'],
+                'sexo_persona'=>$persona['sexo'],
+                'id_institucion_persona'=>$persona['institucion'],
+                'correo_electronico'=>$persona['email'],
+                'telefonos'=>implode(" #", $persona['telefono'])
+                ) ;
+            if($persona['institucion']!=13){  $sql['status_persona']=4;  }
+            $this->des->consultaIns($tab,$sql);
+            return 1;
+        }else{
+            return 0;
+        }        
     }
     function validarCedula($ced){
         
@@ -54,9 +59,8 @@ Class  generadorEmisor{
         if ($el_numero == $verificador && substr($cedula, 0, 3) != "000") {
             $cedulaValida = 1;
         } else {
-            $cedulaValida = 0;
-        }
-        
+            $cedulaValida =0;
+        }        
         return $cedulaValida;
         
     }

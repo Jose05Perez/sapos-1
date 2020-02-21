@@ -36,8 +36,7 @@ class GeneradorCorrespondencia{
         $f=$this->des->consultaSel($sent,$param)[0];
         return $f;
     }
-    function regContenido(){
-             
+    function regContenido(){             
         
         setlocale(LC_ALL,"es_ES@euro","es_ES","esp");$fecha=strftime("%d de %B del %Y");
         $de=ucwords($this->idBusquedaxNombre($this->emisor)['nom']);

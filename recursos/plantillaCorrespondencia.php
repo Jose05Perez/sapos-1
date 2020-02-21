@@ -3,7 +3,7 @@
 <head>
 <meta http-equiv=Content-Type content="text/html;>
 <meta name=Generator content="Microsoft Word 15 (filtered)">
-<title>DTI-0013-2020</title>
+<title>'.$this->codigo_correspondencia.'</title>
 <style>
 <!--
  /* Font Definitions */
@@ -87,11 +87,11 @@ color:gray\'>“Año de la Consolidación de la Seguridad Alimentaria”</span><
 <br/><br/><br/>
 
 <p class=MsoNormal><b><span lang=ES>A &nbsp; &nbsp; &nbsp; &nbsp;:&nbsp; &nbsp; &nbsp; </span></b><span
-class=fdestinatario><span lang=ES style=\'font-size:12.0pt;line-height:107%\'>Ivan Walters Sena</span></span></p>
+class=fdestinatario><span lang=ES style=\'font-size:12.0pt;line-height:107%\'>'.$a.'</span></p>
 <p class=MsoNormal><span lang=ES>&nbsp;</span></p>
 
 <p class=MsoNormal><b><span lang=ES>De &nbsp; &nbsp; &nbsp; &nbsp; :&nbsp; &nbsp; &nbsp; </span></b><span
-class=fdestinatario><span lang=ES style=\'font-size:12.0pt;line-height:107%\'>Arless Violeta Matos Reyes</span></span></p>
+class=fdestinatario><span lang=ES style=\'font-size:12.0pt;line-height:107%\'>'.$de.'</span></span></p>
 <p class=MsoNormal><span lang=ES>&nbsp;</span></p>
 
 <p class=MsoNormal><b><span lang=ES>Asunto &nbsp; &nbsp; &nbsp; &nbsp; :&nbsp; &nbsp; &nbsp; </span></b><span

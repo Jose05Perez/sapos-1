@@ -1,30 +1,26 @@
 <?php
-  $btn= new btnMesaEntrada();
-  $fil= new Cabezote();
-  $fil->notificaciones();   
-  foreach (array_keys($_SESSION['notificaciones']) as $key) {
-    $var[$key]=$_SESSION['notificaciones'][$key];
-  }     
+  $fil= new Cabezote();  $fil->notificaciones();   
+  foreach (array_keys($_SESSION['notificaciones']) as $key) {   $var[$key]=$_SESSION['notificaciones'][$key];  }     
   $mensaje= new Correspondencia();
-  $datos = $mensaje-> vista();  
-$ruta = 'recursos/correspondencias/'.$datos['contenido'];
-$autoridad=($datos['autorizado'] == 1)?  array('warning','Autorizado'):array('danger','No Autorizado'); 
-$acceso= ($datos['privado'] == 1 )? array('primary','Privado'): array('info','Publico');
-$alcance=($datos['status_persona'] == 4)?  array('success','Interno'):array('warning','Externo'); 
-// => 
-switch ($datos['estado']) {
-  case 'pe':
-    $estado = array('info','Pendiente');
-    break;
-   case 'pg':
-    $estado = array('primary','En plazo de gestión'); 
-     break;
-  default:
-    $estado = array('default','Recibido');
-    break;
-} 
-$fe = new DateTime($datos['fecha_emision']); $fechaE=date_format($fe,'d-m-Y');
-$fr = new DateTime($datos['fecha_recibido']); $fechaR=date_format($fr,'d-m-Y');
+  $datos = $mensaje-> consulta();  
+  
+  $ruta = 'recursos/correspondencias/'.$datos['contenido'];
+  $autoridad=($datos['autorizado'] == 1)?  array('warning','Autorizado'):array('danger','No Autorizado'); 
+  $acceso= ($datos['privado'] == 1 )? array('primary','Privado'): array('info','Publico');
+  $alcance=($datos['status_persona'] == 4)?  array('success','Interno'):array('warning','Externo'); 
+  // => 
+  switch ($datos['estado']) {
+    case 'pe':  $estado = array('info','Pendiente'); break;
+    case 'pg':  $estado = array('primary','En plazo de gestión'); break;
+    default:  $estado = array('default','Recibido'); break;
+  } 
+  setlocale(LC_ALL,"es_ES@euro","es_ES","esp");
+  $fechaE=strftime("%d de %B del %Y",strtotime($datos['fecha_emision']));
+  $fechaR=strftime("%d de %B del %Y",strtotime($datos['fecha_recibido']));
+
+  if(isset($_POST['btn'])){
+    $mensaje->btnCorrespondencia($_POST['btn']);
+  }
 //var_dump($datos);
 ?>
 <!-- Content Wrapper. Contains page content-->
@@ -68,9 +64,9 @@ $fr = new DateTime($datos['fecha_recibido']); $fechaR=date_format($fr,'d-m-Y');
                 <span class="label label-warning pull-right"><?=$var['externos'] > 0 ? $var['externos'] : '';?></span></a></li>
               <li><a href="mesaEntrada_en"><i class="fa fa-send fa-lg text-maroon"></i>Enviados
               <!--   enviados no lleva notifcaciones -->
-              <li><a href="mesaEntrada_pe"><i class="fa fa-envelope fa-lg text-teal"></i> Pendientes
+              <li><a href="mesaEntrada_pe"><i class="fa fa-envelope fa-lg text-teal"></i>Pendientes 
                 <span class="label label-info pull-right"><?= $var['pendientes']> 0 ? $var['pendientes']:'';?></span></a></li>
-              <li><a href="mesaEntrada_pg"><i class="fa fa-tag fa-lg text-info"></i>Con plazo de gestion
+              <li><a href="mesaEntrada_pg"><i class="fa fa-tag fa-lg text-info"></i>Con plazo de gestion 
                 <span class="label label-primary pull-right"><?=$var['pgestion']> 0 ? $var['pgestion']:'';?></span></a></li>
             </ul>
           </div>
@@ -88,9 +84,9 @@ $fr = new DateTime($datos['fecha_recibido']); $fechaR=date_format($fr,'d-m-Y');
           </div>
           <div class="box-body no-padding">
             <ul class="nav nav-pills nav-stacked">
-              <li><a href="mesaEntrada_ur"><i class="fa fa-circle-o  fa-lg text-red"></i>Urgente</a></li>
-              <li><a href="mesaEntrada_im"><i class="fa fa-circle-o fa-lg text-yellow"></i> Importante</a></li>
-              <li><a href="mesaEntrada_ge"><i class="fa fa-circle-o fa-lg text-light-blue"></i> Generico</a></li>
+              <li><a href="mesaEntrada_ur"><i class="fa fa-circle  fa-lg text-red"></i>Urgente</a></li>
+              <li><a href="mesaEntrada_im"><i class="fa fa-circle fa-lg text-yellow"></i> Importante</a></li>
+              <li><a href="mesaEntrada_ge"><i class="fa fa-circle fa-lg text-light-blue"></i> Generico</a></li>
             </ul>
           </div>
           <!-- /.box-body -->
@@ -113,42 +109,44 @@ $fr = new DateTime($datos['fecha_recibido']); $fechaR=date_format($fr,'d-m-Y');
             <!-- /.box-header --> 
 
             <div class="box-body">
-              <div class="mailbox-controls">     
-                <div class="pull-right">
-                <span class="mailbox-read-time">Enviado el: <?php  echo $fechaE;  ?></span>
-                  <div class="btn-group">
-                      <button type="button" class="btn btn-default btn-sm" data-toggle="tooltip" data-container="body" title="" data-original-title="Delete">
-                        <i class="fa fa-trash-o"></i></button>
-                      <button type="button" class="btn btn-default btn-sm" data-toggle="tooltip" data-container="body" title="" data-original-title="Reply">
-                        <i class="fa fa-reply"></i></button>
-                      <button type="button" class="btn btn-default btn-sm" data-toggle="tooltip" data-container="body" title="" data-original-title="Forward">
-                        <i class="fa fa-share"></i></button>
-                    <!-- /.btn-group -->
-                  </div>
-                  <div class="btn-group">
-                    <?php if($datos['estado']=='pe' ||$datos['estado']=='pg' ) {?>
-                      <button type="button" class="btn btn-primary btn-sm" data-toggle="tooltip" title="" data-original-title="recibido">
-                      <i class="fa fa-check "></i> poner en plazo de gestion</button> 
-                    <?php } if ($datos['estado']=='pe' ){?>
-                      <button type="button" class="btn  btn-sm" data-toggle="tooltip" title="" data-original-title="recibido">
-                      <i class="fa fa-check "></i> marcar como recibido</button>                
-                    <?php } ?>
-                  </div>                                
-                </div>
-                <h5> 
+              <div class="mailbox-controls"> 
+                <span class="pull-right" >
+                  <?= '<b>Enviado el:</b> '.$fechaE.'&emsp;';?>
+                </span> 
+                <span> 
                   <?php 
                   if(isset($_SESSION['env'])){
-                    echo 'Para: <b>'.ucwords($datos['nombre']).'</b>    ('.$datos['correo_electronico'].')<br> De: usted';
+                    echo 'A : <b>'.ucwords($datos['nombre']).'</b>    ('.$datos['correo_electronico'].')';
                   }
                   else{
-                    echo "De: <b>".ucWords($datos['nombre'])."</b>   ({$datos['correo_electronico']})";
+                    echo "De : <b>".ucWords($datos['nombre'])."</b>   ({$datos['correo_electronico']})";
                   }
-                  ?>
-                  
-                </h5>
+                  ?>                  
+                </span> 
+                  <form action="<?=$_GET['ruta'];?>" method="post" id="corresp">
+                    <div class="pull-right">
+                    <div class="btn-group">
+                        <?php if(!isset($_SESSION['env'])){ ?>
+                        <button type="submit" from="corresp" class="btn btn-danger btn-sm" name="btn" value="borrar"><i class="fa fa-trash-o"></i> Borrar</button>
+                      </div> 
+                      <div class="btn-group">
+                        <button type="submit" from="corresp" class="btn btn-info btn-sm" name="btn" value="reponder"><i class="fa fa-reply"></i> Responder</button>
+                          <?php }?>
+                        <button type="submit" from="corresp" class="btn btn-info btn-sm" name="btn" value="reenviar"><i class="fa fa-share"> Reenviar</i></button>
+                        <!-- /.btn-group -->
+                      </div> 
+                      <div class="btn-group">
+                          <?php if((!isset($_SESSION['env'])) && ($datos['estado']=='pe')) {?>
+                          <button type="submit" from="corresp" class="btn btn-primary btn-sm" name="btn" value="plazog"><i class="fa fa-check "></i> plazo de gestion</button> 
+                          <?php } if((!isset($_SESSION['env'])) && ($datos['estado']=='pe'||$datos['estado']=='pg')){?>
+                          <button type="submit" from="corresp" class="btn btn-success btn-sm" name="btn" value="recibido"><i class="fa fa-check "></i> recibido</button>                                       
+                          <?php } ?>  
+                        </div>              
+                    </div> 
+                  </form>
+                  <br>               
               </div>
               <!-- /.mailbox-controls -->
-                  
               <!-- /.mailbox-controls -->
               <div class="mailbox-read-message">
                 <?php if( $datos['contenido'] != NULL ){?>
@@ -167,7 +165,7 @@ $fr = new DateTime($datos['fecha_recibido']); $fechaR=date_format($fr,'d-m-Y');
                       $ext=end($extraer);
                       switch ($ext) {
                         case 'odt': $icoExt = array('word',1); break;
-                        case 'pdf': $icoExt = array('pdf',1); break;
+                        case 'pdf': $icoExt = array('pdf',0); break;
                         case 'xls': $icoExt = array('excel',0); break;
                         case 'zip': $icoExt = array('zip',0); break;
                         case 'docx': $icoExt =array( 'word',1); break;

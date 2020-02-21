@@ -45,7 +45,6 @@
                             $_SESSION["iniciarSession"] = "ok";
                             $_SESSION['id_AD']= $me['id'];                                                  
                             $w=new ctrUsuario();
-
                             $w->datosUsuario();
                              echo '<script>
                              window.location = "inicio";
@@ -68,8 +67,8 @@
             }
         }
 
-        protected function datosUsuario()
-        {               
+        protected function datosUsuario(){
+
             $con = new Conexion();
             $sentencia="SELECT
                         concat(per.nombre_persona,' ',per.apellido_persona) as nombre ,
@@ -85,7 +84,6 @@
                         WHERE em.ID_AD= :idad  limit 1";
             $arg=array(':idad'=>$_SESSION['id_AD']);
             $_SESSION['usuario'] = $con->consultaSel($sentencia,$arg)[0];
-           var_dump($_SESSION['usuario']);
             $upd= "ultimo_login='".date('y-m-d h:i:s')."'";
             $whr=array("ID_AD= '{$_SESSION['id_AD']}'");
             $con->consultaUpd('corresp_empleado',$upd,$whr);

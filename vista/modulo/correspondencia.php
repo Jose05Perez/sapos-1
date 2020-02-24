@@ -7,7 +7,7 @@
   $ruta = 'recursos/correspondencias/'.$datos['contenido'];
   $autoridad=($datos['autorizado'] == 1)?  array('warning','Autorizado'):array('danger','No Autorizado'); 
   $acceso= ($datos['privado'] == 1 )? array('primary','Privado'): array('info','Publico');
-  $alcance=($datos['status_persona'] == 4)?  array('success','Interno'):array('warning','Externo'); 
+  $alcance=($datos['status_persona'] != 4)?  array('success','Interno'):array('warning','Externo'); 
   // => 
   switch ($datos['estado']) {
     case 'pe':  $estado = array('info','Pendiente'); break;

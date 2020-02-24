@@ -70,15 +70,18 @@
                     <input type="text" required class="form-control" placeholder="Asunto: " name="asunto">
                   </div>                  
                 </div>
-                <div class="col-md-3">                  
+                <div class="col-md-2">                  
                   <div class="form-group">
                     <!-- <div class="form-control  bg-yellow"><i class="fa fa-shield"></i> Autorizado <input type="checkbox" class="" name="autorizado" id=""></div> -->
-                    <div class="form-control  bg-green"><i class="fa fa-shield"></i> Privado <input type="checkbox" class="" name="privado" id=""></div>
-                    <select class="form-control " role="group" name="caracter">
-                      <option class="text-light-blue" value="ge"><i class='fa fa-circle-o'></i> Genérico</option>
-                      <option class="text-yellow" value="im"><i class='fa fa-circle-o '></i> Importante</option>
-                      <option class="text-red" value="ur"><i class='fa fa-circle-o '></i> Urgente</option>
-                    </select>  
+                    <div class="form-control  bg-green"><i class="fa fa-shield"></i> Privado <input type="checkbox" class="pull-right" name="privado" id=""></div>
+                  </div>
+                  <div class="form-group">
+                      <select class="form-control " role="group" name="caracter">
+                        <option class="text-light-blue" value="ge"><i class='fa fa-circle-o'></i> Genérico</option>
+                        <option class="text-yellow" value="im"><i class='fa fa-circle-o '></i> Importante</option>
+                        <option class="text-red" value="ur"><i class='fa fa-circle-o '></i> Urgente</option>
+                      </select>  
+                  </div>
                   </div>
                 </div>
               </div>

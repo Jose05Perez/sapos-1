@@ -96,7 +96,6 @@ session_start();
 
 <body class="hold-transition skin-blue sidebar-mini"> 
     <?php 
-    setlocale(LC_ALL,"es_DO","es_DO","DO");
      if (isset($_SESSION["iniciarSession"]) && $_SESSION["iniciarSession"] == "ok")
      {
             echo '<div class="wrapper">';
@@ -114,7 +113,7 @@ session_start();
                 $contenido=array("",
                     "inicio","salir", "emisor", "mesaEntrada", "archivo", "isadG", "crearEmisor", "vistaEmisor",
                     "correspondencia", "tracking");
-                
+
                 if(isset($_GET['ruta']))
                 {
                     $r=explode("_",$_GET['ruta']);
@@ -128,10 +127,8 @@ session_start();
                     }
                 }
                 else
-                {
-                    
-                    include "modulo/inicio.php";
-                    
+                {                    
+                    include "modulo/inicio.php";   
                 }
                 /*===============================================================================================================
                 Incluyendo el pie de pagina en la aplicacion

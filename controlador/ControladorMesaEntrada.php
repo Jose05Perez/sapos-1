@@ -182,21 +182,21 @@ Class  MesaEntrada{
 
 class btnMesaEntrada{ 
     private $des;
-        function  __construct(){
-            $this->des = new Conexion();
-        }
+    function  __construct(){
+        $this->des = new Conexion();
+    }
     function eliminar($selec= array(),$id=array())//parametros de actualizacion 
     {   
-            $tabla= 'corresp_correspondencia';
-            $parametroSet="estado='el'"; //la uncia modificacion para eliminar e.e
-            if(!($id==array()) || $selec==array()){
-            foreach ($selec as $key => $value) {
-                $corRegistro[$key]="id_correspondencia = '".$id[$value]."'";    
-            }
-            }else{
-                    $corRegistro=array();  
-            }
-            $this->des->consultaUpd($tabla,$parametroSet,$corRegistro);    
+        $tabla= 'corresp_correspondencia';
+        $parametroSet="estado='el'"; //la uncia modificacion para eliminar e.e
+        if(!($id==array()) || $selec==array()){
+        foreach ($selec as $key => $value) {
+            $corRegistro[$key]="id_correspondencia = '".$id[$value]."'";    
+        }
+        }else{
+                $corRegistro=array();  
+        }
+        $this->des->consultaUpd($tabla,$parametroSet,$corRegistro);    
   
     }
     function btnPaginacion($lim,$fuente=array())
@@ -217,50 +217,5 @@ class btnMesaEntrada{
         $_SESSION['paginacion'][0]=$enlaces;
         $_SESSION['paginacion'][1]=$paginacion;         
         return $posiciones; 
-    }
-}
-
-Class Correspondencia{
-    private $cnx;
-        function  __construct(){
-            $this->cnx = new Conexion();
-        }
-    function consulta($ruta){
-        $num= explode("_",$ruta)[1];
-        $idc = $_SESSION['idc'][$num];
-        if (isset($_SESSION['env'])){
-            $env = 'receptor';
-        }else{
-            $env = 'emisor';
-        }
-        
-        $sentencia = "SELECT
-            c.id_correspondencia,
-            CONCAT(p.nombre_persona,' ',p.apellido_persona) AS nombre ,
-            p.correo_electronico, p.status_persona,
-            c.asunto, c.codigo_correspondencia, c.fecha_emision,c.estado, 
-            c.autorizado,c.privado, c.contenido, c.fecha_emision, c.fecha_recibido, c.caracter, c.adjuntos
-            FROM corresp_correspondencia c join corresp_persona p on (p.id_persona=c.id_persona_$env) where  id_correspondencia= :idc";
-        $arg= array('idc'=>$idc);
-        return $this->cnx->consultaSel($sentencia,$arg)[0];
-    }
-    function Vista(){
-        $correo = $this->consulta($_GET['ruta']);       
-        return $correo;        
-    }
-    function buscarCorresp($cadena){
-        $filtro .=" AND cor.id_persona_$cond= :id";
-        $tablaprep=array(
-            "campos"    => array("cor.id_correspondencia", "cor.caracter", "per.status_persona", "UPPER(CONCAT(per.nombre_persona,' ',per.apellido_persona)) AS emisor",
-                                "cor.asunto", "cor.codigo_correspondencia", "cor.fecha_emision","cor.estado", "cor.autorizado", 
-                                "cor.privado"),
-            "jointablas"=> "corresp_correspondencia AS cor JOIN corresp_persona AS per ON (cor.id_persona_emisor=per.id_persona)",
-            "condiciones"=> "id_persona_receptor = :id","id_persona_receptor= :id"
-            );            
-        $sentencia= "SELECT ".implode(", " , $tablaprep['campos'])." FROM ". $tablaprep['jointablas'].
-                    " WHERE ".implode ("OR",$tablaprep['condiciones']). " ORDER BY cor.estado,cor.fecha_emision DESC"; 
-        $arg=array(':id'=> $id); 
-        $resultado=$this->des->consultaSel($sentencia,$arg);
-        return $resultado;
     }
 }

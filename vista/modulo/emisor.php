@@ -8,17 +8,20 @@
           "asunto"=> $_POST["asunto"],
           "caracter"=> $_POST["caracter"]
         );
-        if (isset($_POST["privado"])){
-          $datos['privado']=1;
-        }
-        if (isset($_POST["autorizado"])){
-          $datos['autorizado']=1;
-        }
-        if(!$cont==null){
-          $datos['contenido']=$cont;
-        }
-        if (!$adj==null){
+        if (isset($_POST["privado"])){  $datos['privado']=1;   }
+        if (isset($_POST["autorizado"])){  $datos['autorizado']=1;   }        
+        if(!($cont==null)){  $datos['contenido']=$cont;   }        
+        if (!($adj==null)){
+          $po= count($adj['error']);
+          for($i=0;$i<$po;$i++){              
+             if ($adj['error'][$i]==1 || $adj['error'][$i]==2){
+               echo "<script>alert:('El archivo {$adj['name'][$i]}excede la capacidad establecida .');</script>";break;
+             }elseif($adj['error'][$i]!=0){
+              echo "<script>alert:('Error de subida en el archivo {$adj['name'][$i]}.');</script>";break;
+              }
+            }               
           $datos['adjuntos']=$adj;
+
         }    
         $verif= new GeneradorCorrespondencia($datos);
         $verif->ingresarCorresp();
@@ -27,7 +30,7 @@
       } 
      
     }
-    
+
 ?>
  <!-- Content Wrapper. Contains page content -->
  <div class="content-wrapper">
@@ -50,7 +53,7 @@
           <a  href="mesaEntrada" class="btn btn-primary btn-block margin-bottom">Mesa de Entrada</a>        
        </div>
         <div class="col-md-9">
-        <form action="<?=$_GET['ruta'];?>" method="post" id="crear" enctype="multipart/form-data">
+        <form action="<?=$_GET['ruta'];?>" method="post" id="crearCorresp" enctype="multipart/form-data">
           <div class="box box-primary">
             <div class="box-header with-border">
               <h3 class="box-title">Ingresar nueva correspondencia</h3>
@@ -67,15 +70,18 @@
                     <input type="text" required class="form-control" placeholder="Asunto: " name="asunto">
                   </div>                  
                 </div>
-                <div class="col-md-3">                  
+                <div class="col-md-2">                  
                   <div class="form-group">
-                    <div class="form-control  bg-yellow"><i class="fa fa-shield"></i> Autorizado <input type="checkbox" class="" name="autorizado" id=""></div>
-                    <div class="form-control  bg-green"><i class="fa fa-shield"></i> Privado <input type="checkbox" class="" name="privado" id=""></div>
-                    <select class="form-control " role="group" name="caracter">
-                      <option class="text-light-blue" value="ge"><i class='fa fa-circle-o'></i> Genérico</option>
-                      <option class="text-yellow" value="im"><i class='fa fa-circle-o '></i> Importante</option>
-                      <option class="text-red" value="ur"><i class='fa fa-circle-o '></i> Urgente</option>
-                    </select>  
+                    <!-- <div class="form-control  bg-yellow"><i class="fa fa-shield"></i> Autorizado <input type="checkbox" class="" name="autorizado" id=""></div> -->
+                    <div class="form-control  bg-green"><i class="fa fa-shield"></i> Privado <input type="checkbox" class="pull-right" name="privado" id=""></div>
+                  </div>
+                  <div class="form-group">
+                      <select class="form-control " role="group" name="caracter">
+                        <option class="text-light-blue" value="ge"><i class='fa fa-circle-o'></i> Genérico</option>
+                        <option class="text-yellow" value="im"><i class='fa fa-circle-o '></i> Importante</option>
+                        <option class="text-red" value="ur"><i class='fa fa-circle-o '></i> Urgente</option>
+                      </select>  
+                  </div>
                   </div>
                 </div>
               </div>
@@ -99,7 +105,7 @@
             <div class="box-footer">
               <div class="pull-right">
                 <!-- <button type="submit" class="btn btn-default" id="guardar" name="guardar" form="crear" ><i class="fa fa-pencil"></i> Guardar</button> -->
-                <button type="submit" class="btn btn-primary" id="enviar" name="enviar" form="crear" onclick="conf()" ><i class="fa fa-envelope-o"></i> Enviar</button>
+                <button type="submit" class="btn btn-primary" id="enviar" name="enviar" form="crearCorresp" onclick="conf()" ><i class="fa fa-envelope-o"></i> Enviar</button>
               </div>
               <button type="reset" class="btn btn-default" name="borrar" form="crear"><i class="fa fa-times"></i> Borrar</button>
             </div>

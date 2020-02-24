@@ -13,8 +13,7 @@ class GeneradorCorrespondencia{
         $this->id_correspondencia= "corresp{$this->genIdCorresp()}";
         $this->emisor = $_SESSION['usuario']['nombre'];   
         $this->co = $co; 
-    }         
-    
+    } 
     function genIdCorresp(){
         $sent = "SELECT COUNT(*) AS n FROM corresp_correspondencia";
         return $this->des->consultaSel($sent)[0]['n']+1;
@@ -30,25 +29,25 @@ class GeneradorCorrespondencia{
         return "{$CodigoD}-{$n}-{$anio}";
     }
     function idBusquedaxNombre($nombre){  
-      echo "<script>alert:('bazinga');</script>";
+        echo "<script>alert:('bazinga');</script>";
         $sent= "SELECT id_persona AS id, CONCAT(nombre_persona,' ',apellido_persona) as nom FROM corresp_persona WHERE 
-        CONCAT(nombre_persona,' ',apellido_persona)= :nombre OR correo_electronico = :nombre";
+        UPPER(CONCAT(nombre_persona,' ',apellido_persona))= UPPER(:nombre) OR correo_electronico = :nombre";
         $param =  array(":nombre"=>$nombre);
-        $f= $this->des->consultaSel($sent,$param)[0];
+        $f=$this->des->consultaSel($sent,$param)[0];
         return $f;
     }
-    function regContenido(){
+    function regContenido(){             
         
+        setlocale(LC_ALL,"es_ES@euro","es_ES","esp");$fecha=strftime("%d de %B del %Y");
+        $de=ucwords($this->idBusquedaxNombre($this->emisor)['nom']);
+        $a=ucwords($this->idBusquedaxNombre($this->co['destinatario'])['nom']);
+
         require "libs/vendor/autoload.php";
         $ruta= "recursos/correspondencias/";
         $nomArch = $this->codigo_correspondencia.".pdf";
         $dom = new Dompdf\Dompdf();
-        
-
-
-
-
-        $dom->loadHtml($this->co['contenido']);
+        require_once "recursos/plantillaCorrespondencia.php";
+        $dom->loadHtml($arch);
         $dom->setPaper('A4', 'portrait'); // (Opcional) Configurar papel y orientación
         $dom->render(); // Generar el PDF desde contenido HTML
         $pdf = $dom->output(); // Obtener el PDF generado
@@ -59,7 +58,8 @@ class GeneradorCorrespondencia{
 
     }
     function regAdjCorresp($adjuntos =array()){
-            $carpeta ="recursos/adjuntos/".$this->codigo_correspondencia;$nombreArchivos = "";                   
+            $carpeta ="recursos/adjuntos/".$this->codigo_correspondencia;
+            $nombreArchivos = "";                   
             mkdir($carpeta,755)or die(); 
             $po= count($adjuntos['error']);
             for($i=0;$i<$po;$i++){     
@@ -89,27 +89,27 @@ class GeneradorCorrespondencia{
             $ingreso['contenido']=$this->regContenido();
         }
         if(isset($this->co['adjuntos'])){
-            $ingreso['adjuntos']=$this->regAdjCorresp($co['adjuntos']);
+            $ingreso['adjuntos']=$this->regAdjCorresp($this->co['adjuntos']);
         }
        $this->des->consultaIns('corresp_correspondencia',$ingreso);
     }
 }
 
-// require "libs/vendor/autoload.php";
-//       $ruta= "recursos/correspondencias/";
-//       $nomArch = $this->codigo_correspondencia.".pdf";
+//         require "libs/vendor/autoload.php";
+//         $ruta= "recursos/correspondencias/";
+//         $nomArch = $this->codigo_correspondencia.".pdf";
+//         $dom = new Dompdf\Dompdf();
+//         require_once "recursos/plantillaCorrespondencia.php";
+//         $dom->loadHtml($arch);
+//         $dom->setPaper('A4', 'portrait'); // (Opcional) Configurar papel y orientación
+//         $dom->render(); // Generar el PDF desde contenido HTML
+//         $pdf = $dom->output(); // Obtener el PDF generado
+//         $arch = fopen($ruta.$nomArch,"w") or die("ya existe el archivo");
+//         fwrite($arch,$pdf);
+//         fclose($arch);
+//         return $nomArch;
 
-//       $dom = new Dompdf\Dompdf();
-//       $dom->loadHtml($contenido);
-//       $dom->setPaper('A4', 'portrait'); // (Opcional) Configurar papel y orientación
-//       $dom->render(); // Generar el PDF desde contenido HTML
-//       $pdf = $dom->output(); // Obtener el PDF generado
-//       $arch = fopen($ruta.$nomArch,"w") or die("ya existe el archivo");
-//           fwrite($arch,$pdf);
-//           fclose($arch);
-//           return $nomArch;
-
-
+//////////////////////////////////////
 
 // setlocale(LC_ALL,"es_ES@euro","es_ES","esp");$fecha=strftime("%d de %B del %Y");
 // $de=ucwords($this->idBusquedaxNombre($this->emisor)['nom']);

@@ -24,31 +24,42 @@
         <div class="col-md-9 bg-white">
         <div class="box box-body" id="isadg">
                     <form class="form-horizontal" >
+                      <fieldset>                        
+                          <legend> ENTIDAD DESCRIPTIVA</legend>
+                          <div class="form-group">
+                            <label for="contenedor" class="col-sm-2 control-label">Contenedor de la entidad:</label>
+                            <div class="col-sm-10">
+                              <select class="form-control" id="contenedor">
+                                <??>
+                              </select>
+                          </div>
+                        </div>
+                      </fieldset>
                       <fieldset>
                         <legend>ÁREA DE IDENTIFICACIÓN</legend>
                         <div class="form-group">
-                          <label for="inputName" class="col-sm-2 control-label">Código de referencia:</label>
+                          <label for="codReferencia" class="col-sm-2 control-label">Código de referencia:</label>
                           <div class="col-sm-10">
                             <input type="text" class="form-control" id="codReferencia">
                           </div>
                         </div>
 
                         <div class="form-group">
-                          <label for="inputName" class="col-sm-2 control-label">Título:</label>
+                          <label for="titulo" class="col-sm-2 control-label">Título:</label>
                           <div class="col-sm-10">
                             <input type="text" class="form-control" id="titulo">
                           </div>
                         </div>
 
                         <div class="form-group">
-                          <label for="inputName" class="col-sm-2 control-label">Fecha(s): </label>
+                          <label for="fecha" class="col-sm-2 control-label">Fecha(s): </label>
                           <div class="col-sm-10">
                             <input type="text" class="form-control" id="fecha">
                           </div>
                         </div>
 
                         <div class="form-group">
-                          <label for="inputName" class="col-sm-2 control-label">Nivel de descripción: </label>
+                          <label for="nivelDescripcion" class="col-sm-2 control-label">Nivel de descripción: </label>
                           <div class="col-sm-10">
                             <select  id="nivelDescripcion" class="form-control">
                               <option value="<?=$nd?>"><?=$nd?></option>
@@ -57,12 +68,23 @@
                         </div>
 
                         <div class="form-group">
-                          <label for="inputName" class="col-sm-2 control-label">Volumen: </label>
+                          <label for="volumen" class="col-sm-2 control-label">Volumen: </label>
                           <div class="col-sm-10">
                             <input type="text" class="form-control" id="volumen">
                           </div>
                         </div>
+
+                        
                       </fieldset>  
+                      <fieldset>               
+                        <legend> INFRMACION ADICIONAL DE REFERENCIA </legend>                    
+                        <div class="form-group">
+                          <label for="signaturaTopografica:" class="col-sm-2 control-label">Signatura Topografica: </label>
+                          <div class="col-sm-10">
+                            <input type="text" class="form-control" id="signaturaTopografica:">
+                          </div>
+                        </div>
+                      </fieldset>
                     </form>
                     <!--======================================================================================================-->
                     <form class="form-horizontal" >
@@ -178,7 +200,7 @@
                               </div>
                             </div>
                      <?php } if($nd=='fondo' || $nd=='serie'){?>
-                          echo'
+                         
                           </fieldset>
                         </form>
                      <?php }?>

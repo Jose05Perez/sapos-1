@@ -82,7 +82,6 @@
                         <option class="text-red" value="ur"><i class='fa fa-circle-o '></i> Urgente</option>
                       </select>  
                   </div>
-                  </div>
                 </div>
               </div>
               
@@ -91,6 +90,7 @@
                     <textarea id="contenido" name="contenido" class="form-control" style="height: 300px">
                     </textarea>
               </div>
+              <div class="form-goup" ></div>
               <div class="form-group">
                 <div class="btn btn-default btn-file">
                   <i class="fa fa-paperclip"></i> Archivo Adjunto 

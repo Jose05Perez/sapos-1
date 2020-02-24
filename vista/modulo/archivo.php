@@ -52,9 +52,6 @@
                     <div id="header">
                       <ul class="nav">
                             <li><a href="#">Fondo1</a></li>
-                            <li><a href="#">Fondo2</a></li>
-                            <li><a href="#">Fondo3</a></li>
-                            <li><a href="#">Fondo4</a></li>
                       </ul>
                       </div>
                   </div>
@@ -75,37 +72,13 @@
                       <div id="header">
                       <ul class="nav">
                             <li><a href="#">Sección1</a></li>
-                            <li><a href="#">Sección2</a></li>
-                            <li><a href="#">Sección3</a></li>
-                            <li><a href="#">Sección4</a></li>
                       </ul>
                       </div>
                   </div>
                     <label class="label label-primary"> Cantidad total de  secciones registradas: 00-var</label>
                   </div>
                   <!-- /.post -->
-                  <!-- Post -->
-                  <div class="post">
-                      <button class="btn btn-default pull-right" type="submit" name="nivelDescripcion" value="subseccion" onClick="window.location='isadG'">
-                      <i class="fa fa-plus"></i> Nueva sub-seccion</button>
-                      <h3><i class="fa fa-square"></i> <a data-toggle="collapse" href="#collapseExample2" role="button" aria-expanded="false" aria-controls="collapseExample">
-                      Subsecciones 
-                      </a></h3>
-                       <div class="collapse" id="collapseExample2">
-                      <div class="card card-body">  </div>
-                      <div id="header">
-                      <ul class="nav">
-                            <li><a href="#">Sub-sección1</a></li>
-                            <li><a href="#">Sub-sección2</a></li>
-                            <li><a href="#">Sub-sección3</a></li>
-                            <li><a href="#">Sub-sección4</a></li>
-                      </ul>
-                      </div>
-                  </div>
-                      <label class="label label-default"> Cantidad total de  subsecciones registrados: 00-var</label>
-                  </div>
-                  <!-- /.post -->
-                  <!-- Post -->
+                  <!-- Post -->    
                   <div class="post">
                       <button  class="btn btn-warning pull-right"type="submit" name="nivelDescripcion" value="serie" onClick="window.location='isadG'">
                       <i class="fa fa-plus"></i> Nueva serie</button>
@@ -117,21 +90,36 @@
                       <div id="header">
                       <ul class="nav">
                             <li><a href="#">Serie1</a></li>
-                            <li><a href="#">Serie2</a></li>
-                            <li><a href="#">Serie3</a></li>
-                            <li><a href="#">Serie4</a></li>
                       </ul>
                       </div>
                   </div>
                       <label class="label label-warning"> Cantidad total de  series registradas: 00-var</label>
                   </div>
+                  <!-- /.post -->             
+                  <!-- Post -->
+                  <div class="post">
+                      <button class="btn btn-default pull-right" type="submit" name="nivelDescripcion" value="subsereies" onClick="window.location='isadG'">
+                      <i class="fa fa-plus"></i> Nueva subserie</button>
+                      <h3><i class="fa fa-square"></i> <a data-toggle="collapse" href="#collapseExample2" role="button" aria-expanded="false" aria-controls="collapseExample">
+                      Subseries 
+                      </a></h3>
+                       <div class="collapse" id="collapseExample2">
+                      <div class="card card-body">  </div>
+                      <div id="header">
+                      <ul class="nav">
+                            <li><a href="#">Subserie1</a></li>
+                      </ul>
+                      </div>
+                  </div>
+                      <label class="label label-default"> Cantidad total de  subseries registrados: 00-var</label>
+                  </div>
                   <!-- /.post -->
                   <!-- Post -->
                   <div class="post">
-                      <button class="btn btn-info pull-right" type="submit" name="nivelDescripcion" value="expediente" onClick="window.location='isadG'">
+                      <button class="btn btn-info pull-right" type="submit" name="nivelDescripcion" value="expedientes" onClick="window.location='isadG'">
                       <i class="fa fa-plus"></i> Nuevo expediente</button>
                       <h3><i class="fa fa-folder"></i> <a data-toggle="collapse" href="#collapseExample4" role="button" aria-expanded="false" aria-controls="collapseExample">
-                      Expediente
+                      Expedientes
                       </a></h3>
                        <div class="collapse" id="collapseExample4">
                       <div class="card card-body">  </div>

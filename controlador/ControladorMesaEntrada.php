@@ -28,7 +28,7 @@ Class  MesaEntrada{
                     break;
                 case 't':
                     unset($_SESSION['env']);
-                    $filtro.= " OR  cp.id_persona_copia= :id";
+                    
                     break;
                 case 'pe':
                     $filtro.= " AND cor.estado='pe'";
@@ -57,16 +57,18 @@ Class  MesaEntrada{
         }
         if(isset($_SESSION['env'])){//si la consuta es de envios o recepciones
             $cond="emisor";$ncol="receptor";
+            $filtro .=" AND cor.id_persona_$cond= :id ";
         }else{
             $cond="receptor";$ncol="emisor";
+            $filtro .=" AND (cor.id_persona_$cond= :id  OR  cp.id_persona_copia= :id)";
         } 
-        $filtro .=" AND cor.id_persona_$cond= :id";
+        
         $tablaprep=array(
             "campos"    => array("cor.id_correspondencia", "cor.caracter", "per.status_persona", "UPPER(CONCAT(per.nombre_persona,' ',per.apellido_persona)) AS $ncol",
                                 "cor.asunto", "cor.codigo_correspondencia", "cor.fecha_emision","cor.estado", "cor.autorizado", 
                                 "cor.privado"),
             "jointablas"=> "corresp_correspondencia AS cor JOIN corresp_persona AS per ON (cor.id_persona_$ncol=per.id_persona) 
-                            JOIN corresp_copias AS cp ON (cor.id_copia_corresp=cp.id_copia)"
+                            left JOIN corresp_copia AS cp ON (cor.id_correspondencia=cp.id_corresp_copia)"
             );            
         $sentencia= "SELECT ".implode(", " , $tablaprep['campos'])." FROM ". $tablaprep['jointablas'].
                     " WHERE ".$filtro." ORDER BY cor.estado,cor.fecha_emision DESC"; 

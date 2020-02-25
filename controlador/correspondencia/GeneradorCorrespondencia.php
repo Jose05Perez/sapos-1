@@ -94,83 +94,83 @@ class GeneradorCorrespondencia{
        $this->des->consultaIns('corresp_correspondencia',$ingreso);
     }
 }
+//////////////PDF//////////////////////////
+    //         require "libs/vendor/autoload.php";
+    //         $ruta= "recursos/correspondencias/";
+    //         $nomArch = $this->codigo_correspondencia.".pdf";
+    //         $dom = new Dompdf\Dompdf();
+    //         require_once "recursos/plantillaCorrespondencia.php";
+    //         $dom->loadHtml($arch);
+    //         $dom->setPaper('A4', 'portrait'); // (Opcional) Configurar papel y orientación
+    //         $dom->render(); // Generar el PDF desde contenido HTML
+    //         $pdf = $dom->output(); // Obtener el PDF generado
+    //         $arch = fopen($ruta.$nomArch,"w") or die("ya existe el archivo");
+    //         fwrite($arch,$pdf);
+    //         fclose($arch);
+    //         return $nomArch;
 
-//         require "libs/vendor/autoload.php";
-//         $ruta= "recursos/correspondencias/";
-//         $nomArch = $this->codigo_correspondencia.".pdf";
-//         $dom = new Dompdf\Dompdf();
-//         require_once "recursos/plantillaCorrespondencia.php";
-//         $dom->loadHtml($arch);
-//         $dom->setPaper('A4', 'portrait'); // (Opcional) Configurar papel y orientación
-//         $dom->render(); // Generar el PDF desde contenido HTML
-//         $pdf = $dom->output(); // Obtener el PDF generado
-//         $arch = fopen($ruta.$nomArch,"w") or die("ya existe el archivo");
-//         fwrite($arch,$pdf);
-//         fclose($arch);
-//         return $nomArch;
+/////////// DOCX///////////////////////////
 
-//////////////////////////////////////
+    // setlocale(LC_ALL,"es_ES@euro","es_ES","esp");$fecha=strftime("%d de %B del %Y");
+    // $de=ucwords($this->idBusquedaxNombre($this->emisor)['nom']);
+    // $a=ucwords($this->idBusquedaxNombre($this->co['destinatario'])['nom']);
 
-// setlocale(LC_ALL,"es_ES@euro","es_ES","esp");$fecha=strftime("%d de %B del %Y");
-// $de=ucwords($this->idBusquedaxNombre($this->emisor)['nom']);
-// $a=ucwords($this->idBusquedaxNombre($this->co['destinatario'])['nom']);
+    // require_once 'libs/vendor/autoload.php';      
+    // $phpWord = new \PhpOffice\PhpWord\PhpWord();
 
-// require_once 'libs/vendor/autoload.php';      
-// $phpWord = new \PhpOffice\PhpWord\PhpWord();
+    // $properties = $phpWord->getDocInfo();
+    // $properties->setCreator($this->emisor);
+    // $properties->setCompany('BNPHU');
+    // $properties->setTitle($this->codigo_correspondencia);
+    // $properties->setCreated(mktime(0, 0, 0, 3, 12, 2014));
 
-// $properties = $phpWord->getDocInfo();
-// $properties->setCreator($this->emisor);
-// $properties->setCompany('BNPHU');
-// $properties->setTitle($this->codigo_correspondencia);
-// $properties->setCreated(mktime(0, 0, 0, 3, 12, 2014));
+    // $section = $phpWord->addSection();
 
-// $section = $phpWord->addSection();
+    // $cabeza = $section->addHeader();
+    // $phpWord->addParagraphStyle ('txtctr',array('alignment'=> \PhpOffice\PhpWord\SimpleType\Jc::CENTER, 'lineHeight'=>1,));
+    // $cabeza->addImage("vista/img/logo.jpg",array('width' => 75,'height'=> 82,'alignment'=> \PhpOffice\PhpWord\SimpleType\Jc::CENTER));
+    // $cabeza->addText( '¡Manos a la obra!', array('name'=> 'calibri', 'size'=>10), 'txtctr');
+    // $cabeza->addText('“Año de la Consolidación de la Seguridad Alimentaria”',array('name'=> 'calibri', 'size'=>9),'txtctr');
 
-// $cabeza = $section->addHeader();
-// $phpWord->addParagraphStyle ('txtctr',array('alignment'=> \PhpOffice\PhpWord\SimpleType\Jc::CENTER, 'lineHeight'=>1,));
-// $cabeza->addImage("vista/img/logo.jpg",array('width' => 75,'height'=> 82,'alignment'=> \PhpOffice\PhpWord\SimpleType\Jc::CENTER));
-// $cabeza->addText( '¡Manos a la obra!', array('name'=> 'calibri', 'size'=>10), 'txtctr');
-// $cabeza->addText('“Año de la Consolidación de la Seguridad Alimentaria”',array('name'=> 'calibri', 'size'=>9),'txtctr');
+    // $phpWord->addFontStyle ('ffecha',array('name'=>'Times New Roman', 'size'=>12));
+    // $phpWord->addParagraphStyle ('lhfecha',array('lineHeight'=>0.6,"spaceBefore" => 0, "spaceAfter" => 0, "spacing" => 0));
 
-// $phpWord->addFontStyle ('ffecha',array('name'=>'Times New Roman', 'size'=>12));
-// $phpWord->addParagraphStyle ('lhfecha',array('lineHeight'=>0.6,"spaceBefore" => 0, "spaceAfter" => 0, "spacing" => 0));
-
-// $section->addText($this->codigo_correspondencia,['name'=> 'Times New Roman', 'size'=>10, 'bold'=> true],'lhfecha');
-// $section->addText("Santo Domingo, DN",'ffecha','lhfecha');
-// $section->addText($fecha,'ffecha','lhfecha');
-// $section->addTextbreak();
-
-
-// $phpWord->addFontStyle ('fdestinatario',array('name'=>'calibri', 'size'=>12));
-// $phpWord->addParagraphStyle ('lhdestinatario',array('lineHeight'=>2.0));
-
-// $destinatario = $section->addTextRun();
-// $destinatario->addText("A \r\t\t:\r\t" ,['fdestinatario','bold'=> true],'lhdestinatario');
-// $destinatario->addText($a, 'fdestinatario', 'lhdestinatario');   
-// $section->addTextbreak();
-
-// $remitente = $section->addTextRun();
-// $remitente->addText("De \r\t\t:\r\t" ,['fdestinatario','bold'=> true],'lhdestinatario');
-// $remitente->addText($de, 'fdestinatario', 'lhdestinatario');
-// $section->addTextbreak();
-
-// $asunto = $section->addTextRun();
-// $asunto->addText("Asunto \r\t:\r\t" ,['bold'=> true]);
-// $asunto->addText( $this->co['asunto']);
-// $section->addTextbreak();$section->addTextbreak();
+    // $section->addText($this->codigo_correspondencia,['name'=> 'Times New Roman', 'size'=>10, 'bold'=> true],'lhfecha');
+    // $section->addText("Santo Domingo, DN",'ffecha','lhfecha');
+    // $section->addText($fecha,'ffecha','lhfecha');
+    // $section->addTextbreak();
 
 
-// PhpOffice\PhpWord\Shared\Html::addHtml($section,$this->co['contenido']);
-// $section->addTextbreak();
+    // $phpWord->addFontStyle ('fdestinatario',array('name'=>'calibri', 'size'=>12));
+    // $phpWord->addParagraphStyle ('lhdestinatario',array('lineHeight'=>2.0));
 
-// $desc = $section->addFooter();
-// $desc->addText($de,array('fdestinatario','bold'=>true));
-// $desc->addText($_SESSION['usuario']['puesto'].' '.$_SESSION['usuario']['departamento'],'fdestinatario');
+    // $destinatario = $section->addTextRun();
+    // $destinatario->addText("A \r\t\t:\r\t" ,['fdestinatario','bold'=> true],'lhdestinatario');
+    // $destinatario->addText($a, 'fdestinatario', 'lhdestinatario');   
+    // $section->addTextbreak();
 
-// $pie = $section->addFooter();
-// $pie->addText(
-//   "Av. César Nicolás Penson # 91, Plaza de la Cultura Juan Pablo Duarte, Gazcue, Santo Domingo, D. N.
-//  \r\n RNC. 401-03133-7 / Tel.: 829-946-2674 / info@bnphu.gob.do", array('name'=> 'calibri', 'size'=>10),'txtctr'
-// );
-// $objWriter = \PhpOffice\PhpWord\IOFactory::createWriter($phpWord, 'Word2007');
-// $objWriter->save("recursos/correspondencias/{$this->codigo_correspondencia}.docx");
+    // $remitente = $section->addTextRun();
+    // $remitente->addText("De \r\t\t:\r\t" ,['fdestinatario','bold'=> true],'lhdestinatario');
+    // $remitente->addText($de, 'fdestinatario', 'lhdestinatario');
+    // $section->addTextbreak();
+
+    // $asunto = $section->addTextRun();
+    // $asunto->addText("Asunto \r\t:\r\t" ,['bold'=> true]);
+    // $asunto->addText( $this->co['asunto']);
+    // $section->addTextbreak();$section->addTextbreak();
+
+
+    // PhpOffice\PhpWord\Shared\Html::addHtml($section,$this->co['contenido']);
+    // $section->addTextbreak();
+
+    // $desc = $section->addFooter();
+    // $desc->addText($de,array('fdestinatario','bold'=>true));
+    // $desc->addText($_SESSION['usuario']['puesto'].' '.$_SESSION['usuario']['departamento'],'fdestinatario');
+
+    // $pie = $section->addFooter();
+    // $pie->addText(
+    //   "Av. César Nicolás Penson # 91, Plaza de la Cultura Juan Pablo Duarte, Gazcue, Santo Domingo, D. N.
+    //  \r\n RNC. 401-03133-7 / Tel.: 829-946-2674 / info@bnphu.gob.do", array('name'=> 'calibri', 'size'=>10),'txtctr'
+    // );
+    // $objWriter = \PhpOffice\PhpWord\IOFactory::createWriter($phpWord, 'Word2007');
+    // $objWriter->save("recursos/correspondencias/{$this->codigo_correspondencia}.docx");

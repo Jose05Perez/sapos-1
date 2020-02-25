@@ -31,7 +31,7 @@ Class Correspondencia{
         if($est === true){
             switch ($btn){
                 case 'reenviar':  
-                    $est = "pg"; 
+                    $est = "pg"; echo "<script>window.location= 'emisor';</script>";
                     
                 break;
                 case 'responder': 

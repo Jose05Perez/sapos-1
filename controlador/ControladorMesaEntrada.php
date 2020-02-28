@@ -27,8 +27,7 @@ Class  MesaEntrada{
                     $_SESSION['env']=true;                
                     break;
                 case 't':
-                    unset($_SESSION['env']);
-                    
+                    unset($_SESSION['env']);                    
                     break;
                 case 'pe':
                     $filtro.= " AND cor.estado='pe'";
@@ -65,13 +64,13 @@ Class  MesaEntrada{
         
         $tablaprep=array(
             "campos"    => array("cor.id_correspondencia", "cor.caracter", "per.status_persona", "UPPER(CONCAT(per.nombre_persona,' ',per.apellido_persona)) AS $ncol",
-                                "cor.asunto", "cor.codigo_correspondencia", "cor.fecha_emision","cor.estado", "cor.autorizado", 
+                                "cor.asunto", "cor.fecha_emision","cor.estado", "cor.autorizado", 
                                 "cor.privado"),
             "jointablas"=> "corresp_correspondencia AS cor JOIN corresp_persona AS per ON (cor.id_persona_$ncol=per.id_persona) 
                             left JOIN corresp_copia AS cp ON (cor.id_correspondencia=cp.id_corresp_copia)"
             );            
         $sentencia= "SELECT ".implode(", " , $tablaprep['campos'])." FROM ". $tablaprep['jointablas'].
-                    " WHERE ".$filtro." ORDER BY cor.estado,cor.fecha_emision DESC"; 
+                    " WHERE ".$filtro." ORDER BY cor.estado ASC ,cor.fecha_emision DESC"; 
         $arg=array(':id'=> $id); 
         $resultado=$this->des->consultaSel($sentencia,$arg);
         return $resultado;

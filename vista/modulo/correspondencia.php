@@ -19,7 +19,7 @@
   $fechaR=strftime("%d de %B del %Y",strtotime($datos['fecha_recibido']));
 
   if(isset($_POST['btn'])){
-    $mensaje->btnCorrespondencia($_POST['btn']);
+    $mensaje->btnCorrespondencia($_POST['btn'],$datos);
   }
 //var_dump($datos);
 ?>
@@ -99,6 +99,7 @@
           <div class="box box-primary">
             <div class="box-header with-border">
                 <div class="pull-right"> 
+                    <?= $copia=($datos['cc']==1)?'<span class="label bg-purple">Copia</span>':'';?>
                     <span class="label label-<?=$acceso[0];?>" ><?= $acceso[1];?></span>
                    <span class="label label-<?=$autoridad[0];?>" ><?= $autoridad[1];?></span>
                     <span class="label label-<?=$alcance[0];?>" ><?= $alcance[1];?></span> 
@@ -125,20 +126,19 @@
                 </span> 
                   <form action="<?=$_GET['ruta'];?>" method="post" id="corresp">
                     <div class="pull-right">
-                    <div class="btn-group">
-                        <?php if(!isset($_SESSION['env'])){ ?>
+                      <div class="btn-group">
+                        <?php if(!isset($_SESSION['env']) && $datos['cc'] == 0){ ?>
                         <button type="submit" from="corresp" class="btn btn-danger btn-sm" name="btn" value="borrar"><i class="fa fa-trash-o"></i> Borrar</button>
                       </div> 
                       <div class="btn-group">
-                        <button type="submit" from="corresp" class="btn btn-info btn-sm" name="btn" value="reponder"><i class="fa fa-reply"></i> Responder</button>
                           <?php }?>
                         <button type="submit" from="corresp" class="btn btn-info btn-sm" name="btn" value="reenviar"><i class="fa fa-share"> Reenviar</i></button>
                         <!-- /.btn-group -->
                       </div> 
                       <div class="btn-group">
-                          <?php if((!isset($_SESSION['env'])) && ($datos['estado']=='pe')) {?>
+                          <?php if((!isset($_SESSION['env'])) && ($datos['estado']=='pe' && $datos['cc'] == 0)) {?>
                           <button type="submit" from="corresp" class="btn btn-primary btn-sm" name="btn" value="plazog"><i class="fa fa-check "></i> plazo de gestion</button> 
-                          <?php } if((!isset($_SESSION['env'])) && ($datos['estado']=='pe'||$datos['estado']=='pg')){?>
+                          <?php } if((!isset($_SESSION['env'])) && ($datos['estado']=='pe'||$datos['estado']=='pg')&& $datos['cc'] == 0){?>
                           <button type="submit" from="corresp" class="btn btn-success btn-sm" name="btn" value="recibido"><i class="fa fa-check "></i> recibido</button>                                       
                           <?php } ?>  
                         </div>              

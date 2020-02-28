@@ -1,4 +1,8 @@
 <?php
+    $intencion = explode ("_",$_GET['ruta']);
+    
+
+
      if(isset($_POST['enviar']) && $_POST['contenido']!==false){      
       $adj=($_FILES['adjuntos']['error'][0]==4)?NULL:$_FILES['adjuntos'];
       $cont=$_POST["contenido"]==""?NULL:$_POST["contenido"];         
@@ -20,11 +24,10 @@
               echo "<script>alert:('Error de subida en el archivo {$adj['name'][$i]}.');</script>";break;
               }
             }               
-          $datos['adjuntos']=$adj;
-
-        }    
+          $datos['adjuntos']=$adj;        }    
         $verif= new GeneradorCorrespondencia($datos);
         $verif->ingresarCorresp();
+
       }else{
         echo '<script>alert("debe añadir informacion a esta correspondencia")</script>';
       } 
@@ -67,7 +70,7 @@
                     <input type="text" required class="form-control" placeholder="Para:" name="destinatario">
                   </div>
                   <div class="form-group">
-                    <input type="text" required class="form-control" placeholder="Asunto: " name="asunto">
+                    <input type="text" required class="form-control" placeholder="Asunto: " name="asunto" <?php if(isset($intencion[1])=='renv'){echo "value='(REENVIO){$_SESSION['renv']['asunto']}'";}?>>
                   </div>                  
                 </div>
                 <div class="col-md-2">                  
@@ -84,12 +87,17 @@
                   </div>
                 </div>
               </div>
-              
-              
               <div class="form-group">
-                    <textarea id="contenido" name="contenido" class="form-control" style="height: 300px">
-                    </textarea>
+              <?php if(isset($intencion[1])=='renv'){
+                $ruta = 'recursos/correspondencias/'. $_SESSION['renv']['contenido'];
+                $_POST['contenido']= $_SESSION['renv']['contenido'];
+                ?>
+                <embed src="<?=$ruta;?>" type="application/pdf" width="100%" height="500px" /> 
+              <?php }else{?>              
+                <textarea id="contenido" name="contenido" class="form-control" style="height: 300px">
+                </textarea>
               </div>
+              <?php }?>
               <div class="form-goup" ></div>
               <div class="form-group">
                 <div class="btn btn-default btn-file">

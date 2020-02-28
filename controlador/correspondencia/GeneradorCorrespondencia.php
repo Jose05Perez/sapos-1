@@ -57,6 +57,9 @@ class GeneradorCorrespondencia{
         return $nomArch;
 
     }
+    function regReenvios(){
+
+    }
     function regAdjCorresp($adjuntos =array()){
             $carpeta ="recursos/adjuntos/".$this->codigo_correspondencia;
             $nombreArchivos = "";                   
@@ -70,13 +73,13 @@ class GeneradorCorrespondencia{
           return $nombreArchivos;
     }
     function ingresarCorresp(){
-      $ingreso=array(
+        setlocale(LC_TIME,"es_es.UTF-8");
+        $ingreso=array(
         'id_correspondencia'=> $this->id_correspondencia,
         'id_persona_emisor'=>$this->idBusquedaxNombre($this->emisor)['id'],
         'id_persona_receptor'=> $this->idBusquedaxNombre($this->co['destinatario'])['id'],
-        'fecha_emision'=>date('y-m-d'),
+        'fecha_emision'=>date("Y-m-d G:i:s"),
         'asunto'=> $this->co['asunto'],        
-        'codigo_correspondencia'=>$this->codigo_correspondencia,
         'caracter'=>$this->co['caracter']       
         );
         if(isset($this->co['privado'])){
@@ -85,7 +88,11 @@ class GeneradorCorrespondencia{
         if(isset($this->co['autorizado'])){
            $ingreso['autorizado']=$this->co['autorizado'];
         }
-        if(isset($this->co['contenido'])){
+        if(isset($this->co['contenido'] )){
+            if(isset($_SESSION['renv']['contenido'])){
+                
+            }
+
             $ingreso['contenido']=$this->regContenido();
         }
         if(isset($this->co['adjuntos'])){

@@ -67,7 +67,7 @@
             }
         }
 
-        protected function datosUsuario(){
+        static public function datosUsuario(){
 
             $con = new Conexion();
             $sentencia="SELECT

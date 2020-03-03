@@ -12,6 +12,7 @@
  *  @link https://github.com/josueSerulle/correspondencia
  */
 session_start();
+
 ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -96,8 +97,14 @@ session_start();
 
 <body class="hold-transition skin-blue sidebar-mini"> 
     <?php 
+    
+    $_SESSION["iniciarSession"] = "ok";
+    $_SESSION['id_AD']="2";                                               
+    ctrUsuario::datosUsuario();
+
      if (isset($_SESSION["iniciarSession"]) && $_SESSION["iniciarSession"] == "ok")
      {
+
             echo '<div class="wrapper">';
                 /*===============================================================================================================
                 Incluyendo el cabezote en la aplicacion
@@ -139,7 +146,8 @@ session_start();
          }
          else
          {
-             ctrUsuario::ctrIngresarUsuario(true);
+            
+            //ctrUsuario::ctrIngresarUsuario(true);
         }
     ?>
 </body>

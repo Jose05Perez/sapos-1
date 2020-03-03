@@ -59,7 +59,7 @@ Class  MesaEntrada{
             $filtro .=" AND cor.id_persona_$cond= :id ";
         }else{
             $cond="receptor";$ncol="emisor";
-            $filtro .=" AND (cor.id_persona_$cond= :id  OR  cp.id_persona_copia= :id)";
+            $filtro .=" AND (cor.id_persona_$cond= :id  OR  cp.id_persona_replica= :id)";
         } 
         
         $tablaprep=array(
@@ -67,7 +67,7 @@ Class  MesaEntrada{
                                 "cor.asunto", "cor.fecha_emision","cor.estado", "cor.autorizado", 
                                 "cor.privado"),
             "jointablas"=> "corresp_correspondencia AS cor JOIN corresp_persona AS per ON (cor.id_persona_$ncol=per.id_persona) 
-                            left JOIN corresp_copia AS cp ON (cor.id_correspondencia=cp.id_corresp_copia)"
+                            left JOIN corresp_replica AS cp ON (cor.id_correspondencia=cp.id_corresp_replica)"
             );            
         $sentencia= "SELECT ".implode(", " , $tablaprep['campos'])." FROM ". $tablaprep['jointablas'].
                     " WHERE ".$filtro." ORDER BY cor.estado ASC ,cor.fecha_emision DESC"; 

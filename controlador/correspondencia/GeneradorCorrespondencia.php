@@ -22,7 +22,7 @@ class GeneradorCorrespondencia{
         $CodigoD= $_SESSION['usuario']['codigo_depto'];$anio=date('Y');
         $sent ="SELECT COUNT(*) AS nc FROM corresp_correspondencia as c 
         JOIN corresp_empleado as e ON c.id_persona_emisor = e.id_persona_empleado  
-        WHERE  e.id_departamento_empleado = :depto AND YEAR(c.fecha_emision)= :fecha ";
+        WHERE  e.id_departamento_empleado = :depto AND YEAR(c.fecha_emision)= :fecha AND c.contenido != NULL";
         $depto =array(':depto'=>$CodigoD,':fecha'=>$anio);     
         $numeracion = $this->des->consultaSel($sent,$depto)[0]['nc']+1; 
         $n=sprintf("%04d", $numeracion);  
@@ -55,10 +55,10 @@ class GeneradorCorrespondencia{
         fwrite($arch,$pdf);
         fclose($arch);
         return $nomArch;
-
     }
     function regReenvios(){
-
+        $_SESSION['renv']['contenido'];
+        
     }
     function regAdjCorresp($adjuntos =array()){
             $carpeta ="recursos/adjuntos/".$this->codigo_correspondencia;
@@ -90,7 +90,7 @@ class GeneradorCorrespondencia{
         }
         if(isset($this->co['contenido'] )){
             if(isset($_SESSION['renv']['contenido'])){
-                
+                $this->regReenvios();                
             }
 
             $ingreso['contenido']=$this->regContenido();

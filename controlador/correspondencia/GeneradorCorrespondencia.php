@@ -28,7 +28,8 @@ class GeneradorCorrespondencia{
         $n=sprintf("%04d", $numeracion);  
         return "{$CodigoD}-{$n}-{$anio}";
     }
-    function idBusquedaxNombre($nombre){  
+    function idBusquedaxNombre($nom){
+        $nombre =trim($nom);  
         echo "<script>alert:('bazinga');</script>";
         $sent= "SELECT id_persona AS id, CONCAT(nombre_persona,' ',apellido_persona) as nom FROM corresp_persona WHERE 
         UPPER(CONCAT(nombre_persona,' ',apellido_persona))= UPPER(:nombre) OR correo_electronico = :nombre";
@@ -57,8 +58,8 @@ class GeneradorCorrespondencia{
         return $nomArch;
     }
     function regReenvios(){
-        $_SESSION['renv']['contenido'];
-        
+        // $_SESSION['renv']['contenido'];
+        //'id_persona_receptor'= $this->idBusquedaxNombre($this->co['destinatario'])['id'],
     }
     function regAdjCorresp($adjuntos =array()){
             $carpeta ="recursos/adjuntos/".$this->codigo_correspondencia;
@@ -98,7 +99,21 @@ class GeneradorCorrespondencia{
         if(isset($this->co['adjuntos'])){
             $ingreso['adjuntos']=$this->regAdjCorresp($this->co['adjuntos']);
         }
-       $this->des->consultaIns('corresp_correspondencia',$ingreso);
+        $this->des->consultaIns('corresp_correspondencia',$ingreso);
+        if($this->co['copia']==''){
+            $copias =explode(";", $this->co['copia']);
+            foreach ($copias as $k) {
+                $vistima = $this->idBusquedaxNombre($k);
+                $cc=array(
+                "id_corresp_replica"=> $this->genIdCorresp(),
+                "id_persona_replica"=> $vistima,
+                "tipo_repica"=>"cc"
+                );
+                $this->des->consultaIns('corresp_replica',$cc);   
+                
+            }
+        }
+       
     }
 }
 //////////////PDF//////////////////////////

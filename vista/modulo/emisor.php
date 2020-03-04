@@ -26,8 +26,11 @@
             }               
           $datos['adjuntos']=$adj;        }    
         $verif= new GeneradorCorrespondencia($datos);
+        if(isset($intencion[1])=='renv'){
+        
+        }else{
         $verif->ingresarCorresp();
-
+        }
       }else{
         echo '<script>alert("debe añadir informacion a esta correspondencia")</script>';
       } 
@@ -56,7 +59,7 @@
           <a  href="mesaEntrada" class="btn btn-primary btn-block margin-bottom">Mesa de Entrada</a>        
        </div>
         <div class="col-md-9">
-        <form action="<?=$_GET['ruta'];?>" method="post" id="crearCorresp" enctype="multipart/form-data">
+        <form action="<?= $_GET['ruta'];?>" method="post" id="crearCorresp" enctype="multipart/form-data">
           <div class="box box-primary">
             <div class="box-header with-border">
               <h3 class="box-title">Ingresar nueva correspondencia</h3>
@@ -70,9 +73,18 @@
                     <input type="text" required class="form-control" placeholder="Para:" name="destinatario">
                   </div>
                   <div class="form-group">
-                    <input type="text" required class="form-control" placeholder="Asunto: " name="asunto" <?php if(isset($intencion[1])=='renv'){echo "value='(REENVIO){$_SESSION['renv']['asunto']}'";}?>>
-                  </div>                  
+                    <input type="text" required class="form-control" placeholder="CC:" name="copia" autocomplete="off">
+                  </div> 
+                  <div class="form-group">
+                  <?php if(isset($intencion[1])=='renv'){
+                  echo "<label>(REENVIO){$_SESSION['renv']['asunto']}</label>";
+                  }else{
+                  echo '<input type="text" required class="form-control" placeholder="Asunto: " name="asunto" autocomplete="off"/>';
+                  }
+                    ?>
+                  </div>                 
                 </div>
+                <?php if(isset($intencion[1])!='renv'){?>
                 <div class="col-md-2">                  
                   <div class="form-group">
                     <!-- <div class="form-control  bg-yellow"><i class="fa fa-shield"></i> Autorizado <input type="checkbox" class="" name="autorizado" id=""></div> -->
@@ -86,6 +98,7 @@
                       </select>  
                   </div>
                 </div>
+                <?php } ?>
               </div>
               <div class="form-group">
               <?php if(isset($intencion[1])=='renv'){
@@ -98,7 +111,7 @@
                 </textarea>
               </div>
               <?php }?>
-              <div class="form-goup" ></div>
+              <?php if(isset($intencion[1])!='renv'){?>
               <div class="form-group">
                 <div class="btn btn-default btn-file">
                   <i class="fa fa-paperclip"></i> Archivo Adjunto 
@@ -106,6 +119,7 @@
                 </div>
                 <p class="help-block">Tamaño máximo por archivo: 32MB</p>
               </div>
+              <?php } ?>
             </div>
             <div>
           <div>
@@ -115,7 +129,9 @@
                 <!-- <button type="submit" class="btn btn-default" id="guardar" name="guardar" form="crear" ><i class="fa fa-pencil"></i> Guardar</button> -->
                 <button type="submit" class="btn btn-primary" id="enviar" name="enviar" form="crearCorresp" onclick="conf()" ><i class="fa fa-envelope-o"></i> Enviar</button>
               </div>
+              <?php if(isset($intencion[1])!='renv'){?>
               <button type="reset" class="btn btn-default" name="borrar" form="crear"><i class="fa fa-times"></i> Borrar</button>
+              <?php }?>
             </div>
             <!-- /.box-footer -->
           </div>

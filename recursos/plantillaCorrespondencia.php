@@ -1,4 +1,18 @@
-<?php $arch = '
+<?php
+$p = ''; 
+foreach ($this->co['copia'] as $key ) {
+	$p.='<p class=MsoNormal><b><span lang=ES>''</span></b></p>
+<p class=MsoNormal><span class=fdestinatario><span lang=ES style=\'font-size:
+12.0pt;line-height:107%\'>'.$_SESSION['usuario']['puesto'].' '.$_SESSION['usuario']['codigo_depto'].'</span></span></p>
+<br/><br/>';
+}
+
+
+
+
+
+
+$arch = '
 <html>
 <head>
 <meta http-equiv=Content-Type content="text/html;>
@@ -103,7 +117,7 @@ class=fdestinatario><span lang=ES style=\'font-size:12.0pt;line-height:107%\'>'.
 .$this->co['contenido'].
 
 '<footer id="footer">
-<p class=MsoNormal><b><span lang=ES>Arless Violeta Matos Reyes</span></b></p>
+<p class=MsoNormal><b><span lang=ES>'.$_SESSION['nombre'].'</span></b></p>
 <p class=MsoNormal><span class=fdestinatario><span lang=ES style=\'font-size:
 12.0pt;line-height:107%\'>'.$_SESSION['usuario']['puesto'].' '.$_SESSION['usuario']['codigo_depto'].'</span></span></p>
 <br/><br/>

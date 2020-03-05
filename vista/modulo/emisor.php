@@ -1,16 +1,14 @@
 <?php
-    $intencion = explode ("_",$_GET['ruta']);
-    
-
-
-     if(isset($_POST['enviar']) && $_POST['contenido']!==false){      
-      $adj=($_FILES['adjuntos']['error'][0]==4)?NULL:$_FILES['adjuntos'];
-      $cont=$_POST["contenido"]==""?NULL:$_POST["contenido"];         
-      if(!($cont==NULL && $adj==null)){
+    $intencion = explode ("_",$_GET['ruta']);  
+     if(isset($_POST['enviar']) && (isset($_POST['contenido'])!==false || isset($_SESSION['renv']))){      
+      $adj=(isset($_FILES['adjuntos']['error'][0]))?$_FILES['adjuntos']:null;
+      $cont=isset($_POST["contenido"])==""?NULL:$_POST["contenido"];         
+      if(!($cont==NULL && $adj==null && (! isset($_SESSION['renv']['contenido'])))){
         $datos= array(
           "destinatario" =>$_POST["destinatario"],
-          "asunto"=> $_POST["asunto"],
-          "caracter"=> $_POST["caracter"]
+          "asunto"=>(isset($_SESSION['renv']))?$_SESSION['renv']['asunto']: $_POST["asunto"],
+          "caracter"=> $_POST["caracter"],
+          "copia" =>$_POST["copia"]  
         );
         if (isset($_POST["privado"])){  $datos['privado']=1;   }
         if (isset($_POST["autorizado"])){  $datos['autorizado']=1;   }        
@@ -27,7 +25,7 @@
           $datos['adjuntos']=$adj;        }    
         $verif= new GeneradorCorrespondencia($datos);
         if(isset($intencion[1])=='renv'){
-        
+        var_dump($datos);
         }else{
         $verif->ingresarCorresp();
         }
@@ -62,7 +60,7 @@
         <form action="<?= $_GET['ruta'];?>" method="post" id="crearCorresp" enctype="multipart/form-data">
           <div class="box box-primary">
             <div class="box-header with-border">
-              <h3 class="box-title">Ingresar nueva correspondencia</h3>
+              <h3 class="box-title">Ingresar nueva correspondencia </h3>
             </div>
             <!-- /.box-header -->
             
@@ -70,35 +68,35 @@
               <div class="row">
                 <div class="col-md-9">                  
                   <div class="form-group">
-                    <input type="text" required class="form-control" placeholder="Para:" name="destinatario">
+                    <input type="text" required class="form-control" placeholder="Para:" name="destinatario" form="crearCorresp">
                   </div>
                   <div class="form-group">
-                    <input type="text" required class="form-control" placeholder="CC:" name="copia" autocomplete="off">
+                    <input type="text" class="form-control" placeholder="CC:" name="copia" autocomplete="off" form="crearCorresp">
                   </div> 
                   <div class="form-group">
                   <?php if(isset($intencion[1])=='renv'){
                   echo "<label>(REENVIO){$_SESSION['renv']['asunto']}</label>";
+                  }elseif(isset($_SESSION['respaldoEmisor'])){
+                    echo '<input type="text" required class="form-control" placeholder="Asunto: " name="asunto" value="'.$_SESSION['respaldoEmisor']['asunto'].'" form="crearCorresp" />';
                   }else{
-                  echo '<input type="text" required class="form-control" placeholder="Asunto: " name="asunto" autocomplete="off"/>';
+                    echo '<input type="text" required class="form-control" placeholder="Asunto: " name="asunto" autocomplete="off" form="crearCorresp" />';
                   }
                     ?>
                   </div>                 
                 </div>
-                <?php if(isset($intencion[1])!='renv'){?>
                 <div class="col-md-2">                  
                   <div class="form-group">
                     <!-- <div class="form-control  bg-yellow"><i class="fa fa-shield"></i> Autorizado <input type="checkbox" class="" name="autorizado" id=""></div> -->
-                    <div class="form-control  bg-green"><i class="fa fa-shield"></i> Privado <input type="checkbox" class="pull-right" name="privado" id=""></div>
+                    <div class="form-control  bg-green"><i class="fa fa-shield"></i> Privado <input type="checkbox" class="pull-right" name="privado" form="crearCorresp"></div>
                   </div>
                   <div class="form-group">
-                      <select class="form-control " role="group" name="caracter">
+                      <select class="form-control " role="group" name="caracter" form="crearCorresp">
                         <option class="text-light-blue" value="ge"><i class='fa fa-circle-o'></i> Genérico</option>
                         <option class="text-yellow" value="im"><i class='fa fa-circle-o '></i> Importante</option>
                         <option class="text-red" value="ur"><i class='fa fa-circle-o '></i> Urgente</option>
                       </select>  
                   </div>
                 </div>
-                <?php } ?>
               </div>
               <div class="form-group">
               <?php if(isset($intencion[1])=='renv'){
@@ -107,7 +105,8 @@
                 ?>
                 <embed src="<?=$ruta;?>" type="application/pdf" width="100%" height="500px" /> 
               <?php }else{?>              
-                <textarea id="contenido" name="contenido" class="form-control" style="height: 300px">
+                <textarea id="contenido" name="contenido" class="form-control" style="height: 300px" form="crearCorresp">
+                <?php if(isset($_SESSION['respaldoEmisor'])){ echo $_SESSION['respaldoEmisor']['contenido']; unset($_SESSION['respaldoEmisor']);} ?>
                 </textarea>
               </div>
               <?php }?>
@@ -115,7 +114,7 @@
               <div class="form-group">
                 <div class="btn btn-default btn-file">
                   <i class="fa fa-paperclip"></i> Archivo Adjunto 
-                  <input type="file" name="adjuntos[]" multiple="multiple">
+                  <input type="file" form="crearCorresp"  name="adjuntos[]" multiple="multiple">
                 </div>
                 <p class="help-block">Tamaño máximo por archivo: 32MB</p>
               </div>

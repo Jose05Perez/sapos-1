@@ -33,8 +33,8 @@ class Conexion{
         $query->execute($args);
         $resultado= $query->fetchAll();
         }catch(PDOException $e){;
-            //echo "<script>alert('error de consulta');</script>";  
             $resultado=array($e->getMessage());
+            echo "<script>alert('error de consulta= {$resultado}');</script>";  
         }
         return $resultado;
     }

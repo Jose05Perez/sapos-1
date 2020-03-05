@@ -1,9 +1,10 @@
 <?php
 $p = ''; 
-foreach ($this->co['copia'] as $key ) {
-	$p.='<p class=MsoNormal><b><span lang=ES>''</span></b></p>
+$copia=$this->copia;
+foreach ($copia as $k=>$v ) {
+	$p.='<p class=MsoNormal><b><span lang=ES>'.[$v]['nombre'].'</span></b></p>
 <p class=MsoNormal><span class=fdestinatario><span lang=ES style=\'font-size:
-12.0pt;line-height:107%\'>'.$_SESSION['usuario']['puesto'].' '.$_SESSION['usuario']['codigo_depto'].'</span></span></p>
+12.0pt;line-height:107%\'>'.$v['rol'].' '.$v['dept'].'</span></span></p>
 <br/><br/>';
 }
 
@@ -117,10 +118,11 @@ class=fdestinatario><span lang=ES style=\'font-size:12.0pt;line-height:107%\'>'.
 .$this->co['contenido'].
 
 '<footer id="footer">
-<p class=MsoNormal><b><span lang=ES>'.$_SESSION['nombre'].'</span></b></p>
+<p class=MsoNormal><b><span lang=ES>'.$_SESSION['usuario']['nombre'].'</span></b></p>
 <p class=MsoNormal><span class=fdestinatario><span lang=ES style=\'font-size:
 12.0pt;line-height:107%\'>'.$_SESSION['usuario']['puesto'].' '.$_SESSION['usuario']['codigo_depto'].'</span></span></p>
 <br/><br/>
+'.$p.'
 	<p class=txtctr><span lang=ES style=\'font-family:"Calibri",sans-serif;
 	color:gray\'>Av. César Nicolás Penson # 91, Plaza de la Cultura Juan Pablo Duarte, Gazcue, Santo Domingo, D. N.
 	<br> RNC. 401-03133-7 / Tel.: 829-946-2674 / info@bnphu.gob.do</span></p>

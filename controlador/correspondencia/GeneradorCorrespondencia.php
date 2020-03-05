@@ -6,6 +6,7 @@ class GeneradorCorrespondencia{
     protected $emisor;            
     protected $co;            
     private $des;
+    private $copia;
 
     function  __construct($co){
         $this->des = new Conexion();
@@ -22,20 +23,26 @@ class GeneradorCorrespondencia{
         $CodigoD= $_SESSION['usuario']['codigo_depto'];$anio=date('Y');
         $sent ="SELECT COUNT(*) AS nc FROM corresp_correspondencia as c 
         JOIN corresp_empleado as e ON c.id_persona_emisor = e.id_persona_empleado  
-        WHERE  e.id_departamento_empleado = :depto AND YEAR(c.fecha_emision)= :fecha AND c.contenido != NULL";
+        WHERE  e.id_departamento_empleado = :depto AND YEAR(c.fecha_emision)= :fecha AND c.contenido != '' AND c.reenvio = 0";
         $depto =array(':depto'=>$CodigoD,':fecha'=>$anio);     
         $numeracion = $this->des->consultaSel($sent,$depto)[0]['nc']+1; 
         $n=sprintf("%04d", $numeracion);  
         return "{$CodigoD}-{$n}-{$anio}";
     }
-    function idBusquedaxNombre($nom){
-        $nombre =trim($nom);  
-        echo "<script>alert:('bazinga');</script>";
+
+    function idBusquedaxNombre($nom){     
+        $nombre = trim($nom);
         $sent= "SELECT id_persona AS id, CONCAT(nombre_persona,' ',apellido_persona) as nom FROM corresp_persona WHERE 
         UPPER(CONCAT(nombre_persona,' ',apellido_persona))= UPPER(:nombre) OR correo_electronico = :nombre";
         $param =  array(":nombre"=>$nombre);
-        $f=$this->des->consultaSel($sent,$param)[0];
-        return $f;
+        $f=$this->des->consultaSel($sent,$param);
+        if(!isset($f[0]['id'])){
+            echo "<script>alert('revise nombres o correos de destinatarios, es muy probable alguno este mal escrito');";
+            $_SESSION['respaldoEmisor']=array('asunto'=>$this->co['asunto'],'contenido'=>$this->co['contenido']);
+            echo "window.location='{$_GET['ruta']}';</script>";
+        }else{
+        return $f[0];
+        }
     }
     function regContenido(){             
         
@@ -57,9 +64,29 @@ class GeneradorCorrespondencia{
         fclose($arch);
         return $nomArch;
     }
-    function regReenvios(){
-        // $_SESSION['renv']['contenido'];
-        //'id_persona_receptor'= $this->idBusquedaxNombre($this->co['destinatario'])['id'],
+    function regCopias(){
+        $consultarol="SELECT r.nombre_rol AS rol, emp.id_departamento_empleado AS dept 
+                      FROM corresp_empleado AS emp join corresp_rol as r ON emp.id_rol_empleado = r.id_rol 
+                      WHERE emp.id_persona_empleado = :id";
+        $copias =explode(";", $this->co['copia']);
+        foreach ($copias as $k=> $v) {
+            $vistima = $this->idBusquedaxNombre($v)['id'];
+            $id=array(':id'=>(int)$vistima);
+            $resconsulta=$this->des->consultaSel($consultarol,$id);
+             $vistacopia[$k]= array( 
+            //     'nombre'=> $v, 
+            //      'rol' => $resconsulta ['rol'],
+            //      'dept'=> $resconsulta['dept']  
+                  );
+            $cc[$k]=array(
+            "id_corresp_replica"=> $this->id_correspondencia,
+            "id_persona_replica"=> $vistima
+            );
+        $this->des->consultaIns('corresp_replica',$cc[$k]);   
+        }
+        $this->copia=$vistacopia; 
+        
+        
     }
     function regAdjCorresp($adjuntos =array()){
             $carpeta ="recursos/adjuntos/".$this->codigo_correspondencia;
@@ -74,13 +101,14 @@ class GeneradorCorrespondencia{
           return $nombreArchivos;
     }
     function ingresarCorresp(){
+        echo "<script>alert('exe');</script>";
         setlocale(LC_TIME,"es_es.UTF-8");
         $ingreso=array(
         'id_correspondencia'=> $this->id_correspondencia,
         'id_persona_emisor'=>$this->idBusquedaxNombre($this->emisor)['id'],
         'id_persona_receptor'=> $this->idBusquedaxNombre($this->co['destinatario'])['id'],
         'fecha_emision'=>date("Y-m-d G:i:s"),
-        'asunto'=> $this->co['asunto'],        
+        'asunto'=>$this->co['asunto'] ,        
         'caracter'=>$this->co['caracter']       
         );
         if(isset($this->co['privado'])){
@@ -91,27 +119,19 @@ class GeneradorCorrespondencia{
         }
         if(isset($this->co['contenido'] )){
             if(isset($_SESSION['renv']['contenido'])){
-                $this->regReenvios();                
+                $ingreso['contenido']= $_SESSION['renv']['contenido'];  
+                $ingreso['contenido']= 1;
+                unset($_SESSION['renv']);
+            }else {
+                $ingreso['contenido']=$this->regContenido();
             }
-
-            $ingreso['contenido']=$this->regContenido();
         }
         if(isset($this->co['adjuntos'])){
             $ingreso['adjuntos']=$this->regAdjCorresp($this->co['adjuntos']);
         }
         $this->des->consultaIns('corresp_correspondencia',$ingreso);
-        if($this->co['copia']==''){
-            $copias =explode(";", $this->co['copia']);
-            foreach ($copias as $k) {
-                $vistima = $this->idBusquedaxNombre($k);
-                $cc=array(
-                "id_corresp_replica"=> $this->genIdCorresp(),
-                "id_persona_replica"=> $vistima,
-                "tipo_repica"=>"cc"
-                );
-                $this->des->consultaIns('corresp_replica',$cc);   
-                
-            }
+        if(isset($this->co['copia']) && $this->co['copia']!=''){
+           $this->regCopias();
         }
        
     }
